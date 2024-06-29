@@ -1,0 +1,7 @@
+{
+  "Index": {
+    "title": "Hello world!"
+  },
+  "hello_world": "Bonjour le monde",
+  "current_language": "Langue actuelle: {language}"
+}

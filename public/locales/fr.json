@@ -1,0 +1,10 @@
+{
+  "welcome": "Bienvenue dans le service de livraison de colis",
+  "signin": "Se connecter",
+  "contact": "Contactez-nous",
+  "signup": "S'inscrire",
+  "profile": "Profil",
+  "logout": "Se déconnecter",
+  "sendParcel": "Envoyer un colis",
+  "trackParcel": "Suivre un colis"
+}

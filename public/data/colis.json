@@ -1,0 +1,19 @@
+[
+  { "label": "Documents et papiers", "value": "Documents et papiers" },
+  { "label": "Articles vestimentaires", "value": "Articles vestimentaires" },
+  { "label": "Livres et médias", "value": "Livres et médias" },
+  {
+    "label": "Articles ménagers de petite taille",
+    "value": "Articles ménagers de petite taille"
+  },
+  { "label": "Jouets et jeux", "value": "Jouets et jeux" },
+  {
+    "label": "Produits alimentaires non périssables",
+    "value": "Produits alimentaires non périssables"
+  },
+  { "label": "Autres", "value": "Autres" },
+  {
+    "label": "Électronique de petite taille",
+    "value": "Électronique de petite taille"
+  }
+]
