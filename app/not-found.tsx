@@ -10,7 +10,7 @@ import { MdErrorOutline } from 'react-icons/md';
 const NotFound = () => {
   return (
     <DefaultLayout>
-      <div className="container min-h-screen-minus-menu justify-center items-center flex p-10 mx-auto">
+      <div className="container min-h-screen-minus-menu py-40 justify-center items-center flex p-10 mx-auto">
         <div className="text-center">
           <MdErrorOutline className="text-5xl mx-auto text-slate-400" />
           <h1 className="text-2xl font-bold">404, Page non trouvé !</h1>

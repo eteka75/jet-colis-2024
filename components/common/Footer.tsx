@@ -24,23 +24,18 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:underline">
+                <Link href="/about-us" className="hover:underline">
                   A propos
                 </Link>
               </li>
               <li>
-                <Link href="/affiliate" className="hover:underline">
-                  Devenez affilié
+                <Link href="/become-affiliate" className="hover:underline">
+                  Devenez partenaire
                 </Link>
               </li>
               <li>
-                <Link href="/rates-fees" className="hover:underline">
-                  Taux et frais
-                </Link>
-              </li>
-              <li>
-                <Link href="/security" className="hover:underline">
-                  Sécurité
+                <Link href="/contact" className="hover:underline">
+                  Nous contacter
                 </Link>
               </li>
               <li>
@@ -59,23 +54,18 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link href="/rates-fees" className="hover:underline">
+                  Taux et frais
+                </Link>
+              </li>
+              <li>
                 <Link href="/login" className="hover:underline">
                   Se connecter
                 </Link>
               </li>
               <li>
                 <Link href="/signup" className="hover:underline">
-                  S'inscrire
-                </Link>
-              </li>
-              <li>
-                <Link href="/referral" className="hover:underline">
-                  Parrainer des amis
-                </Link>
-              </li>
-              <li>
-                <Link href="/cookies" className="hover:underline">
-                  Cookies
+                  Créer un compte
                 </Link>
               </li>
             </ul>
@@ -110,7 +100,7 @@ const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaFacebook className="h-6 w-6 _text-blue-800 dark:text-white" />
+                <FaFacebook className="h-6 w-6 dark:text-white" />
               </a>
               <a
                 href="http://twitter.com/colistify"
@@ -122,7 +112,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className=" dark:text-white/50 text-xs text-center">
+        <div className=" dark:text-white/50 text-xs md:text-center">
           © {new Date().getFullYear()} Colistify. Tous droits réservés.
         </div>
       </div>

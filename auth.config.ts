@@ -14,18 +14,19 @@ export const authConfig = {
       const protectedRoutes = ['/dashboard', '/admin', '/statistiques'];
       const isOnDashboard = nextUrl?.pathname.startsWith('/dashboard');
 
-      console.log(isLoggedIn, 'isLoggedIn');
+      console.log(isLoggedIn, 'isLoggedIn', pathname);
 
-      if (isLoggedIn && (pathname === '/login' || pathname === '/register')) {
-        url.pathname = '/dashboard'; // Rediriger vers une page appropriée pour les utilisateurs connectés
-        return Response.redirect(url);
-      }
       if (isOnDashboard) {
         if (isLoggedIn) {
           return true;
         }
         return false; // Redirect unauthenticated users to login page
       } else if (isLoggedIn) {
+        if (pathname == '/login' || pathname == '/register') {
+          console.log(isLoggedIn, 'WORKING', pathname);
+          url.pathname = '/dashboard'; // Rediriger vers une page appropriée pour les utilisateurs connectés
+          return Response.redirect(url);
+        }
         // const redirectUrl = nextUrl
         //   ? new URL('/dashboard', nextUrl)
         //   : new URL('/dashboard', http);

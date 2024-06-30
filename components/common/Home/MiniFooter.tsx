@@ -56,7 +56,7 @@ const MiniFooter = () => {
               <Link href="/" className="hover:underline">
                 Colisfly
               </Link>
-              . All Rights Reserved.
+              . Tout droits réservés.
             </span>
           </div>
         </div>
