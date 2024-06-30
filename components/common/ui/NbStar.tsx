@@ -1,0 +1,26 @@
+import React from 'react';
+import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
+
+interface NbStartProps {
+  rating: number;
+}
+
+const NbStart: React.FC<NbStartProps> = ({ rating, className }) => {
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating % 1 !== 0;
+  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+  return (
+    <div className="flex">
+      {[...Array(fullStars)].map((_, index) => (
+        <FaStar key={index} className={className} />
+      ))}
+      {hasHalfStar && <FaStarHalfAlt className={className} />}
+      {[...Array(emptyStars)].map((_, index) => (
+        <FaRegStar key={index} className={className} />
+      ))}
+    </div>
+  );
+};
+
+export default NbStart;

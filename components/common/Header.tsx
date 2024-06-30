@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '../ui/button';
 import { Separator } from '../ui/separator';
@@ -12,10 +12,23 @@ import { CgMenuLeft } from 'react-icons/cg';
 import { PiPackageDuotone } from 'react-icons/pi';
 import LoginDropdownMenu from './ui/LoginDropdownMenu';
 import { CircleUser } from 'lucide-react';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import OAuthButtons from './ui/OAuthButtons';
+import UserDropdownMenu from './ui/UserDropdownMenu';
 
 const Header = () => {
   const [locale, setLocale] = useState('fr');
-  const [Authenticated, setAuthenticated] = useState(true);
+  const [Authenticated, setAuthenticated] = useState(false);
 
   const handleChangeLanguage = () => {
     const newLocale = locale === 'fr' ? 'en' : 'fr';
@@ -24,8 +37,8 @@ const Header = () => {
 
   return (
     <>
-      <div className="bg-light dark:bg-accent">
-        <div className="container items-center py-2 md:py-4 m-auto">
+      <div className="bg-light dark:bg-background">
+        <div className="container items-center py-4 m-auto">
           <div className="flex items-center justify-between space-x-2 md:space-x-4">
             <div className="flex items-center md:space-x-4">
               <div className="items-center">
@@ -68,8 +81,8 @@ const Header = () => {
               </nav>
             </div>
 
-            <div className="flex-1 flex justify-center">
-              <form className="w-full max-w-2xl px-4">
+            <div className="flex-1 flex justify-start">
+              <form className="w-full max-w-xl px-4">
                 <label
                   htmlFor="default-search"
                   className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -143,14 +156,7 @@ const Header = () => {
                 orientation="vertical"
                 className="h-5 hidden md:flex"
               />
-              {Authenticated ? (
-                <LoginDropdownMenu />
-              ) : (
-                <Button variant="ghost" size="sm">
-                  <CircleUser className="h-5 w-5" />
-                  <span className="sr-only">Login</span>
-                </Button>
-              )}
+              <UserDropdownMenu />
             </div>
           </div>
         </div>

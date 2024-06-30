@@ -10,7 +10,7 @@ const Header = lazy(() => import('../common/Header'));
 const HomeLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
-      <header className="md:fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+      <header className="md:fixed top-0 left-0 right-0 z-50 bg-white shadow-sm border-b">
         <Suspense fallback={<div className="text-5xl">Loading...</div>}>
           <Header />
           <SubNav />

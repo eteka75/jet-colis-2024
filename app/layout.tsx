@@ -3,20 +3,26 @@ import Header from '@/components/common/Header';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
 import '@/styles/globals.css';
-import { Inter as FontSans } from 'next/font/google';
+import { Inter as FontSans, Figtree } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import ThemeProvider from '@/src/themes/ThemeProvider';
 import clsx from 'clsx';
 
+import { SessionProvider } from 'next-auth/react';
 // import { LanguageProvider } from '@/context/LanguageContext';
 
 import type { Metadata } from 'next';
+import { AppProps } from 'next/app';
 
 const fontSans = FontSans({
   subsets: ['latin'],
   variable: '--font-sans',
 });
-
+const figtree = Figtree({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  style: ['normal', 'italic'],
+});
 export default async function RootLayout({
   children,
 }: {
@@ -30,19 +36,28 @@ export default async function RootLayout({
       <body
         className={clsx(
           'min-h-screen bg-background font-sans antialiased',
-          fontSans.variable
+          figtree.className
         )}
         //style={{ fontFamily: 'Inter, var(--font-sans)' }}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <NextIntlClientProvider messages={messages}>
-            <main>{children}</main>
+            <SessionProvider>
+              <main>{children}</main>
+            </SessionProvider>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
     </html>
   );
 }
+const LetSessionProvider = ({ Component, pageProps }: AppProps) => {
+  return (
+    <SessionProvider session={pageProps.session}>
+      <Component {...pageProps} />
+    </SessionProvider>
+  );
+};
 
 export const metadata: Metadata = {
   title: {
