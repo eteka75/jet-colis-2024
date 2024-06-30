@@ -15,6 +15,12 @@
   .min-h {
     min-height: calc(100vh - 400px);
   }
+  .min-h-screen-1sur3 {
+    min-height: 33.333333%;
+  }
+  .min-h-screen-3sur4 {
+    min-height: 75%;
+  }
   a {
     @apply cursor-pointer;
   }
