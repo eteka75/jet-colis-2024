@@ -42,17 +42,10 @@ const UserDropdownMenu = () => {
         <>
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-              <Image
-                width={50}
-                height={50}
-                className="w-7 h-7 cursor-pointer ms-3 border-2 border-gray-200 rounded-full"
-                src={userimg}
-                alt="User"
-              />
-              {/* <Button variant="ghost" size="sm">
+              <Button variant="ghost" size="sm">
                 <CircleUser className="h-5 w-5" />
                 <span className="sr-only">Login</span>
-              </Button> */}
+              </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
               <DialogHeader>
@@ -72,7 +65,7 @@ const UserDropdownMenu = () => {
                   >
                     <Button
                       size={'lg'}
-                      className="flex w-full py-6 rounded-full "
+                      className="flex w-full py-7 rounded-full "
                     >
                       Créer un nouveau compte
                     </Button>
@@ -81,7 +74,7 @@ const UserDropdownMenu = () => {
                     <Button
                       variant={'outline'}
                       size={'lg'}
-                      className="flex w-full py-6 rounded-full "
+                      className="flex w-full py-7 rounded-full "
                     >
                       Se connecter avec mes identifiants
                     </Button>

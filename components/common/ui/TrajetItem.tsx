@@ -71,13 +71,13 @@ const TrajetItem = ({ data, photos }) => {
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
               {photos[destination]?.map((url, index) => (
                 <Link key={index} href={`/trajet-depart-destionation-${id}`}>
-                  <div className="h-[300px] ">
+                  <div className="h-[300px]">
                     <Image
                       src={url}
                       alt={destination}
                       width={500}
                       height={300}
-                      className="rounded-lg max-w-full bg-slate-600 object-cover h-[300px]"
+                      className="rounded-lg max-w-full bg-gray-300 object-cover h-[300px]"
                       onLoadingComplete={handleImageLoad}
                     />
                   </div>
@@ -118,7 +118,8 @@ const TrajetItem = ({ data, photos }) => {
                   {`${tarif} ${devise}/${unite}`}
                 </p>
               </div>
-              <div className="my-2">
+              <div className="my-2 text-xs opacity-80 gap-3 flex flex-auto">
+                <div>Wilfried ETEKA</div>
                 <NbStart rating={Math.random() * 5} className="__" />
               </div>
             </div>

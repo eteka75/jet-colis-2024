@@ -17,6 +17,7 @@ import Image from 'next/image';
 import { signOut } from '@/auth';
 import { UserSession } from '@/lib/definitions';
 import { handleSignOut } from '@/app/lib/actions';
+import { FaEdit } from 'react-icons/fa';
 // import { FaBoxOpen, FaPlane, FaUser } from 'react-icons/fa6';
 
 const LoginDropdownMenu = ({ user }: { user: UserSession | undefined }) => {
@@ -37,14 +38,21 @@ const LoginDropdownMenu = ({ user }: { user: UserSession | undefined }) => {
           <Image
             width={50}
             height={50}
-            className="w-7 h-7 cursor-pointer ms-3 border-2 border-gray-200 rounded-full"
+            className="w-7 h-7 cursor-pointer md:ms-3 border-2 border-gray-200 rounded-full"
             src={userimg}
             alt="User"
           />
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent align="end" className="shadow-inset border-0">
-          <DropdownMenuLabel>Eteka wilfried</DropdownMenuLabel>
+        <DropdownMenuContent align="end" className="shadow-inset_">
+          <DropdownMenuLabel>
+            <Link href="/account">
+              Eteka wilfried
+              <div className="text-xs flex gap-2 opacity-80">
+                Mon profil <FaEdit />
+              </div>
+            </Link>
+          </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             <DropdownMenuItem>
@@ -53,29 +61,24 @@ const LoginDropdownMenu = ({ user }: { user: UserSession | undefined }) => {
             <DropdownMenuItem>
               <Link href="/dashboard">Colis envoyés</Link>
             </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link href="/acount-money">Recette</Link>
-              <DropdownMenuShortcut>5$</DropdownMenuShortcut>
-            </DropdownMenuItem>
+
+            <DropdownMenuGroup>
+              <DropdownMenuItem>
+                <Link href="/travel-offers">Mes offres de voyage</Link>
+              </DropdownMenuItem>
+              {/* <DropdownMenuItem>
+                <Link href="/acount-money">Recette</Link>
+                <DropdownMenuShortcut>5$</DropdownMenuShortcut>
+              </DropdownMenuItem> */}
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+
+            {/* <DropdownMenuItem asChild>
+              <Link href="/faq">FAQ</Link>
+            </DropdownMenuItem> */}
           </DropdownMenuGroup>
-          <DropdownMenuSeparator />
-          <DropdownMenuGroup>
-            <DropdownMenuItem>
-              <Link href="/travel-offers">Mes offres de voyage</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <Link href="/account">Mon compte</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <Link href="/settings">Settings</Link>
-            </DropdownMenuItem>
-          </DropdownMenuGroup>
-          <DropdownMenuSeparator />
           <DropdownMenuItem>
             <Link href="/help">Aide</Link>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Link href="/support">Support client</Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem>

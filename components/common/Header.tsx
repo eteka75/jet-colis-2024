@@ -82,7 +82,7 @@ const Header = () => {
             </div>
 
             <div className="flex-1 flex justify-start">
-              <form className="w-full max-w-xl px-4">
+              <form className="w-full max-w-xl px-2 md:px-4">
                 <label
                   htmlFor="default-search"
                   className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
