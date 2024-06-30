@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { signOut } from 'next-auth/react';
+
 const accessKey = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY;
 
 export async function handleSignOut() {

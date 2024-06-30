@@ -31,21 +31,16 @@ const CardRegister = () => {
             <div className="grid gap-4 md:grid-cols-2">
               <div className="grid gap-2">
                 <Label htmlFor="firstName">Prénom</Label>
-                <Input id="firstName" type="text" placeholder="John" required />
+                <Input id="firstName" type="text" required />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="lastName">Nom</Label>
-                <Input id="lastName" type="text" placeholder="Doe" required />
+                <Input id="lastName" type="text" required />
               </div>
             </div>
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="m@example.com"
-                required
-              />
+              <Input id="email" type="email" required />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="password">Mot de passe</Label>

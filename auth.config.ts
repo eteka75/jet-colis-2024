@@ -11,9 +11,11 @@ export const authConfig = {
       const { pathname } = nextUrl;
       const url = nextUrl.clone();
       const isLoggedIn = !!auth?.user;
+      const protectedRoutes = ['/dashboard', '/admin', '/statistiques'];
       const isOnDashboard = nextUrl?.pathname.startsWith('/dashboard');
 
       console.log(isLoggedIn, 'isLoggedIn');
+
       if (isLoggedIn && (pathname === '/login' || pathname === '/register')) {
         url.pathname = '/dashboard'; // Rediriger vers une page appropriée pour les utilisateurs connectés
         return Response.redirect(url);

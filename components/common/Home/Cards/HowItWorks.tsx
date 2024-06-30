@@ -31,7 +31,6 @@ const HowItWorks = () => {
                 <div>2</div>
                 <div>
                   <h3 className="text-lg font-bold">
-                    {' '}
                     Programmez votre voyage et acceptez vos colis
                   </h3>
                   <p className="text-md text-muted-foreground">

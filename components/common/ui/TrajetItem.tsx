@@ -4,13 +4,24 @@ import NbStart from '../ui/NbStar';
 import { PhotosData, TrajetType } from '@/lib/definitions';
 import { BsImageAlt } from 'react-icons/bs';
 import { RiImageLine } from 'react-icons/ri';
+import Link from 'next/link';
 // Skeleton component
-const Skeleton = ({ width, height }) => (
+const Skeleton = ({
+  width,
+  height,
+  link,
+}: {
+  width: string;
+  height: string;
+  link: string;
+}) => (
   <div
     style={{ width, height }}
     className="animate-pulse bg-gray-300 dark:bg-secondary/50 flex justify-center items-center"
   >
-    <RiImageLine className="w-10 h-10 text-gray-500" />
+    <Link className="d-con" href={link}>
+      <RiImageLine className="w-10 h-10 text-gray-500" />
+    </Link>
   </div>
 );
 
@@ -36,10 +47,11 @@ const TrajetItem = ({ data, photos }) => {
   };
 
   useEffect(() => {
-    if (photos[destination]) {
+    if (photos[destination] && photos[destination].length > 0) {
       setLoading(false);
+      setImageLoaded(1);
     }
-  }, [imageLoaded, photos, destination]);
+  }, [photos, destination]);
 
   return (
     <div>
@@ -47,23 +59,29 @@ const TrajetItem = ({ data, photos }) => {
         <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-100 dark:bg-secondary/50 lg:aspect-none group-hover:opacity-75 ">
           {loading ? (
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-              {photos[destination]?.map((url, index) => (
-                <Skeleton key={index} width="500px" height="300px" />
-              ))}
+              {/* <Link href={`/trajet-depart-destionation-${id}`}> */}
+              <Skeleton
+                width="500px"
+                height="300px"
+                link={`/trajet-depart-destionation-${id}`}
+              />
+              {/* </Link> */}
             </div>
           ) : (
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
               {photos[destination]?.map((url, index) => (
-                <div key={index} className="h-[300px] ">
-                  <Image
-                    src={url}
-                    alt={destination}
-                    width={500}
-                    height={300}
-                    className="rounded-lg max-w-full bg-slate-600 object-cover h-[300px]"
-                    onLoadingComplete={handleImageLoad}
-                  />
-                </div>
+                <Link key={index} href={`/trajet-depart-destionation-${id}`}>
+                  <div className="h-[300px] ">
+                    <Image
+                      src={url}
+                      alt={destination}
+                      width={500}
+                      height={300}
+                      className="rounded-lg max-w-full bg-slate-600 object-cover h-[300px]"
+                      onLoadingComplete={handleImageLoad}
+                    />
+                  </div>
+                </Link>
               ))}
             </div>
           )}
@@ -80,29 +98,32 @@ const TrajetItem = ({ data, photos }) => {
             </div>
           </div>
         </div>
-        <div className="mt-4 flex justify-between">
-          <div className="w-full px-2">
-            <div className="text-sm flex flex-wrap justify-between items-center">
-              <a href="#">
-                <span aria-hidden="true" className="absolute_ inset-0"></span>
-                <h2 className="text-lg mb-0 font-medium">
-                  {depart} - <span className="text-primary">{destination}</span>
-                </h2>
-              </a>
-            </div>
-            <div className="flex justify-between">
-              <p className="text-sm font-medium">
-                Départ le {`${date_depart}`}
-              </p>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
-                {`${tarif} ${devise}/${unite}`}
-              </p>
-            </div>
-            <div className="my-2">
-              <NbStart rating={Math.random() * 5} className="__" />
+        <Link href={`/trajet-depart-destionation-${id}`}>
+          <div className="mt-4 flex justify-between">
+            <div className="w-full px-2">
+              <div className="text-sm flex flex-wrap justify-between items-center">
+                <Link href={`/trajet-depart-destionation-${id}`}>
+                  <span aria-hidden="true" className="absolute_ inset-0"></span>
+                  <h2 className="text-lg mb-0 font-medium">
+                    {depart} -{' '}
+                    <span className="text-primary">{destination}</span>
+                  </h2>
+                </Link>
+              </div>
+              <div className="flex justify-between">
+                <p className="text-sm font-medium">
+                  Départ le {`${date_depart}`}
+                </p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  {`${tarif} ${devise}/${unite}`}
+                </p>
+              </div>
+              <div className="my-2">
+                <NbStart rating={Math.random() * 5} className="__" />
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );

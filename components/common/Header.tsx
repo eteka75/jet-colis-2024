@@ -37,7 +37,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="bg-accent border-b dark:bg-background">
+      <div className="bg-accent ">
         <div className="container items-center py-4 m-auto">
           <div className="flex items-center justify-between space-x-2 md:space-x-4">
             <div className="flex items-center md:space-x-4">
