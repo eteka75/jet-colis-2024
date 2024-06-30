@@ -36,21 +36,11 @@ const Login = () => {
             <CardContent className="grid gap-4">
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="votrenom@domaine.com"
-                  required
-                />
+                <Input id="email" type="email" required />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="password">Mot de passe</Label>
-                <Input
-                  id="password"
-                  placeholder="*****************"
-                  type="password"
-                  required
-                />
+                <Input id="password" type="password" required />
               </div>
               <div className="flex items-center justify-between">
                 <div className="flex items-center">

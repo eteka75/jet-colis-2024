@@ -30,6 +30,9 @@ const UserDropdownMenu = () => {
       setLoading(false);
     }
   }, [session]);
+  const [open, setOpen] = useState(false);
+  const openDialog = () => setOpen(true);
+  const closeDialog = () => setOpen(false);
 
   return (
     <>
@@ -37,7 +40,7 @@ const UserDropdownMenu = () => {
         <LoginDropdownMenu user={user} />
       ) : (
         <>
-          <Dialog>
+          <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
               <Image
                 width={50}
@@ -62,7 +65,11 @@ const UserDropdownMenu = () => {
               <div className="grid gap-2 py-4">
                 <OAuthButtons />
                 <div className="flex flex-col w-full  space-y-2">
-                  <Link href={'/signup'} className="block">
+                  <Link
+                    onClick={closeDialog}
+                    href={'/signup'}
+                    className="block"
+                  >
                     <Button
                       size={'lg'}
                       className="flex w-full py-6 rounded-full "
@@ -70,7 +77,7 @@ const UserDropdownMenu = () => {
                       Créer un nouveau compte
                     </Button>
                   </Link>
-                  <Link href={'/login'} className="block">
+                  <Link onClick={closeDialog} href={'/login'} className="block">
                     <Button
                       variant={'outline'}
                       size={'lg'}

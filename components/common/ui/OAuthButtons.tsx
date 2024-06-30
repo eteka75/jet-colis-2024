@@ -15,19 +15,19 @@ const OAuthButtons = () => {
         <button
           onClick={() => OAuthSignIn('google')}
           //variant="outline"
-          className="flex w-full justify-center text-center py-3.5 bg-gray-800 dark:bg-gray-900 text-white rounded-full md:w-auto items-center space-x-2"
+          className="flex w-full justify-center text-center py-3.5 bg-gray-800 dark:bg-gray-100 dark:text-gray-900 text-white rounded-full md:w-auto items-center space-x-2"
         >
           <FaGoogle className="h-5 w-5" />
           <span>Google</span>
         </button>
-        <Button
+        {/* <Button
           onClick={() => OAuthSignIn('github')}
           variant="outline"
           className="flex py-6 w-full rounded-full md:w-auto items-center space-x-2"
         >
           <FaFacebook className="h-5 w-5" />
           <span>Facebook</span>
-        </Button>
+        </Button> */}
       </div>
     </div>
   );
