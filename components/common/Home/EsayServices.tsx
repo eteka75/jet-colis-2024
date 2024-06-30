@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import img from "@/public/assets/images/easyapp.png";
+import img from '@/public/assets/images/easy_app.png';
 
 const EsayServices = () => {
   return (

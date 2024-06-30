@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { CircleUser } from 'lucide-react';
 import {
@@ -11,20 +11,34 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import user from '@/public/assets/images/user/default.jpg';
+import userimg from '@/public/assets/images/user/default.jpg';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import { signOut } from '@/auth';
+import { UserSession } from '@/lib/definitions';
+import { handleSignOut } from '@/app/lib/actions';
 // import { FaBoxOpen, FaPlane, FaUser } from 'react-icons/fa6';
-const LoginDropdownMenu = () => {
+
+const LoginDropdownMenu = ({ user }: { user: UserSession | undefined }) => {
+  const [loading, setLoading] = useState(false);
+
+  const handleSignOutClick = async () => {
+    setLoading(true);
+    await handleSignOut();
+    setLoading(false);
+  };
   return (
-    <div>
+    <div className="flex items-center justify-center">
+      {/* <div className="text-xs max-w-40 text-nowrap overflow-hidden text-ellipsis">
+        Bonjour, <span className="font-medium ">{user?.name}</span>
+      </div> */}
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Image
             width={50}
             height={50}
-            class="w-7 h-7 cursor-pointer ms-3 border-2 border-gray-200 rounded-full"
-            src={user}
+            className="w-7 h-7 cursor-pointer ms-3 border-2 border-gray-200 rounded-full"
+            src={userimg}
             alt="User"
           />
         </DropdownMenuTrigger>
@@ -37,7 +51,7 @@ const LoginDropdownMenu = () => {
               <Link href="/messages">Messages</Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link href="/colis-send">Colis envoyés</Link>
+              <Link href="/dashboard">Colis envoyés</Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Link href="/acount-money">Recette</Link>
@@ -65,7 +79,11 @@ const LoginDropdownMenu = () => {
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <Link href="/colis-send"> Se déconnecter</Link>
+            <form action={handleSignOut}>
+              <button type="submit">
+                {loading ? 'Signing out...' : 'Sign out'}
+              </button>
+            </form>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

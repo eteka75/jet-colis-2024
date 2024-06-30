@@ -5,7 +5,7 @@ import TopBrand from './TopBrand';
 
 const HugeWhy = () => {
   return (
-    <div className="light-bg py-8 md:py-10">
+    <div className="light-bg dark:bg-secondary py-8 md:py-10">
       <div className="container">
         <div className="md:max-w-screen-lg mx-auto text-center">
           <Badge className=" md:py-1.5 md:px-8 bg-background text-inherit shadow-sm hover:bg-background">

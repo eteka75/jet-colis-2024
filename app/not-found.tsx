@@ -9,7 +9,7 @@ import { MdErrorOutline } from 'react-icons/md';
 
 const NotFound = () => {
   return (
-    <HomeLayout>
+    <DefaultLayout>
       <div className="container min-h-screen-minus-menu justify-center items-center flex p-10 mx-auto">
         <div className="text-center">
           <MdErrorOutline className="text-5xl mx-auto text-slate-400" />
@@ -25,7 +25,7 @@ const NotFound = () => {
           </Link>
         </div>
       </div>
-    </HomeLayout>
+    </DefaultLayout>
   );
 };
 

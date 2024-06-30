@@ -1,41 +1,49 @@
-// middleware.ts
+export { auth as middleware } from '@/auth';
+
+import NextAuth from 'next-auth';
+import { authConfig } from './auth.config';
+
+// export { auth as middleware } from "@/auth"
+
+export default NextAuth(authConfig).auth;
+
+export const config = {
+  // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
+  matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
+};
+
+// import { getSession } from 'next-auth/react';
 // import { NextResponse } from 'next/server';
 // import type { NextRequest } from 'next/server';
-// import Negotiator from 'negotiator';
-// import i18n from './next-intl.config';
-// import { match as matchLocale } from '@formatjs/intl-localematcher';
-// import { setLanguageCookie, getLanguageCookie } from './lib/language'; // Assurez-vous d'importer correctement
 
-import { NextRequest } from 'next/server';
-
-// const locales = i18n.locales;
-// const defaultLocale = i18n.defaultLocale;
-
-// function getLocaleFromHeaders(req: NextRequest): string {
-//   const negotiator = new Negotiator({
-//     headers: {
-//       'accept-language': req.headers.get('accept-language') || '',
-//     },
-//   });
-//   const languages = negotiator.languages(locales);
-//   return languages.find((lang) => locales.includes(lang)) || defaultLocale;
-// }
-
+// // Middleware function to handle authentication checks
 // export function middleware(req: NextRequest) {
-//   // Récupérer la langue de l'utilisateur depuis les cookies ou les entêtes
-//   let locale = getLanguageCookie();
+//   const url = req.nextUrl.clone();
+//   const { pathname } = req.nextUrl;
 
-//   if (!locale) {
-//     // Si le cookie n'existe pas, obtenir la langue préférée du navigateur
-//     locale = getLocaleFromHeaders(req);
+//   // Check if the user is authenticated by verifying the session cookie
+//   const session = req.cookies.get('next-auth.session-token');
+//   //   const session = await getSession();
+//   console.log(session, '======OOOOOOOOOOOOOOOOOOOOO');
+//   // Define protected routes
+//   const protectedRoutes = ['/dashboard', '/admin', '/statistiques'];
+
+//   // Check if the current pathname is one of the protected routes
+//   const isProtectedRoute = protectedRoutes.some((route) =>
+//     pathname.startsWith(route)
+//   );
+
+//   // If trying to access a protected route and not authenticated, redirect to login
+//   if (isProtectedRoute && !session) {
+//     url.pathname = '/login';
+//     return NextResponse.redirect(url);
 //   }
 
-//   // Vérifier si la langue est valide
-//   locale = matchLocale([locale], locales, defaultLocale);
-
-//   const res = NextResponse.next();
-//   setLanguageCookie(locale); // Assurez-vous que cette fonction est correctement implémentée
-
-//   return res;
+//   // Allow access to all other routes
+//   return NextResponse.next();
 // }
-export function middleware(req: NextRequest) {}
+
+// // Define the routes that should be protected by this middleware
+// export const config = {
+//   matcher: ['/dashboard/:path*', '/admin/:path*', '/statistiques/:path*'],
+// };

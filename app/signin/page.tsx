@@ -1,13 +1,17 @@
 import React from 'react';
 import { useTranslations } from 'next-intl';
-import Form1 from './Form/Form1';
-import Form2 from './Form/Form2';
 import { Metadata } from 'next';
+import LightLayout from '@/components/layouts/LightLayout';
+import Login from './Form/Login';
 
 const SignInPage = () => {
   const t = useTranslations('Signin');
 
-  return <Form2 />;
+  return (
+    <LightLayout>
+      <Login />
+    </LightLayout>
+  );
 };
 
 export default SignInPage;

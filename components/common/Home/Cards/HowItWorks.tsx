@@ -14,7 +14,7 @@ const HowItWorks = () => {
               Comment ça marche ?
             </h2>
             <div className="text-xl">
-              <div className="border-b md:border-0 md:px-4 py-4 hover:bg-accent   flex gap-2 md:gap-4 flex-auto ">
+              <div className="border-b md:border-0 md:px-4 py-4 hover:text-primary hover:bg-white dark:hover:bg-primary dark:hover:text-white   flex gap-2 md:gap-4 flex-auto ">
                 <div>1</div>
                 <div>
                   <h3 className="text-lg font-bold">
@@ -27,7 +27,7 @@ const HowItWorks = () => {
                   </p>
                 </div>
               </div>
-              <div className="border-b md:px-4 py-4 hover:bg-accent  flex gap-2 md:gap-4 flex-auto md:border-b-0">
+              <div className="border-b md:px-4 py-4 hover:text-primary hover:bg-white dark:hover:bg-primary dark:hover:text-white  flex gap-2 md:gap-4 flex-auto md:border-b-0">
                 <div>2</div>
                 <div>
                   <h3 className="text-lg font-bold">
@@ -40,7 +40,7 @@ const HowItWorks = () => {
                   </p>
                 </div>
               </div>
-              <div className="md:px-4 py-4 hover:bg-accent flex gap-2 md:gap-4 flex-auto">
+              <div className="md:px-4 py-4 hover:text-primary hover:bg-white dark:hover:bg-primary dark:hover:text-white flex gap-2 md:gap-4 flex-auto">
                 <div>3</div>
                 <div>
                   <h3 className="text-lg font-bold">
