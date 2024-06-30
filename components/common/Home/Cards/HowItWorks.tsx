@@ -27,7 +27,7 @@ const HowItWorks = () => {
                   </p>
                 </div>
               </div>
-              <div className="border-b md:px-4 py-4 hover:text-primary hover:bg-white dark:hover:bg-primary dark:hover:text-white  flex gap-2 md:gap-4 flex-auto md:border-b-0">
+              <div className="border-b md:px-4 py-4 hover:shadow-md md:border-t  dark:bg-background dark:text-foreground hover:text-primary hover:bg-white dark:hover:bg-primary dark:hover:text-white  flex gap-2 md:gap-4 flex-auto ">
                 <div>2</div>
                 <div>
                   <h3 className="text-lg font-bold">
