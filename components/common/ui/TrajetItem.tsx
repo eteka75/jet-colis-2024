@@ -43,7 +43,7 @@ const TrajetItem = ({ data, photos }) => {
 
   return (
     <div>
-      <div className="group relative rounded-md pb-2 hover:shadow ">
+      <div className="group relative rounded-md pb-2">
         <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-100 dark:bg-secondary/50 lg:aspect-none group-hover:opacity-75 ">
           {loading ? (
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
