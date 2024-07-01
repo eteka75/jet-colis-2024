@@ -4,9 +4,9 @@ import TopCard from './Cards/TopCard';
 
 const TopBrand = () => {
   return (
-    <div className="py-8 md:py-12 lg:py-18">
+    <div className="pb-8 md:pb-8 lg:pb-12">
       <div className="">
-        <Marquee pauseOnHover={true} autoFill={true} gradient={false}>
+        <Marquee pauseOnHover={false} autoFill={true} gradient={false}>
           <div className="flex gap-4 space-x-4 p-4">
             <TopCard
               message="I can be a React component, multiple React components, or just some

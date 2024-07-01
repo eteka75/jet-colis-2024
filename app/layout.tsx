@@ -13,6 +13,7 @@ import { SessionProvider } from 'next-auth/react';
 
 import type { Metadata } from 'next';
 import { AppProps } from 'next/app';
+import { siteConfig } from '@/config/website';
 // import { siteConfig } from '@/config/website';
 
 const fontSans = FontSans({
@@ -60,56 +61,56 @@ const LetSessionProvider = ({ Component, pageProps }: AppProps) => {
   );
 };
 
-// export const metadata: Metadata = {
-//   title: {
-//     default: siteConfig.name,
-//     template: `%s - ${siteConfig.name}`,
-//   },
-//   metadataBase: new URL(siteConfig.url),
-//   description: siteConfig.description,
-//   keywords: [
-//     'Plateforme',
-//     'Livreur',
-//     'Colis',
-//     'Europe',
-//     'Transport',
-//     'Logistique',
-//     'Afrique',
-//   ],
-//   authors: [
-//     {
-//       name: 'Wilfried ETEKA',
-//       url: 'https://wes.odacesoft.com',
-//     },
-//   ],
-//   creator: 'Odacesoft',
-//   openGraph: {
-//     type: 'website',
-//     locale: 'fr_FR',
-//     url: siteConfig.url,
-//     title: siteConfig.name,
-//     description: siteConfig.description,
-//     siteName: siteConfig.name,
-//     images: [
-//       {
-//         url: siteConfig.ogImage,
-//         width: 1200,
-//         height: 630,
-//         alt: siteConfig.name,
-//       },
-//     ],
-//   },
-//   twitter: {
-//     card: 'summary_large_image',
-//     title: siteConfig.name,
-//     description: siteConfig.description,
-//     images: [siteConfig.ogImage],
-//     creator: '@shadcn',
-//   },
-//   icons: {
-//     icon: '/favicon.ico',
-//     shortcut: '/favicon-16x16.png',
-//     apple: '/apple-touch-icon.png',
-//   },
-//   manifest: `${siteConfig.url}/site.webmanifest`,
-// };
+export const metadata: Metadata = {
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
+  },
+  metadataBase: new URL(siteConfig.url),
+  description: siteConfig.description,
+  keywords: [
+    'Plateforme',
+    'Livreur',
+    'Colis',
+    'Europe',
+    'Transport',
+    'Logistique',
+    'Afrique',
+  ],
+  authors: [
+    {
+      name: 'Wilfried ETEKA',
+      url: 'https://wes.odacesoft.com',
+    },
+  ],
+  creator: 'Odacesoft',
+  openGraph: {
+    type: 'website',
+    locale: 'fr_FR',
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: siteConfig.name,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
+    creator: '@shadcn',
+  },
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png',
+  },
+  manifest: `${siteConfig.url}/site.webmanifest`,
+};

@@ -11,7 +11,7 @@ export const getPhotos = async (
   query: string,
   perPage = 1
 ): Promise<string[]> => {
-  return getPhotos1(query, perPage);
+  return getPhotos2(query, perPage);
 };
 
 export const getPhotos1 = async (
@@ -73,6 +73,6 @@ export const getPhotos2 = async (
       } catch (error) {
         reject(error);
       }
-    }, 5000); // Augmenter le délai pour simuler un chargement plus réaliste
+    }, 10); // Augmenter le délai pour simuler un chargement plus réaliste
   });
 };

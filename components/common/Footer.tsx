@@ -6,7 +6,7 @@ import { BsTwitterX } from 'react-icons/bs';
 import NbStart from './ui/NbStar';
 const Footer = () => {
   return (
-    <footer className="border-t bg-light text-xl md:text-sm shadow-inner_  dark:bg-gray-900/90 dark:border-accent/10 pb-6 pt-8">
+    <footer className="border-t bg-accent text-xl md:text-sm shadow-inner_  dark:bg-gray-900/90 dark:border-background/20 pb-6 pt-8">
       {/* <footer className="bg-gradient-to-t from-emerald-700 via-emerald-850 via-emerald-900    to-emerald-800 text-white text-sm py-8"> */}
 
       <div className="container">
@@ -59,6 +59,11 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link href="/destinations" className="hover:underline">
+                  Nos destinations
+                </Link>
+              </li>
+              <li>
                 <Link href="/login" className="hover:underline">
                   Se connecter
                 </Link>
@@ -86,11 +91,6 @@ const Footer = () => {
               <li>
                 <Link href="/privacy-choices" className="hover:underline">
                   Vos choix en matière de confidentialité
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacy-choices" className="hover:underline">
-                  Conditions d'utlisation
                 </Link>
               </li>
             </ul>

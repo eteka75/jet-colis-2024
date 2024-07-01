@@ -12,6 +12,9 @@
 - Colisfly
 - Colisguru
 
+## FONTS
+Consolas, 'Courier New', monospace
+
 ## AirBnb Font : Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif
 # Installation
 

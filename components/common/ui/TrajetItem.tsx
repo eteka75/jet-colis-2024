@@ -5,6 +5,7 @@ import { PhotosData, TrajetType } from '@/lib/definitions';
 import { BsImageAlt } from 'react-icons/bs';
 import { RiImageLine } from 'react-icons/ri';
 import Link from 'next/link';
+import { GiAirplaneDeparture } from 'react-icons/gi';
 // Skeleton component
 const Skeleton = ({
   width,
@@ -59,25 +60,21 @@ const TrajetItem = ({ data, photos }) => {
         <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-100 dark:bg-secondary/50 lg:aspect-none group-hover:opacity-75 ">
           {loading ? (
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-              {/* <Link href={`/trajet-depart-destionation-${id}`}> */}
-              <Skeleton
-                width="500px"
-                height="300px"
-                link={`/trajet-depart-destionation-${id}`}
-              />
+              {/* <Link href={`/journey/${id}`}> */}
+              <Skeleton width="500px" height="300px" link={`/journey/${id}`} />
               {/* </Link> */}
             </div>
           ) : (
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
               {photos[destination]?.map((url, index) => (
-                <Link key={index} href={`/trajet-depart-destionation-${id}`}>
+                <Link key={index} href={`/journey/${id}`}>
                   <div className="h-[300px]">
                     <Image
                       src={url}
                       alt={destination}
                       width={500}
                       height={300}
-                      className="rounded-lg max-w-full bg-gray-300 object-cover h-[300px]"
+                      className="rounded-lg max-w-full hover:scale-155 duration-300 hover:duration-800 bg-gray-300 object-cover h-[300px]"
                       onLoadingComplete={handleImageLoad}
                     />
                   </div>
@@ -98,29 +95,30 @@ const TrajetItem = ({ data, photos }) => {
             </div>
           </div>
         </div>
-        <Link href={`/trajet-depart-destionation-${id}`}>
-          <div className="mt-4 flex justify-between">
+        <Link href={`/journey/${id}`}>
+          <div className="mt-2 flex justify-between">
             <div className="w-full px-2">
               <div className="text-sm flex flex-wrap justify-between items-center">
-                <Link href={`/trajet-depart-destionation-${id}`}>
+                <Link href={`/journey/${id}`}>
                   <span aria-hidden="true" className="absolute_ inset-0"></span>
-                  <h2 className="text-lg mb-0 font-medium">
+                  <h2 className="text-lg  mb-0 font-medium">
                     {depart} -{' '}
                     <span className="text-primary">{destination}</span>
                   </h2>
                 </Link>
               </div>
               <div className="flex justify-between">
-                <p className="text-sm font-medium">
-                  Départ le {`${date_depart}`}
+                <p className="text-sm flex items-center gap-2 font-medium">
+                  <GiAirplaneDeparture className="hidden" /> Départ le{' '}
+                  {`${date_depart}`}
                 </p>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
                   {`${tarif} ${devise}/${unite}`}
                 </p>
               </div>
-              <div className="my-2 text-xs opacity-80 gap-3 flex flex-auto">
+              <div className="my-1.5 text-xs opacity-80 gap-3 flex flex-auto">
                 <div>Wilfried ETEKA</div>
-                <NbStart rating={Math.random() * 5} className="__" />
+                <NbStart rating={Math.random() * 5} />
               </div>
             </div>
           </div>
