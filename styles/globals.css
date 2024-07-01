@@ -11,9 +11,12 @@
   .container-fluid {
     @apply mx-auto px-4 md:px-8 lg:px-12 xl:px-24 2xl:px-32;
   }
+  .container-mini {
+    @apply mx-auto  px-4 max-w-screen-lg;
+  }
   .min-h-screen-minus-menu,
   .min-h {
-    min-height: calc(100vh - 400px);
+    min-height: calc(100vh - 370px);
   }
   .min-h-screen-1sur3 {
     min-height: 33.333333%;

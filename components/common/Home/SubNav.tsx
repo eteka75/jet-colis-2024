@@ -32,7 +32,7 @@ const SubNav = () => {
     'Cotonou',
   ];
   return (
-    <div className="bg-white dark:bg-background/80">
+    <div className="bg-white shadow-sm dark:bg-background/80 bg-opacity-90 backdrop-blur-3xl">
       <div className="container-fluid  max-w-full ">
         <nav className="py-4 mx-12">
           <Carousel

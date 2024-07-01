@@ -25,6 +25,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import OAuthButtons from './ui/OAuthButtons';
 import UserDropdownMenu from './ui/UserDropdownMenu';
+import { Tabs, TabsList, TabsTrigger } from '../ui/tabs';
 
 const Header = () => {
   const [locale, setLocale] = useState('fr');
@@ -37,7 +38,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="bg-accent ">
+      <div className="bg-accent_ bg-background/80 bg-opacity-90 backdrop-blur-3xl shadow-sm dark:border-b">
         <div className="container items-center py-4 m-auto">
           <div className="flex items-center justify-between space-x-2 md:space-x-4">
             <div className="flex items-center md:space-x-4">
@@ -110,10 +111,10 @@ const Header = () => {
                   <input
                     type="search"
                     id="default-search"
-                    className="block w-full bg-white dark:text-accent py-2 px-6 ps-10 text-sm rounded-full
-                     text-gray-900 border border-gray-300 focus:ring-primary focus:border-primary
+                    className="block w-full bg-accent focus:bg-background dark:text-accent py-2 px-6 ps-10 text-sm rounded-full
+                     text-gray-900 border  focus:ring-0 focus:border-0
                        dark:placeholder-gray-400 dark:text-white
-                      dark:focus:ring-primary dark:focus:border-primary"
+                      dark:focus:ring-0 dark:focus:border-0"
                     placeholder="Rechercher un trajet..."
                     required
                   />

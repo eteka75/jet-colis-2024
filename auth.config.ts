@@ -12,19 +12,28 @@ export const authConfig = {
       const url = nextUrl.clone();
       const isLoggedIn = !!auth?.user;
       const protectedRoutes = ['/dashboard', '/admin', '/statistiques'];
-      const isOnDashboard = nextUrl?.pathname.startsWith('/dashboard');
+      const guestRoutes = ['/login', '/signup', '/register'];
+
+      // # REDIRECTION QUAND ON EST SUR LA PAGE LOGIN ET REGISTER
+      const isOnDashboard = protectedRoutes.some((route) => pathname === route);
+      //const isOnDashboard = nextUrl?.pathname.startsWith('/dashboard');
 
       console.log(isLoggedIn, 'isLoggedIn', pathname);
-
+      // # DASHBOARD
       if (isOnDashboard) {
         if (isLoggedIn) {
           return true;
         }
-        return false; // Redirect unauthenticated users to login page
+        return false;
       } else if (isLoggedIn) {
-        if (pathname == '/login' || pathname == '/register') {
-          console.log(isLoggedIn, 'WORKING', pathname);
-          url.pathname = '/dashboard'; // Rediriger vers une page appropriée pour les utilisateurs connectés
+        //A ===2
+        // # REDIRECTION QUAND ON EST SUR LA PAGE LOGIN ET REGISTER
+        const isInRegLoginPath = guestRoutes.some(
+          (route) => pathname === route
+        );
+
+        if (isInRegLoginPath) {
+          url.pathname = '/dashboard';
           return Response.redirect(url);
         }
         // const redirectUrl = nextUrl
@@ -35,5 +44,5 @@ export const authConfig = {
       return true;
     },
   },
-  providers: [], // Add providers with an empty array for now
+  providers: [],
 } satisfies NextAuthConfig;
