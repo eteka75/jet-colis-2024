@@ -42,7 +42,7 @@ const UserDropdownMenu = ({ user }: { user: UserProps }) => {
       >
         {locale === 'fr' ? 'EN' : 'FR'}
       </Button>
-      <span className="hidden_">
+      <span className="hidden sm:flex">
         <SwithtTheme />
       </span>
       <Separator orientation="vertical" className="h-5 hidden md:flex" />

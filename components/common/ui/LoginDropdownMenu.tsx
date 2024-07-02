@@ -16,6 +16,7 @@ import { UserSession } from '@/lib/definitions';
 import { BiMessageSquare } from 'react-icons/bi';
 import { LuPackageCheck, LuUser2 } from 'react-icons/lu';
 import { IoIosHelpCircleOutline, IoIosLogOut } from 'react-icons/io';
+import { GiReceiveMoney } from 'react-icons/gi';
 
 const LoginDropdownMenu = ({ user }: { user: UserSession | undefined }) => {
   const [loading, setLoading] = useState(false);
@@ -33,7 +34,7 @@ const LoginDropdownMenu = ({ user }: { user: UserSession | undefined }) => {
           <Image
             width={50}
             height={50}
-            className="w-7 h-7 min-w-6 min-h-6 cursor-pointer ms-2  border-2 border-gray-200 rounded-full"
+            className="w-7 h-7 min-w-7 min-h-7 cursor-pointer ms-2  border-2 border-gray-200 rounded-full"
             src={userimg}
             alt="User"
           />
@@ -71,7 +72,7 @@ const LoginDropdownMenu = ({ user }: { user: UserSession | undefined }) => {
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <Link href="/travel-offers" className="flex items-center">
-                  <LuPackageCheck className="mr-2 h-4 w-4" />
+                  <GiReceiveMoney className="mr-2 h-4 w-4" />
                   Mes offres de livraison
                 </Link>
               </DropdownMenuItem>

@@ -21,46 +21,24 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import AccountLayout from '@/components/layouts/AccountLayout';
 
 // Styles pour les liens de la sidebar
-const linkStyles =
-  'flex items-center gap-2 text-neutral-500 px-4 py-2 rounded-md hover:bg-accent dark:hover:text-white hover:no-underline';
+const Profil = () => {
+  return (
+    <AccountLayout>
+      <ProfileForm />
+    </AccountLayout>
+  );
+};
 
-const Sidebar = () => (
-  <aside className="py-8 md:pe-4 h-screen max-w-64 bg-accent_ w-full overflow-y-auto">
-    <ProfileUser />
-    <ul className="space-y-1 ">
-      <li>
-        <Link href="link" className={linkStyles}>
-          <User className="w-5 h-5" /> Profile
-        </Link>
-      </li>
-      <li>
-        <Link href="link" className={linkStyles}>
-          <Settings className="w-5 h-5" /> Account Settings
-        </Link>
-      </li>
-      <li>
-        <Link href="link" className={linkStyles}>
-          <Lock className="w-5 h-5" /> Security
-        </Link>
-      </li>
-      <li>
-        <Link href="link" className={linkStyles}>
-          <Bell className="w-5 h-5" /> Notifications
-        </Link>
-      </li>
-      <li>
-        <Link href="link" className={linkStyles}>
-          <Shield className="w-5 h-5" /> Privacy
-        </Link>
-      </li>
-    </ul>
-  </aside>
-);
+export default Profil;
 
+export const metadata: Metadata = {
+  title: 'Profil',
+};
 const ProfileForm = () => (
-  <Card className="max-w-[400px] shadow-none border-0">
+  <Card className="md:max-w-[800px] md:shadow-none md:border-0  mb-8 ">
     <CardHeader>
       <CardTitle>Mon profil</CardTitle>
       <CardDescription>Deploy your new project in one-click.</CardDescription>
@@ -107,37 +85,3 @@ const ProfileForm = () => (
     </CardContent>
   </Card>
 );
-
-const MainContent = () => (
-  <main className="h-screen  w-full md:w-10/12 overflow-y-auto p-8">
-    <div className="flex_justify-center_max-w-screen-md_items-center">
-      <ProfileForm />
-    </div>
-  </main>
-);
-
-const ProfileUser = () => (
-  <div className=" text-sm p-2 px-4 hidden">
-    <h2 className="font-bold">User name</h2>
-    <p className="opacity-80">Account Settings</p>
-  </div>
-);
-
-const Profil = () => {
-  return (
-    <DefaultLayout>
-      <div className="border-t">
-        <div className="container mx-auto flex flex-col md:flex-row gap-4">
-          <Sidebar />
-          <MainContent />
-        </div>
-      </div>
-    </DefaultLayout>
-  );
-};
-
-export default Profil;
-
-export const metadata: Metadata = {
-  title: 'Profil',
-};
