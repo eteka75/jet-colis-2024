@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-  name: 'Colisfly | Envoyer vos colis à travers le monde',
+  name: 'Colisfly',
   description: 'Envoie de colis entre particuliers au kilo et moins chère',
   url: 'https://localhost:3000',
   mainNav: [

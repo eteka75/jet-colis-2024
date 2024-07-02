@@ -1,4 +1,4 @@
-'use client';
+// 'use client';
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '../ui/button';
@@ -26,22 +26,28 @@ import { Label } from '@/components/ui/label';
 import OAuthButtons from './ui/OAuthButtons';
 import UserDropdownMenu from './ui/UserDropdownMenu';
 import { Tabs, TabsList, TabsTrigger } from '../ui/tabs';
+import { useSession } from 'next-auth/react';
+import { auth } from '@/auth';
 
-const Header = () => {
-  const [locale, setLocale] = useState('fr');
-  const [Authenticated, setAuthenticated] = useState(false);
+const Header = async () => {
+  // const { data: session, status } = useSession();
+  const session = await auth();
+  const user = session?.user || null;
 
-  const handleChangeLanguage = () => {
-    const newLocale = locale === 'fr' ? 'en' : 'fr';
-    setLocale(newLocale);
-  };
+  // const [locale, setLocale] = useState('fr');
+  // const [Authenticated, setAuthenticated] = useState(false);
+
+  // const handleChangeLanguage = () => {
+  //   const newLocale = locale === 'fr' ? 'en' : 'fr';
+  //   setLocale(newLocale);
+  // };
 
   return (
     <>
-      <div className="bg-accent_ bg-background/80 bg-opacity-90 backdrop-blur-3xl shadow-sm dark:border-b">
+      <div className="bg-accent_ bg-background/80 bg-opacity-90 backdrop-blur-3xl dark:border-b">
         <div className="container items-center py-4 m-auto">
-          <div className="flex items-center justify-between space-x-2 md:space-x-4">
-            <div className="flex items-center md:space-x-4">
+          <div className="flex w-full h-full">
+            <div className="md:w-1/4 md:min-w-[100px] md:max-w-[500px] flex">
               <div className="items-center">
                 <Link href={'/'} className="hidden lg:flex md:me-10 m-0">
                   <Image
@@ -81,9 +87,8 @@ const Header = () => {
                 </Link>
               </nav>
             </div>
-
-            <div className="flex-1 flex justify-start">
-              <form className="w-full max-w-xl px-2 md:px-4">
+            <div className="flex-grow flex justify-center">
+              <form className="w-full max-w-md px-2 md:px-4">
                 <label
                   htmlFor="default-search"
                   className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -111,8 +116,8 @@ const Header = () => {
                   <input
                     type="search"
                     id="default-search"
-                    className="block w-full bg-accent focus:bg-background dark:text-accent py-2 px-6 ps-10 text-sm rounded-full
-                     text-gray-900 border  focus:ring-0 focus:border-0
+                    className="block w-full shadow-sm dark:bg-accent  dark:text-accent py-2 px-6 ps-10 text-sm rounded-full
+                     text-gray-900 border focus:bg-background focus:ring-0 focus:border-0
                        dark:placeholder-gray-400 dark:text-white
                       dark:focus:ring-0 dark:focus:border-0"
                     placeholder="Rechercher un trajet..."
@@ -129,35 +134,21 @@ const Header = () => {
               </form>
             </div>
 
-            <div className="flex items-center md:space-x-2">
+            <div className="md:w-1/4 md:min-w-[250px] items-center flex gap-1 md:max-w-[500px] justify-end">
               <div className="hidden md:flex">
                 <Link href={'/send'}>
                   <Button
                     size={'sm'}
                     variant={'ghost'}
-                    className="rounded-full gap-1 shadow bg-white dark:bg-primary dark:text-accent-foreground border hover:bg-accent"
+                    className="rounded-full gap-1 text-xs lg:text-md shadow bg-white dark:bg-primary dark:text-accent-foreground border hover:bg-accent"
                   >
                     <PiPackageDuotone />
-                    Publier mon offre
+                    Publier une offre
                   </Button>
                 </Link>
               </div>
-              <Button
-                onClick={handleChangeLanguage}
-                className="text-xs hidden md:flex"
-                variant={'ghost'}
-                size={'sm'}
-              >
-                {locale === 'fr' ? 'EN' : 'FR'}
-              </Button>
-              <span className="hidden md:flex">
-                <SwithtTheme />
-              </span>
-              <Separator
-                orientation="vertical"
-                className="h-5 hidden md:flex"
-              />
-              <UserDropdownMenu />
+
+              <UserDropdownMenu user={user} />
             </div>
           </div>
         </div>

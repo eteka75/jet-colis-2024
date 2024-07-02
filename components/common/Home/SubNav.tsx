@@ -13,6 +13,8 @@ import {
 import { Card, CardContent } from '@/components/ui/card';
 
 const SubNav = () => {
+  // const [emblaRef, emblaApi] = useEmblaCarousel();
+
   const villes: string[] = [
     'A la une',
     'Paris',
@@ -32,13 +34,15 @@ const SubNav = () => {
     'Cotonou',
   ];
   return (
-    <div className="bg-white shadow-sm dark:bg-background/80 bg-opacity-90 backdrop-blur-3xl">
+    <div className="bg-white dark:bg-background/80 bg-opacity-90 backdrop-blur-3xl">
       <div className="container-fluid  max-w-full ">
         <nav className="py-4 mx-12">
           <Carousel
             opts={{
               align: 'center',
               loop: false,
+              dragFree: false,
+              slidesToScroll: 0,
             }}
             className={'px-0'}
           >

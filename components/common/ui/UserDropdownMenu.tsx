@@ -17,26 +17,36 @@ import { Button } from '@/components/ui/button';
 import { User } from '@/lib/definitions';
 import Image from 'next/image';
 import userimg from '@/public/assets/images/user/default.jpg';
+import { Separator } from '@/components/ui/separator';
+import SwithtTheme from '../Header/SwithtTheme';
 
-const UserDropdownMenu = () => {
-  const { data: session, status } = useSession();
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState<Boolean>(true);
-  useEffect(() => {
-    if (session && session.user) {
-      setUser(session.user as User);
-    } else {
-      setUser(null);
-      setLoading(false);
-    }
-  }, [session]);
+const UserDropdownMenu = ({ user }: { user: UserProps }) => {
+  //const { data: session, status } = useSession();
+  //const [user, setUser] = useState<User | null>(null);
+  const [locale, setLocale] = useState('fr');
+
+  const handleChangeLanguage = () => {
+    const newLocale = locale === 'fr' ? 'en' : 'fr';
+    setLocale(newLocale);
+  };
   const [open, setOpen] = useState(false);
-  const openDialog = () => setOpen(true);
   const closeDialog = () => setOpen(false);
 
   return (
     <>
-      {user && !loading ? (
+      <Button
+        onClick={handleChangeLanguage}
+        className="text-xs hidden md:flex"
+        variant={'ghost'}
+        size={'sm'}
+      >
+        {locale === 'fr' ? 'EN' : 'FR'}
+      </Button>
+      <span className="hidden_">
+        <SwithtTheme />
+      </span>
+      <Separator orientation="vertical" className="h-5 hidden md:flex" />
+      {user ? (
         <LoginDropdownMenu user={user} />
       ) : (
         <>
@@ -47,7 +57,7 @@ const UserDropdownMenu = () => {
                 <span className="sr-only">Login</span>
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
+            <DialogContent className="sm:max-w-[425px] ">
               <DialogHeader>
                 <DialogTitle>Soyez les bienvenues</DialogTitle>
                 <DialogDescription>

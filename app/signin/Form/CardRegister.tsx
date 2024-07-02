@@ -18,7 +18,7 @@ import { FaGoogle, FaFacebook, FaTwitter } from 'react-icons/fa';
 const CardRegister = () => {
   return (
     // <div className="md:flex md:justify-center md:items-center md:h-screen bg-accent">
-    <div className="md:py-12 pb-8 bg-accent ">
+    <div className="md:py-12 py-8 bg-accent ">
       <div className="container">
         <Card className="md:py-4  mx-auto max-w-sm">
           <CardHeader>
