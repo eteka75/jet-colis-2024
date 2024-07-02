@@ -1,5 +1,4 @@
-import { Badge } from '@/components/ui/badge';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button';
 import React from 'react';
 import TopBrand from './TopBrand';
 import {

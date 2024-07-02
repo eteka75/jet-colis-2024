@@ -3,7 +3,7 @@ import DefaultLayout from './DefaultLayout';
 import Link from 'next/link';
 import { Bell, Lock, Settings, Shield, User } from 'lucide-react';
 const linkStyles =
-  'flex items-center gap-2 text-neutral-500 px-4 py-2 rounded-md hover:bg-accent dark:hover:text-white hover:no-underline';
+  'flex items-center gap-2 text-neutral-500 dark:text-white/80 px-4 py-2 rounded-md hover:bg-accent dark:hover:text-white hover:no-underline';
 
 const AccountLayout = ({ children }: { children: ReactNode }) => {
   return (
@@ -18,7 +18,7 @@ const AccountLayout = ({ children }: { children: ReactNode }) => {
   );
 };
 const AcountSidebar = () => (
-  <aside className="py-4 md:pe-4 lg:h-screen md:max-w-64 bg-accent_ w-full overflow-y-auto">
+  <aside className="py-4 md:pe-4 md:max-w-64 bg-accent_ w-full overflow-y-auto">
     <ProfileUser />
     <ul className="space-y-1 ">
       <li>
@@ -50,7 +50,7 @@ const AcountSidebar = () => (
   </aside>
 );
 const MainContent = ({ children }: { children: ReactNode }) => (
-  <main className="md:h-screen   w-full md:w-10/12 overflow-y-auto ">
+  <main className="md:min-h_   w-full md:w-10/12 overflow-y-auto ">
     {children}
   </main>
 );

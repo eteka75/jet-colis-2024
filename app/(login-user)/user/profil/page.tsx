@@ -18,6 +18,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
@@ -38,13 +39,13 @@ export const metadata: Metadata = {
   title: 'Profil',
 };
 const ProfileForm = () => (
-  <Card className="md:max-w-[800px] md:shadow-none md:border-0  mb-8 ">
-    <CardHeader>
-      <CardTitle>Mon profil</CardTitle>
-      <CardDescription>Deploy your new project in one-click.</CardDescription>
-    </CardHeader>
-    <CardContent>
-      <form className=" mx-auto tex-sm space-y-2">
+  <form className=" mx-auto tex-sm space-y-2">
+    <Card className="md:max-w-[800px] md:shadow-none md:border-0  mb-8 ">
+      <CardHeader>
+        <CardTitle>Mon profil</CardTitle>
+        <CardDescription>Deploy your new project in one-click.</CardDescription>
+      </CardHeader>
+      <CardContent>
         <div>
           <Label htmlFor="name">Name</Label>
           <Input className="py-1" id="name" placeholder="Enter your name" />
@@ -63,7 +64,7 @@ const ProfileForm = () => (
         </div>
         <div>
           <Label htmlFor="gender">Gender</Label>
-          <Select>
+          <Select name="gender">
             <SelectTrigger className="w-[180px]">
               <SelectValue>Select your gender</SelectValue>
             </SelectTrigger>
@@ -78,10 +79,11 @@ const ProfileForm = () => (
           <Label htmlFor="birthdate">Birthdate</Label>
           <Input id="birthdate" type="date" />
         </div>
-        <div>
+
+        <div className="py-8">
           <Button type="submit">Save Changes</Button>
         </div>
-      </form>
-    </CardContent>
-  </Card>
+      </CardContent>
+    </Card>
+  </form>
 );

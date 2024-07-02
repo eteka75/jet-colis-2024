@@ -57,9 +57,7 @@ const CardRegister = () => {
 
           <div>
             <CardContent>
-              <LineSeparator className="text-xs uppercase">
-                Ou s'inscrire avec
-              </LineSeparator>
+              <LineSeparator>Ou s'inscrire avec</LineSeparator>
               <div className="py-4">
                 <OAuthButtons />
               </div>

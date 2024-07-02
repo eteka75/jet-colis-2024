@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { signOut } from 'next-auth/react';
+import axios from "axios";
+import { signOut } from "next-auth/react";
 
 const accessKey = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY;
 
@@ -31,7 +31,7 @@ export const fetchPhotosForLists = async (
 ): Promise<{ [key: string]: string[] }> => {
   // Créer un tableau de promesses pour toutes les destinations
   const photoPromises = lists.map(async (list) => {
-    const theKey = list?.destination || '';
+    const theKey = list?.destination || "";
     try {
       const photos = await getPhotos(theKey);
       return { key: theKey, photos };
@@ -45,13 +45,10 @@ export const fetchPhotosForLists = async (
   const photoResults = await Promise.all(photoPromises);
 
   // Créer un objet photos avec les résultats
-  const photos = photoResults.reduce(
-    (acc, { key, photos }) => {
-      acc[key] = photos;
-      return acc;
-    },
-    {} as { [key: string]: string[] }
-  );
+  const photos = photoResults.reduce((acc, { key, photos }) => {
+    acc[key] = photos;
+    return acc;
+  }, {} as { [key: string]: string[] });
 
   // Retourner l'objet photos
   return photos;
@@ -73,6 +70,6 @@ export const getPhotos2 = async (
       } catch (error) {
         reject(error);
       }
-    }, 10); // Augmenter le délai pour simuler un chargement plus réaliste
+    }, 100);
   });
 };

@@ -59,7 +59,7 @@ const UserDropdownMenu = ({ user }: { user: UserProps }) => {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px] ">
               <DialogHeader>
-                <DialogTitle>Soyez les bienvenues</DialogTitle>
+                <DialogTitle>Rejoignez-nous</DialogTitle>
                 <DialogDescription>
                   Si vous êtes nouveau, créez un compte ou connectez-vous avez
                   votre compte existant.

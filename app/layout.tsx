@@ -1,21 +1,18 @@
-import Footer from '@/components/common/Footer';
-import Header from '@/components/common/Header';
-import { NextIntlClientProvider } from 'next-intl';
-import { getLocale, getMessages } from 'next-intl/server';
-import '@/styles/globals.css';
-import { Inter as FontSans, Figtree } from 'next/font/google';
-import { cn } from '@/lib/utils';
-import ThemeProvider from '@/src/themes/ThemeProvider';
-import clsx from 'clsx';
+// import { NextIntlClientProvider } from 'next-intl';
+// import { getLocale, getMessages } from "next-intl/server";
+import "@/styles/globals.css";
+import { Figtree } from "next/font/google";
+import ThemeProvider from "@/src/themes/ThemeProvider";
+import clsx from "clsx";
 
-import { SessionProvider, getSession, useSession } from 'next-auth/react';
+import { SessionProvider } from "next-auth/react";
 // import { LanguageProvider } from '@/context/LanguageContext';
 
-import type { Metadata } from 'next';
-import { AppProps } from 'next/app';
-import { siteConfig } from '@/config/website';
-import { authConfig } from '@/auth.config';
-import { auth } from '@/auth';
+import type { Metadata } from "next";
+import { AppProps } from "next/app";
+import { siteConfig } from "@/src/config/website";
+// import { authConfig } from "@/auth.config";
+import { auth } from "@/auth";
 // import { siteConfig } from '@/config/website';
 
 // const fontSans = FontSans({
@@ -23,33 +20,32 @@ import { auth } from '@/auth';
 //   variable: '--font-sans',
 // });
 const figtree = Figtree({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800', '900'],
-  style: ['normal', 'italic'],
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
 });
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const locale = await getLocale();
-  const messages = await getMessages();
+  // const locale = await getLocale();
+  // const messages = await getMessages();
   const session = await auth();
   return (
-    <html lang={locale}>
+    <html lang={"fr"}>
       <body
         className={clsx(
-          'min-h-screen bg-background font-sans antialiased',
+          "min-h-screen bg-background font-sans antialiased",
           figtree.className
         )}
-        //style={{ fontFamily: 'Inter, var(--font-sans)' }}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <NextIntlClientProvider messages={messages}>
-            <SessionProvider session={session}>
-              <main>{children}</main>
-            </SessionProvider>
-          </NextIntlClientProvider>
+          {/* <NextIntlClientProvider messages={messages}> */}
+          <SessionProvider session={session}>
+            <main>{children}</main>
+          </SessionProvider>
+          {/* </NextIntlClientProvider> */}
         </ThemeProvider>
       </body>
     </html>
@@ -63,13 +59,6 @@ export default async function RootLayout({
 //     },
 //   };
 // }
-const LetSessionProvider = ({ Component, pageProps }: AppProps) => {
-  return (
-    <SessionProvider session={pageProps.session}>
-      <Component {...pageProps} />
-    </SessionProvider>
-  );
-};
 
 export const metadata: Metadata = {
   title: {
@@ -79,24 +68,24 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   description: siteConfig.description,
   keywords: [
-    'Plateforme',
-    'Livreur',
-    'Colis',
-    'Europe',
-    'Transport',
-    'Logistique',
-    'Afrique',
+    "Plateforme",
+    "Livreur",
+    "Colis",
+    "Europe",
+    "Transport",
+    "Logistique",
+    "Afrique",
   ],
   authors: [
     {
-      name: 'Wilfried ETEKA',
-      url: 'https://wes.odacesoft.com',
+      name: "Wilfried ETEKA",
+      url: "https://wes.odacesoft.com",
     },
   ],
-  creator: 'Odacesoft',
+  creator: "Odacesoft",
   openGraph: {
-    type: 'website',
-    locale: 'fr_FR',
+    type: "website",
+    locale: "fr_FR",
     url: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,
@@ -111,16 +100,16 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
-    creator: '@shadcn',
+    creator: "@shadcn",
   },
   icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon-16x16.png',
-    apple: '/apple-touch-icon.png',
+    icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
   },
   manifest: `${siteConfig.url}/site.webmanifest`,
 };

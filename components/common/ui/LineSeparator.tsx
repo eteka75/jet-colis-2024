@@ -12,7 +12,7 @@ const LineSeparator: React.FC<LineSeparatorProps> = ({
   return (
     <div className="flex gap-2 items-center justify-center w-full">
       <div className="flex-grow  my-4 border-t border-gray-300"></div>
-      <div className="mx-4 bg-slate-500" {...props}>
+      <div className="mx-2" {...props}>
         {children}
       </div>
       <div className="flex-grow border-t border-gray-300"></div>

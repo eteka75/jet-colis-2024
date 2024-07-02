@@ -1,3 +1,4 @@
+import { PageHeaderHeading } from '@/components/common/ui/page-header';
 import DefaultLayout from '@/components/layouts/DefaultLayout';
 import React from 'react';
 
@@ -7,12 +8,12 @@ const Affiliation = () => {
       <div className="shadow-sm">
         <div className="container">
           <div className="py-4 lg:py-8">
-            <h1 className="text-2xl xl:text-2xl font-bold">Affiliation</h1>
+            <PageHeaderHeading>Affiliation</PageHeaderHeading>
           </div>
         </div>
       </div>
       <div className="container">
-        <div className="md:w-7/12">
+        <div className="md:w-7/12 mx-auto">
           <p className="py-8 lg:pb-20 text-lg">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt
             optio obcaecati modi eius fuga enim unde id accusamus dolores

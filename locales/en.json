@@ -1,9 +1,0 @@
-{
-  "welcome": "Welcome to the Parcel Delivery Service",
-  "signin": "Sign In",
-  "signup": "Sign Up",
-  "profile": "Profile",
-  "logout": "Logout",
-  "sendParcel": "Send Parcel",
-  "trackParcel": "Track Parcel"
-}

@@ -16,7 +16,7 @@ import Link from 'next/link';
 import { Switch } from '@/components/ui/switch';
 import OAuthButtons from '@/components/common/ui/OAuthButtons';
 import LineSeparator from '@/components/common/ui/LineSeparator';
-import { authenticate } from '@/app/lib/server-actions';
+import { authenticate } from '@/lib/server-actions';
 import { MdOutlineErrorOutline } from 'react-icons/md';
 import { PiLockKeyLight } from 'react-icons/pi';
 import { IoIosAt } from 'react-icons/io';
@@ -46,7 +46,7 @@ const Login = () => {
   };
 
   return (
-    <div className="md:py-12 py-8 bg-accent">
+    <div className="md:py-12 py-8 md:min-h bg-accent">
       <div className="container">
         <form onSubmit={handleSubmit}>
           <Card className="md:py-4 mx-auto max-w-sm">
@@ -123,7 +123,7 @@ const Login = () => {
             </div>
             <div>
               <CardContent>
-                <LineSeparator className="text-xs uppercase">ou</LineSeparator>
+                <LineSeparator>ou</LineSeparator>
                 <div className="py-4">
                   <OAuthButtons />
                 </div>

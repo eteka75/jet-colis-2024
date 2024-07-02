@@ -25,9 +25,14 @@
   .container-mini {
     @apply mx-auto  px-4 max-w-screen-lg;
   }
+  input,
+  textarea,
+  select {
+    @apply dark:bg-accent;
+  }
   .min-h-screen-minus-menu,
   .min-h {
-    min-height: calc(100vh - 370px);
+    min-height: calc(100vh - 350px);
   }
   .min-h-screen-1sur3 {
     min-height: 33.333333%;

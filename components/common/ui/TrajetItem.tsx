@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import NbStart from '../ui/NbStar';
-import { PhotosData, TrajetType } from '@/lib/definitions';
-import { BsImageAlt } from 'react-icons/bs';
 import { RiImageLine } from 'react-icons/ri';
 import Link from 'next/link';
 import { GiAirplaneDeparture } from 'react-icons/gi';
@@ -60,26 +58,29 @@ const TrajetItem = ({ data, photos }) => {
         <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-100 dark:bg-secondary/50 lg:aspect-none group-hover:opacity-75 ">
           {loading ? (
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-              {/* <Link href={`/journey/${id}`}> */}
               <Skeleton width="500px" height="300px" link={`/journey/${id}`} />
-              {/* </Link> */}
             </div>
           ) : (
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-              {photos[destination]?.map((url, index) => (
-                <Link key={index} href={`/journey/${id}`}>
-                  <div className="h-[300px]">
-                    <Image
-                      src={url}
-                      alt={destination}
-                      width={500}
-                      height={300}
-                      className="rounded-lg max-w-full hover:scale-155 duration-300 hover:duration-800 bg-gray-300 object-cover h-[300px]"
-                      onLoadingComplete={handleImageLoad}
-                    />
-                  </div>
-                </Link>
-              ))}
+              {photos[destination]?.map(
+                (url: string | undefined, index: number | undefined) => (
+                  <Link key={index} href={`/journey/${id}`}>
+                    <div className="h-[300px]">
+                      {url && (
+                        <Image
+                          src={url}
+                          alt={destination}
+                          width={500}
+                          height={300}
+                          quality={50}
+                          className="rounded-lg max-w-full hover:scale-155 duration-300 hover:duration-800 bg-gray-300 object-cover h-[300px]"
+                          onLoadingComplete={handleImageLoad}
+                        />
+                      )}
+                    </div>
+                  </Link>
+                )
+              )}
             </div>
           )}
           <div className="flex_ hidden justify-between top-3 absolute right-4 ">
