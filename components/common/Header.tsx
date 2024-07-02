@@ -45,9 +45,9 @@ const Header = async () => {
   return (
     <>
       <div className="bg-accent_ bg-background/80 bg-opacity-90 backdrop-blur-3xl dark:border-b">
-        <div className="container items-center py-4 m-auto">
-          <div className="flex w-full h-full">
-            <div className="md:w-1/4 md:min-w-[100px] md:max-w-[500px] flex">
+        <div className="container-fluid items-center py-4 m-auto">
+          <div className="flex w-full h-full gap-2 items-center">
+            <div className="md:w-1/4 md:min-w-[100px] md:max-w-[500px] flex ">
               <div className="items-center">
                 <Link href={'/'} className="hidden lg:flex md:me-10 m-0">
                   <Image
