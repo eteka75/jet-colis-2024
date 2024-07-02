@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import NbStart from '../ui/NbStar';
+<<<<<<< HEAD
+=======
+import { PhotosData, TrajetType } from '@/lib/definitions';
+import { BsImageAlt } from 'react-icons/bs';
+>>>>>>> 18d5de831803792042b8d33d075138627dd1982c
 import { RiImageLine } from 'react-icons/ri';
 import Link from 'next/link';
 import { GiAirplaneDeparture } from 'react-icons/gi';
@@ -58,6 +63,7 @@ const TrajetItem = ({ data, photos }) => {
         <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-100 dark:bg-secondary/50 lg:aspect-none group-hover:opacity-75 ">
           {loading ? (
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+<<<<<<< HEAD
               <Skeleton width="500px" height="300px" link={`/journey/${id}`} />
             </div>
           ) : (
@@ -81,6 +87,28 @@ const TrajetItem = ({ data, photos }) => {
                   </Link>
                 )
               )}
+=======
+              {/* <Link href={`/journey/${id}`}> */}
+              <Skeleton width="500px" height="300px" link={`/journey/${id}`} />
+              {/* </Link> */}
+            </div>
+          ) : (
+            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+              {photos[destination]?.map((url, index) => (
+                <Link key={index} href={`/journey/${id}`}>
+                  <div className="h-[300px]">
+                    <Image
+                      src={url}
+                      alt={destination}
+                      width={500}
+                      height={300}
+                      className="rounded-lg max-w-full hover:scale-155 duration-300 hover:duration-800 bg-gray-300 object-cover h-[300px]"
+                      onLoadingComplete={handleImageLoad}
+                    />
+                  </div>
+                </Link>
+              ))}
+>>>>>>> 18d5de831803792042b8d33d075138627dd1982c
             </div>
           )}
           <div className="flex_ hidden justify-between top-3 absolute right-4 ">

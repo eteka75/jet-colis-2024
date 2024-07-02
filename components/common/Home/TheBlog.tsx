@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import Image from 'next/image';
+=======
+>>>>>>> 18d5de831803792042b8d33d075138627dd1982c
 import React from 'react';
 
 const TheBlog = () => {
@@ -16,7 +19,11 @@ const TheBlog = () => {
           </div>
           <div className="mx-auto mt-8 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-12 lg:mx-0 lg:max-w-none lg:grid-cols-3 ">
             <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 dark:bg-gray-700 px-8 py-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
+<<<<<<< HEAD
               <Image width={100} height={100}
+=======
+              <img
+>>>>>>> 18d5de831803792042b8d33d075138627dd1982c
                 src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxhaXxlbnwwfDB8fHwxNzEyNzUzMTQ4fDA&ixlib=rb-4.0.3&q=80&w=1080"
                 alt=""
                 className="absolute inset-0 -z-10 h-full w-full object-cover"
@@ -35,7 +42,11 @@ const TheBlog = () => {
                     <circle cx="1" cy="1" r="1"></circle>
                   </svg>
                   <div className="flex gap-x-2.5">
+<<<<<<< HEAD
                     <Image width={100} height={100}
+=======
+                    <img
+>>>>>>> 18d5de831803792042b8d33d075138627dd1982c
                       src="https://randomuser.me/api/portraits/men/2.jpg"
                       alt=""
                       className="h-6 w-6 flex-none rounded-full bg-white/10"
@@ -52,7 +63,11 @@ const TheBlog = () => {
               </h3>
             </article>
             <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 dark:bg-gray-700 px-8 py-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
+<<<<<<< HEAD
               <Image width={100} height={100}
+=======
+              <img
+>>>>>>> 18d5de831803792042b8d33d075138627dd1982c
                 src="https://images.unsplash.com/photo-1639322537228-f710d846310a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw1fHxibG9jayUyMGNoYWlufGVufDB8MHx8fDE3MTI3NTMxNjd8MA&ixlib=rb-4.0.3&q=80&w=1080"
                 alt=""
                 className="absolute inset-0 -z-10 h-full w-full object-cover"
@@ -71,7 +86,11 @@ const TheBlog = () => {
                     <circle cx="1" cy="1" r="1"></circle>
                   </svg>
                   <div className="flex gap-x-2.5">
+<<<<<<< HEAD
                     <Image width={100} height={100}
+=======
+                    <img
+>>>>>>> 18d5de831803792042b8d33d075138627dd1982c
                       src="https://randomuser.me/api/portraits/women/2.jpg"
                       alt=""
                       className="h-6 w-6 flex-none rounded-full bg-white/10"
@@ -88,7 +107,11 @@ const TheBlog = () => {
               </h3>
             </article>
             <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 dark:bg-gray-700 px-8 py-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
+<<<<<<< HEAD
               <Image width={100} height={100}
+=======
+              <img
+>>>>>>> 18d5de831803792042b8d33d075138627dd1982c
                 src="https://images.unsplash.com/photo-1666112835156-c65bb806ac73?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxNXx8cXVhbnR1bSUyMGNvbXB1dGluZ3xlbnwwfDB8fHwxNzEyNzUzMTk2fDA&ixlib=rb-4.0.3&q=80&w=1080"
                 alt=""
                 className="absolute inset-0 -z-10 h-full w-full object-cover"
@@ -107,7 +130,11 @@ const TheBlog = () => {
                     <circle cx="1" cy="1" r="1"></circle>
                   </svg>
                   <div className="flex gap-x-2.5">
+<<<<<<< HEAD
                     <Image width={100} height={100}
+=======
+                    <img
+>>>>>>> 18d5de831803792042b8d33d075138627dd1982c
                       src="https://randomuser.me/api/portraits/men/4.jpg"
                       alt=""
                       className="h-6 w-6 flex-none rounded-full bg-white/10"

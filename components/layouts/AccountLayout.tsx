@@ -3,7 +3,11 @@ import DefaultLayout from './DefaultLayout';
 import Link from 'next/link';
 import { Bell, Lock, Settings, Shield, User } from 'lucide-react';
 const linkStyles =
+<<<<<<< HEAD
   'flex items-center gap-2 text-neutral-500 dark:text-white/80 px-4 py-2 rounded-md hover:bg-accent dark:hover:text-white hover:no-underline';
+=======
+  'flex items-center gap-2 text-neutral-500 px-4 py-2 rounded-md hover:bg-accent dark:hover:text-white hover:no-underline';
+>>>>>>> 18d5de831803792042b8d33d075138627dd1982c
 
 const AccountLayout = ({ children }: { children: ReactNode }) => {
   return (
@@ -18,7 +22,11 @@ const AccountLayout = ({ children }: { children: ReactNode }) => {
   );
 };
 const AcountSidebar = () => (
+<<<<<<< HEAD
   <aside className="py-4 md:pe-4 md:max-w-64 bg-accent_ w-full overflow-y-auto">
+=======
+  <aside className="py-4 md:pe-4 lg:h-screen md:max-w-64 bg-accent_ w-full overflow-y-auto">
+>>>>>>> 18d5de831803792042b8d33d075138627dd1982c
     <ProfileUser />
     <ul className="space-y-1 ">
       <li>
@@ -50,7 +58,11 @@ const AcountSidebar = () => (
   </aside>
 );
 const MainContent = ({ children }: { children: ReactNode }) => (
+<<<<<<< HEAD
   <main className="md:min-h_   w-full md:w-10/12 overflow-y-auto ">
+=======
+  <main className="md:h-screen   w-full md:w-10/12 overflow-y-auto ">
+>>>>>>> 18d5de831803792042b8d33d075138627dd1982c
     {children}
   </main>
 );

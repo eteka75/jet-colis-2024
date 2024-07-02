@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 "use client"
 
+=======
+>>>>>>> 18d5de831803792042b8d33d075138627dd1982c
 import * as React from "react"
 import * as SwitchPrimitives from "@radix-ui/react-switch"
 

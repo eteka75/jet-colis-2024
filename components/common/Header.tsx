@@ -44,12 +44,21 @@ const Header = async () => {
 
   return (
     <>
+<<<<<<< HEAD
       <div className="bg-accent_ bg-background/80 bg-opacity-90 backdrop-blur-3xl ">
         <div className="container-fluid items-center py-4 m-auto">
           <div className="flex w-full h-full gap-4 items-center">
             <div className="md:w-1/4 md:min-w-[100px] md:max-w-[400px] flex ">
               <div className="items-center">
                 <Link href={'/'} className="hidden lg:flex  m-0">
+=======
+      <div className="bg-accent_ bg-background/80 bg-opacity-90 backdrop-blur-3xl dark:border-b">
+        <div className="container-fluid items-center py-4 m-auto">
+          <div className="flex w-full h-full gap-2 items-center">
+            <div className="md:w-1/4 md:min-w-[100px] md:max-w-[500px] flex ">
+              <div className="items-center">
+                <Link href={'/'} className="hidden lg:flex md:me-10 m-0">
+>>>>>>> 18d5de831803792042b8d33d075138627dd1982c
                   <Image
                     src={logoLight}
                     alt="Colistify"
@@ -88,7 +97,11 @@ const Header = async () => {
               </nav>
             </div>
             <div className="flex-grow flex justify-center">
+<<<<<<< HEAD
               <form className="w-full max-w-screen-sm px-2 md:px-4">
+=======
+              <form className="w-full max-w-md px-2 md:px-4">
+>>>>>>> 18d5de831803792042b8d33d075138627dd1982c
                 <label
                   htmlFor="default-search"
                   className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -134,7 +147,11 @@ const Header = async () => {
               </form>
             </div>
 
+<<<<<<< HEAD
             <div className="md:w-1/4 md:min-w-[250px] items-center flex gap-1 md:max-w-[400px] justify-end">
+=======
+            <div className="md:w-1/4 md:min-w-[250px] items-center flex gap-1 md:max-w-[500px] justify-end">
+>>>>>>> 18d5de831803792042b8d33d075138627dd1982c
               <div className="hidden md:flex">
                 <Link href={'/send'}>
                   <Button

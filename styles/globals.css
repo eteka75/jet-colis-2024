@@ -25,6 +25,7 @@
   .container-mini {
     @apply mx-auto  px-4 max-w-screen-lg;
   }
+<<<<<<< HEAD
   input,
   textarea,
   select {
@@ -33,6 +34,11 @@
   .min-h-screen-minus-menu,
   .min-h {
     min-height: calc(100vh - 350px);
+=======
+  .min-h-screen-minus-menu,
+  .min-h {
+    min-height: calc(100vh - 370px);
+>>>>>>> 18d5de831803792042b8d33d075138627dd1982c
   }
   .min-h-screen-1sur3 {
     min-height: 33.333333%;

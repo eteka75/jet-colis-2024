@@ -21,7 +21,11 @@ const SwithtTheme: React.FC = () => {
     const savedTheme = localStorage.getItem('theme') || 'light';
     setTheme(savedTheme);
     document.documentElement.className = savedTheme;
+<<<<<<< HEAD
   }, [setTheme]);
+=======
+  }, []);
+>>>>>>> 18d5de831803792042b8d33d075138627dd1982c
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';

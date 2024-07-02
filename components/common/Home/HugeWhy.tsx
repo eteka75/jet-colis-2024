@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import { buttonVariants } from '@/components/ui/button';
+=======
+import { Badge } from '@/components/ui/badge';
+import { Button, buttonVariants } from '@/components/ui/button';
+>>>>>>> 18d5de831803792042b8d33d075138627dd1982c
 import React from 'react';
 import TopBrand from './TopBrand';
 import {
