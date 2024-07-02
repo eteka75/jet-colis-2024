@@ -10,7 +10,9 @@ const SignInPage = () => {
 
   return (
     <LightLayout>
-      <Login />
+      <main>
+        <Login />
+      </main>
     </LightLayout>
   );
 };

@@ -18,7 +18,6 @@ export const authConfig = {
       const isOnDashboard = protectedRoutes.some((route) => pathname === route);
       //const isOnDashboard = nextUrl?.pathname.startsWith('/dashboard');
 
-      console.log(isLoggedIn, 'isLoggedIn', pathname);
       // # DASHBOARD
       if (isOnDashboard) {
         if (isLoggedIn) {

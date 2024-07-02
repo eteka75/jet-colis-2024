@@ -4,7 +4,7 @@ import TopCard from './Cards/TopCard';
 
 const TopBrand = () => {
   return (
-    <div className="pb-8 md:pb-8 lg:pb-12">
+    <div className="pb-8 md:pb-8  lg:pb-12">
       <div className="">
         <Marquee pauseOnHover={false} autoFill={true} gradient={false}>
           <div className="flex gap-4 space-x-4 p-4">

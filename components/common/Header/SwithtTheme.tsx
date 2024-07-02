@@ -12,7 +12,7 @@ interface NavbarProps {
   darkMode: boolean;
   toggleDarkMode: () => void;
 }
-const SwithtTheme: React.FC<NavbarProps> = () => {
+const SwithtTheme: React.FC = () => {
   const { setTheme, theme } = useTheme();
   const [isClient, setIsClient] = useState(false);
 

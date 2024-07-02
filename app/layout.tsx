@@ -8,18 +8,20 @@ import { cn } from '@/lib/utils';
 import ThemeProvider from '@/src/themes/ThemeProvider';
 import clsx from 'clsx';
 
-import { SessionProvider } from 'next-auth/react';
+import { SessionProvider, getSession, useSession } from 'next-auth/react';
 // import { LanguageProvider } from '@/context/LanguageContext';
 
 import type { Metadata } from 'next';
 import { AppProps } from 'next/app';
 import { siteConfig } from '@/config/website';
+import { authConfig } from '@/auth.config';
+import { auth } from '@/auth';
 // import { siteConfig } from '@/config/website';
 
-const fontSans = FontSans({
-  subsets: ['latin'],
-  variable: '--font-sans',
-});
+// const fontSans = FontSans({
+//   subsets: ['latin'],
+//   variable: '--font-sans',
+// });
 const figtree = Figtree({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700', '800', '900'],
@@ -32,7 +34,7 @@ export default async function RootLayout({
 }) {
   const locale = await getLocale();
   const messages = await getMessages();
-
+  const session = await auth();
   return (
     <html lang={locale}>
       <body
@@ -44,7 +46,7 @@ export default async function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <NextIntlClientProvider messages={messages}>
-            <SessionProvider>
+            <SessionProvider session={session}>
               <main>{children}</main>
             </SessionProvider>
           </NextIntlClientProvider>
@@ -53,6 +55,14 @@ export default async function RootLayout({
     </html>
   );
 }
+
+// export async function getServerSideProps(context) {
+//   return {
+//     props: {
+//       session: await getSession(context),
+//     },
+//   };
+// }
 const LetSessionProvider = ({ Component, pageProps }: AppProps) => {
   return (
     <SessionProvider session={pageProps.session}>
