@@ -1,4 +1,5 @@
 'use client';
+
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
@@ -14,13 +15,14 @@ import {
 import OAuthButtons from './OAuthButtons';
 import LoginDropdownMenu from './LoginDropdownMenu';
 import { Button } from '@/components/ui/button';
-import { User } from '@/lib/definitions';
+import { User, UserType } from '@/lib/definitions';
 import Image from 'next/image';
 import userimg from '@/public/assets/images/user/default.jpg';
 import { Separator } from '@/components/ui/separator';
 import SwithtTheme from '../Header/SwithtTheme';
+import { DefaultSession } from 'next-auth';
 
-const UserDropdownMenu = ({ user }: { user: UserProps }) => {
+const UserDropdownMenu = ({ user }: { user: User | null }) => {
   //const { data: session, status } = useSession();
   //const [user, setUser] = useState<User | null>(null);
   const [locale, setLocale] = useState('fr');
@@ -59,11 +61,7 @@ const UserDropdownMenu = ({ user }: { user: UserProps }) => {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px] ">
               <DialogHeader>
-<<<<<<< HEAD
                 <DialogTitle>Rejoignez-nous</DialogTitle>
-=======
-                <DialogTitle>Soyez les bienvenues</DialogTitle>
->>>>>>> 18d5de831803792042b8d33d075138627dd1982c
                 <DialogDescription>
                   Si vous êtes nouveau, créez un compte ou connectez-vous avez
                   votre compte existant.

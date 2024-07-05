@@ -4,8 +4,8 @@ import React from 'react';
 const MiniFooter = () => {
   return (
     <div>
-      <footer className="bg-white border-t pt-4 md:pt-0 dark:bg-gray-900">
-        <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+      <footer className="bg-white border-t  dark:bg-gray-900">
+        <div className="w-full max-w-screen-xl mx-auto py-2 px-4 ">
           <div className="sm:flex  sm:items-center sm:justify-between">
             <ul className="md:flex md:flex-wrap space-y-4 md:space-y-0  items-center mb-6 md:text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
               <li>

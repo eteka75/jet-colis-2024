@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 import { buttonVariants } from '@/components/ui/button';
-=======
-import { Badge } from '@/components/ui/badge';
-import { Button, buttonVariants } from '@/components/ui/button';
->>>>>>> 18d5de831803792042b8d33d075138627dd1982c
 import React from 'react';
 import TopBrand from './TopBrand';
 import {
@@ -51,7 +46,7 @@ const HugeWhy = () => {
           </PageHeaderHeading>
           <PageHeaderDescription>
             Facilitez vos envois grâce à notre réseau unique reliant les deux
-            continents par avion et autres moyens efficaces...
+            continents par avion et autres moyens efficaces.
           </PageHeaderDescription>
           <PageActions>
             {/* <Link

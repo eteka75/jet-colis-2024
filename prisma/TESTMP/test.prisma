@@ -1,0 +1,149 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+ 
+generator client {
+  provider = "prisma-client-js"
+}
+ 
+model User {
+  id            String          @id @default(cuid())
+  name          String?
+  email         String          @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  // Optional for WebAuthn support
+  Authenticator Authenticator[]
+ 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+ 
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+ 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+ 
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+ 
+  @@id([provider, providerAccountId])
+}
+ 
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+ 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+ 
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+ 
+  @@id([identifier, token])
+}
+ 
+// Optional for WebAuthn support
+model Authenticator {
+  credentialID         String  @unique
+  userId               String
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+ 
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+ 
+  @@id([userId, credentialID])
+}
+
+// ################################################################################
+// # AJOUT DES COMPLEMENTS
+// ################################################################################
+// model Utilisateur{
+//   id          String      @id @unique
+//   name        String
+//   nom         String
+//   prenom      String?
+//   image       String?
+//   bio         String?
+//   email       String      @unique
+//   profile_id  String      @unique
+//   isActive    Boolean     @default(true)
+  
+//   createdAt DateTime      @map("created_at") @default(now())
+//   updatedAt DateTime      @map("updated_at") @updatedAt
+// }
+
+
+// model TypeColis{
+//   id            String @id @unique
+//   nom           String
+//   description   String?
+  
+//   tarifsColis   TarifsColis[]
+//   // userTrarifs   UserTarifsColis[]
+//   // trajets       TrajetTypeColis[]
+// }
+// model TarifsColis {
+//   id            String @id @unique
+//   description String?
+//   prix       Decimal @db.Decimal(10,2)
+
+//   typeColisId String @unique
+//   TypeColis       TypeColis @relation(fields: [typeColisId], references: [id])
+// }
+
+// model UserTarifsColis{
+//   id              String      @id @unique  
+//   // Clés secondaires
+//   typeColisId     String      
+//   userId          String      
+//   prix            Decimal     @db.Decimal(10,2)
+//   // Les relations 
+//   // tarifColis      TarifsColis @relation(fields: [typeColisId],references: [id])
+//   // user            User       @relation(fields: [userId], references: [id])
+//   // Critères de validation
+//   @@unique([typeColisId,userId])
+// }
+// model Trajets {
+//   id                  String       @id @unique
+//   titre               String
+//   description         String
+  
+//   userId              String
+//   // trajetsTypeColis    TrajetTypeColis[]
+//   // commandes           Commandes[]
+// }
+// model TrajetTypeColis {
+//   id          String       @id @unique
+//   titre       String
+//   description String
+  
+// }
+// model Commandes {
+//   id          String       @id @unique
+//   titre       String
+//   description String
+  
+// }

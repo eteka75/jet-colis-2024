@@ -18,10 +18,7 @@ import {
   Card,
   CardContent,
   CardDescription,
-<<<<<<< HEAD
   CardFooter,
-=======
->>>>>>> 18d5de831803792042b8d33d075138627dd1982c
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
@@ -42,7 +39,6 @@ export const metadata: Metadata = {
   title: 'Profil',
 };
 const ProfileForm = () => (
-<<<<<<< HEAD
   <form className=" mx-auto tex-sm space-y-2">
     <Card className="md:max-w-[800px] md:shadow-none md:border-0  mb-8 ">
       <CardHeader>
@@ -50,15 +46,6 @@ const ProfileForm = () => (
         <CardDescription>Deploy your new project in one-click.</CardDescription>
       </CardHeader>
       <CardContent>
-=======
-  <Card className="md:max-w-[800px] md:shadow-none md:border-0  mb-8 ">
-    <CardHeader>
-      <CardTitle>Mon profil</CardTitle>
-      <CardDescription>Deploy your new project in one-click.</CardDescription>
-    </CardHeader>
-    <CardContent>
-      <form className=" mx-auto tex-sm space-y-2">
->>>>>>> 18d5de831803792042b8d33d075138627dd1982c
         <div>
           <Label htmlFor="name">Name</Label>
           <Input className="py-1" id="name" placeholder="Enter your name" />
@@ -77,11 +64,7 @@ const ProfileForm = () => (
         </div>
         <div>
           <Label htmlFor="gender">Gender</Label>
-<<<<<<< HEAD
           <Select name="gender">
-=======
-          <Select>
->>>>>>> 18d5de831803792042b8d33d075138627dd1982c
             <SelectTrigger className="w-[180px]">
               <SelectValue>Select your gender</SelectValue>
             </SelectTrigger>
@@ -96,20 +79,11 @@ const ProfileForm = () => (
           <Label htmlFor="birthdate">Birthdate</Label>
           <Input id="birthdate" type="date" />
         </div>
-<<<<<<< HEAD
 
         <div className="py-8">
-          <Button type="submit">Save Changes</Button>
+          <Button type="submit">Sauvegarder</Button>
         </div>
       </CardContent>
     </Card>
   </form>
-=======
-        <div>
-          <Button type="submit">Save Changes</Button>
-        </div>
-      </form>
-    </CardContent>
-  </Card>
->>>>>>> 18d5de831803792042b8d33d075138627dd1982c
 );

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { MdOutlineLightMode } from 'react-icons/md';
 import { FiMoon, FiSun, FiSunset } from 'react-icons/fi';
 import { useTheme } from 'next-themes';
-import { MoonIcon } from '@radix-ui/react-icons';
 import { BsMoon } from 'react-icons/bs';
 import { Button } from '@/components/ui/button';
 import { Moon, Sun } from 'lucide-react';
@@ -21,11 +20,7 @@ const SwithtTheme: React.FC = () => {
     const savedTheme = localStorage.getItem('theme') || 'light';
     setTheme(savedTheme);
     document.documentElement.className = savedTheme;
-<<<<<<< HEAD
   }, [setTheme]);
-=======
-  }, []);
->>>>>>> 18d5de831803792042b8d33d075138627dd1982c
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';

@@ -1,72 +1,31 @@
-<<<<<<< HEAD
-// import { NextIntlClientProvider } from 'next-intl';
-// import { getLocale, getMessages } from "next-intl/server";
-import "@/styles/globals.css";
-import { Figtree } from "next/font/google";
-import ThemeProvider from "@/src/themes/ThemeProvider";
-import clsx from "clsx";
-
-import { SessionProvider } from "next-auth/react";
-// import { LanguageProvider } from '@/context/LanguageContext';
-
-import type { Metadata } from "next";
-import { AppProps } from "next/app";
-import { siteConfig } from "@/src/config/website";
-// import { authConfig } from "@/auth.config";
-import { auth } from "@/auth";
-// import { siteConfig } from '@/config/website';
-
-=======
-import Footer from '@/components/common/Footer';
-import Header from '@/components/common/Header';
-import { NextIntlClientProvider } from 'next-intl';
-import { getLocale, getMessages } from 'next-intl/server';
-import '@/styles/globals.css';
-import { Inter as FontSans, Figtree } from 'next/font/google';
-import { cn } from '@/lib/utils';
-import ThemeProvider from '@/src/themes/ThemeProvider';
-import clsx from 'clsx';
-
-import { SessionProvider, getSession, useSession } from 'next-auth/react';
-// import { LanguageProvider } from '@/context/LanguageContext';
-
-import type { Metadata } from 'next';
-import { AppProps } from 'next/app';
-import { siteConfig } from '@/config/website';
-import { authConfig } from '@/auth.config';
 import { auth } from '@/auth';
-// import { siteConfig } from '@/config/website';
+import { siteConfig } from '@/src/config/website';
+import ThemeProvider from '@/src/themes/ThemeProvider';
+import '@/styles/globals.css';
+import clsx from 'clsx';
+import type { Metadata } from 'next';
+import { SessionProvider } from 'next-auth/react';
+import { AppProps } from 'next/app';
+import { Figtree } from 'next/font/google';
 
->>>>>>> 18d5de831803792042b8d33d075138627dd1982c
-// const fontSans = FontSans({
-//   subsets: ['latin'],
-//   variable: '--font-sans',
-// });
 const figtree = Figtree({
-<<<<<<< HEAD
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
-=======
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700', '800', '900'],
   style: ['normal', 'italic'],
->>>>>>> 18d5de831803792042b8d33d075138627dd1982c
 });
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-<<<<<<< HEAD
   // const locale = await getLocale();
   // const messages = await getMessages();
   const session = await auth();
   return (
-    <html lang={"fr"}>
+    <html lang={'fr'}>
       <body
         className={clsx(
-          "min-h-screen bg-background font-sans antialiased",
+          'min-h-screen bg-background font-sans antialiased',
           figtree.className
         )}
       >
@@ -76,49 +35,11 @@ export default async function RootLayout({
             <main>{children}</main>
           </SessionProvider>
           {/* </NextIntlClientProvider> */}
-=======
-  const locale = await getLocale();
-  const messages = await getMessages();
-  const session = await auth();
-  return (
-    <html lang={locale}>
-      <body
-        className={clsx(
-          'min-h-screen bg-background font-sans antialiased',
-          figtree.className
-        )}
-        //style={{ fontFamily: 'Inter, var(--font-sans)' }}
-      >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <NextIntlClientProvider messages={messages}>
-            <SessionProvider session={session}>
-              <main>{children}</main>
-            </SessionProvider>
-          </NextIntlClientProvider>
->>>>>>> 18d5de831803792042b8d33d075138627dd1982c
         </ThemeProvider>
       </body>
     </html>
   );
 }
-
-// export async function getServerSideProps(context) {
-//   return {
-//     props: {
-//       session: await getSession(context),
-//     },
-//   };
-// }
-<<<<<<< HEAD
-=======
-const LetSessionProvider = ({ Component, pageProps }: AppProps) => {
-  return (
-    <SessionProvider session={pageProps.session}>
-      <Component {...pageProps} />
-    </SessionProvider>
-  );
-};
->>>>>>> 18d5de831803792042b8d33d075138627dd1982c
 
 export const metadata: Metadata = {
   title: {
@@ -128,26 +49,6 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   description: siteConfig.description,
   keywords: [
-<<<<<<< HEAD
-    "Plateforme",
-    "Livreur",
-    "Colis",
-    "Europe",
-    "Transport",
-    "Logistique",
-    "Afrique",
-  ],
-  authors: [
-    {
-      name: "Wilfried ETEKA",
-      url: "https://wes.odacesoft.com",
-    },
-  ],
-  creator: "Odacesoft",
-  openGraph: {
-    type: "website",
-    locale: "fr_FR",
-=======
     'Plateforme',
     'Livreur',
     'Colis',
@@ -166,7 +67,6 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
->>>>>>> 18d5de831803792042b8d33d075138627dd1982c
     url: siteConfig.url,
     title: siteConfig.name,
     description: siteConfig.description,
@@ -181,18 +81,6 @@ export const metadata: Metadata = {
     ],
   },
   twitter: {
-<<<<<<< HEAD
-    card: "summary_large_image",
-    title: siteConfig.name,
-    description: siteConfig.description,
-    images: [siteConfig.ogImage],
-    creator: "@shadcn",
-  },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-=======
     card: 'summary_large_image',
     title: siteConfig.name,
     description: siteConfig.description,
@@ -203,7 +91,6 @@ export const metadata: Metadata = {
     icon: '/favicon.ico',
     shortcut: '/favicon-16x16.png',
     apple: '/apple-touch-icon.png',
->>>>>>> 18d5de831803792042b8d33d075138627dd1982c
   },
   manifest: `${siteConfig.url}/site.webmanifest`,
 };

@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import NbStart from '../ui/NbStar';
-<<<<<<< HEAD
-=======
-import { PhotosData, TrajetType } from '@/lib/definitions';
-import { BsImageAlt } from 'react-icons/bs';
->>>>>>> 18d5de831803792042b8d33d075138627dd1982c
 import { RiImageLine } from 'react-icons/ri';
 import Link from 'next/link';
 import { GiAirplaneDeparture } from 'react-icons/gi';
+import { TrajetItemProps } from '@/lib/definitions';
+import { Skeleton } from '@/components/ui/skeleton';
+
 // Skeleton component
-const Skeleton = ({
+const Skeletond = ({
   width,
   height,
   link,
@@ -29,7 +27,7 @@ const Skeleton = ({
   </div>
 );
 
-const TrajetItem = ({ data, photos }) => {
+const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
   const {
     id,
     photo,
@@ -60,16 +58,19 @@ const TrajetItem = ({ data, photos }) => {
   return (
     <div>
       <div className="group relative rounded-md pb-2">
-        <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-100 dark:bg-secondary/50 lg:aspect-none group-hover:opacity-75 ">
+        <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-100 dark:bg-secondary/50 lg:aspect-none group-hover:opacity-75">
           {loading ? (
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-<<<<<<< HEAD
-              <Skeleton width="500px" height="300px" link={`/journey/${id}`} />
+              <Skeleton className="">
+                <Link className="d-con" href={`/journey/${id}`}>
+                  <RiImageLine className="w-10 h-10 text-gray-500" />
+                </Link>
+              </Skeleton>
             </div>
           ) : (
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
               {photos[destination]?.map(
-                (url: string | undefined, index: number | undefined) => (
+                (url: string | undefined, index: number) => (
                   <Link key={index} href={`/journey/${id}`}>
                     <div className="h-[300px]">
                       {url && (
@@ -87,28 +88,6 @@ const TrajetItem = ({ data, photos }) => {
                   </Link>
                 )
               )}
-=======
-              {/* <Link href={`/journey/${id}`}> */}
-              <Skeleton width="500px" height="300px" link={`/journey/${id}`} />
-              {/* </Link> */}
-            </div>
-          ) : (
-            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-              {photos[destination]?.map((url, index) => (
-                <Link key={index} href={`/journey/${id}`}>
-                  <div className="h-[300px]">
-                    <Image
-                      src={url}
-                      alt={destination}
-                      width={500}
-                      height={300}
-                      className="rounded-lg max-w-full hover:scale-155 duration-300 hover:duration-800 bg-gray-300 object-cover h-[300px]"
-                      onLoadingComplete={handleImageLoad}
-                    />
-                  </div>
-                </Link>
-              ))}
->>>>>>> 18d5de831803792042b8d33d075138627dd1982c
             </div>
           )}
           <div className="flex_ hidden justify-between top-3 absolute right-4 ">
@@ -119,7 +98,7 @@ const TrajetItem = ({ data, photos }) => {
                     JL
                   </span>
                 </div>
-                <div>Wilfried ETEKA</div>
+                <div>User name</div>
               </div>
             </div>
           </div>
@@ -130,7 +109,7 @@ const TrajetItem = ({ data, photos }) => {
               <div className="text-sm flex flex-wrap justify-between items-center">
                 <Link href={`/journey/${id}`}>
                   <span aria-hidden="true" className="absolute_ inset-0"></span>
-                  <h2 className="text-lg  mb-0 font-medium">
+                  <h2 className="text-lg mb-0 font-medium">
                     {depart} -{' '}
                     <span className="text-primary">{destination}</span>
                   </h2>

@@ -5,7 +5,7 @@
 // export const { handlers, signIn, signOut, auth } = NextAuth({
 //   providers: [Google, Github],
 // });
-// import bcrypt from 'bcrypt';
+import bcrypt from 'bcrypt';
 import NextAuth from 'next-auth';
 import { authConfig } from './auth.config';
 import Credentials from 'next-auth/providers/credentials';

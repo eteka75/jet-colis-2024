@@ -14,6 +14,30 @@ export type User = {
   email: string;
   password: string;
 };
+export interface TrajetData {
+  id: number;
+  photo: string;
+  depart: string;
+  destination: string;
+  tarif: string;
+  devise: string;
+  unite: string;
+  date_depart: string;
+  kilo_disponible: number;
+  unite_kilo_disponible: string;
+}
+
+export interface TrajetItemProps {
+  data: TrajetData;
+  photos: PhotosData;
+}
+
+export type UserType = {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+};
 
 export type Customer = {
   id: string;

@@ -1,17 +1,16 @@
-import { Badge } from '@/components/ui/badge';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button';
 import React from 'react';
-import TopBrand from './TopBrand';
+
+import Link from 'next/link';
+import { cn } from '@/lib/utils';
+
 import {
   Announcement,
   PageActions,
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
-} from '../ui/page-header';
-import Link from 'next/link';
-import { cn } from '@/lib/utils';
-import { FaGithub } from 'react-icons/fa6';
+} from './components/common/ui/page-header';
 
 const HugeWhy = () => {
   return (
