@@ -80,70 +80,190 @@ model Authenticator {
 // ################################################################################
 // # AJOUT DES COMPLEMENTS
 // ################################################################################
-// model Utilisateur{
-//   id          String      @id @unique
-//   name        String
-//   nom         String
-//   prenom      String?
-//   image       String?
-//   bio         String?
-//   email       String      @unique
-//   profile_id  String      @unique
-//   isActive    Boolean     @default(true)
+model Utilisateur{
+  id          String      @id @default(uuid())
+  name        String
+  nom         String
+  prenom      String?
+  image       String?
+  bio         String?
+  email       String      @unique
+  profile_id  String      @unique
+  isActive    Boolean     @default(true)
   
-//   createdAt DateTime      @map("created_at") @default(now())
-//   updatedAt DateTime      @map("updated_at") @updatedAt
-// }
+  createdAt DateTime      @map("created_at") @default(now())
+  updatedAt DateTime      @map("updated_at") @updatedAt
+
+  userTarifsColis         UserTarifsColis[]
+  trajets                 Trajet[]
+  Commandes                Commande[]
+  reviews                 Review[]        // Les avis laissés par l'utilisateur
+  sentMessages            ChatMessage[]       @relation("SentMessages")
+  receivedMessages        ChatMessage[]       @relation("ReceivedMessages")
+  notifications           Notification[]  // Notifications pour l'utilisateur
+  localisationTrajets     LocalisationTrajet[]
+  favoris                 Favori[]
+  preferences             Preference[]
+}
 
 
-// model TypeColis{
-//   id            String @id @unique
-//   nom           String
-//   description   String?
+model TypeColis{
+  id            String   @id @default(uuid())
+  nom           String
+  description   String?
   
-//   tarifsColis   TarifsColis[]
-//   // userTrarifs   UserTarifsColis[]
-//   // trajets       TrajetTypeColis[]
-// }
-// model TarifsColis {
-//   id            String @id @unique
-//   description String?
-//   prix       Decimal @db.Decimal(10,2)
+  tarifsColis           TarifsColis?
+  userTarifsColis       UserTarifsColis[]
+  trajetTypeColis       TrajetTypeColis[]
+  @@unique([nom])
+}
+model TarifsColis {
+  id            String   @id @default(uuid())
+  description   String?
+  prix          Decimal @db.Decimal(10,2)
 
-//   typeColisId String @unique
-//   TypeColis       TypeColis @relation(fields: [typeColisId], references: [id])
-// }
+  userTarifsColis UserTarifsColis[]
+  commande Commande[]
 
-// model UserTarifsColis{
-//   id              String      @id @unique  
-//   // Clés secondaires
-//   typeColisId     String      
-//   userId          String      
-//   prix            Decimal     @db.Decimal(10,2)
-//   // Les relations 
-//   // tarifColis      TarifsColis @relation(fields: [typeColisId],references: [id])
-//   // user            User       @relation(fields: [userId], references: [id])
-//   // Critères de validation
-//   @@unique([typeColisId,userId])
-// }
-// model Trajets {
-//   id                  String       @id @unique
-//   titre               String
-//   description         String
+  typeColisId String @unique
+  TypeColis       TypeColis @relation(fields: [typeColisId], references: [id])
+}
+model UserTarifsColis{
+  id              String   @id @default(uuid())
+  prix            Decimal       @db.Decimal(10,2)
+  // Clés secondaires
+  typeColisId     String      
+  userId          String      
+  typeColis TypeColis[]
+  // Les relations 
+  user            Utilisateur   @relation(fields: [userId], references: [id])
+  tarifColis      TarifsColis   @relation(fields: [typeColisId],references: [id])
+  // Critères de validation
+  @@unique([typeColisId,userId])
+}
+
+model Trajet {
+  id                  String   @id @default(uuid())
+  titre               String
+  lieuDepart          String
+  lieuDestination     String
+  description         String
+
+  startLatitude       Float?           // Latitude du point de départ
+  startLongitude      Float?           // Longitude du point de départ
+  endLatitude         Float?           // Latitude du point d'arrivée
+  endLongitude        Float?           // Longitude du point d'arrivée
+ 
+  userId              String
+  user                Utilisateur    @relation(fields: [userId],references: [id])
+
+  commandes           Commande[]  
+  trajetTypeColis     TrajetTypeColis[]  
+  reviews             Review[]
+  favoris             Favori[]
+}
+model TrajetTypeColis {
+  id              String    @id @default(uuid())
+  titre           String
+  description     String
+  maxKg           Float // Capacité totale en kg
+  remainingKg     Float //  Kg restant disponible
   
-//   userId              String
-//   // trajetsTypeColis    TrajetTypeColis[]
-//   // commandes           Commandes[]
-// }
-// model TrajetTypeColis {
-//   id          String       @id @unique
-//   titre       String
-//   description String
+  trajetId        String
+  typeColisId     String 
+
+  trajets         Trajet      @relation(fields: [trajetId], references: [id])
+  typeColis       TypeColis   @relation(fields: [typeColisId],references: [id])
+
+  @@unique([trajetId,typeColisId])
+}
+model Commande {
+  id                  String   @id @default(uuid())
+  qteCommande         Float
+  totalPrix           Float
+
+  trajetId            String 
+  userId              String //celui qui a commandé
+  typeColisId         String 
+
+  trajets Trajet     @relation(fields: [trajetId],references: [id])
+  user Utilisateur    @relation(fields: [userId],references: [id])
+  trajetColis TarifsColis   @relation(fields: [typeColisId],references: [id])
+
+  // @@unique([trajetId,userId,typeColisId])
+}
+
+model Review {
+  id              String      @id   @unique
+  rating          Int     // Note de 1 à 5
+  comment         String? // Commentaire facultatif
+  createdAt       DateTime    @default(now()) 
+
+  userId          String
+  trajetId        String
   
-// }
-// model Commandes {
-//   id          String       @id @unique
-//   titre       String
-//   description String
+  user            Utilisateur @relation(fields: [userId],references: [id])
+  trajet          Trajet      @relation(fields: [trajetId],references: [id])
+
+  @@unique([userId,trajetId])
+}
+
+model ChatMessage {
+  id          String   @id @default(uuid())
+  content     String
+  createdAt   DateTime @default(now())
+  imageUrl    String?  // URL de l'image
+  audioUrl    String?  // URL du fichier audio
+  videoUrl    String?  // URL du fichier vidéo
+
+  senderId    String
+  receiveId   String
+  sender      Utilisateur @relation("SentMessages",fields: [senderId],references: [id])
+  receiver    Utilisateur @relation("ReceivedMessages",fields: [receiveId],references: [id])
+}
+
+model Notification {
+  id          String   @id @default(uuid())
+  type        String   // Type de notification (réservation, commentaire, etc.)
+  message     String
+  isRead      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  userId      String
+  user        Utilisateur     @relation(fields: [userId], references: [id])
+}
+
+model LocalisationTrajet {
+  id          String    @id @default(uuid())
+  type        String?    // Arrivé/Depart
+  label       String
+  adresse     String?
+  latitude    Float?
+  logitude    Float?
   
-// }
+  userId      String 
+  user        Utilisateur @relation(fields: [userId],references: [id])
+}
+
+model Favori {
+  id        String        @id @default(uuid())
+  createdAt DateTime      @default(now())
+
+  trajetId  String
+  userId    String
+  user      Utilisateur     @relation(fields: [userId], references: [id])
+  trajet    Trajet   @relation(fields: [trajetId], references: [id])
+
+  @@unique([userId, trajetId]) 
+}
+
+model Preference {
+  id        String   @id @default(uuid())
+  value     String   // Valeur de la préférence
+  key       String   // Clé pour la préférence (ex: "notifications", "theme")
+  
+  userId    String
+  user      Utilisateur     @relation(fields: [userId], references: [id])
+  
+  @@unique([userId, key]) // Assure que chaque utilisateur a une seule valeur pour chaque clé
+}

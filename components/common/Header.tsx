@@ -39,8 +39,8 @@ const Header = async () => {
       <div className="bg-accent_ bg-background/80 bg-opacity-90 backdrop-blur-3xl ">
         <div className="container-fluid items-center py-4 m-auto">
           <div className="flex w-full h-full gap-4 items-center">
-            <div className="md:w-1/4 md:min-w-[100px] md:max-w-[400px] flex ">
-              <div className="items-center">
+            <div className="md:w-1/4 md:min-w-[100px] md:max-w-[400px] ">
+              <div className="flex items-center">
                 <Link href={'/'} className="hidden lg:flex  m-0">
                   <Image
                     src={logoLight}
@@ -50,7 +50,7 @@ const Header = async () => {
                   <Image
                     src={logoDark}
                     alt="Colistify"
-                    className="h-5 lg:h-10 xl:h-10 w-auto hidden dark:flex"
+                    className="h-6 lg:h-8 xl:h-9 w-auto hidden dark:flex"
                   />
                 </Link>
                 <Sheet key={'left'}>

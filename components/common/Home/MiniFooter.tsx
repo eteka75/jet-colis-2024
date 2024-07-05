@@ -1,13 +1,48 @@
+'use client';
+
+import clsx from 'clsx';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const MiniFooter = () => {
+  const [scrollDirection, setScrollDirection] = useState('down');
+  const [lastScrollTop, setLastScrollTop] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScroll = window.scrollY; // Utilisez window.scrollY pour obtenir la position de défilement actuelle
+
+      // Détermine la direction du défilement
+      if (currentScroll > lastScrollTop) {
+        setScrollDirection('up');
+      } else {
+        setScrollDirection('down');
+      }
+
+      // Met à jour la position du dernier défilement
+      setLastScrollTop(currentScroll <= 0 ? 0 : currentScroll);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollTop]); // Dépendance sur lastScrollTop pour re-exécuter l'effet
+
   return (
-    <div>
-      <footer className="bg-white border-t  dark:bg-gray-900">
-        <div className="w-full max-w-screen-xl mx-auto py-2 px-4 ">
-          <div className="sm:flex  sm:items-center sm:justify-between">
-            <ul className="md:flex md:flex-wrap space-y-4 md:space-y-0  items-center mb-6 md:text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+    <div className="md:mt-12">
+      <footer
+        className={clsx(
+          ' bottom-0 left-0 w-full transition-transform duration-300 ease-in-out',
+          scrollDirection === 'down'
+            ? ' md:transform md:translate-y-full'
+            : 'md:fixed md:transform md:translate-y-0',
+          'bg-white py-2 text-center border-t border-gray-200'
+        )}
+      >
+        <div className="w-full max-w-screen-xl mx-auto py-2 px-4">
+          <div className="w-full space-y-4 md:space-y-0 md:flex sm:items-center sm:justify-between">
+            <ul className="md:flex md:flex-wrap space-y-4 md:space-y-0 items-center mb-6 md:text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
               <li>
                 <Link href="/" className="hover:underline me-4 mb-4 md:me-6">
                   Accueil
@@ -18,7 +53,7 @@ const MiniFooter = () => {
                   href="/about"
                   className="hover:underline me-4 mb-4 md:me-6"
                 >
-                  A propos
+                  À propos
                 </Link>
               </li>
               <li>
@@ -26,7 +61,7 @@ const MiniFooter = () => {
                   href="/privacy"
                   className="hover:underline me-4 mb-4 md:me-6"
                 >
-                  Potitique de confidentialité
+                  Politique de confidentialité
                 </Link>
               </li>
               <li>
@@ -34,7 +69,7 @@ const MiniFooter = () => {
                   href="/terms"
                   className="hover:underline me-4 mb-4 md:me-6"
                 >
-                  Condition d'utilisation
+                  Conditions d'utilisation
                 </Link>
               </li>
               <li>
@@ -56,7 +91,7 @@ const MiniFooter = () => {
               <Link href="/" className="hover:underline">
                 Colisfly
               </Link>
-              . Tout droits réservés.
+              . Tous droits réservés.
             </span>
           </div>
         </div>
