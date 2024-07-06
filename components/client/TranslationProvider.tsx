@@ -1,7 +1,7 @@
 'use client';
 
 import { ReactNode } from 'react';
-import { IntlProvider } from 'react-intl';
+// import { IntlProvider } from 'react-intl';
 import enMessages from '@/public/locales/en.json';
 import frMessages from '@/public/locales/fr.json';
 
@@ -20,9 +20,10 @@ const TranslationProvider = ({
   children,
 }: TranslationProviderProps) => {
   return (
-    <IntlProvider locale={locale} messages={messages[locale]}>
-      {children}
-    </IntlProvider>
+    <>{children}</>
+    // <IntlProvider locale={locale} messages={messages[locale]}>
+    //   {children}
+    // </IntlProvider>
   );
 };
 

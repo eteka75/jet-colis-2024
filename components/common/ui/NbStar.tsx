@@ -3,6 +3,7 @@ import { FaStar, FaStarHalfAlt, FaRegStar } from 'react-icons/fa';
 
 interface NbStartProps {
   rating: number;
+  className?: string; // Ajoutez ceci pour permettre l'utilisation de className
 }
 
 const NbStart: React.FC<NbStartProps> = ({ rating, className }) => {

@@ -21,9 +21,9 @@ import {
 } from '@/components/ui/select';
 import CalendarInput from '../ui/CalendarInput';
 import TypesColisSelector from '../ui/TypesColisSelector';
-import CountrySelector from '../ui/CountrySelector copy';
 import Link from 'next/link';
 import { FaArrowRight, FaPlus } from 'react-icons/fa6';
+import CountrySelector from '../ui/CountrySelector';
 
 const TopHead = () => {
   return (
@@ -44,11 +44,7 @@ const TopHead = () => {
             </h3>
             <div className="py-8 flex flex-wrap gap-4 text-center md:text-start">
               <Link href="/send">
-                <Button
-                  size={'lg'}
-                  variant={'primary'}
-                  className="shadow flex gap-3 py-6"
-                >
+                <Button size={'lg'} className="shadow flex gap-3 py-6">
                   Offrir des services <FaArrowRight />
                 </Button>
               </Link>
@@ -119,11 +115,7 @@ const TopHead = () => {
                       </div>
                     </div>
                   </form>
-                  <Button
-                    size={'lg'}
-                    variant={'primary'}
-                    className="w-full mt-2"
-                  >
+                  <Button size={'lg'} className="w-full mt-2">
                     Trouver un Partenaires..
                   </Button>
                 </CardContent>

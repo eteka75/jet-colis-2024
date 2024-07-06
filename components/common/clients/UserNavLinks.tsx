@@ -1,21 +1,11 @@
 'use client';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import ThemeToggle from '@/src/themes/ThemeToggle';
-import { CircleUser } from 'lucide-react';
 import { IoIosNotificationsOutline } from 'react-icons/io';
 import { TbMessage } from 'react-icons/tb';
-import { FiMail, FiUser } from 'react-icons/fi';
-import { CgProfile } from 'react-icons/cg';
 import { useState } from 'react';
 import { Separator } from '@/components/ui/separator';
-<<<<<<< HEAD
 // import { useTranslations } from 'next-intl';
-=======
-import { useTranslations } from 'next-intl';
->>>>>>> 18d5de831803792042b8d33d075138627dd1982c
-import { FaRegUserCircle } from 'react-icons/fa';
-import { IoLogInOutline } from 'react-icons/io5';
 import { LuPackagePlus } from 'react-icons/lu';
 const UserNavLinks = () => {
   const [Authenticated] = useState(true);

@@ -15,12 +15,29 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  nom         String
+  prenom      String?
+  bio         String?
+  profile_id  String      
+  isActive    Boolean     @default(false)
   // Optional for WebAuthn support
-  Authenticator Authenticator[]
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  Authenticator Authenticator[]
+  userTarifsColis         UserTarifsColis[]
+  trajets                 Trajet[]
+  Commandes                Commande[]
+  reviews                 Review[]        // Les avis laissés par l'utilisateur
+  sentMessages            ChatMessage[]       @relation("SentMessages")
+  receivedMessages        ChatMessage[]       @relation("ReceivedMessages")
+  notifications           Notification[]  // Notifications pour l'utilisateur
+  localisationTrajets     LocalisationTrajet[]
+  favoris                 Favori[]
+  preferences             Preference[]
 }
+
  
 model Account {
   userId            String
@@ -80,31 +97,6 @@ model Authenticator {
 // ################################################################################
 // # AJOUT DES COMPLEMENTS
 // ################################################################################
-model Utilisateur{
-  id          String      @id @default(uuid())
-  name        String
-  nom         String
-  prenom      String?
-  image       String?
-  bio         String?
-  email       String      @unique
-  profile_id  String      @unique
-  isActive    Boolean     @default(true)
-  
-  createdAt DateTime      @map("created_at") @default(now())
-  updatedAt DateTime      @map("updated_at") @updatedAt
-
-  userTarifsColis         UserTarifsColis[]
-  trajets                 Trajet[]
-  Commandes                Commande[]
-  reviews                 Review[]        // Les avis laissés par l'utilisateur
-  sentMessages            ChatMessage[]       @relation("SentMessages")
-  receivedMessages        ChatMessage[]       @relation("ReceivedMessages")
-  notifications           Notification[]  // Notifications pour l'utilisateur
-  localisationTrajets     LocalisationTrajet[]
-  favoris                 Favori[]
-  preferences             Preference[]
-}
 
 
 model TypeColis{
@@ -136,7 +128,7 @@ model UserTarifsColis{
   userId          String      
   typeColis TypeColis[]
   // Les relations 
-  user            Utilisateur   @relation(fields: [userId], references: [id])
+  user            User   @relation(fields: [userId], references: [id])
   tarifColis      TarifsColis   @relation(fields: [typeColisId],references: [id])
   // Critères de validation
   @@unique([typeColisId,userId])
@@ -155,7 +147,7 @@ model Trajet {
   endLongitude        Float?           // Longitude du point d'arrivée
  
   userId              String
-  user                Utilisateur    @relation(fields: [userId],references: [id])
+  user                User    @relation(fields: [userId],references: [id])
 
   commandes           Commande[]  
   trajetTypeColis     TrajetTypeColis[]  
@@ -187,7 +179,7 @@ model Commande {
   typeColisId         String 
 
   trajets Trajet     @relation(fields: [trajetId],references: [id])
-  user Utilisateur    @relation(fields: [userId],references: [id])
+  user User    @relation(fields: [userId],references: [id])
   trajetColis TarifsColis   @relation(fields: [typeColisId],references: [id])
 
   // @@unique([trajetId,userId,typeColisId])
@@ -202,7 +194,7 @@ model Review {
   userId          String
   trajetId        String
   
-  user            Utilisateur @relation(fields: [userId],references: [id])
+  user            User @relation(fields: [userId],references: [id])
   trajet          Trajet      @relation(fields: [trajetId],references: [id])
 
   @@unique([userId,trajetId])
@@ -218,8 +210,8 @@ model ChatMessage {
 
   senderId    String
   receiveId   String
-  sender      Utilisateur @relation("SentMessages",fields: [senderId],references: [id])
-  receiver    Utilisateur @relation("ReceivedMessages",fields: [receiveId],references: [id])
+  sender      User @relation("SentMessages",fields: [senderId],references: [id])
+  receiver    User @relation("ReceivedMessages",fields: [receiveId],references: [id])
 }
 
 model Notification {
@@ -230,7 +222,7 @@ model Notification {
   createdAt   DateTime @default(now())
 
   userId      String
-  user        Utilisateur     @relation(fields: [userId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
 }
 
 model LocalisationTrajet {
@@ -242,7 +234,7 @@ model LocalisationTrajet {
   logitude    Float?
   
   userId      String 
-  user        Utilisateur @relation(fields: [userId],references: [id])
+  user        User @relation(fields: [userId],references: [id])
 }
 
 model Favori {
@@ -251,7 +243,7 @@ model Favori {
 
   trajetId  String
   userId    String
-  user      Utilisateur     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
   trajet    Trajet   @relation(fields: [trajetId], references: [id])
 
   @@unique([userId, trajetId]) 
@@ -263,7 +255,7 @@ model Preference {
   key       String   // Clé pour la préférence (ex: "notifications", "theme")
   
   userId    String
-  user      Utilisateur     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
   
   @@unique([userId, key]) // Assure que chaque utilisateur a une seule valeur pour chaque clé
 }

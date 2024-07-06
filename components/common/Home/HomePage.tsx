@@ -27,9 +27,7 @@ const HomePage = () => {
           <Button onClick={() => '/try-now'} variant="outline">
             Try now
           </Button>
-          <Button onClick={() => '/sign-in'} variant="primary">
-            Sign in
-          </Button>
+          <Button onClick={() => '/sign-in'}>Sign in</Button>
         </nav>
       </header>
       <main className="flex flex-col items-center py-20">
@@ -39,9 +37,7 @@ const HomePage = () => {
         <p className="text-center mt-4">
           Join the list of business owners who have chosen KIRA
         </p>
-        <Button variant="primary" className="mt-6">
-          Try now for free
-        </Button>
+        <Button className="mt-6">Try now for free</Button>
         <p className="mt-2 text-center">
           No credit card needed. 30 day trial period
         </p>

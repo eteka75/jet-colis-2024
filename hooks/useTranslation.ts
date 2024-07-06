@@ -1,10 +1,10 @@
 'use client';
-import { useIntl } from 'react-intl';
+import { useState } from 'react';
 
 const useTranslation = () => {
-  const { formatMessage } = useIntl();
+  const [formatMessage, setformatMessage] = useState('');
   return {
-    t: (id: string, values = {}) => formatMessage({ id }, values),
+    t: (id: string, values = {}) => setformatMessage(id),
   };
 };
 

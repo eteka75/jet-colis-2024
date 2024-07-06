@@ -11,13 +11,13 @@ const Header = lazy(() => import('../common/Header'));
 const HomeLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
-      <header className="md:fixed top-0 left-0 right-0 z-50  shadow-sm_">
+      <header className="md:fixed top-0 left-0 right-0 z-50 border-b border-accent">
         {/* <Suspense fallback={<div className="text-lg">Loading...</div>}> */}
         <Header />
         <SubNav />
         {/* </Suspense> */}
       </header>
-      <div className="md:min-h mt-0 md:mt-32">{children}</div>
+      <div className="md:min-h mt-0 md:mt-28 ">{children}</div>
       <MiniFooter />
     </>
   );

@@ -1,10 +1,13 @@
 /** @type {import('next').NextConfig} */
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+
 const nextConfig = {
   images: {
-    domains: ['images.unsplash.com', 'https://api.unsplash.com'],
+    domains: ['images.unsplash.com', 'api.unsplash.com'],
   },
 
-  webpack: (config) => {
+  webpack: (config, { dev, isServer }) => {
+    // Ajouter la règle existante pour ignorer les fichiers HTML
     config.module.rules.push({
       test: /\.html$/,
       exclude: /node_modules/,
@@ -12,6 +15,16 @@ const nextConfig = {
         loader: 'ignore-loader',
       },
     });
+
+    // Ajouter le plugin mini-css-extract-plugin seulement si nécessaire
+    if (!isServer) {
+      config.plugins.push(
+        new MiniCssExtractPlugin({
+          filename: dev ? '[name].css' : '[name].[contenthash].css',
+          chunkFilename: dev ? '[id].css' : '[id].[contenthash].css',
+        })
+      );
+    }
 
     return config;
   },

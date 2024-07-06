@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { SelectItem } from '@radix-ui/react-select';
 import { Metadata } from 'next';
 import React from 'react';
 
@@ -49,11 +50,11 @@ const ProfileForm = () => (
     </div>
     <div>
       <Label htmlFor="gender">Gender</Label>
-      <Select id="gender">
-        <option value="">Select your gender</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
+      <Select>
+        <SelectItem value="">Select your gender</SelectItem>
+        <SelectItem value="male">Male</SelectItem>
+        <SelectItem value="female">Female</SelectItem>
+        <SelectItem value="other">Other</SelectItem>
       </Select>
     </div>
     <div>

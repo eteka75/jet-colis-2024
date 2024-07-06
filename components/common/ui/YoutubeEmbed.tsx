@@ -1,6 +1,11 @@
 import React from 'react';
 
-const YouTubeEmbed = ({ videoId, ...props }) => {
+// Définir le type pour les props
+interface YouTubeEmbedProps extends React.HTMLProps<HTMLIFrameElement> {
+  videoId: string;
+}
+
+const YouTubeEmbed: React.FC<YouTubeEmbedProps> = ({ videoId, ...props }) => {
   return (
     <div className="video-responsive">
       <iframe

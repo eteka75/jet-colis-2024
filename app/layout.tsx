@@ -13,13 +13,12 @@ const figtree = Figtree({
   weight: ['300', '400', '500', '600', '700', '800', '900'],
   style: ['normal', 'italic'],
 });
+
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // const locale = await getLocale();
-  // const messages = await getMessages();
   const session = await auth();
   return (
     <html lang={'fr'}>
@@ -30,11 +29,9 @@ export default async function RootLayout({
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {/* <NextIntlClientProvider messages={messages}> */}
           <SessionProvider session={session}>
             <main>{children}</main>
           </SessionProvider>
-          {/* </NextIntlClientProvider> */}
         </ThemeProvider>
       </body>
     </html>
