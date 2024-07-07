@@ -20,7 +20,7 @@ const CardRegister = () => {
     // <div className="md:flex md:justify-center md:items-center md:h-screen bg-accent">
     <div className="md:py-12 py-8 bg-accent ">
       <div className="container">
-        <Card className="md:py-4  mx-auto max-w-sm">
+        <Card className=" mx-auto max-w-sm">
           <CardHeader>
             <CardTitle className="text-2xl">Inscription</CardTitle>
             <CardDescription>
@@ -51,7 +51,7 @@ const CardRegister = () => {
           <Input id="confirmPassword" type="password" required />
         </div> */}
             <div className="grid gap-2">
-              <Button className="w-full">Créer un compte</Button>
+              <Button className="w-full border">Créer un compte</Button>
             </div>
           </CardContent>
 
@@ -66,8 +66,10 @@ const CardRegister = () => {
           <CardFooter>
             <p className="text-center w-full text-sm">
               Vous avez déjà un compte ?{' '}
-              <Link href="/login" className="text-blue-500 hover:underline">
-                Se connecter
+              <Link href="/login" className=" hover:underline">
+                <Button variant={'ghost'} className="w-full border mt-2">
+                  Se connecter
+                </Button>
               </Link>
             </p>
           </CardFooter>

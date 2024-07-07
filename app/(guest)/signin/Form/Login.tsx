@@ -122,7 +122,7 @@ const Login: React.FC = () => {
                   setStep1(true);
                   setStep2(false);
                 }}
-                className="flex items-center mb-2 opacity-80 text-xs gap-1"
+                className="flex items-center text-center text-sm mb-2 opacity-80 md:text-start gap-1"
               >
                 <FiEdit2 /> {email}
               </Link>
