@@ -28,7 +28,7 @@ const MiniFooter = () => {
   }, []);
 
   return (
-    <div className="mt-0 ">
+    <div className={clsx(scrollDirection === 'up' ? 'md:mt-20' : '')}>
       <footer
         className={clsx(
           'bottom-0 left-0 w-full transition-transform duration-300 ease-in-out',
