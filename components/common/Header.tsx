@@ -38,7 +38,7 @@ const Header = async () => {
     <>
       <div className="bg-accent_ bg-background/80 bg-opacity-90 backdrop-blur-3xl ">
         <div className="container-fluid items-center py-4 m-auto">
-          <div className="flex w-full h-full gap-4 items-center">
+          <div className="flex w-full h-full md:gap-4 items-center">
             <div className="md:w-1/4 md:min-w-[100px] md:max-w-[400px] ">
               <div className="flex items-center">
                 <Link href={'/'} className="hidden lg:flex  m-0">

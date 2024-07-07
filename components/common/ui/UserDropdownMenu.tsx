@@ -21,6 +21,7 @@ import userimg from '@/public/assets/images/user/default.jpg';
 import { Separator } from '@/components/ui/separator';
 import SwithtTheme from '../Header/SwithtTheme';
 import { DefaultSession } from 'next-auth';
+import Login from '@/app/(guest)/signin/Form/Login';
 
 const UserDropdownMenu = ({ user }: { user: User | null }) => {
   //const { data: session, status } = useSession();
@@ -54,20 +55,25 @@ const UserDropdownMenu = ({ user }: { user: User | null }) => {
         <>
           <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-              <Button variant="ghost" size="sm">
-                <CircleUser className="h-5 w-5" />
+              <Button
+                variant="ghost"
+                size="sm"
+                className="w-8 rounded-full sm:ms-1 md:ms-2 p-0 h-8"
+              >
+                <CircleUser className="h-6 w-6" />
                 <span className="sr-only">Login</span>
               </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px] ">
               <DialogHeader>
                 <DialogTitle>Rejoignez-nous</DialogTitle>
-                <DialogDescription>
+                {/* <DialogDescription>
                   Si vous êtes nouveau, créez un compte ou connectez-vous avez
                   votre compte existant.
-                </DialogDescription>
+                </DialogDescription> */}
               </DialogHeader>
-              <div className="grid gap-2 py-4">
+              <Login />
+              {/* <div className="grid gap-2 py-4">
                 <OAuthButtons />
                 <div className="flex flex-col w-full  space-y-2">
                   <Link
@@ -92,7 +98,7 @@ const UserDropdownMenu = ({ user }: { user: User | null }) => {
                     </Button>
                   </Link>
                 </div>
-              </div>
+              </div> */}
             </DialogContent>
           </Dialog>
         </>

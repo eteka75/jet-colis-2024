@@ -61,9 +61,9 @@ const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
         <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-100 dark:bg-secondary/50 lg:aspect-none group-hover:opacity-75">
           {loading ? (
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-              <Skeleton className="">
+              <Skeleton className="h-[300px] bg-slate-300/50 items-center justify-center flex w-full shadow">
                 <Link className="d-con" href={`/journey/${id}`}>
-                  <RiImageLine className="w-10 h-10 text-gray-500" />
+                  <RiImageLine className="w-10 h-10 opacity-40" />
                 </Link>
               </Skeleton>
             </div>
@@ -111,22 +111,28 @@ const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
                   <span aria-hidden="true" className="absolute_ inset-0"></span>
                   <h2 className="text-lg mb-0 font-medium">
                     {depart} -{' '}
-                    <span className="text-primary">{destination}</span>
+                    <span className="text-primary_">{destination}</span>
                   </h2>
                 </Link>
+                <div className="text-end">
+                  <NbStart rating={Math.random() * 5} />
+                </div>
               </div>
               <div className="flex justify-between">
                 <p className="text-sm flex items-center gap-2 font-medium">
                   <GiAirplaneDeparture className="hidden" /> Départ le{' '}
                   {`${date_depart}`}
                 </p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
+                <p className="text-sm opacity-80">
                   {`${tarif} ${devise}/${unite}`}
                 </p>
               </div>
-              <div className="my-1.5 text-xs opacity-80 gap-3 flex flex-auto">
-                <div>Wilfried ETEKA</div>
-                <NbStart rating={Math.random() * 5} />
+              <div className="py-1 ">
+                {/* <div className="text-xs">Wilfried ETEKA</div> */}
+                <p className="leading-tight_tracking-tighter opacity-70 text-sm">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Asperiores ea ...
+                </p>
               </div>
             </div>
           </div>

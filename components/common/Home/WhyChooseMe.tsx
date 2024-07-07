@@ -21,7 +21,7 @@ const WhyChooseMe = () => {
               <h3 className="text-xl lg:text-2xl font-bold my-2">
                 Livraison en temps records
               </h3>
-              <p className="leading">
+              <p className="leading-tight tracking-tighter">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Asperiores ea corporis sequi laudantiu
               </p>

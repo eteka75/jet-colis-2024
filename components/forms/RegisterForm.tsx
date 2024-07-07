@@ -1,7 +1,7 @@
 import React from 'react';
 
-const LoginForm = () => {
+const RegisterForm = () => {
   return <div>LoginForm</div>;
 };
 
-export default LoginForm;
+export default RegisterForm;
