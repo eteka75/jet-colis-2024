@@ -59,7 +59,6 @@ const Login: React.FC = () => {
     setEmailError(null);
     setErrorMessage(null);
     setPasswordError(null);
-
     if (step1) {
       if (!email) {
         setEmailError('Email is required');
@@ -126,6 +125,7 @@ const Login: React.FC = () => {
               </div>
             </div>
           )}
+
           <div>
             {step2 && email && (
               <Link
@@ -187,7 +187,7 @@ const Login: React.FC = () => {
                   <PiLockKeyLight className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
                 </div>
                 {passwordError && (
-                  <p className="text-red-500 text-sm">{passwordError}</p>
+                  <p className="text-red-500 py-2 text-sm">{passwordError}</p>
                 )}
               </div>
             )}
