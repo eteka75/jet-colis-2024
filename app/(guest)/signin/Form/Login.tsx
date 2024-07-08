@@ -16,11 +16,7 @@ import { IoIosAt } from 'react-icons/io';
 import { z } from 'zod';
 import { FiEdit2 } from 'react-icons/fi';
 import { GrFormNext } from 'react-icons/gr';
-
-const emailSchema = z.string().email({ message: 'Invalid email address' });
-const passwordSchema = z
-  .string()
-  .min(6, { message: 'Password must be at least 6 characters long' });
+import { emailSchema, passwordSchema } from '@/src/lib/validations';
 
 const Login: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -157,6 +153,7 @@ const Login: React.FC = () => {
                     autoFocus
                     onChange={(e) => setEmail(e.target.value)}
                     required
+                    disabled={isPending}
                     placeholder="Email"
                   />
                   <IoIosAt className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
@@ -176,6 +173,7 @@ const Login: React.FC = () => {
                       passwordError ? 'border-red-500' : 'border-gray-200'
                     }`}
                     id="password"
+                    disabled={isPending}
                     type="password"
                     name="password"
                     value={password}

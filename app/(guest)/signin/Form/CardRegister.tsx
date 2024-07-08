@@ -76,6 +76,7 @@ const CardRegister = () => {
               value={firstName}
               onChange={(e) => setFirstname(e.target.value)}
               required
+              disabled={isPending}
             />
           </div>
           <div className="grid gap-2">
@@ -86,6 +87,7 @@ const CardRegister = () => {
               value={lastName}
               onChange={(e) => setLastname(e.target.value)}
               required
+              disabled={isPending}
             />
           </div>
         </div>
@@ -97,6 +99,7 @@ const CardRegister = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            disabled={isPending}
           />
         </div>
         <div className="grid gap-2">
@@ -107,11 +110,12 @@ const CardRegister = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            disabled={isPending}
           />
         </div>
         <div className="grid gap-2">
           <Button type="submit" className="w-full border" disabled={isPending}>
-            {isPending ? 'En cours...' : 'Créer mon compte'}
+            {isPending ? 'Inscriprion en cours...' : 'Créer mon compte'}
           </Button>
         </div>
       </div>
