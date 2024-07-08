@@ -22,6 +22,7 @@ import { Separator } from '@/components/ui/separator';
 import SwithtTheme from '../Header/SwithtTheme';
 import { DefaultSession } from 'next-auth';
 import Login from '@/app/(guest)/signin/Form/Login';
+import { GuestDropdownMenu } from './GuestDropdownMenu';
 
 const UserDropdownMenu = ({ user }: { user: User | null }) => {
   //const { data: session, status } = useSession();
@@ -48,61 +49,16 @@ const UserDropdownMenu = ({ user }: { user: User | null }) => {
       <span className="hidden sm:flex">
         <SwithtTheme />
       </span>
-      <Separator orientation="vertical" className="h-5 hidden md:flex" />
-      {user ? (
-        <LoginDropdownMenu user={user} />
-      ) : (
-        <>
-          <Dialog open={open} onOpenChange={setOpen}>
-            <DialogTrigger asChild>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="w-8 rounded-full sm:ms-1 md:ms-2 p-0 h-8"
-              >
-                <CircleUser className="h-6 w-6" />
-                <span className="sr-only">Login</span>
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px] ">
-              <DialogHeader>
-                <DialogTitle>Rejoignez-nous</DialogTitle>
-                {/* <DialogDescription>
-                  Si vous êtes nouveau, créez un compte ou connectez-vous avez
-                  votre compte existant.
-                </DialogDescription> */}
-              </DialogHeader>
-              <Login />
-              {/* <div className="grid gap-2 py-4">
-                <OAuthButtons />
-                <div className="flex flex-col w-full  space-y-2">
-                  <Link
-                    onClick={closeDialog}
-                    href={'/signup'}
-                    className="block"
-                  >
-                    <Button
-                      size={'lg'}
-                      className="flex w-full py-7 rounded-full "
-                    >
-                      Créer un nouveau compte
-                    </Button>
-                  </Link>
-                  <Link onClick={closeDialog} href={'/login'} className="block">
-                    <Button
-                      variant={'outline'}
-                      size={'lg'}
-                      className="flex w-full py-7 rounded-full "
-                    >
-                      Se connecter avec mes identifiants
-                    </Button>
-                  </Link>
-                </div>
-              </div> */}
-            </DialogContent>
-          </Dialog>
-        </>
-      )}
+      <div className="flex max-w-full items-center gap-2">
+        {/* <Separator orientation="vertical" className="h-5 hidden md:flex" /> */}
+        {user ? (
+          <LoginDropdownMenu user={user} />
+        ) : (
+          <>
+            <GuestDropdownMenu />
+          </>
+        )}
+      </div>
     </>
   );
 };

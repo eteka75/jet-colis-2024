@@ -28,14 +28,14 @@ const MiniFooter = () => {
   }, []);
 
   return (
-    <div className={clsx(scrollDirection === 'up' ? 'md:mt-20' : '')}>
+    <div className={clsx(scrollDirection === 'up' ? 'md:mt-16' : '')}>
       <footer
         className={clsx(
-          'bottom-0 left-0 w-full transition-transform duration-300 ease-in-out',
+          'bottom-0 left-0 w-full  transition-transform duration-300 ease-in-out',
           scrollDirection === 'down'
             ? 'md:transform___md:translate-y-full'
             : 'md:mt-12 md:fixed md:transform md:translate-y-0',
-          'dark:bg-secondary/70 py-2 border-t dark:border-foreground/20'
+          'bg-background dark:bg-secondary/70 py-2 border-t dark:border-foreground/20'
         )}
       >
         <div className="w-full max-w-screen-xl mx-auto py-2 px-4">

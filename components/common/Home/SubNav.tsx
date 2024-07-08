@@ -50,9 +50,9 @@ const SubNav = () => {
   };
 
   return (
-    <div className="bg-white dark:shadow dark:bg-background/80 bg-opacity-90 backdrop-blur-3xl">
+    <div className="bg-white shadow z-0 dark:bg-background/80 bg-opacity-90 backdrop-blur-3xl">
       <div className="container-fluid max-w-full">
-        <nav className="md:mx-12 me-12 py-2 md:py-2.5">
+        <nav className="md:mx-12 me-12 py-2 md:py-3">
           <Carousel
             opts={{
               align: 'center',

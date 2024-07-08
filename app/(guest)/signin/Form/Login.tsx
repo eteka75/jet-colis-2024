@@ -141,33 +141,41 @@ const Login: React.FC = () => {
             )}
 
             {step1 && !step2 && (
-              <div className="gridgap-2">
-                <div className="relative">
-                  <Input
-                    ref={inputEmail}
-                    className={`peer block w-full rounded-md border py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500 ${
-                      emailError ? 'border-red-500' : 'border-gray-200'
-                    }`}
-                    id="email"
-                    type="email"
-                    name="email"
-                    value={email}
-                    autoFocus
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    disabled={isPending}
-                    placeholder="Email"
-                  />
-                  <IoIosAt className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+              <>
+                <div className="pb-2">
+                  <Label>Votre adresse email</Label>
+                </div>{' '}
+                <div className="mx-1 grid gap-2">
+                  <div className="relative">
+                    <Input
+                      ref={inputEmail}
+                      className={`peer block w-full rounded-md border py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500 ${
+                        emailError ? 'border-red-500' : 'border-gray-200'
+                      }`}
+                      id="email"
+                      type="email"
+                      name="email"
+                      value={email}
+                      autoFocus
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      disabled={isPending}
+                      placeholder="Email"
+                    />
+                    <IoIosAt className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 opacity-70 peer-focus:text-gray-900" />
+                  </div>
+                  {emailError && (
+                    <p className="text-red-500 text-sm mt-2">{emailError}</p>
+                  )}
                 </div>
-                {emailError && (
-                  <p className="text-red-500 text-sm mt-2">{emailError}</p>
-                )}
-              </div>
+              </>
             )}
 
             {!step1 && step2 && (
-              <div className="grid gap-2">
+              <div className="mx-1 grid gap-2">
+                <div>
+                  <Label>Votre mot de passe</Label>
+                </div>{' '}
                 <div className="relative">
                   <Input
                     ref={inputPwd}

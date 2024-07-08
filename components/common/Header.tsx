@@ -184,7 +184,7 @@ const Header = async () => {
                   <Button
                     size={'sm'}
                     variant={'ghost'}
-                    className="rounded-full gap-1 text-xs lg:text-md shadow bg-white dark:bg-primary dark:text-accent-foreground border hover:bg-accent"
+                    className="rounded-full gap-1 text-sm lg:text-md shadow__border dark:bg-primary dark:text-accent-foreground  hover:bg-accent"
                   >
                     <PiPackageDuotone />
                     Publier une offre

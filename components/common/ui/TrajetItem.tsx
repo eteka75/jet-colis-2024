@@ -58,8 +58,8 @@ const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
 
   return (
     <div>
-      <div className="group relative rounded-md pb-2">
-        <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-100 dark:bg-secondary/50 lg:aspect-none group-hover:opacity-75">
+      <div className="group relative rounded-xl pb-2">
+        <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-xl bg-gray-100 dark:bg-secondary/50 lg:aspect-none group-hover:opacity-75">
           {loading ? (
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
               <Skeleton className="h-[300px] bg-slate-300/50 items-center justify-center flex w-full shadow">
@@ -73,7 +73,7 @@ const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
               {photos[destination]?.map(
                 (url: string | undefined, index: number) => (
                   <Link className="w-full" key={index} href={`/journey/${id}`}>
-                    <div className="h-[300px]">
+                    <div className="h-[300px] max-w-[400px] mx-auto">
                       {url && (
                         <Image
                           src={url}
@@ -81,7 +81,7 @@ const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
                           width={800}
                           height={350}
                           quality={50}
-                          className="rounded-lg max-w-full mx-auto hover:scale-155 duration-300 hover:duration-800 bg-gray-300 object-cover h-[300px]"
+                          className="rounded-xl shadow-sm max-w-full mx-auto hover:scale-155 duration-300 hover:duration-800 bg-gray-300 object-cover h-[300px]"
                           onLoadingComplete={handleImageLoad}
                         />
                       )}
@@ -110,7 +110,7 @@ const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
               <div className=" flex flex-wrap justify-between items-center">
                 <Link href={`/journey/${id}`}>
                   <span aria-hidden="true" className="absolute_ inset-0"></span>
-                  <h2 className="text-md flex gap-2 items-center 2xl:text-lg  mb-0.5 font-medium">
+                  <h2 className="flex gap-2 items-center 2xl:text-lg  mb-0.5 font-medium">
                     {depart} -{''}
                     <span className="text-primary">{destination}</span>
                   </h2>
@@ -124,13 +124,15 @@ const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
                   <GiAirplaneDeparture className="hidden" /> Départ le{' '}
                   {`${date_depart}`}
                 </p>
-                <p className="text-sm opacity-80">
+                {/* <p className="text-sm opacity-80">
                   {`${tarif} ${devise}/${unite}`}
-                </p>
+                </p> */}
               </div>
               <div className="py-1 ">
-                {/* <div className="text-xs">Wilfried ETEKA</div> */}
-                <p className="leading-tight_tracking-tighter opacity-70 text-sm">
+                <div className="text-xs">
+                  <b>Hôte :</b> Wilfried ETEKA
+                </div>
+                <p className="leading-tight_tracking-tighter hidden opacity-70 text-sm">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Asperiores ea ...
                 </p>
