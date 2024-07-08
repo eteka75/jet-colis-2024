@@ -2,31 +2,21 @@ import NextAuth from 'next-auth';
 import { authConfig } from './auth.config';
 import Credentials from 'next-auth/providers/credentials';
 import { z } from 'zod';
-import { sql } from '@vercel/postgres';
-import type { User } from '@/lib/definitions';
 import Google from 'next-auth/providers/google';
 
 import GitHub from 'next-auth/providers/github';
-
-async function getUser(email: string): Promise<User | undefined> {
-  try {
-    const user = await sql<User>`SELECT * FROM users WHERE email=${email}`;
-    return user.rows[0];
-  } catch (error) {
-    console.error('Failed to fetch user:', error);
-    throw new Error('Failed to fetch user.');
-  }
-}
+import bcrypt from 'bcryptjs';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import { PrismaClient } from '@prisma/client';
-import prisma from './lib/primsa';
+import prisma from '@/src/lib/primsa';
+import { getUserByEmail } from './src/lib/actions';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
   adapter: PrismaAdapter(prisma),
   providers: [
     Google,
-    GitHub,
+    // GitHub,
     Credentials({
       async authorize(credentials) {
         const parsedCredentials = z
@@ -35,15 +25,55 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
         if (parsedCredentials.success) {
           const { email, password } = parsedCredentials.data;
-          const user = await getUser(email);
+
+          const user = await getUserByEmail(email);
+
           if (!user) return null;
-          const passwordsMatch = false;
-          // const passwordsMatch = await bcrypt.compare(password, user.password);
+          const passwordsMatch = await bcrypt.compare(password, user.password);
+
           if (passwordsMatch) return user; //Bon
         }
         console.log('Invalid credentials');
+
         return null;
       },
     }),
   ],
+  pages: {
+    signIn: '/signin',
+    error: '/error', // Page d'erreur personnalisée
+  },
+  callbacks: {
+    session: ({ session, token }) => ({
+      ...session,
+      user: {
+        ...session.user,
+        id: token.sub,
+      },
+    }),
+    async jwt({ token, user, account }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
+  },
+
+  // callbacks: {
+  //   session: async ({ session, token }) => {
+  //     if (session && session?.user) {
+  //       session?.user?.id = token.sub;
+  //     }
+  //     return session;
+  //   },
+  //   jwt: async ({ user, token }) => {
+  //     if (user) {
+  //       token.uid = user.id;
+  //     }
+  //     return token;
+  //   },
+  // },
+  session: {
+    strategy: 'jwt',
+  },
 });

@@ -1,7 +1,7 @@
 import { auth } from '@/auth';
 import { siteConfig } from '@/src/config/website';
 import ThemeProvider from '@/src/themes/ThemeProvider';
-import '@/styles/globals.css';
+import '@/src/styles/globals.css';
 import clsx from 'clsx';
 import type { Metadata } from 'next';
 import { SessionProvider } from 'next-auth/react';

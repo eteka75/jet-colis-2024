@@ -1,5 +1,7 @@
-import axios from "axios";
-import { signOut } from "next-auth/react";
+import { User } from '@prisma/client';
+import axios from 'axios';
+import { signOut } from 'next-auth/react';
+import prisma from './primsa';
 
 const accessKey = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY;
 
@@ -31,7 +33,7 @@ export const fetchPhotosForLists = async (
 ): Promise<{ [key: string]: string[] }> => {
   // Créer un tableau de promesses pour toutes les destinations
   const photoPromises = lists.map(async (list) => {
-    const theKey = list?.destination || "";
+    const theKey = list?.destination || '';
     try {
       const photos = await getPhotos(theKey);
       return { key: theKey, photos };
@@ -73,3 +75,15 @@ export const getPhotos2 = async (
     }, 100);
   });
 };
+
+export async function getUserByEmail(email: string): Promise<User | null> {
+  try {
+    const user = await prisma.user.findUnique({
+      where: { email },
+    });
+    return user; // Peut être `null` si l'utilisateur n'est pas trouvé
+  } catch (error) {
+    console.error('Failed to fetch user:', error);
+    throw new Error('Failed to fetch user.');
+  }
+}

@@ -4,7 +4,7 @@ import NbStart from '../ui/NbStar';
 import { RiImageLine } from 'react-icons/ri';
 import Link from 'next/link';
 import { GiAirplaneDeparture } from 'react-icons/gi';
-import { TrajetItemProps } from '@/lib/definitions';
+import { TrajetItemProps } from '@/src/lib/definitions';
 import { Skeleton } from '@/components/ui/skeleton';
 
 // Skeleton component

@@ -10,36 +10,35 @@ generator client {
 model User {
   id            String          @id @default(cuid())
   name          String?
-  nom         String
-  prenom      String?
-  bio         String?
+  nom           String
+  prenom        String?
+  bio           String?
   email         String          @unique
   dateOfBirth   DateTime?
   country       String?
   emailVerified DateTime?
   image         String?
-  isActive    Boolean     @default(false)  
-  profileId  String      
- 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  password      String
+  isActive      Boolean         @default(false)
+  profileId     String          @unique
 
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
 
   Authenticator Authenticator[]
   accounts      Account[]
   sessions      Session[]
-  userTarifsColis         UserTarifsColis[]
-  trajets                 Trajet[]
-  Commandes                Commande[]
-  reviews                 Review[]        // Les avis laissés par l'utilisateur
-  sentMessages            ChatMessage[]       @relation("SentMessages")
-  receivedMessages        ChatMessage[]       @relation("ReceivedMessages")
-  notifications           Notification[]  // Notifications pour l'utilisateur
-  localisationTrajets     LocalisationTrajet[]
-  favoris                 Favori[]
-  preferences             Preference[]
+  userTarifsColis UserTarifsColis[]
+  trajets       Trajet[]
+  Commandes     Commande[]
+  reviews       Review[]
+  sentMessages  ChatMessage[]   @relation("SentMessages")
+  receivedMessages ChatMessage[] @relation("ReceivedMessages")
+  notifications Notification[]
+  localisationTrajets LocalisationTrajet[]
+  favoris       Favori[]
+  preferences   Preference[]
 }
-
  
 model Account {
   userId            String

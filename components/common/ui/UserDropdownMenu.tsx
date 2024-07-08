@@ -15,7 +15,7 @@ import {
 import OAuthButtons from './OAuthButtons';
 import LoginDropdownMenu from './LoginDropdownMenu';
 import { Button } from '@/components/ui/button';
-import { User, UserType } from '@/lib/definitions';
+import { User, UserType } from '@/src/lib/definitions';
 import Image from 'next/image';
 import userimg from '@/public/assets/images/user/default.jpg';
 import { Separator } from '@/components/ui/separator';

@@ -1,8 +1,8 @@
 'use client';
 // import axios from "axi";
 import { useEffect, useState } from 'react';
-import { PhotosData, list_trajets } from '@/lib/definitions';
-import { fetchPhotosForLists } from '@/lib/actions';
+import { PhotosData, list_trajets } from '@/src/lib/definitions';
+import { fetchPhotosForLists } from '@/src/lib/actions';
 import PageLoading from '../ui/PageLoading';
 import TrajetItem from '../ui/TrajetItem';
 

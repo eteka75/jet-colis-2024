@@ -1,81 +1,135 @@
-import LineSeparator from '@/components/common/ui/LineSeparator';
-import OAuthButtons from '@/components/common/ui/OAuthButtons';
+// app/components/CardRegister.tsx
+
+'use client';
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-} from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Separator } from '@/components/ui/separator';
 import Link from 'next/link';
-import { FaGoogle, FaFacebook, FaTwitter } from 'react-icons/fa';
+import LineSeparator from '@/components/common/ui/LineSeparator';
+import OAuthButtons from '@/components/common/ui/OAuthButtons';
+import { registerSchema } from '@/src/lib/validations';
+import { registerUser } from '@/src/lib/auth';
+import { signIn } from 'next-auth/react';
+import { MdOutlineErrorOutline } from 'react-icons/md';
 
 const CardRegister = () => {
-  return (
-    // <div className="md:flex md:justify-center md:items-center md:h-screen bg-accent">
-    <div className="md:py-12 py-8 bg-accent ">
-      <div className="container">
-        <Card className=" mx-auto max-w-sm">
-          <CardHeader>
-            <CardTitle className="text-2xl">Inscription</CardTitle>
-            <CardDescription>
-              Remplissez les champs ci-dessous pour créer un compte.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="grid gap-4">
-            <div className="grid gap-4 md:grid-cols-2">
-              <div className="grid gap-2">
-                <Label htmlFor="firstName">Prénom</Label>
-                <Input id="firstName" type="text" required />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="lastName">Nom</Label>
-                <Input id="lastName" type="text" required />
-              </div>
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" required />
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="password">Mot de passe</Label>
-              <Input id="password" type="password" required />
-            </div>
-            {/* <div className="grid gap-2">
-          <Label htmlFor="confirmPassword">Confirmer le mot de passe</Label>
-          <Input id="confirmPassword" type="password" required />
-        </div> */}
-            <div className="grid gap-2">
-              <Button className="w-full border">Créer un compte</Button>
-            </div>
-          </CardContent>
+  const [isPending, setPending] = useState(false);
+  const [firstName, setFirstname] = useState('');
+  const [lastName, setLastname] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
-          <div>
-            <CardContent>
-              <LineSeparator>Ou s'inscrire avec</LineSeparator>
-              <div className="py-4">
-                <OAuthButtons />
-              </div>
-            </CardContent>
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+    setPending(true);
+
+    const result = registerSchema.safeParse({
+      firstName,
+      lastName,
+      email,
+      password,
+    });
+
+    if (!result.success) {
+      setError(result.error.errors.map((err) => err.message).join(', '));
+      setPending(false); // Ajout de cette ligne pour arrêter le pending en cas d'erreur de validation
+      return;
+    }
+
+    try {
+      const response = await registerUser(firstName, lastName, email, password);
+
+      if (response.ok) {
+        await signIn('credentials', { redirect: true, email, password });
+        //router.push('/dashboard'); // Remplacez '/profile' par la route souhaitée après inscription
+      } else {
+        const data = await response.data;
+        setError(data.error);
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Une erreur est survenue');
+    } finally {
+      setPending(false);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit} method="POST">
+      {error && (
+        <div className="flex text-red-500 gap-2 text-center bg-red-50 p-2 px-4 border border-red-200 rounded-md">
+          <MdOutlineErrorOutline className="h-5 w-5  " /> {error}
+        </div>
+      )}
+      <div className="grid gap-4">
+        <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-2">
+            <Label htmlFor="firstName">Prénom</Label>
+            <Input
+              id="firstName"
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstname(e.target.value)}
+              required
+            />
           </div>
-          <CardFooter>
-            <p className="text-center w-full text-sm">
-              Vous avez déjà un compte ?{' '}
-              <Link href="/login" className=" hover:underline">
-                <Button variant={'ghost'} className="w-full border mt-2">
-                  Se connecter
-                </Button>
-              </Link>
-            </p>
-          </CardFooter>
-        </Card>
+          <div className="grid gap-2">
+            <Label htmlFor="lastName">Nom</Label>
+            <Input
+              id="lastName"
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastname(e.target.value)}
+              required
+            />
+          </div>
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="email">Email</Label>
+          <Input
+            id="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className="grid gap-2">
+          <Label htmlFor="password">Mot de passe</Label>
+          <Input
+            id="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <div className="grid gap-2">
+          <Button type="submit" className="w-full border" disabled={isPending}>
+            {isPending ? 'En cours...' : 'Créer mon compte'}
+          </Button>
+        </div>
       </div>
-    </div>
+      <div className="py-4 text-sm">
+        <LineSeparator>Ou s'inscrire avec</LineSeparator>
+        <div className="py-4">
+          <OAuthButtons />
+        </div>
+      </div>
+      <div className="text-center w-full text-sm">
+        Vous avez déjà un compte ?{' '}
+        <Link href="/login" className=" hover:underline">
+          <Button variant={'ghost'} className="w-full border mt-2">
+            Se connecter
+          </Button>
+        </Link>
+      </div>
+    </form>
   );
 };
 

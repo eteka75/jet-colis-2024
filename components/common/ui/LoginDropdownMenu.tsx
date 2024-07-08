@@ -11,8 +11,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import userimg from '@/public/assets/images/user/default.jpg';
-import { handleSignOut } from '@/lib/actions';
-import { UserSession } from '@/lib/definitions';
+import { handleSignOut } from '@/src/lib/actions';
+import { UserSession } from '@/src/lib/definitions';
 import { BiMessageSquare } from 'react-icons/bi';
 import { LuPackageCheck, LuUser2 } from 'react-icons/lu';
 import { IoIosHelpCircleOutline, IoIosLogOut } from 'react-icons/io';

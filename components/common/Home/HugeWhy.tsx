@@ -9,7 +9,7 @@ import {
   PageHeaderHeading,
 } from '../ui/page-header';
 import Link from 'next/link';
-import { cn } from '@/lib/utils';
+import { cn } from '@/src/lib/utils';
 
 const HugeWhy = () => {
   return (

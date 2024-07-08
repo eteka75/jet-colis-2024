@@ -11,7 +11,7 @@ import { PiPackageDuotone } from 'react-icons/pi';
 import { Bell, Lock, Settings, Shield, UserIcon } from 'lucide-react';
 import UserDropdownMenu from './ui/UserDropdownMenu';
 import { auth } from '@/auth';
-import { User } from '@/lib/definitions';
+import { User } from '@/src/lib/definitions';
 import {
   Sheet,
   SheetContent,
@@ -24,13 +24,6 @@ const Header = async () => {
   const session = await auth();
   const user: User | null = session?.user as User | null;
 
-  // const [locale, setLocale] = useState('fr');
-  // const [Authenticated, setAuthenticated] = useState(false);
-
-  // const handleChangeLanguage = () => {
-  //   const newLocale = locale === 'fr' ? 'en' : 'fr';
-  //   setLocale(newLocale);
-  // };
   const linkStyles =
     'flex items-center gap-2 text-neutral-500 dark:text-white/80 px-4 py-2 rounded-md hover:bg-accent dark:hover:text-white hover:no-underline';
 

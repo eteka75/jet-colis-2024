@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/src/lib/utils';
 import Link from 'next/link';
 import { ArrowRightIcon, Blocks } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';

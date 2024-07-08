@@ -9,9 +9,18 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-//const Header = lazy(() => import('@/component/ui/common/Header'));
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
 
-const SignInPage = () => {
+const dash = process.env.NEXT_DASHBOARD_URL || 'dashbaord';
+
+const SignInPage = async () => {
+  const session = await auth();
+  // const router = useRouter();
+
+  if (session && session?.user) {
+    redirect(dash);
+  }
   return (
     <LightLayout>
       <main className="md:py-12 py-8 md:min-h bg-accent">
