@@ -55,8 +55,8 @@ export const GuestDropdownMenu = () => {
           </div>
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent align="end">
-          {/* <div className="absolute  z-0 top-[-4px] animate-accordion-up duration-1000 right-[5px] w-0 h-0 border-l-8 border-r-8 border-b-8 border-transparent border-b-slate-100 dark:border-b-slate-500"></div> */}
+        <DropdownMenuContent align="end" className="min-w-44 mt-1">
+          <div className="absolute  z-0 top-[-4px] animate-accordion-up duration-1000 right-[5px] w-0 h-0 border-l-8 border-r-8 border-b-8 border-transparent border-b-slate-100 dark:border-b-slate-500"></div>
 
           <DropdownMenuGroup>
             <DropdownMenuItem>
