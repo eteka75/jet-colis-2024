@@ -14,19 +14,16 @@ export async function authenticate(
   console.log(FormData);
 
   const credentials = formDataToObject(formData);
-  console.log('Credentials:', credentials); // Pour déboguer et vérifier les données
 
   try {
     const result = await signIn('credentials', {
-      redirect: false, // Ne pas rediriger automatiquement
+      redirect: false,
       ...credentials,
     });
 
-    // Vérifiez si l'authentification a réussi
     if (result?.error) {
       throw new Error(result.error);
     }
-
     return result;
   } catch (error) {
     if (error instanceof AuthError) {

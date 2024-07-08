@@ -62,7 +62,7 @@ const CardRegister = () => {
   return (
     <form onSubmit={handleSubmit} method="POST">
       {error && (
-        <div className="flex text-red-500 gap-2 text-center bg-red-50 p-2 px-4 border border-red-200 rounded-md">
+        <div className="flex text-xs items-center text-red-500 gap-2 text-center md:text-start mb-4 bg-red-50 p-2 px-4 border border-red-200 rounded-md">
           <MdOutlineErrorOutline className="h-5 w-5  " /> {error}
         </div>
       )}

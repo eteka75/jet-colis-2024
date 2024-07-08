@@ -21,6 +21,7 @@ export async function registerUser(
       email,
       password,
     });
+
     return {
       ok: true,
       data: response.data,
@@ -67,3 +68,20 @@ export function verifyToken(
     return null;
   }
 }
+
+// // Fonction pour générer un token JWT
+// export function generateToken(payload: Payload, options?: SignOptions) {
+//   return sign(payload, SECRET_KEY, options);
+// }
+
+// // Fonction pour vérifier un token JWT
+// export function verifyToken(
+//   token: string,
+//   options?: VerifyOptions
+// ): Payload | null {
+//   try {
+//     return verify(token, SECRET_KEY, options) as Payload;
+//   } catch {
+//     return null;
+//   }
+// }

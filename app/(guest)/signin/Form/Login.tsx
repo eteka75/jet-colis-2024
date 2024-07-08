@@ -105,7 +105,7 @@ const Login: React.FC = () => {
           //window.location.href = '/profile';
         }
       } catch (error) {
-        console.error('Error:', error, '========', email, password);
+        // console.error('Error:', error, '========', email, password);
         setErrorMessage('Something went wrong.');
       } finally {
         setIsPending(false);
@@ -118,7 +118,7 @@ const Login: React.FC = () => {
       <form onSubmit={handleSubmit} method="POST">
         <div className="grid gap-4">
           {errorMessage && (
-            <div className="flex text-red-500 gap-2 text-center bg-red-50 p-2 px-4 border border-red-200 rounded-md">
+            <div className="flex text-xs items-center text-red-500 gap-2 text-center bg-red-50 p-2 px-4 border border-red-200 rounded-md">
               <MdOutlineErrorOutline className="h-5 w-5  " />
               <p className="text-sm">{errorMessage}</p>
             </div>

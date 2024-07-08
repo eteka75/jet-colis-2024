@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { GiAirplaneDeparture } from 'react-icons/gi';
 import { TrajetItemProps } from '@/src/lib/definitions';
 import { Skeleton } from '@/components/ui/skeleton';
+import { GoPackageDependents } from 'react-icons/go';
 
 // Skeleton component
 const Skeletond = ({
@@ -71,16 +72,16 @@ const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
               {photos[destination]?.map(
                 (url: string | undefined, index: number) => (
-                  <Link key={index} href={`/journey/${id}`}>
+                  <Link className="w-full" key={index} href={`/journey/${id}`}>
                     <div className="h-[300px]">
                       {url && (
                         <Image
                           src={url}
                           alt={destination}
-                          width={500}
-                          height={300}
+                          width={800}
+                          height={350}
                           quality={50}
-                          className="rounded-lg max-w-full hover:scale-155 duration-300 hover:duration-800 bg-gray-300 object-cover h-[300px]"
+                          className="rounded-lg max-w-full mx-auto hover:scale-155 duration-300 hover:duration-800 bg-gray-300 object-cover h-[300px]"
                           onLoadingComplete={handleImageLoad}
                         />
                       )}
@@ -106,12 +107,12 @@ const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
         <Link href={`/journey/${id}`}>
           <div className="mt-2 flex justify-between">
             <div className="w-full px-2">
-              <div className="text-sm flex flex-wrap justify-between items-center">
+              <div className=" flex flex-wrap justify-between items-center">
                 <Link href={`/journey/${id}`}>
                   <span aria-hidden="true" className="absolute_ inset-0"></span>
-                  <h2 className="text-lg mb-0 font-medium">
-                    {depart} -{' '}
-                    <span className="text-primary_">{destination}</span>
+                  <h2 className="text-md flex gap-2 items-center 2xl:text-lg  mb-0.5 font-medium">
+                    {depart} -{''}
+                    <span className="text-primary">{destination}</span>
                   </h2>
                 </Link>
                 <div className="text-end">

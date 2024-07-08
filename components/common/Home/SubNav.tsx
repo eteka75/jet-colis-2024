@@ -20,6 +20,14 @@ const SubNav = () => {
     'Marseille',
     'Parakou',
     'Bohicon',
+    'Washington',
+    'Canada',
+    'Sénégal',
+    'Niger',
+    'Mali',
+    'Gabon',
+    'Caméroon',
+    "Côte-d'îvoire",
     'London',
     'Natitingou',
     'Lille',
@@ -44,7 +52,7 @@ const SubNav = () => {
   return (
     <div className="bg-white dark:shadow dark:bg-background/80 bg-opacity-90 backdrop-blur-3xl">
       <div className="container-fluid max-w-full">
-        <nav className="md:mx-12 me-12 py-2">
+        <nav className="md:mx-12 me-12 py-2 md:py-2.5">
           <Carousel
             opts={{
               align: 'center',
@@ -58,7 +66,7 @@ const SubNav = () => {
               {villes.map((ville, index) => (
                 <CarouselItem
                   className={clsx(
-                    'basis-auto text-nowrap px-3 mx-0 rounded-full py-1 transition-colors duration-300',
+                    'basis-auto text-nowrap px-3 mx-1 rounded-full py-1 transition-colors duration-300',
                     ville_active === ville
                       ? 'bg-primary text-white'
                       : 'hover:bg-primary hover:text-white'
