@@ -32,7 +32,6 @@ const Login: React.FC = () => {
   const inputPwd = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    setErrorMessage();
     if (step1 && inputEmail.current) {
       inputEmail.current.focus();
     }
