@@ -32,6 +32,7 @@ const Login: React.FC = () => {
   const inputPwd = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    setErrorMessage();
     if (step1 && inputEmail.current) {
       inputEmail.current.focus();
     }
@@ -116,11 +117,13 @@ const Login: React.FC = () => {
   return (
     <div>
       <form onSubmit={handleSubmit} method="POST">
-        <div className="grid gap-4">
+        <div className="grid gap-4 overflow-auto">
           {errorMessage && (
-            <div className="flex text-xs items-center text-red-500 gap-2 text-center bg-red-50 p-2 px-4 border border-red-200 rounded-md">
+            <div className="flex break-words w-full overflow-auto text-xs items-center text-red-500 gap-2 text-center bg-red-50 p-2 px-4 border border-red-200 rounded-md">
               <MdOutlineErrorOutline className="h-5 w-5  " />
-              <p className="text-sm">{errorMessage}</p>
+              <div className="text-sm w-full break-words whitespace-pre-wrap overflow-x-auto">
+                {errorMessage}
+              </div>
             </div>
           )}
           <div>
