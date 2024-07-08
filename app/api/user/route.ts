@@ -3,7 +3,6 @@
 import { NextResponse } from 'next/server';
 import { verifyToken } from '@/src/lib/auth';
 import { PrismaClient } from '@prisma/client';
-import { UserWithoutPassword } from '@/src/types/user';
 
 const prisma = new PrismaClient();
 
@@ -16,14 +15,18 @@ export async function GET(request: Request) {
     }
 
     const decoded = verifyToken(token);
+
+    // Check if decoded is null
+    if (!decoded) {
+      return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
+    }
+    const idAsString = String(decoded.id);
     const user = await prisma.user.findUnique({
-      where: { id: decoded.id },
+      where: { id: idAsString },
       select: {
         id: true,
         name: true,
         email: true,
-        // incluez ici uniquement les champs que vous souhaitez retourner
-        // password est exclu
       },
     });
 
@@ -33,6 +36,6 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
   } catch (error) {
-    return NextResponse.json({ error: 'Invalid token' }, { status: 401 });
+    return NextResponse.json({ error: 'Error occurred' }, { status: 500 });
   }
 }

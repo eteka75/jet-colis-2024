@@ -15,7 +15,13 @@ export async function POST(request: Request) {
     }
 
     const user = await validateUser(email, password);
-    const token = generateToken(user);
+
+    // Convert id to number if it's a string
+    const userId = Number(user.id);
+    // Create a new user object with id as number
+    const userWithNumericId = { ...user, id: userId };
+
+    const token = generateToken(userWithNumericId);
     return NextResponse.json({ token }, { status: 200 });
   } catch (error) {
     return NextResponse.json(
