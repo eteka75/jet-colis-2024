@@ -32,7 +32,7 @@ const Header = async () => {
       <div className="bg-accent_ bg-background/80 bg-opacity-90 backdrop-blur-3xl ">
         <div className="container-fluid items-center py-4 m-auto">
           <div className="flex w-full h-full md:gap-4 items-center">
-            <div className="md:w-1/4 md:min-w-[100px] md:max-w-[400px] ">
+            <div className="lg:w-1/4 lg:min-w-[100px] lg:max-w-[400px] ">
               <div className="flex items-center">
                 <Link href={'/'} className="hidden lg:flex  m-0">
                   <Image
@@ -178,7 +178,7 @@ const Header = async () => {
               </form>
             </div>
 
-            <div className="md:w-1/4 md:min-w-[250px] items-center flex gap-1 md:max-w-[400px] justify-end">
+            <div className="lg:w-1/4 lg:min-w-[250px] items-center flex gap-1 lg:max-w-[400px] justify-end">
               <div className="hidden md:flex">
                 <Link href={'/send'}>
                   <Button

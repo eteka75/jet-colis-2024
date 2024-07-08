@@ -49,7 +49,7 @@ export const GuestDropdownMenu = () => {
     <div className="flex items-center justify-center">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <div className="p-1 shadow border border-accent-500 flex gap-.5  items-center rounded-full">
+          <div className="p-1 md:shadow-sm md:border border-accent-500 flex gap-.5  items-center rounded-full">
             <CircleUser className="h-6 w-6 cursor-pointer" />
             <IoMdArrowDropdown />{' '}
           </div>
@@ -60,7 +60,7 @@ export const GuestDropdownMenu = () => {
 
           <DropdownMenuGroup>
             <DropdownMenuItem>
-              <Link href="/login" className="flex items-center py-1">
+              <Link href="/login" className="flex items-center py-1 w-full">
                 <span> Se connecter</span>
               </Link>
               {/* <Dialog open={open} onOpenChange={setOpen}>
@@ -74,7 +74,7 @@ export const GuestDropdownMenu = () => {
               </Dialog> */}
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Link href="/signup" className="flex items-center py-1">
+              <Link href="/signup" className="flex items-center py-1 w-full">
                 {/* <LuPackageCheck className="mr-2 h-4 w-4" /> */}
                 Créer un compte
               </Link>
@@ -82,14 +82,14 @@ export const GuestDropdownMenu = () => {
             <DropdownMenuSeparator />
           </DropdownMenuGroup>
           <DropdownMenuItem>
-            <Link href="/help" className="flex items-center py-1">
+            <Link href="/help" className="flex items-center py-1 w-full">
               {/* <IoIosHelpCircleOutline className="mr-2 h-4 w-4" /> */}
               Aide
             </Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
-            <Link href="/faq" className="flex items-center py-1">
+            <Link href="/faq" className="flex items-center py-1 w-full">
               <IoIosHelpCircleOutline className="mr-2 h-4 w-4" />
               FAQ
             </Link>

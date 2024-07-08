@@ -7,14 +7,14 @@ const Affiliation = () => {
     <DefaultLayout>
       <div className="shadow-sm">
         <div className="container">
-          <div className="py-4 lg:py-8">
-            <h1 className="text-2xl xl:text-2xl font-bold">Affiliation</h1>
+          <div className="py-8">
+            <PageHeaderHeading>Affiliation</PageHeaderHeading>
           </div>
         </div>
       </div>
       <div className="container">
         <div className="md:w-7/12 mx-auto">
-          <p className="py-8 lg:pb-20 text-lg text-balance">
+          <p className="py-8 lg:pb-20 text-lg text-balance ">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt
             optio obcaecati modi eius fuga enim unde id accusamus dolores
             laudantium corporis ut ipsum dicta odit ab assumenda, numquam
