@@ -11,16 +11,8 @@
   .container-fluid {
     @apply mx-auto px-4 md:px-8 lg:px-12 xl:px-32 2xl:px-52;
   }
-  .pointu::before {
-    content: '';
-    position: absolute;
-    top: -10px; /* Ajustez cette valeur selon vos besoins */
-    right: 16px; /* Alignez la flèche avec le contenu */
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    /* margin-top: 30px; */
-    border-bottom: 8px solid #000; /* Couleur de fond du menu */
-    @apply shadow-xl;
+  .bg-accente {
+    /* @apply bg-accent; */
   }
   .container-mini {
     @apply mx-auto  px-4 max-w-screen-lg;

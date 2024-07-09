@@ -10,50 +10,17 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '../ui/accordion';
-
-const menus = [
-  {
-    title: "L'entreprise",
-    items: [
-      { href: '/', label: 'Accueil' },
-      { href: '/about-us', label: 'A propos' },
-      { href: '/become-affiliate', label: 'Devenez partenaire' },
-      { href: '/contact', label: 'Nous contacter' },
-      { href: '/blog', label: 'Le Blog' },
-    ],
-  },
-  {
-    title: 'Produit',
-    items: [
-      { href: '/partners', label: 'Partenaires' },
-      { href: '/rates-fees', label: 'Taux et frais' },
-      { href: '/destinations', label: 'Nos destinations' },
-      { href: '/login', label: 'Se connecter' },
-      { href: '/signup', label: 'Créer un compte' },
-    ],
-  },
-  {
-    title: 'Support',
-    items: [
-      { href: '/terms', label: "Contrat d'utilisation" },
-      { href: '/privacy-policy', label: 'Politique de confidentialité' },
-      {
-        href: '/privacy-choices',
-        label: 'Vos choix en matière de confidentialité',
-      },
-    ],
-    social: true,
-  },
-];
+import { siteConfig } from '@/src/config/website';
 
 const Footer = () => {
+  const { footerNavMenu } = siteConfig;
   return (
     <footer className="border-t bg-accent text-xl md:text-sm shadow-inner_  dark:bg-gray-900/90 dark:border-background/20 pb-6 pt-8">
       {/* <footer className="bg-gradient-to-t from-emerald-700 via-emerald-850 via-emerald-900    to-emerald-800 text-white text-sm py-8"> */}
 
       <div className="container">
         <div className="flex-wrap justify-between hidden lg:flex">
-          {menus.map((menu, index) => (
+          {footerNavMenu.map((menu, index) => (
             <div key={index} className="w-full md:w-1/3 mb-6">
               <div className="mb-4">
                 <h3 className="font-bold text-lg mb-4">{menu.title}</h3>
@@ -90,7 +57,7 @@ const Footer = () => {
         </div>
 
         <Accordion type="single" collapsible className="w-full lg:hidden">
-          {menus.map((menu, index) => (
+          {footerNavMenu.map((menu, index) => (
             <AccordionItem key={index} value={`item-${index}`}>
               <AccordionTrigger className="font-bold mb-2 text-lg">
                 {menu.title}

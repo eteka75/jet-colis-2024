@@ -2,11 +2,11 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
- 
+
 generator client {
   provider = "prisma-client-js"
 }
- 
+
 model User {
   id            String          @id @default(cuid())
   name          String?
@@ -29,6 +29,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   userTarifsColis UserTarifsColis[]
+  userTarifsCategorie UserTarifsCategorie[]
   trajets       Trajet[]
   Commandes     Commande[]
   reviews       Review[]
@@ -39,7 +40,7 @@ model User {
   favoris       Favori[]
   preferences   Preference[]
 }
- 
+
 model Account {
   userId            String
   type              String
@@ -52,33 +53,33 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
- 
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
- 
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+
   @@id([provider, providerAccountId])
 }
- 
+
 model Session {
   sessionToken String   @unique
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
- 
+
 model VerificationToken {
   identifier String
   token      String
   expires    DateTime
- 
+
   @@id([identifier, token])
 }
- 
+
 // Optional for WebAuthn support
 model Authenticator {
   credentialID         String  @unique
@@ -89,9 +90,9 @@ model Authenticator {
   credentialDeviceType String
   credentialBackedUp   Boolean
   transports           String?
- 
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+
   @@id([userId, credentialID])
 }
 
@@ -99,40 +100,79 @@ model Authenticator {
 // # AJOUT DES COMPLEMENTS
 // ################################################################################
 
-
-model TypeColis{
-  id            String   @id @default(uuid())
+model TypeColis {
+  id            String       @id @default(uuid())
   nom           String
   description   String?
-  
-  tarifsColis           TarifsColis?
+
+  tarifsColis           TarifsColis[]
   userTarifsColis       UserTarifsColis[]
   trajetTypeColis       TrajetTypeColis[]
+  categories            Categorie[]
   @@unique([nom])
 }
+
+model Categorie {
+  id          String     @id @default(uuid())
+  nom         String
+  typeColisId String
+  typeColis   TypeColis  @relation(fields: [typeColisId], references: [id])
+
+  tarifsCategorie TarifsCategorie[]
+  userTarifsCategorie UserTarifsCategorie[] // Ajout de la relation inverse
+  trajetCategories TrajetCategorie[]
+  
+  @@unique([nom, typeColisId])
+}
+
 model TarifsColis {
   id            String   @id @default(uuid())
   description   String?
-  prix          Decimal @db.Decimal(10,2)
+  prixKilo      Decimal @db.Decimal(10,2)
 
+  typeColisId String
+  typeColis       TypeColis @relation(fields: [typeColisId], references: [id])
+  
   userTarifsColis UserTarifsColis[]
-  commande Commande[]
-
-  typeColisId String @unique
-  TypeColis       TypeColis @relation(fields: [typeColisId], references: [id])
+  commande        Commande[]
 }
-model UserTarifsColis{
+
+model TarifsCategorie {
+  id            String   @id @default(uuid())
+  description   String?
+  prixKilo      Decimal @db.Decimal(10,2)
+
+  categorieId String
+  categorie   Categorie @relation(fields: [categorieId], references: [id])
+  
+  userTarifsCategorie UserTarifsCategorie[] // Ajout de la relation inverse
+  commande            Commande[]
+}
+
+model UserTarifsColis {
   id              String   @id @default(uuid())
   prix            Decimal       @db.Decimal(10,2)
-  // Clés secondaires
-  typeColisId     String      
-  userId          String      
-  typeColis TypeColis[]
-  // Les relations 
-  user            User   @relation(fields: [userId], references: [id])
-  tarifColis      TarifsColis   @relation(fields: [typeColisId],references: [id])
-  // Critères de validation
-  @@unique([typeColisId,userId])
+  typeColisId     String
+  userId          String
+
+  typeColis       TypeColis @relation(fields: [typeColisId], references: [id], map: "UserTarifsColis_typeColisId_fkey")
+  user            User @relation(fields: [userId], references: [id], map: "UserTarifsColis_userId_fkey")
+  tarifColis      TarifsColis @relation(fields: [typeColisId], references: [id], map: "UserTarifsColis_tarifsColisId_fkey")
+
+  @@unique([typeColisId, userId])
+}
+
+model UserTarifsCategorie {
+  id              String   @id @default(uuid())
+  prix            Decimal       @db.Decimal(10,2)
+  categorieId     String
+  userId          String
+
+  categorie       Categorie @relation(fields: [categorieId], references: [id], map: "UserTarifsCategorie_categorieId_fkey")
+  user            User @relation(fields: [userId], references: [id], map: "UserTarifsCategorie_userId_fkey")
+  tarifCategorie  TarifsCategorie @relation(fields: [categorieId], references: [id], map: "UserTarifsCategorie_tarifsCategorieId_fkey")
+
+  @@unique([categorieId, userId])
 }
 
 model Trajet {
@@ -142,82 +182,103 @@ model Trajet {
   lieuDestination     String
   description         String
 
-  startLatitude       Float?           // Latitude du point de départ
-  startLongitude      Float?           // Longitude du point de départ
-  endLatitude         Float?           // Latitude du point d'arrivée
-  endLongitude        Float?           // Longitude du point d'arrivée
- 
-  userId              String
-  user                User    @relation(fields: [userId],references: [id])
+  startLatitude       Float?
+  startLongitude      Float?
+  endLatitude         Float?
+  endLongitude        Float?
 
-  commandes           Commande[]  
-  trajetTypeColis     TrajetTypeColis[]  
+  userId              String
+  user                User    @relation(fields: [userId], references: [id])
+
+  commandes           Commande[]
+  trajetTypeColis     TrajetTypeColis[]
+  trajetCategories    TrajetCategorie[]
   reviews             Review[]
   favoris             Favori[]
 }
+
 model TrajetTypeColis {
   id              String    @id @default(uuid())
   titre           String
   description     String
-  maxKg           Float // Capacité totale en kg
-  remainingKg     Float //  Kg restant disponible
-  
+  maxKg           Float
+  remainingKg     Float
+
   trajetId        String
-  typeColisId     String 
+  typeColisId     String
 
   trajets         Trajet      @relation(fields: [trajetId], references: [id])
-  typeColis       TypeColis   @relation(fields: [typeColisId],references: [id])
+  typeColis       TypeColis   @relation(fields: [typeColisId], references: [id])
 
-  @@unique([trajetId,typeColisId])
+  @@unique([trajetId, typeColisId])
 }
+
+model TrajetCategorie {
+  id              String    @id @default(uuid())
+  titre           String
+  description     String
+  maxKg           Float
+  remainingKg     Float
+
+  trajetId        String
+  categorieId     String
+
+  trajets         Trajet      @relation(fields: [trajetId], references: [id])
+  categorie       Categorie   @relation(fields: [categorieId], references: [id])
+
+  @@unique([trajetId, categorieId])
+}
+
 model Commande {
   id                  String   @id @default(uuid())
   qteCommande         Float
   totalPrix           Float
 
-  trajetId            String 
-  userId              String //celui qui a commandé
-  typeColisId         String 
+  trajetId            String
+  userId              String
+  typeColisId         String?
+  categorieId         String?
 
-  trajets Trajet     @relation(fields: [trajetId],references: [id])
-  user User    @relation(fields: [userId],references: [id])
-  trajetColis TarifsColis   @relation(fields: [typeColisId],references: [id])
+  trajets Trajet     @relation(fields: [trajetId], references: [id])
+  user User    @relation(fields: [userId], references: [id])
+  trajetColis TarifsColis?   @relation(fields: [typeColisId], references: [id])
+  trajetCategorie TarifsCategorie?   @relation(fields: [categorieId], references: [id])
 
-  // @@unique([trajetId,userId,typeColisId])
+  @@unique([trajetId, userId, typeColisId, categorieId])
 }
 
 model Review {
   id              String      @id   @unique
-  rating          Int     // Note de 1 à 5
-  comment         String? // Commentaire facultatif
-  createdAt       DateTime    @default(now()) 
+  rating          Int
+  comment         String?
+  createdAt       DateTime    @default(now())
 
   userId          String
   trajetId        String
-  
-  user            User @relation(fields: [userId],references: [id])
-  trajet          Trajet      @relation(fields: [trajetId],references: [id])
 
-  @@unique([userId,trajetId])
+  user            User @relation(fields: [userId], references: [id])
+  trajet          Trajet      @relation(fields: [trajetId], references: [id])
+
+  @@unique([userId, trajetId])
 }
 
 model ChatMessage {
   id          String   @id @default(uuid())
   content     String
   createdAt   DateTime @default(now())
-  imageUrl    String?  // URL de l'image
-  audioUrl    String?  // URL du fichier audio
-  videoUrl    String?  // URL du fichier vidéo
+  imageUrl    String?
+  audioUrl    String?
+  videoUrl    String?
 
   senderId    String
   receiveId   String
-  sender      User @relation("SentMessages",fields: [senderId],references: [id])
-  receiver    User @relation("ReceivedMessages",fields: [receiveId],references: [id])
+  sender      User @relation("SentMessages", fields: [senderId], references: [id])
+  receiver    User @relation("ReceivedMessages", fields: [receiveId], references: [id])
 }
 
 model Notification {
   id          String   @id @default(uuid())
-  type        String   // Type de notification (réservation, commentaire, etc.)
+  type        String
   message     String
   isRead      Boolean  @default(false)
   createdAt   DateTime @default(now())
@@ -228,14 +289,14 @@ model Notification {
 
 model LocalisationTrajet {
   id          String    @id @default(uuid())
-  type        String?    // Arrivé/Depart
+  type        String?
   label       String
   adresse     String?
   latitude    Float?
   logitude    Float?
-  
-  userId      String 
-  user        User @relation(fields: [userId],references: [id])
+
+  userId      String
+  user        User @relation(fields: [userId], references: [id])
 }
 
 model Favori {
@@ -247,16 +308,16 @@ model Favori {
   user      User     @relation(fields: [userId], references: [id])
   trajet    Trajet   @relation(fields: [trajetId], references: [id])
 
-  @@unique([userId, trajetId]) 
+  @@unique([userId, trajetId])
 }
 
 model Preference {
   id        String   @id @default(uuid())
-  value     String   // Valeur de la préférence
-  key       String   // Clé pour la préférence (ex: "notifications", "theme")
-  
+  value     String
+  key       String
+
   userId    String
   user      User     @relation(fields: [userId], references: [id])
-  
-  @@unique([userId, key]) // Assure que chaque utilisateur a une seule valeur pour chaque clé
+
+  @@unique([userId, key])
 }

@@ -4,9 +4,10 @@ import NbStart from '../ui/NbStar';
 import { RiImageLine } from 'react-icons/ri';
 import Link from 'next/link';
 import { GiAirplaneDeparture } from 'react-icons/gi';
-import { TrajetItemProps } from '@/src/lib/definitions';
+import { DestinationImageType, TrajetItemProps } from '@/src/lib/definitions';
 import { Skeleton } from '@/components/ui/skeleton';
 import { GoPackageDependents } from 'react-icons/go';
+import { User } from '@prisma/client';
 
 // Skeleton component
 const Skeletond = ({
@@ -27,6 +28,31 @@ const Skeletond = ({
     </Link>
   </div>
 );
+
+// Définition du composant avec les props typées
+const DestinationImage: React.FC<DestinationImageType> = ({
+  url,
+  title,
+  subtitle,
+  user,
+}) => {
+  return (
+    <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl max-w-sm mx-auto group aspect-w-1 aspect-h-1 min-h-[300px]">
+      <Image
+        alt={title ?? 'image'} // Utilisez la prop title pour l'alt text
+        className="absolute inset-0 w-full h-full object-cover"
+        src={url} // Utilisez la prop url pour l'image source
+        layout="fill" // Utilisez layout="fill" pour que l'image remplisse le conteneur
+        objectFit="cover" // Assure que l'image s'adapte correctement
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 group-hover:opacity-100 opacity-0 transition-opacity duration-300" />
+      <div className="absolute inset-0 flex flex-col justify-end items-center group-hover:opacity-100 opacity-0 transition-opacity duration-300 p-8">
+        <h3 className="text-3xl font-bold text-white">{title}</h3>
+        <div className="text-sm leading-6 text-gray-300 mt-2">{subtitle}</div>
+      </div>
+    </article>
+  );
+};
 
 const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
   const {
@@ -59,7 +85,7 @@ const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
   return (
     <div>
       <div className="group relative rounded-xl pb-2">
-        <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-xl bg-gray-100 dark:bg-secondary/50 lg:aspect-none group-hover:opacity-75">
+        <div className="aspect-h-1_aspect-w-1 w-full overflow-hidden rounded-xl bg-gray-100 dark:bg-secondary/50 lg:aspect-none group-hover:opacity-75">
           {loading ? (
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
               <Skeleton className="h-[300px] bg-slate-300/50 items-center justify-center flex w-full shadow">
@@ -73,17 +99,19 @@ const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
               {photos[destination]?.map(
                 (url: string | undefined, index: number) => (
                   <Link className="w-full" key={index} href={`/journey/${id}`}>
-                    <div className="h-[300px] max-w-[400px] mx-auto">
+                    <div className="mx-auto">
                       {url && (
-                        <Image
-                          src={url}
-                          alt={destination}
-                          width={800}
-                          height={350}
-                          quality={50}
-                          className="rounded-xl shadow-sm max-w-full mx-auto hover:scale-155 duration-300 hover:duration-800 bg-gray-300 object-cover h-[300px]"
-                          onLoadingComplete={handleImageLoad}
-                        />
+                        <DestinationImage url={url} title={destination} />
+
+                        // <Image
+                        //   src={url}
+                        //   alt={destination}
+                        //   width={800}
+                        //   height={350}
+                        //   quality={50}
+                        //   className="rounded-xl shadow-sm max-w-full mx-auto hover:scale-155 duration-300 hover:duration-800 bg-gray-300 object-cover h-[300px]"
+                        //   onLoadingComplete={handleImageLoad}
+                        // />
                       )}
                     </div>
                   </Link>

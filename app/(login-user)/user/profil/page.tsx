@@ -1,35 +1,40 @@
-import DefaultLayout from '@/components/layouts/DefaultLayout';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { Textarea } from '@/components/ui/textarea';
 import { Metadata } from 'next';
 import React from 'react';
-import { User, Settings, Lock, Bell, Shield } from 'lucide-react';
+import DefaultLayout from '@/components/layouts/DefaultLayout';
+import { User } from '@prisma/client';
+import { auth } from '@/auth';
+import Image from 'next/image';
+import { siteConfig } from '@/src/config/website';
 import Link from 'next/link';
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import AccountLayout from '@/components/layouts/AccountLayout';
+  BadgeCheck,
+  CircleHelp,
+  DollarSignIcon,
+  Edit,
+  Link2,
+  PackagePlus,
+  Settings,
+  Star,
+} from 'lucide-react';
+import MiniProfileCard from './form/MiniProfileCard';
+import ProfileCardContent from './form/ProfileCardContent';
+import { BiMessageSquare } from 'react-icons/bi';
+import { handleSignOut } from '@/src/lib/actions';
+import { IoIosLogOut } from 'react-icons/io';
+import LogoutButton from './form/LogoutButton';
 
 // Styles pour les liens de la sidebar
-const Profil = () => {
+const Profil = async () => {
+  const session = await auth();
+  const user = session?.user || null;
   return (
-    <AccountLayout>
-      <ProfileForm />
-    </AccountLayout>
+    <DefaultLayout type="mini">
+      <div className="container-mini">
+        {' '}
+        <Profile user={user} />
+      </div>
+    </DefaultLayout>
   );
 };
 
@@ -38,52 +43,139 @@ export default Profil;
 export const metadata: Metadata = {
   title: 'Profil',
 };
-const ProfileForm = () => (
-  <form className=" mx-auto tex-sm space-y-2">
-    <Card className="md:max-w-[800px] md:shadow-none md:border-0  mb-8 ">
-      <CardHeader>
-        <CardTitle>Mon profil</CardTitle>
-        <CardDescription>Deploy your new project in one-click.</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <div>
-          <Label htmlFor="name">Name</Label>
-          <Input className="py-1" id="name" placeholder="Enter your name" />
-        </div>
-        <div>
-          <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" placeholder="Enter your email" />
-        </div>
-        <div>
-          <Label htmlFor="username">Username</Label>
-          <Input id="username" placeholder="Enter your username" />
-        </div>
-        <div>
-          <Label htmlFor="bio">Bio</Label>
-          <Textarea id="bio" placeholder="Tell us about yourself" />
-        </div>
-        <div>
-          <Label htmlFor="gender">Gender</Label>
-          <Select name="gender">
-            <SelectTrigger className="w-[180px]">
-              <SelectValue>Select your gender</SelectValue>
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="male">Male</SelectItem>
-              <SelectItem value="female">Female</SelectItem>
-              <SelectItem value="other">Other</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        <div>
-          <Label htmlFor="birthdate">Birthdate</Label>
-          <Input id="birthdate" type="date" />
-        </div>
 
-        <div className="py-8">
-          <Button type="submit">Sauvegarder</Button>
+const Profile = ({ user }: { user?: User }) => {
+  const formattedDate = user?.createdAt?.toLocaleDateString(undefined, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
+  const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    await handleSignOut();
+  };
+  return (
+    <div className=" md:py-4 pb-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className=" md:col-span-2 rounded-md shadow-sm p-4 md:p-6 border">
+          <figure className="relative flex flex-col ">
+            <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
+              <figcaption className="flex items-center space-x-2">
+                {user?.image ? (
+                  <Image
+                    src={user?.image}
+                    height={12}
+                    width={12}
+                    alt={user?.name ?? 'profile'}
+                    className="flex-none w-20 h-20 border-2 border-white/80 rounded-full  object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : (
+                  <Image
+                    src={siteConfig.defaultProfileImg}
+                    height={12}
+                    width={12}
+                    alt={user?.name ?? 'profile'}
+                    className="flex-none w-20 h-20 border-2 border-white/80 rounded-full  object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )}
+                <div className="flex-auto">
+                  <div className="text-base text-slate-900 font-semibold dark:text-slate-200">
+                    {user?.name}
+                  </div>
+                  <div className="opacity-70 text-sm">
+                    Membre depuis {formattedDate}
+                  </div>
+                </div>
+              </figcaption>
+              <div className=" px-2 flex flex-col md:items-end items-center ">
+                <Link
+                  href={`/profil-${user?.profileId}`}
+                  className="font-semibold text-sm "
+                >
+                  <Button variant={'link'} className="px-0 gap-2">
+                    <Link2 />
+                    Voir mon profile public
+                  </Button>
+                </Link>
+                <Link
+                  href={'user/profil/edit'}
+                  className="flex gap-1 mt-2 text-xs"
+                >
+                  <Edit className="h-3 w-3" />
+                  Modifier{' '}
+                </Link>
+              </div>
+            </div>
+          </figure>
         </div>
-      </CardContent>
-    </Card>
-  </form>
-);
+        <div className="hover:shadow-lg shadow-sm rounded-lg p-2 md:p-4  border">
+          <Link href={'/user/getpayed'}>
+            <h1 className="font-bold"> Porte monnaie</h1>
+            <h2 className="text-balance font-black mt-2 opacity-40 text-3xl xl:text-4xl">
+              0 <span>$</span>
+            </h2>
+          </Link>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-4">
+        <MiniProfileCard url="/user/offres">
+          <ProfileCardContent
+            icon={<PackagePlus className="h-8 w-8 opacity-40 mb-1" />}
+            title="Mes offres de livraison"
+            description="Gérer vos offres de livraison de colis"
+          />
+        </MiniProfileCard>
+        <MiniProfileCard url="/user/colis-recus">
+          <ProfileCardContent
+            icon={<BadgeCheck className="h-8 w-8 opacity-40 mb-1" />}
+            title="Colis reçus"
+            description="Gérer vos colis reçus"
+          />
+        </MiniProfileCard>
+        <MiniProfileCard url="/user/transactions">
+          <ProfileCardContent
+            icon={<DollarSignIcon className="h-8 w-8 opacity-40 mb-1" />}
+            title="Transactions"
+            description="Gérer vos transactions"
+          />
+        </MiniProfileCard>
+        <MiniProfileCard url="/user/settings">
+          <ProfileCardContent
+            icon={<Settings className="h-8 w-8 opacity-40 mb-1" />}
+            title="Paramètres du compte"
+            description="Gérer les paramètres de votre compte"
+          />
+        </MiniProfileCard>
+        <MiniProfileCard url="/user/messages">
+          <ProfileCardContent
+            icon={<BiMessageSquare className="h-8 w-8 opacity-40 mb-1" />}
+            title="Messagerie"
+            description="Consulter vos messages reçus et envoyés"
+          />
+        </MiniProfileCard>
+        <MiniProfileCard url="/user/favoris">
+          <ProfileCardContent
+            icon={<Star className="h-8 w-8 opacity-40 mb-1" />}
+            title="Favoris"
+            description="Consulter mes trajets favoris"
+          />
+        </MiniProfileCard>
+        <MiniProfileCard url="/help">
+          <ProfileCardContent
+            icon={<CircleHelp className="h-8 w-8 opacity-40 mb-1" />}
+            title="Aide"
+            description="Consulter le centre d'aide"
+          />
+        </MiniProfileCard>
+      </div>
+      <div className="py">
+        <LogoutButton />
+      </div>
+    </div>
+  );
+};

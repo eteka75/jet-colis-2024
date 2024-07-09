@@ -14,18 +14,13 @@ import userimg from '@/public/assets/images/user/default2.jpg';
 import { handleSignOut } from '@/src/lib/actions';
 import { UserSession } from '@/src/lib/definitions';
 import { BiMessageSquare } from 'react-icons/bi';
-import { LuPackageCheck, LuUser2 } from 'react-icons/lu';
+import { LuUser2 } from 'react-icons/lu';
 import { IoIosHelpCircleOutline, IoIosLogOut } from 'react-icons/io';
 import { GiReceiveMoney } from 'react-icons/gi';
+import { BadgeCheck } from 'lucide-react';
 
 const LoginDropdownMenu = ({ user }: { user: UserSession | undefined }) => {
   const [loading, setLoading] = useState(false);
-
-  const handleSignOutClick = async () => {
-    setLoading(true);
-    await handleSignOut();
-    setLoading(false);
-  };
 
   return (
     <div className="flex items-center justify-center">
@@ -67,12 +62,6 @@ const LoginDropdownMenu = ({ user }: { user: UserSession | undefined }) => {
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Link href="/dashboard" className="flex items-center py-1">
-                <LuPackageCheck className="mr-2 h-4 w-4" />
-                Mes colis
-              </Link>
-            </DropdownMenuItem>
             <DropdownMenuGroup>
               <DropdownMenuItem>
                 <Link href="/travel-offers" className="flex items-center py-1">
@@ -81,6 +70,13 @@ const LoginDropdownMenu = ({ user }: { user: UserSession | undefined }) => {
                 </Link>
               </DropdownMenuItem>
             </DropdownMenuGroup>
+            <DropdownMenuItem>
+              <Link href="/dashboard" className="flex items-center py-1">
+                <BadgeCheck className="mr-2 h-4 w-4" />
+                Colis reçus
+              </Link>
+            </DropdownMenuItem>
+
             <DropdownMenuSeparator />
           </DropdownMenuGroup>
           <DropdownMenuItem>

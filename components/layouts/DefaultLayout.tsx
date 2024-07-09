@@ -2,10 +2,16 @@ import React, { ReactNode } from 'react';
 import Header from '@/components/common/Header';
 import Footer from '../common/Footer';
 
-const DefaultLayout = ({ children }: { children: ReactNode }) => {
+const DefaultLayout = ({
+  type,
+  children,
+}: {
+  type?: string;
+  children: ReactNode;
+}) => {
   return (
     <>
-      <Header />
+      <Header type={type} />
       <div className="md:min-h">{children}</div>
       <Footer />
     </>

@@ -530,3 +530,10 @@ export const list_trajets = [
     unite_kilo_disponible: 'Kg',
   },
 ];
+
+export type DestinationImageType = {
+  url: string;
+  title?: string;
+  subtitle?: string;
+  user?: User; // Optionnel si vous ne souhaitez pas qu'il soit toujours présent
+};

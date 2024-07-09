@@ -73,7 +73,7 @@ const SubNav = () => {
                   )}
                   key={index}
                 >
-                  <Link href={`/travel-to/${index}`}>{ville}</Link>
+                  <Link href={`/travel-destination/${index}`}>{ville}</Link>
                 </CarouselItem>
               ))}
             </CarouselContent>
