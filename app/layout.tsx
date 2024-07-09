@@ -7,6 +7,8 @@ import type { Metadata } from 'next';
 import { SessionProvider } from 'next-auth/react';
 import { AppProps } from 'next/app';
 import { Figtree } from 'next/font/google';
+import React from 'react';
+import PageLoading from '@/components/common/ui/PageLoading';
 
 const figtree = Figtree({
   subsets: ['latin'],
@@ -30,7 +32,9 @@ export default async function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <SessionProvider session={session}>
-            <main>{children}</main>
+            <React.Suspense fallback={<PageLoading />}>
+              <main>{children}</main>
+            </React.Suspense>
           </SessionProvider>
         </ThemeProvider>
       </body>

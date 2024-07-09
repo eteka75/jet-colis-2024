@@ -60,65 +60,71 @@ const CardRegister = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} method="POST">
+    <div>
       {error && (
         <div className="flex text-xs items-center text-red-500 gap-2 text-center md:text-start mb-4 bg-red-50 p-2 px-4 border border-red-200 rounded-md">
           <MdOutlineErrorOutline className="h-5 w-5  " /> {error}
         </div>
       )}
-      <div className="grid gap-4">
-        <div className="grid gap-4 md:grid-cols-2">
+      <form onSubmit={handleSubmit} method="POST">
+        <div className="grid gap-2 md:gap-4">
+          <div className="grid gap-2 md:grid-cols-2">
+            <div className="grid gap-2">
+              <Label htmlFor="firstName">Prénom</Label>
+              <Input
+                id="firstName"
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstname(e.target.value)}
+                required
+                disabled={isPending}
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="lastName">Nom</Label>
+              <Input
+                id="lastName"
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastname(e.target.value)}
+                required
+                disabled={isPending}
+              />
+            </div>
+          </div>
           <div className="grid gap-2">
-            <Label htmlFor="firstName">Prénom</Label>
+            <Label htmlFor="email">Email</Label>
             <Input
-              id="firstName"
-              type="text"
-              value={firstName}
-              onChange={(e) => setFirstname(e.target.value)}
+              id="email"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
               disabled={isPending}
             />
           </div>
           <div className="grid gap-2">
-            <Label htmlFor="lastName">Nom</Label>
+            <Label htmlFor="password">Mot de passe</Label>
             <Input
-              id="lastName"
-              type="text"
-              value={lastName}
-              onChange={(e) => setLastname(e.target.value)}
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
               disabled={isPending}
             />
           </div>
+          <div className="grid gap-2">
+            <Button
+              type="submit"
+              className="w-full border"
+              disabled={isPending}
+            >
+              {isPending ? 'Inscriprion en cours...' : 'Créer mon compte'}
+            </Button>
+          </div>
         </div>
-        <div className="grid gap-2">
-          <Label htmlFor="email">Email</Label>
-          <Input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            disabled={isPending}
-          />
-        </div>
-        <div className="grid gap-2">
-          <Label htmlFor="password">Mot de passe</Label>
-          <Input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            disabled={isPending}
-          />
-        </div>
-        <div className="grid gap-2">
-          <Button type="submit" className="w-full border" disabled={isPending}>
-            {isPending ? 'Inscriprion en cours...' : 'Créer mon compte'}
-          </Button>
-        </div>
-      </div>
+      </form>
       <div className="py-4 text-sm">
         <LineSeparator>Ou s'inscrire avec</LineSeparator>
         <div className="py-4">
@@ -133,7 +139,7 @@ const CardRegister = () => {
           </Button>
         </Link>
       </div>
-    </form>
+    </div>
   );
 };
 
