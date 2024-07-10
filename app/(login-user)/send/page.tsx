@@ -1,8 +1,14 @@
+import { auth } from '@/auth';
 import PageLayout from '@/components/layouts/PageLayout';
 import { Metadata } from 'next';
+import { redirect } from 'next/navigation';
 import React from 'react';
 
-const Send = () => {
+const Send = async () => {
+  const session = await auth();
+  if (!session?.user) {
+    redirect('/login');
+  }
   return (
     <PageLayout>
       <div className="container py-4">

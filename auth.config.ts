@@ -14,16 +14,26 @@ export const authConfig = {
       const isLoggedIn = !!auth?.user;
       const protectedRoutes = ['/dashboard', '/admin', '/statistiques'];
       const guestRoutes = ['/login', '/signup', '/signin', '/register'];
-      console.log(
-        pathname,
-        'PATHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH'
-      );
-      // # REDIRECTION QUAND ON EST SUR LA PAGE LOGIN ET REGISTER
-      const isOnDashboard = protectedRoutes.some((route) => pathname === route);
-      //const isOnDashboard = nextUrl?.pathname.startsWith('/dashboard');
 
+      // # REDIRECTION QUAND ON EST SUR LA PAGE LOGIN ET REGISTER
+      // const isOnAuthPages = protectedRoutes.some((route) => pathname === route);
+      // const isOnGuestPages = guestRoutes.some((route) => pathname === route);
+      const isOnAuthPages = protectedRoutes.some((route) =>
+        pathname.startsWith(route)
+      );
+      const isOnGuestPages = guestRoutes.some((route) =>
+        pathname.startsWith(route)
+      );
+
+      //const isOnAuthPages = nextUrl?.pathname.startsWith('/dashboard');
+      // Ajout de logs pour débogage
+      console.log('Middleware called');
+      console.log('Pathname:', pathname);
+      console.log('Is Logged In:', isLoggedIn);
+      console.log('Is On Auth Pages:', isOnAuthPages);
+      console.log('Is On Guest Pages:', isOnGuestPages);
       // # DASHBOARD
-      if (isOnDashboard) {
+      if (isOnAuthPages) {
         if (isLoggedIn) {
           return true;
         }
@@ -32,15 +42,13 @@ export const authConfig = {
       if (isLoggedIn) {
         //A ===2
         // # REDIRECTION QUAND ON EST SUR LA PAGE LOGIN ET REGISTER
-        const isInRegLoginPath = guestRoutes.some(
-          (route) => pathname === route
-        );
+
         console.log(
-          isInRegLoginPath,
+          isOnGuestPages,
           'REEGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG'
         );
 
-        if (isInRegLoginPath) {
+        if (isOnGuestPages) {
           url.pathname = '/dashboard';
           return Response.redirect(url);
         }

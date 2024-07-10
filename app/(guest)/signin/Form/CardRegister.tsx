@@ -68,7 +68,7 @@ const CardRegister = () => {
       )}
       <form onSubmit={handleSubmit} method="POST">
         <div className="grid gap-2 md:gap-4">
-          <div className="grid gap-2 md:grid-cols-2">
+          <div className="grid gap-2 sm:grid-cols-2">
             <div className="grid gap-2">
               <Label htmlFor="firstName">Prénom</Label>
               <Input

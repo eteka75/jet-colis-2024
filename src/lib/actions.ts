@@ -2,11 +2,22 @@ import { User } from '@prisma/client';
 import axios from 'axios';
 import { signOut } from 'next-auth/react';
 import prisma from './primsa';
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
 
 const accessKey = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY;
 
 export async function handleSignOut() {
   await signOut();
+}
+export async function authMiddleware() {
+  const session = await auth();
+  const user = session?.user || undefined;
+  if (!user) {
+    console.log('APP', '============================');
+    redirect('/login');
+  }
+  return user;
 }
 
 export const getPhotos = async (

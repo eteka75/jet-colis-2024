@@ -1,55 +1,73 @@
-export { auth as middleware } from '@/auth';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
 
-import NextAuth from 'next-auth';
-import { authConfig } from './auth.config';
+export function middleware(req: NextRequest) {
+  const { pathname } = req.nextUrl;
+  const token =
+    req.cookies.get('authjs.session-token') ||
+    req.cookies.get('next-auth.session-token');
 
-// export { auth as middleware } from "@/auth"
+  const protectedRoutes = [
+    '/dashboard',
+    '/admin',
+    '/statistiques',
+    '/new-travel',
+    '/user',
+  ];
 
-export default NextAuth(authConfig).auth;
+  const guestRoutes = [
+    '/login',
+    '/signup',
+    '/signin',
+    '/register',
+    '/forgot-password',
+  ];
+
+  const isOnAuthPages = protectedRoutes.some((route) =>
+    pathname.startsWith(route)
+  );
+  const isOnGuestPages = guestRoutes.some((route) =>
+    pathname.startsWith(route)
+  );
+  const isLoggedIn = !!token;
+  const homeLoginUrl = '/dashboard';
+
+  // Ajout de logs pour débogage
+  console.log(
+    '******************************Middleware called******************************'
+  );
+  console.log('Pathname:', pathname);
+  console.log('Is Logged In:', isLoggedIn);
+  console.log('Is On Auth Pages:', isOnAuthPages);
+  console.log('Is On Guest Pages:', isOnGuestPages);
+  console.log(
+    '**********************************************************************************'
+  );
+  // utilisateur connecté et sur login ou register
+  if (isLoggedIn && isOnGuestPages) {
+    return NextResponse.redirect(new URL(homeLoginUrl, req.url));
+  }
+
+  //non connecté et sur les pages non autorisées
+  if (!isLoggedIn && isOnAuthPages) {
+    console.log('===================================================');
+    return NextResponse.redirect(new URL('/signin', req.url));
+  }
+
+  return NextResponse.next();
+}
 
 export const config = {
-  // matcher: [],
-  // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
   matcher: [
-    '/((?!api|_next/static|_next/image|.*\\.png$).*)',
     '/dashboard/:path*',
     '/admin/:path*',
     '/statistiques/:path*',
+    '/new-travel/:path*',
+    '/user/:path*',
+    // Si vous voulez appliquer le middleware à ces pages, décommentez-les :
+    '/login',
+    '/signup',
+    '/signin',
+    '/register',
   ],
 };
-
-// import { getSession } from 'next-auth/react';
-// import { NextResponse } from 'next/server';
-// import type { NextRequest } from 'next/server';
-
-// // Middleware function to handle authentication checks
-// export function middleware(req: NextRequest) {
-//   const url = req.nextUrl.clone();
-//   const { pathname } = req.nextUrl;
-
-//   // Check if the user is authenticated by verifying the session cookie
-//   const session = req.cookies.get('next-auth.session-token');
-//   //   const session = await getSession();
-//   console.log(session, '======OOOOOOOOOOOOOOOOOOOOO');
-//   // Define protected routes
-//   const protectedRoutes = ['/dashboard', '/admin', '/statistiques'];
-
-//   // Check if the current pathname is one of the protected routes
-//   const isProtectedRoute = protectedRoutes.some((route) =>
-//     pathname.startsWith(route)
-//   );
-
-//   // If trying to access a protected route and not authenticated, redirect to login
-//   if (isProtectedRoute && !session) {
-//     url.pathname = '/login';
-//     return NextResponse.redirect(url);
-//   }
-
-//   // Allow access to all other routes
-//   return NextResponse.next();
-// }
-
-// // Define the routes that should be protected by this middleware
-// export const config = {
-//   matcher: ['/dashboard/:path*', '/admin/:path*', '/statistiques/:path*'],
-// };

@@ -117,7 +117,7 @@ const Login: React.FC = () => {
       <form onSubmit={handleSubmit} method="POST">
         <div className="grid gap-4 overflow-auto">
           {errorMessage && (
-            <div className="flex break-words w-full overflow-auto text-xs items-center text-red-500 gap-2 text-center bg-red-50 p-2 px-4 border border-red-200 rounded-md">
+            <div className="flex break-words w-full overflow-auto text-xs items-center text-red-500 gap-2 text-balance bg-red-50 p-2 px-4 border border-red-200 rounded-md">
               <MdOutlineErrorOutline className="h-5 w-5  " />
               <div className="text-sm w-full break-words whitespace-pre-wrap overflow-x-auto">
                 {errorMessage}
@@ -134,7 +134,7 @@ const Login: React.FC = () => {
                   setStep1(true);
                   setStep2(false);
                 }}
-                className="flex items-center text-center text-sm mb-2 opacity-80 md:text-start gap-1"
+                className="flex items-center font-bold text-center text-sm mb-2 opacity-80 md:text-start gap-1"
               >
                 <FiEdit2 /> {email}
               </Link>
@@ -165,7 +165,7 @@ const Login: React.FC = () => {
                     <IoIosAt className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 opacity-70 peer-focus:text-gray-900" />
                   </div>
                   {emailError && (
-                    <p className="text-red-500 text-sm mt-2">{emailError}</p>
+                    <p className="text-red-500 text-sm">{emailError}</p>
                   )}
                 </div>
               </>

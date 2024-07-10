@@ -23,7 +23,7 @@ const SignInPage = async () => {
   }
   return (
     <LightLayout>
-      <main className="md:py-12 py-8 md:min-h bg-accent">
+      <main className="md:py-12 py-8 md:min-h bg-accente">
         <div className="container md:min-h flex justify-center items-center">
           <Card className="w-[23rem] max-w-md">
             <div>
