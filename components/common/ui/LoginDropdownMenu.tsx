@@ -29,7 +29,7 @@ const LoginDropdownMenu = ({ user }: { user: UserSession | undefined }) => {
           <Image
             width={50}
             height={50}
-            className="w-7 h-7 min-w-7 min-h-7 cursor-pointer ms-2  border-2 border-gray-200 rounded-full"
+            className="w-7 h-7 min-w-7 min-h-7 cursor-pointer md:ms-2  border-2 border-gray-200 rounded-full"
             src={userimg}
             alt="User"
           />

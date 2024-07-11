@@ -14,7 +14,7 @@ const MiniProfileCard = ({
   return (
     <div
       className={cn(
-        'rounded-lg shadow-sm px-2 md:px-4 hover:shadow-md border py-4 md:py-8 items-center text-balance',
+        'rounded-lg shadow-sm  bg-background hover:shadow-md border p-4 md:py-8 items-center text-balance',
         className
       )}
     >

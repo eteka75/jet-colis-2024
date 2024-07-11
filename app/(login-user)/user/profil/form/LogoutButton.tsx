@@ -20,7 +20,7 @@ const LogoutButton = () => {
         <Button
           variant={'ghost'}
           type="submit"
-          className="flex border shadow-sm items-center py-1"
+          className="flex border bg-background shadow-sm items-center py-1"
         >
           <IoIosLogOut className="mr-2 h-4 w-4" /> Déconnexion
         </Button>

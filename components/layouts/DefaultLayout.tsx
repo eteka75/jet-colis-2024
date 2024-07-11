@@ -12,7 +12,7 @@ const DefaultLayout = ({
   return (
     <>
       <Header type={type} />
-      <div className="md:min-h">{children}</div>
+      <div className="md:min-h bg-accente">{children}</div>
       <Footer />
     </>
   );

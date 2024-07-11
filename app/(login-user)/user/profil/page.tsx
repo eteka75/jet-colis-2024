@@ -31,7 +31,6 @@ const Profil = async () => {
   return (
     <DefaultLayout type="mini">
       <div className="container-mini">
-        {' '}
         <Profile user={user} />
       </div>
     </DefaultLayout>
@@ -41,7 +40,7 @@ const Profil = async () => {
 export default Profil;
 
 export const metadata: Metadata = {
-  title: 'Profil',
+  title: '',
 };
 
 const Profile = ({ user }: { user?: User }) => {
@@ -56,40 +55,42 @@ const Profile = ({ user }: { user?: User }) => {
     await handleSignOut();
   };
   return (
-    <div className=" md:py-4 pb-4">
+    <div className=" md:py-4 pb-4 ">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className=" md:col-span-2 rounded-md shadow-sm p-4 md:p-6 border">
+        <div className=" md:col-span-2  bg-background rounded-md shadow-sm p-4 md:p-6 border">
           <figure className="relative flex flex-col ">
-            <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
-              <figcaption className="flex items-center space-x-2">
-                {user?.image ? (
-                  <Image
-                    src={user?.image}
-                    height={12}
-                    width={12}
-                    alt={user?.name ?? 'profile'}
-                    className="flex-none w-20 h-20 border-2 border-white/80 rounded-full  object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                ) : (
-                  <Image
-                    src={siteConfig.defaultProfileImg}
-                    height={12}
-                    width={12}
-                    alt={user?.name ?? 'profile'}
-                    className="flex-none w-20 h-20 border-2 border-white/80 rounded-full  object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                )}
-                <div className="flex-auto">
+            <div className="flex flex-col md:flex-row gap-4 justify-center md:justify-between items-center">
+              <figcaption className="md:flex md:items-center md:space-x-2">
+                <div className=" w-full md:w-auto">
+                  {user?.image ? (
+                    <Image
+                      src={user?.image}
+                      height={12}
+                      width={12}
+                      alt={user?.name ?? 'profile'}
+                      className="flex-none mx-auto w-20 h-20 border-2 border-white/80 rounded-full  object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <Image
+                      src={siteConfig.defaultProfileImg}
+                      height={12}
+                      width={12}
+                      alt={user?.name ?? 'profile'}
+                      className="flex-none mx-auto w-20 h-20 border-2 border-white/80 rounded-full  object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  )}
+                </div>
+                <div className="md:flex md:flex-auto md:w-auto">
                   <div className="text-base text-slate-900 font-semibold dark:text-slate-200">
                     {user?.name}
                   </div>
-                  <div className="opacity-70 text-sm">
-                    Membre depuis {formattedDate}
-                  </div>
+                  {user?.profileId && (
+                    <div className="opacity-70 text-sm">@{user?.profileId}</div>
+                  )}
                 </div>
               </figcaption>
               <div className=" px-2 flex flex-col md:items-end items-center ">
@@ -113,7 +114,7 @@ const Profile = ({ user }: { user?: User }) => {
             </div>
           </figure>
         </div>
-        <div className="hover:shadow-lg shadow-sm rounded-lg p-2 md:p-4  border">
+        <div className="hover:shadow-lg bg-background shadow-sm rounded-lg p-4  border">
           <Link href={'/user/getpayed'}>
             <h1 className="font-bold"> Porte monnaie</h1>
             <h2 className="text-balance font-black mt-2 opacity-40 text-3xl xl:text-4xl">
