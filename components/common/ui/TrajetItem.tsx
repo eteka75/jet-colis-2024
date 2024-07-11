@@ -8,6 +8,8 @@ import { DestinationImageType, TrajetItemProps } from '@/src/lib/definitions';
 import { Skeleton } from '@/components/ui/skeleton';
 import { GoPackageDependents } from 'react-icons/go';
 import { User } from '@prisma/client';
+import { formatDate } from '@/src/lib/fn';
+import { UserCheck } from 'lucide-react';
 
 // Skeleton component
 const Skeletond = ({
@@ -136,36 +138,38 @@ const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
         </div>
         <Link href={`/journey/${id}`}>
           <div className="mt-2 flex justify-between">
-            <div className="w-full px-2">
+            <div className="w-full md:px-2">
               <div className=" flex flex-wrap justify-between items-center">
                 <Link href={`/journey/${id}`}>
                   <span aria-hidden="true" className="absolute_ inset-0"></span>
-                  <h2 className="flex gap-2 items-center 2xl:text-lg  mb-0.5 font-medium">
-                    {depart} -{''}
-                    <span className="text-primary">{destination}</span>
+                  <h2 className="flex gap-2 items-center   mb-0.5 font-bold">
+                    {depart} -
+                    <span className="text-primary_">{destination}</span>
                   </h2>
                 </Link>
                 <div className="text-end">
                   <NbStart rating={Math.random() * 5} />
                 </div>
               </div>
-              <div className="flex justify-between">
-                <p className="text-sm flex items-center gap-2 font-medium">
-                  <GiAirplaneDeparture className="hidden" /> Départ le{' '}
-                  {`${date_depart}`}
+
+              <div className=" py-0.5">
+                <p className="text-sm opacity-50 flex items-center gap-2 font-medium">
+                  <UserCheck className="h-4 w-4" />
+                  <div>Wilfried ETEKA</div>
                 </p>
-                {/* <p className="text-sm opacity-80">
-                  {`${tarif} ${devise}/${unite}`}
-                </p> */}
-              </div>
-              <div className="py-1 ">
-                <div className="text-xs">
-                  <b>Hôte :</b> Wilfried ETEKA
-                </div>
                 <p className="leading-tight_tracking-tighter hidden opacity-70 text-sm">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Asperiores ea ...
                 </p>
+              </div>
+              <div className="flex justify-between">
+                <p className="text-sm flex items-center gap-2 font-medium opacity-70">
+                  <GiAirplaneDeparture className="w-4 h-4" />{' '}
+                  <div>Au plus tard, le {`${formatDate(date_depart)}`}</div>
+                </p>
+                {/* <p className="text-sm opacity-80">
+                  {`${tarif} ${devise}/${unite}`}
+                </p> */}
               </div>
             </div>
           </div>
