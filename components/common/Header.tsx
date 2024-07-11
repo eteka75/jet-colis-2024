@@ -85,10 +85,10 @@ const Header = async ({ type }: { type?: string }) => {
                   <input
                     type="search"
                     id="default-search"
-                    className="block w-full shadow-sm dark:bg-accent  dark:text-accent py-2 px-6 ps-10 text-sm rounded-full
-                     text-gray-900 border focus:bg-background focus:ring-0 focus:border-0
+                    className="block w-full shadow-sm bg-background dark:bg-accent  dark:text-accent py-2 px-6 ps-10 text-sm rounded-full
+                     text-gray-900 border focus:bg-background focus:ring-1 focus:border-1
                        dark:placeholder-gray-400 dark:text-white
-                      dark:focus:ring-0 dark:focus:border-0"
+                      dark:focus:ring-0 dark:focus:border-0 outline-none"
                     placeholder="Rechercher un trajet..."
                     required
                   />
