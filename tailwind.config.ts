@@ -9,6 +9,13 @@ const config: Config = {
     './src/**/*.{ts,tsx}',
   ],
   prefix: '',
+  screens: {
+    xs: { max: '575px' },
+    sm: { min: '576px', max: '767px' },
+    md: { min: '768px', max: '991px' },
+    lg: { min: '992px', max: '1199px' },
+    xl: { min: '1200px', max: '1399px' },
+  },
   theme: {
     container: {
       center: true,
@@ -20,8 +27,12 @@ const config: Config = {
     },
     extend: {
       screens: {
-        '3xl': '1600px', // Ajouter le breakpoint 3xl ici
+        //   '3xl': '2000px', // Ajouter le breakpoint 3xl ici
+        // '2xl': { min: '1400px', max: '1599px' },
+        // '3xl': { min: '1600px', max: '1799px' },
+        '3xl': { min: '2000px' },
       },
+
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

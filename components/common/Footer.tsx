@@ -56,10 +56,14 @@ const Footer = () => {
           ))}
         </div>
 
-        <Accordion type="single" collapsible className="w-full lg:hidden">
+        <Accordion
+          type="single"
+          collapsible
+          className="w-full lg:hidden border-t_"
+        >
           {footerNavMenu.map((menu, index) => (
             <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger className="font-bold mb-2 text-lg">
+              <AccordionTrigger className="font-bold  text-lg">
                 {menu.title}
               </AccordionTrigger>
               <AccordionContent>

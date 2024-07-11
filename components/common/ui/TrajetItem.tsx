@@ -39,7 +39,7 @@ const DestinationImage: React.FC<DestinationImageType> = ({
   user,
 }) => {
   return (
-    <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl max-w-md mx-auto group aspect-w-1 aspect-h-1 min-h-[300px]">
+    <article className="relative bg-accent shadow-sm border isolate flex flex-col justify-end overflow-hidden rounded-2xl max-w-md mx-auto group aspect-w-1 aspect-h-1 min-h-[300px]">
       <Image
         alt={title ?? 'image'} // Utilisez la prop title pour l'alt text
         className="absolute inset-0 w-full h-full object-cover"
@@ -89,7 +89,7 @@ const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
   return (
     <div>
       <div className="group relative rounded-xl pb-2">
-        <div className="aspect-h-1_aspect-w-1 w-full overflow-hidden rounded-xl bg-gray-100 dark:bg-secondary/50 lg:aspect-none group-hover:opacity-75">
+        <div className="aspect-h-1_aspect-w-1 w-full overflow-hidden rounded-xl dark:bg-secondary/50 lg:aspect-none group-hover:opacity-75">
           {loading ? (
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
               <Skeleton className="h-[300px] bg-slate-300/50 items-center justify-center flex w-full shadow">
@@ -138,7 +138,7 @@ const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
         </div>
         <Link href={`/journey/${id}`}>
           <div className="mt-2 flex justify-between">
-            <div className="w-full md:px-2">
+            <div className="w-full px-2">
               <div className=" flex flex-wrap justify-between items-center">
                 <Link href={`/journey/${id}`}>
                   <span aria-hidden="true" className="absolute_ inset-0"></span>
@@ -153,19 +153,22 @@ const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
               </div>
 
               <div className=" py-0.5">
-                <p className="text-sm opacity-50 flex items-center gap-2 font-medium">
-                  <UserCheck className="h-4 w-4" />
-                  <div>Wilfried ETEKA</div>
-                </p>
+                <div className="flex justify-between">
+                  <p className="text-sm opacity-50 flex items-center gap-2 font-normal">
+                    <UserCheck className="h-4 w-4 hidden" />
+                    <div>Wilfried ETEKA</div>
+                  </p>
+                  <div className="opacity-50 text-sm">1500 €/kg</div>
+                </div>
                 <p className="leading-tight_tracking-tighter hidden opacity-70 text-sm">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit.
                   Asperiores ea ...
                 </p>
               </div>
               <div className="flex justify-between">
-                <p className="text-sm flex items-center gap-2 font-medium opacity-70">
-                  <GiAirplaneDeparture className="w-4 h-4" />{' '}
-                  <div>Au plus tard, le {`${formatDate(date_depart)}`}</div>
+                <p className="text-sm md:text-xs flex items-center gap-2 font-bold opacity-70">
+                  <GiAirplaneDeparture className="w-4 h-4 hidden" />{' '}
+                  <div>Réservé avant, {`${formatDate(date_depart)}`}</div>
                 </p>
                 {/* <p className="text-sm opacity-80">
                   {`${tarif} ${devise}/${unite}`}

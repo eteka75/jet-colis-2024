@@ -50,7 +50,7 @@ const SubNav = () => {
   };
 
   return (
-    <div className="bg-white shadow-md z-0 dark:bg-background/80 bg-opacity-90 backdrop-blur-3xl">
+    <div className="bg-white shadow-md z-0 dark:border-b dark:bg-background/80 bg-opacity-90 backdrop-blur-3xl">
       <div className="container-fluid max-w-full">
         <nav className="md:mx-12 me-12 py-2 md:py-3">
           <Carousel
