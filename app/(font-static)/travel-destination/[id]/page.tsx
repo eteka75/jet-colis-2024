@@ -7,6 +7,7 @@ const Page = () => {
     <HomeLayout>
       <div className="container-fluid py-4">
         <h1>Plus de 100 livraisons</h1>
+        <div className="py-32"></div>
       </div>
     </HomeLayout>
   );

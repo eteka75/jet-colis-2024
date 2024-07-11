@@ -79,14 +79,14 @@ const faqItems = [
 const FaqInfo = () => {
   return (
     <div className=" md:py-20 bg-slate-50_ pb-8">
-      <div className="container">
+      <div className="container-fluid">
         <div className="md:max-w-screen-lg mx-auto rounded-xl py-4 md:py-8">
-          <div className=" p-4 md:px-8">
+          <div className="  md:px-8">
             <h1 className="text-3xl lg:text-4xl font-bold text-center md:text-start">
               FAQ
             </h1>
           </div>
-          <Accordion type="single" className="px-4 md:px-8" collapsible>
+          <Accordion type="single" className="md:px-8" collapsible>
             {faqItems.map((item) => (
               <AccordionItem
                 key={item.value}
