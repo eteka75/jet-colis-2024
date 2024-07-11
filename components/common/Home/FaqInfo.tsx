@@ -78,23 +78,25 @@ const faqItems = [
 
 const FaqInfo = () => {
   return (
-    <div className="py-8 md:py-20 bg-slate-50_">
+    <div className=" md:py-20 bg-slate-50_ pb-8">
       <div className="container">
         <div className="md:max-w-screen-lg mx-auto rounded-xl py-4 md:py-8">
-          <div className="text-center md:py-4">
-            <h1 className="text-3xl lg:text-4xl font-bold">FAQ</h1>
+          <div className=" p-4 md:px-8">
+            <h1 className="text-3xl lg:text-4xl font-bold text-center md:text-start">
+              FAQ
+            </h1>
           </div>
           <Accordion type="single" className="px-4 md:px-8" collapsible>
             {faqItems.map((item) => (
               <AccordionItem
                 key={item.value}
                 value={item.value}
-                className="border my-2 px-4 rounded-md"
+                className="border my-2 px-4 rounded-md bg-background shadow-sm"
               >
                 <AccordionTrigger className="accordion-label lg:text-lg text-start">
                   {item.question}
                 </AccordionTrigger>
-                <AccordionContent className="accordion-content text-lg opacity-70">
+                <AccordionContent className="accordion-contentprose prose-lg lg:prose-xl max-w-none  opacity-90">
                   <p>{item.answer}</p>
                 </AccordionContent>
               </AccordionItem>

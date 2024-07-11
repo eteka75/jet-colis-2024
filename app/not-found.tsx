@@ -14,7 +14,7 @@ const NotFound = () => {
         <div className="text-center">
           <MdErrorOutline className="text-5xl mx-auto text-slate-400" />
           <h1 className="text-2xl font-bold">404, Page non trouvé !</h1>
-          <p className="text-md mb-6">
+          <p className="text-md mb-6 px-4">
             La page que vous recherchez n'existe pas ou a été déplcée
           </p>
           <Link href="/">
