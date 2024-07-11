@@ -14,7 +14,6 @@ export async function authMiddleware() {
   const session = await auth();
   const user = session?.user || undefined;
   if (!user) {
-    console.log('APP', '============================');
     redirect('/login');
   }
   return user;

@@ -537,3 +537,7 @@ export type DestinationImageType = {
   subtitle?: string;
   user?: User; // Optionnel si vous ne souhaitez pas qu'il soit toujours présent
 };
+
+export interface AuthenticateError {
+  message: string;
+}

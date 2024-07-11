@@ -4,6 +4,7 @@ export const siteConfig = {
   name: "Colisfly | Envoyez et recevez vos colis de l'étranger",
   description: 'Envoie de colis entre particuliers au kilo et moins chère',
   url: 'https://localhost:3000',
+  homeUserLogin: '/dashboard',
   miniFooterNavMenu: [],
   miniProfileImg: '/assets/images/user/default2.jpg',
   defaultProfileImg: '/assets/images/user/default2.jpg',

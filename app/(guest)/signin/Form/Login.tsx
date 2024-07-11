@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -17,6 +16,7 @@ import { z } from 'zod';
 import { FiEdit2 } from 'react-icons/fi';
 import { GrFormNext } from 'react-icons/gr';
 import { emailSchema, passwordSchema } from '@/src/lib/validations';
+import { redirect, useRouter, useSearchParams } from 'next/navigation';
 
 const Login: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -27,9 +27,18 @@ const Login: React.FC = () => {
   const [step2, setStep2] = useState<boolean>(false);
   const [emailError, setEmailError] = useState<string | null>(null);
   const [passwordError, setPasswordError] = useState<string | null>(null);
-  // Define the refs with proper HTMLInputElement type
   const inputEmail = useRef<HTMLInputElement>(null);
   const inputPwd = useRef<HTMLInputElement>(null);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [callbackUrl, setCallbackUrl] = useState<string>('/');
+
+  useEffect(() => {
+    const url = searchParams.get('callbackUrl');
+    if (url) {
+      setCallbackUrl(url);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     if (step1 && inputEmail.current) {
@@ -58,6 +67,7 @@ const Login: React.FC = () => {
     setEmailError(null);
     setErrorMessage(null);
     setPasswordError(null);
+
     if (step1) {
       if (!email) {
         setEmailError('Email is required');
@@ -95,17 +105,44 @@ const Login: React.FC = () => {
       const formData = new FormData();
       formData.append('email', email);
       formData.append('password', password);
+      formData.append('callbackUrl', callbackUrl);
+
+      // try {
+      //   const result = await authenticate(undefined, formData);
+
+      //   if (result?.message) {
+      //     setErrorMessage(result.message);
+      //   } else {
+      //     router.push('/ddd'); // Redirection vers l'URL prévue après l'authentification réussie
+      //   }
+      // } catch (error) {
+      //   setErrorMessage(
+      //     'Une erreur est survenue pendant a connexion, veuillez réessayer !'
+      //   );
+      // } finally {
+      //   setIsPending(false);
+      // }
+
       try {
-        const result = await authenticate(undefined, formData);
-        console.log(result);
-        if (result) {
-          setErrorMessage(result);
+        const response = await authenticate(undefined, formData);
+
+        if (response.message) {
+          if (response.redirectUrl) {
+            setEmailError('');
+            setIsPending(true);
+            router.push(response.redirectUrl); // Redirection vers l'URL après authentification réussie
+          } else {
+            setErrorMessage(response.message);
+          }
         } else {
-          //window.location.href = '/profile';
+          setErrorMessage(
+            'Oups,! Une erreur est survenue, veuillez réessayer !'
+          );
         }
       } catch (error) {
-        // console.error('Error:', error, '========', email, password);
-        setErrorMessage('Something went wrong.');
+        setErrorMessage(
+          'Une erreur est survenue pendant la connexion, veuillez réessayer !'
+        );
       } finally {
         setIsPending(false);
       }
@@ -114,11 +151,11 @@ const Login: React.FC = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} method="POST">
+      <form id="loginForm" onSubmit={handleSubmit} method="POST">
         <div className="grid gap-4 overflow-auto">
           {errorMessage && (
             <div className="flex break-words w-full overflow-auto text-xs items-center text-red-500 gap-2 text-balance bg-red-50 p-2 px-4 border border-red-200 rounded-md">
-              <MdOutlineErrorOutline className="h-5 w-5  " />
+              <MdOutlineErrorOutline className="h-5 w-5" />
               <div className="text-sm w-full break-words whitespace-pre-wrap overflow-x-auto">
                 {errorMessage}
               </div>
@@ -144,7 +181,7 @@ const Login: React.FC = () => {
               <>
                 <div className="pb-2">
                   <Label>Votre adresse email</Label>
-                </div>{' '}
+                </div>
                 <div className="mx-1 grid gap-2">
                   <div className="relative">
                     <Input
@@ -175,7 +212,7 @@ const Login: React.FC = () => {
               <div className="mx-1 grid gap-2">
                 <div>
                   <Label>Votre mot de passe</Label>
-                </div>{' '}
+                </div>
                 <div className="relative">
                   <Input
                     ref={inputPwd}
@@ -199,6 +236,7 @@ const Login: React.FC = () => {
               </div>
             )}
           </div>
+
           <div>
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
@@ -214,10 +252,10 @@ const Login: React.FC = () => {
                 Mot de passe oublié ?
               </Link>
             </div>
-            <Button className="w-full mt-2 " type="submit" disabled={isPending}>
+            <Button className="w-full mt-2" type="submit" disabled={isPending}>
               {step1 && !isPending && 'Suivant'}{' '}
               {step2 && !isPending && 'Se connecter'}{' '}
-              {isPending && 'En cours...'}
+              {isPending && 'Connexion en cours...'}
               <GrFormNext className="h-5 w-5" />
             </Button>
           </div>

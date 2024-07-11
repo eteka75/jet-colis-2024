@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { siteConfig } from './src/config/website';
 
 export function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl;
+  const { pathname, searchParams } = req.nextUrl;
   const token =
     req.cookies.get('authjs.session-token') ||
     req.cookies.get('next-auth.session-token');
@@ -16,9 +17,9 @@ export function middleware(req: NextRequest) {
   ];
 
   const guestRoutes = [
-    '/login',
     '/signup',
     '/signin',
+    '/login',
     '/register',
     '/forgot-password',
   ];
@@ -30,28 +31,28 @@ export function middleware(req: NextRequest) {
     pathname.startsWith(route)
   );
   const isLoggedIn = !!token;
-  const homeLoginUrl = '/dashboard';
+  const homeLoginUrl = siteConfig.homeUserLogin;
+  const signinUrl = '/signin';
 
-  // Ajout de logs pour débogage
-  console.log(
-    '******************************Middleware called******************************'
-  );
-  console.log('Pathname:', pathname);
-  console.log('Is Logged In:', isLoggedIn);
-  console.log('Is On Auth Pages:', isOnAuthPages);
-  console.log('Is On Guest Pages:', isOnGuestPages);
-  console.log(
-    '**********************************************************************************'
-  );
+  // Extraire l'URL de callback des paramètres de la requête
+  const callbackUrl = searchParams.get('callbackUrl') || homeLoginUrl;
+
   // utilisateur connecté et sur login ou register
   if (isLoggedIn && isOnGuestPages) {
     return NextResponse.redirect(new URL(homeLoginUrl, req.url));
   }
 
-  //non connecté et sur les pages non autorisées
+  // non connecté et sur les pages non autorisées
   if (!isLoggedIn && isOnAuthPages) {
-    console.log('===================================================');
-    return NextResponse.redirect(new URL('/signin', req.url));
+    // Stocker l'URL de callback dans un cookie
+    const response = NextResponse.redirect(
+      new URL(
+        `${signinUrl}?callbackUrl=${encodeURIComponent(callbackUrl)}`,
+        req.url
+      )
+    );
+    response.cookies.set('callbackUrl', callbackUrl);
+    return response;
   }
 
   return NextResponse.next();
@@ -64,7 +65,6 @@ export const config = {
     '/statistiques/:path*',
     '/new-travel/:path*',
     '/user/:path*',
-    // Si vous voulez appliquer le middleware à ces pages, décommentez-les :
     '/login',
     '/signup',
     '/signin',

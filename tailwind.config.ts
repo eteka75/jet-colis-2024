@@ -14,10 +14,14 @@ const config: Config = {
       center: true,
       padding: '2rem',
       screens: {
-        '2xl': '1400px',
+        '2xl': '1500px',
+        '3xl': '1980px', // Définir le breakpoint 3xl pour le conteneur
       },
     },
     extend: {
+      screens: {
+        '3xl': '1600px', // Ajouter le breakpoint 3xl ici
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
