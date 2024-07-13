@@ -36,7 +36,7 @@ const Header = async ({ type }: { type?: string }) => {
 
   return (
     <>
-      <div className="bg-background/80 bg-opacity-90 backdrop-blur-3xl border-b">
+      <div className="bg-background/80 bg-opacity-90 backdrop-blur-3xl border-b __bg-slate-950 text-white">
         <div className={clsx('items-center py-4 m-auto', classContainer)}>
           <div className="flex w-full h-full md:gap-4 items-center">
             <div className="lg:w-1/4 lg:min-w-[100px] lg:max-w-[400px] ">
@@ -109,7 +109,7 @@ const Header = async ({ type }: { type?: string }) => {
                   <Button
                     size={'sm'}
                     variant={'ghost'}
-                    className="rounded-full bg-background hover:bg-primary hover:text-background active:px-2.5 hover:border-background gap-1 border text-sm lg:text-md shadow__border dark:bg-primary dark:text-accent-foreground "
+                    className="rounded-full text-foreground bg-background hover:bg-primary hover:text-background active:px-2.5 hover:border-background gap-1 border text-sm lg:text-md shadow__border dark:bg-primary dark:text-accent-foreground "
                   >
                     <PiPackageDuotone />
                     Publier une offre
