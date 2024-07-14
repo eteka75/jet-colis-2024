@@ -35,7 +35,7 @@ const MiniFooter = () => {
           scrollDirection === 'down'
             ? 'md:transform___md:translate-y-full'
             : 'md:mt-12 md:fixed md:transform md:translate-y-0',
-          'bg-background dark:bg-secondary/70 py-2 border-t dark:border-foreground/20'
+          'bg-background dark:bg-secondary py-2 border-t dark:border-foreground/20'
         )}
       >
         <div className="w-full max-w-screen-xl mx-auto py-2 px-4 ">

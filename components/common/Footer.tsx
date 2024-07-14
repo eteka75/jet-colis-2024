@@ -15,7 +15,7 @@ import { siteConfig } from '@/src/config/website';
 const Footer = () => {
   const { footerNavMenu } = siteConfig;
   return (
-    <footer className="border-t_ bg-white text-xl md:text-sm shadow-inner_  dark:bg-gray-900/90 dark:border-background/20 pb-6 pt-8">
+    <footer className="border-t border-slate-200  bg-white text-xl md:text-sm shadow-inner_  dark:bg-gray-900 dark:border-background/20 pb-6 pt-8">
       {/* <footer className="bg-gradient-to-t from-emerald-700 via-emerald-850 via-emerald-900    to-emerald-800 text-white text-sm py-8"> */}
 
       <div className="container">
