@@ -3,6 +3,7 @@ import {
   PageHeaderDescription,
   PageHeaderHeading,
 } from '@/components/common/ui/page-header';
+import TopPageLanding from '@/components/common/ui/TopPageLanding';
 import DefaultLayout from '@/components/layouts/DefaultLayout';
 import { Separator } from '@/components/ui/separator';
 import React from 'react';
@@ -10,11 +11,21 @@ import React from 'react';
 const Page = () => {
   return (
     <DefaultLayout>
-      <div className="shadow">
+      <div className="py-20 bg-slate-600 text-white">
         <div className="container">
-          <div className="py-8 text-start lg:px-16 bg-background">
-            <PageHeaderHeading>Conditions d'utilisations</PageHeaderHeading>
-            <Separator className="mx-2 h-4" orientation="vertical" />{' '}
+          <div className="md:grid md:grid-cols-3  lg:px-16 ">
+            <div className="p-4 col-span-2">
+              <PageHeaderHeading className="items-start text-start">
+                Conditions d'utilisations
+              </PageHeaderHeading>
+              <TopPageLanding className="text-white font-light">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Consequatur voluptatem excepturi quibusdam animi. Nemo autem
+                ipsa iste magni laudantium cupiditate obcaecati alias quibusdam
+                architecto excepturi dicta,{' '}
+              </TopPageLanding>
+            </div>
+            <div className="p-4"></div>
           </div>
         </div>
       </div>

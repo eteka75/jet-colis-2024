@@ -6,7 +6,7 @@ import clsx from 'clsx';
 import type { Metadata } from 'next';
 import { SessionProvider } from 'next-auth/react';
 import { AppProps } from 'next/app';
-import { Figtree } from 'next/font/google';
+import { Figtree, Inter } from 'next/font/google';
 import React from 'react';
 import PageLoading from '@/components/common/ui/PageLoading';
 
@@ -14,6 +14,13 @@ const figtree = Figtree({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700', '800', '900'],
   style: ['normal', 'italic'],
+});
+
+const interVar = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 });
 
 export default async function RootLayout({
@@ -27,7 +34,7 @@ export default async function RootLayout({
       <body
         className={clsx(
           'min-h-screen bg-background font-sans antialiased',
-          figtree.className
+          interVar.className
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
