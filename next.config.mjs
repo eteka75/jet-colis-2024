@@ -3,7 +3,11 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 const nextConfig = {
   images: {
-    domains: ['images.unsplash.com', 'api.unsplash.com'],
+    domains: [
+      'images.unsplash.com',
+      'api.unsplash.com',
+      'lh3.googleusercontent.com',
+    ],
   },
 
   webpack: (config, { dev, isServer }) => {
