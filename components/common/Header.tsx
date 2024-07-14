@@ -24,6 +24,7 @@ import clsx from 'clsx';
 const Header = async ({ type }: { type?: string }) => {
   // const { data: session, status } = useSession();
   const session = await auth();
+
   const user: User | null = session?.user as User | null;
   const classContainer =
     type === 'mini'
@@ -36,7 +37,7 @@ const Header = async ({ type }: { type?: string }) => {
 
   return (
     <>
-      <div className="bg-background/80 bg-opacity-90 backdrop-blur-3xl border-b __bg-slate-950 text-white">
+      <div className="bg-background/80 bg-opacity-90 backdrop-blur-3xl  __bg-slate-950__text-white">
         <div className={clsx('items-center py-4 m-auto', classContainer)}>
           <div className="flex w-full h-full md:gap-4 items-center">
             <div className="lg:w-1/4 lg:min-w-[100px] lg:max-w-[400px] ">

@@ -30,8 +30,8 @@ const SlimHeader = async () => {
 
   return (
     <>
-      <div className="bg-accente bg-background/80 bg-opacity-90 backdrop-blur-3xl ">
-        <div className="container items-center py-4 m-auto">
+      <div className=" bg-background/80 bg-opacity-90 backdrop-blur-3xl ">
+        <div className="container items-center py-2 m-auto">
           <div className="flex w-full h-full md:gap-4 items-center">
             <div className="lg:w-1/4 lg:min-w-[100px] lg:max-w-[400px] ">
               <div className="flex items-center">

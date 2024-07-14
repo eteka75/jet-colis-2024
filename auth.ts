@@ -11,7 +11,7 @@ import { getUserByEmail } from './src/lib/actions';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
-  adapter: PrismaAdapter(prisma),
+  // adapter: PrismaAdapter(prisma),
   providers: [
     Google,
     Credentials({
@@ -33,10 +33,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
     }),
   ],
-  pages: {
-    signIn: '/signin',
-    error: '/error', // Page d'erreur personnalisée
-  },
+  // pages: {
+  //   signIn: '/signin',
+  //   // error: '/error', // Page d'erreur personnalisée
+  // },
   callbacks: {
     session: ({ session, token }) => ({
       ...session,
@@ -55,7 +55,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return url.startsWith(baseUrl) ? url : baseUrl;
     },
   },
-  session: {
-    strategy: 'jwt',
-  },
+  // session: {
+  //   strategy: 'jwt',
+  // },
 });

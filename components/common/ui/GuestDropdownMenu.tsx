@@ -49,13 +49,13 @@ export const GuestDropdownMenu = () => {
     <div className="flex items-center justify-center">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <div className="p-1 md:shadow-sm md:border border-accent-500 flex gap-.5  items-center rounded-full">
+          <div className="p-1 md:shadow-sm border-accent flex gap-.5  items-center rounded-full">
             <CircleUser className="h-6 w-6 cursor-pointer" />
             <IoMdArrowDropdown />{' '}
           </div>
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent align="end" className="min-w-44 mt-1">
+        <DropdownMenuContent align="end" className="min-w-44 mt-1 shadow-2xl">
           <div className="absolute  z-0 top-[-4px] animate-accordion-up duration-1000 right-[5px] w-0 h-0 border-l-8 border-r-8 border-b-8 border-transparent border-b-slate-100 dark:border-b-slate-500"></div>
 
           <DropdownMenuGroup>

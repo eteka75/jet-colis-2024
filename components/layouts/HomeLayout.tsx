@@ -19,8 +19,8 @@ const HomeLayout = ({ children }: { children: ReactNode }) => {
         </div>
         {/* </Suspense> */}
       </header>
-      <div className="md:min-h mt-0 md:mt-32 ">{children}</div>
-      {/* <MiniFooter /> */}
+      <div className="md:min-h mt-0 md:mt-[120px] ">{children}</div>
+      <MiniFooter />
     </>
   );
 };

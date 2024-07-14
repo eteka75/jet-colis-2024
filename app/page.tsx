@@ -5,6 +5,7 @@ import HomeLayout from '@/components/layouts/HomeLayout';
 const Home = () => {
   return (
     <HomeLayout>
+      {/* <div>Home</div> */}
       <TrajetCard />
     </HomeLayout>
   );
