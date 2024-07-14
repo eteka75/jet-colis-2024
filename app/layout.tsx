@@ -31,6 +31,9 @@ export default async function RootLayout({
   const session = await auth();
   return (
     <html lang={'fr'}>
+      <meta name="robots" content="index, follow" />
+      <link rel="manifest" href="/site.webmanifest" />
+      <meta name="theme-color" content="#000000" />
       <body
         className={clsx(
           'min-h-screen bg-background font-sans antialiased',

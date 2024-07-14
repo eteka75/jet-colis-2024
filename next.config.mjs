@@ -9,7 +9,6 @@ const nextConfig = {
       'lh3.googleusercontent.com',
     ],
   },
-
   webpack: (config, { dev, isServer }) => {
     // Ajouter la règle existante pour ignorer les fichiers HTML
     config.module.rules.push({
@@ -31,6 +30,19 @@ const nextConfig = {
     }
 
     return config;
+  },
+  async headers() {
+    return [
+      {
+        source: '/:path*',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'index, follow',
+          },
+        ],
+      },
+    ];
   },
 };
 

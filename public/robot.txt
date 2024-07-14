@@ -1,0 +1,22 @@
+# robots.txt for https://www.votre-site-web.com
+
+# Autoriser tous les moteurs de recherche à explorer tout le site
+User-agent: *
+Disallow:
+
+# Bloquer l'accès aux répertoires administratifs ou privés
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /login/
+Disallow: /private/
+
+# Spécifier le chemin du fichier sitemap
+Sitemap: https://www.votre-site-web.com/sitemap.xml
+
+# Instructions spécifiques pour certains robots
+User-agent: Googlebot
+Disallow: /test/  # Bloquer Googlebot de l'accès au répertoire /test/
+
+User-agent: Bingbot
+Allow: /  # Autoriser Bingbot à explorer tout le site
+Disallow: /no-bing/  # Bloquer Bingbot d'accéder au répertoire /no-bing/
