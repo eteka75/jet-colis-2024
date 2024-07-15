@@ -24,7 +24,7 @@ const Header = async ({ type }: { type?: string }) => {
       ? 'container-mini'
       : type === 'moyen'
       ? 'container'
-      : 'container';
+      : 'container-fluid';
   const linkStyles =
     'flex items-center gap-2 text-neutral-500 dark:text-white/80 px-4 py-2 rounded-md hover:bg-accent dark:hover:text-white hover:no-underline';
 

@@ -35,14 +35,14 @@ import { CiHeart } from 'react-icons/ci';
 import SwithtTheme from '../Header/SwithtTheme';
 const MobileTopMenu = () => {
   const linkStyles =
-    'flex items-center hover:text-primary gap-2 text-neutral-500 dark:text-white/80  py-2 rounded-md  dark:hover:text-white hover:no-underline';
+    'flex items-center hover:text-primary gap-2 text-neutral-500 dark:text-white/80  py-2 rounded-md  dark:hover:text-primary hover:no-underline';
 
   return (
     <div>
       <Sheet key={'left'}>
         <SheetTrigger>
           <div className="flex gap-2 lg:hidden">
-            <CgMenuLeft className="h-5 w-5" />
+            <CgMenuLeft className="h-6 w-6" />
 
             <span className="sr-only">Toggle Menu</span>
           </div>
@@ -68,7 +68,7 @@ const MobileTopMenu = () => {
             <aside>
               <ul className=" text-sm border-b px-4  sm:hidden">
                 <li>
-                  <div className="flex gap-4 items-center justify-between">
+                  <div className="flex gap-4 items-center  justify-between">
                     <div>Changer de thème</div>
                     <div className="text-end">
                       <SwithtTheme />
