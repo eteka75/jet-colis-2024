@@ -1,12 +1,10 @@
 import React from 'react';
-// 'use client';
 import Link from 'next/link';
-import logoLight from '@/public/assets/images/logo-v0.png';
-import logoDark from '@/public/assets/images/logo-v1.png';
 import Image from 'next/image';
 import { CgMenuLeft } from 'react-icons/cg';
 import {
   Bell,
+  ChevronRight,
   Heart,
   HelpCircle,
   Info,
@@ -33,9 +31,13 @@ import { Separator } from '@/components/ui/separator';
 import { PiPackageDuotone } from 'react-icons/pi';
 import { CiHeart } from 'react-icons/ci';
 import SwithtTheme from '../Header/SwithtTheme';
-const MobileTopMenu = () => {
+
+import logoLight from '@/public/assets/images/logo-v0.png';
+import logoDark from '@/public/assets/images/logo-v1.png';
+
+const MobileTopMenu: React.FC = () => {
   const linkStyles =
-    'flex items-center hover:text-primary gap-2 text-neutral-500 dark:text-white/80  py-2 rounded-md  dark:hover:text-primary hover:no-underline';
+    'flex items-center hover:text-primary gap-2 text-neutral-500 dark:text-white/80 py-2 rounded-md dark:hover:text-primary hover:no-underline';
 
   return (
     <div>
@@ -43,21 +45,17 @@ const MobileTopMenu = () => {
         <SheetTrigger>
           <div className="flex gap-2 lg:hidden">
             <CgMenuLeft className="h-6 w-6" />
-
             <span className="sr-only">Toggle Menu</span>
           </div>
         </SheetTrigger>
 
-        <SheetContent
-          side={'left'}
-          className="w-[300px] max-w-full p-0 sm:w-[440px]"
-        >
+        <SheetContent side={'left'} className="w-[400px] p-0 sm:w-[540px]">
           <SheetHeader>
-            <div className=" border-b p-4">
+            <div className="pb-2 border-b p-4">
               <Image
                 src={logoLight}
                 alt="Colistify"
-                className="h-7 lg:h-9 xl:h-9 w-auto  dark:hidden"
+                className="h-7 lg:h-9 xl:h-9 w-auto dark:hidden"
               />
               <Image
                 src={logoDark}
@@ -67,11 +65,11 @@ const MobileTopMenu = () => {
             </div>
           </SheetHeader>
 
-          <div>
+          <div className="overflow-auto h-min">
             <aside>
-              <ul className=" text-sm border-b px-4  sm:hidden">
+              <ul className="text-sm border-b px-4 sm:hidden">
                 <li>
-                  <div className="flex gap-4 items-center  justify-between">
+                  <div className="flex gap-4 items-center justify-between">
                     <div>Changer de thème</div>
                     <div className="text-end">
                       <SwithtTheme />
@@ -79,7 +77,7 @@ const MobileTopMenu = () => {
                   </div>
                 </li>
               </ul>
-              <ul className="space-y-1 text-sm border-b p-4">
+              <ul className="space-y-1 text-sm border-b px-4 py-2">
                 <li>
                   <Link href="/new-travel" className={linkStyles}>
                     <Plus className="w-5 h-5" /> Plublier une offre
@@ -92,7 +90,7 @@ const MobileTopMenu = () => {
                 </li>
               </ul>
               <aside>
-                <ul className="space-y-1 text-sm border-b p-4">
+                <ul className="space-y-1 text-sm border-b px-4 py-2">
                   <li>
                     <Link href="/help" className={linkStyles}>
                       <HelpCircle className="w-5 h-5" /> Aide
@@ -105,7 +103,7 @@ const MobileTopMenu = () => {
                   </li>
                 </ul>
               </aside>
-              <ul className="space-y-1 text-sm border-b p-4">
+              <ul className="space-y-1 text-sm border-b px-4 py-2">
                 <li>
                   <Link href="/user/messages" className={linkStyles}>
                     <MessageCircle className="w-5 h-5" /> Messages
@@ -118,6 +116,11 @@ const MobileTopMenu = () => {
                 </li>
 
                 <li>
+                  <Link href="/search/saved" className={linkStyles}>
+                    <SearchIcon className="w-5 h-5" /> Recherches sauvegardées
+                  </Link>
+                </li>
+                <li>
                   <Link href="/signin" className={linkStyles}>
                     <UserCheck className="w-5 h-5" /> Se connecter
                   </Link>
@@ -127,22 +130,48 @@ const MobileTopMenu = () => {
                     <UserPlus className="w-5 h-5" /> Créer un compte
                   </Link>
                 </li>
-                <li>
-                  <Link href="/search/saved" className={linkStyles}>
-                    <SearchIcon className="w-5 h-5" /> Recherches sauvegardés
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="#"
-                    className={linkStyles + ' text-red-500 font-bold'}
-                  >
-                    <LogOut className="w-5 h-5" /> Déconnexion
-                  </Link>
-                </li>
               </ul>
             </aside>
           </div>
+
+          <SheetFooter className="absolute_bottom-0 bg-background  w-full">
+            <div>
+              <aside>
+                <ul className="space-y-1 text-sm border-b px-4">
+                  <li>
+                    <Link
+                      href="#"
+                      className={linkStyles + ' text-red-500 font-bold'}
+                    >
+                      <LogOut className="w-5 h-5" /> Déconnexion
+                    </Link>
+                  </li>
+                </ul>
+              </aside>
+              <aside>
+                <ul className="space-y-1 text-sm border-b px-4">
+                  <li>
+                    <Link
+                      href="/best-practices"
+                      className={linkStyles + ' flex gap-2 justify-between'}
+                    >
+                      <span>Bonnes pratiques</span>
+                      <ChevronRight className="w-5 h-5" />
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/best-practices"
+                      className={linkStyles + ' flex gap-2 justify-between'}
+                    >
+                      <span>Avantages</span>
+                      <ChevronRight className="w-5 h-5" />
+                    </Link>
+                  </li>
+                </ul>
+              </aside>
+            </div>
+          </SheetFooter>
         </SheetContent>
       </Sheet>
     </div>
