@@ -35,7 +35,7 @@ const SwithtTheme: React.FC = () => {
     <Button
       variant="ghost"
       size="icon"
-      className="hover:bg-none active:bg-none min-h-5 min-w-5  rounded-full"
+      className="hover:bg-none active:bg-none w-9 h-9  rounded-full"
       onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
     >
       <Sun className="h-[1.5rem] w-[1.3rem] dark:hidden" />

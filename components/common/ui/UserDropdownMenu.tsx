@@ -40,7 +40,7 @@ const UserDropdownMenu = ({ user }: { user: User | null }) => {
     <>
       <Button
         onClick={handleChangeLanguage}
-        className="text-xs hidden md:flex"
+        className="text-xs hidden md:flex w-9 h-9 rounded-full"
         variant={'ghost'}
         size={'sm'}
       >
