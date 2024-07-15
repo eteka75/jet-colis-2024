@@ -49,7 +49,10 @@ const MobileTopMenu: React.FC = () => {
           </div>
         </SheetTrigger>
 
-        <SheetContent side={'left'} className="w-[400px] p-0 sm:w-[540px]">
+        <SheetContent
+          side={'left'}
+          className="w-[300px] h-full overflow-auto p-0 sm:w-[440px] max-w-full"
+        >
           <SheetHeader>
             <div className="pb-2 border-b p-4">
               <Image
@@ -89,6 +92,24 @@ const MobileTopMenu: React.FC = () => {
                   </Link>
                 </li>
               </ul>
+
+              <ul className="space-y-1 text-sm border-b px-4 py-2">
+                <li>
+                  <Link href="/user/messages" className={linkStyles}>
+                    <MessageCircle className="w-5 h-5" /> Messages
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/user/favoris" className={linkStyles}>
+                    <Heart className="w-5 h-5" /> Favoris
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/search/saved" className={linkStyles}>
+                    <SearchIcon className="w-5 h-5" /> Recherches sauvegardées
+                  </Link>
+                </li>
+              </ul>
               <aside>
                 <ul className="space-y-1 text-sm border-b px-4 py-2">
                   <li>
@@ -104,22 +125,6 @@ const MobileTopMenu: React.FC = () => {
                 </ul>
               </aside>
               <ul className="space-y-1 text-sm border-b px-4 py-2">
-                <li>
-                  <Link href="/user/messages" className={linkStyles}>
-                    <MessageCircle className="w-5 h-5" /> Messages
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/user/favoris" className={linkStyles}>
-                    <Heart className="w-5 h-5" /> Favoris
-                  </Link>
-                </li>
-
-                <li>
-                  <Link href="/search/saved" className={linkStyles}>
-                    <SearchIcon className="w-5 h-5" /> Recherches sauvegardées
-                  </Link>
-                </li>
                 <li>
                   <Link href="/signin" className={linkStyles}>
                     <UserCheck className="w-5 h-5" /> Se connecter
