@@ -7,7 +7,7 @@ import { CiHeart } from 'react-icons/ci';
 const MobileFooter = () => {
   return (
     <div>
-      <div className="md:hidden bg-white fixed bottom-0 w-full border-t border-gray-200 flex">
+      <div className="md:hidden bg-background fixed bottom-0 w-full border-t border-accent flex">
         <Link
           href="/"
           className="flex flex-grow items-center justify-center p-2 text-primary hover:text-primary"

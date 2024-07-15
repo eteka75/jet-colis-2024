@@ -24,7 +24,7 @@ const Header = async ({ type }: { type?: string }) => {
       ? 'container-mini'
       : type === 'moyen'
       ? 'container'
-      : 'container-fluid';
+      : 'container';
   const linkStyles =
     'flex items-center gap-2 text-neutral-500 dark:text-white/80 px-4 py-2 rounded-md hover:bg-accent dark:hover:text-white hover:no-underline';
 
@@ -39,12 +39,12 @@ const Header = async ({ type }: { type?: string }) => {
                   <Image
                     src={logoLight}
                     alt="Colistify"
-                    className="h-4 lg:h-6 xl:h-8 w-auto  dark:hidden"
+                    className="h-4 lg:h-6 xl:h-7 w-auto  dark:hidden"
                   />
                   <Image
                     src={logoDark}
                     alt="Colistify"
-                    className="h-6 lg:h-8 xl:h-9 w-auto hidden dark:flex"
+                    className="h-5 lg:h-7 xl:h-7 w-auto hidden dark:flex"
                   />
                 </Link>
                 <MobileTopMenu />

@@ -39,7 +39,7 @@ const DestinationImage: React.FC<DestinationImageType> = ({
   user,
 }) => {
   return (
-    <article className="relative bg-accent shadow-sm  isolate flex flex-col justify-end overflow-hidden rounded-2xl max-w-md mx-auto group aspect-w-1 aspect-h-1 min-h-[300px]">
+    <article className="relative bg-accent shadow-sm  isolate flex flex-col justify-end overflow-hidden rounded-2xl  mx-auto group aspect-w-1 aspect-h-1 min-h-[300px]">
       <Image
         alt={title ?? 'image'} // Utilisez la prop title pour l'alt text
         className="absolute inset-0 w-full h-full object-cover "

@@ -16,12 +16,12 @@ interface HeaderProps {
 const HeaderLight: React.FC<HeaderProps> = ({ left, center, right }) => {
   return (
     <div className=" p-4 shadow-sm mb-8">
-      <div className="px-4  mx-auto">
+      <div className="md:px-4  mx-auto">
         <div className="flex justify-between items-center">
           <div className="md:min-w-64">
             {left || (
               <Link href={'/'}>
-                <FaArrowLeft className="h-6 w-6 hover:text-primary" />
+                <FaArrowLeft className="h-4 w-4 hover:text-primary" />
               </Link>
             )}
           </div>

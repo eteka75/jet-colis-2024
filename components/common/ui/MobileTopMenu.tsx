@@ -66,7 +66,7 @@ const MobileTopMenu = () => {
 
           <div>
             <aside>
-              <ul className=" text-sm border-b px-4">
+              <ul className=" text-sm border-b px-4  sm:hidden">
                 <li>
                   <div className="flex gap-4 items-center justify-between">
                     <div>Changer de thème</div>
@@ -88,6 +88,20 @@ const MobileTopMenu = () => {
                   </Link>
                 </li>
               </ul>
+              <aside>
+                <ul className="space-y-1 text-sm border-b p-4">
+                  <li>
+                    <Link href="/help" className={linkStyles}>
+                      <HelpCircle className="w-5 h-5" /> Aide
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/faq" className={linkStyles}>
+                      <Info className="w-5 h-5" /> FAQ
+                    </Link>
+                  </li>
+                </ul>
+              </aside>
               <ul className="space-y-1 text-sm border-b p-4">
                 <li>
                   <Link href="/user/messages" className={linkStyles}>
@@ -121,20 +135,6 @@ const MobileTopMenu = () => {
                     className={linkStyles + ' text-red-500 font-bold'}
                   >
                     <LogOut className="w-5 h-5" /> Déconnexion
-                  </Link>
-                </li>
-              </ul>
-            </aside>
-            <aside>
-              <ul className="space-y-1 text-sm border-b p-4">
-                <li>
-                  <Link href="/help" className={linkStyles}>
-                    <HelpCircle className="w-5 h-5" /> Aide
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/faq" className={linkStyles}>
-                    <Info className="w-5 h-5" /> FAQ
                   </Link>
                 </li>
               </ul>
