@@ -39,15 +39,15 @@ const DestinationImage: React.FC<DestinationImageType> = ({
   user,
 }) => {
   return (
-    <article className="relative bg-accent shadow-sm border isolate flex flex-col justify-end overflow-hidden rounded-2xl max-w-md mx-auto group aspect-w-1 aspect-h-1 min-h-[300px]">
+    <article className="relative bg-accent shadow-sm  isolate flex flex-col justify-end overflow-hidden rounded-2xl max-w-md mx-auto group aspect-w-1 aspect-h-1 min-h-[300px]">
       <Image
         alt={title ?? 'image'} // Utilisez la prop title pour l'alt text
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover "
         src={url} // Utilisez la prop url pour l'image source
         layout="fill" // Utilisez layout="fill" pour que l'image remplisse le conteneur
         objectFit="cover" // Assure que l'image s'adapte correctement
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 group-hover:opacity-100 opacity-0 transition-opacity duration-300" />
+      <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/40  group-hover:opacity-100 opacity-0 transition-opacity duration-300" />
       <div className="absolute inset-0 flex flex-col justify-end items-center group-hover:opacity-100 opacity-0 transition-opacity duration-300 p-8">
         <h3 className="text-3xl font-bold text-white">{title}</h3>
         <div className="text-sm leading-6 text-white text-pretty opacity-90 mt-2">

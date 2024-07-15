@@ -35,7 +35,7 @@ const TrajetCard = () => {
   }
 
   return (
-    <div className="bg-accent_ dark:bg-background pt-6 md:pb-32">
+    <div className="mb-16  bg-accent_ dark:bg-background pt-6 md:pb-32">
       <div className="container ">
         <div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 

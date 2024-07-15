@@ -14,7 +14,7 @@ import Link from 'next/link';
 
 const Register = () => {
   return (
-    <div className="md:py-12 py-8 bg-accente ">
+    <div className=" py-4 bg-accente ">
       <div className="container">
         <Card className=" mx-auto max-w-sm">
           <CardHeader>

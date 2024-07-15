@@ -74,6 +74,7 @@ const CardRegister = () => {
               <Input
                 id="firstName"
                 type="text"
+                autoFocus
                 value={firstName}
                 onChange={(e) => setFirstname(e.target.value)}
                 required

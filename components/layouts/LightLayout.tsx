@@ -7,9 +7,8 @@ import HeaderLight from '../common/HeaderLight';
 const LightLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
-      <HeaderLight />
       {children}
-      <MiniFooter />
+      {/* <MiniFooter /> */}
     </>
   );
 };

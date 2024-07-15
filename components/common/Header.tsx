@@ -6,20 +6,13 @@ import logoLight from '@/public/assets/images/logo-v0.png';
 import logoDark from '@/public/assets/images/logo-v1.png';
 import Image from 'next/image';
 import { IoSearch } from 'react-icons/io5';
-import { CgMenuLeft } from 'react-icons/cg';
 import { PiPackageDuotone } from 'react-icons/pi';
-import { Bell, Lock, Settings, Shield, UserIcon } from 'lucide-react';
 import UserDropdownMenu from './ui/UserDropdownMenu';
 import { auth } from '@/auth';
 import { User } from '@/src/lib/definitions';
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTrigger,
-} from '@/components/ui/sheet';
 import MobileTopMenu from './ui/MobileTopMenu';
 import clsx from 'clsx';
+import MobileFooter from './ui/MobileFooter';
 
 const Header = async ({ type }: { type?: string }) => {
   // const { data: session, status } = useSession();
@@ -37,7 +30,7 @@ const Header = async ({ type }: { type?: string }) => {
 
   return (
     <>
-      <div className="bg-background/80 bg-opacity-90 backdrop-blur-3xl shadow-sm  __bg-slate-950__text-white">
+      <div className="bg-background/80 bg-opacity-90 backdrop-blur-3xl shadow-sm border-b  __bg-slate-950__text-white">
         <div className={clsx('items-center py-2 m-auto', classContainer)}>
           <div className="flex w-full h-full md:gap-4 items-center">
             <div className="lg:w-1/4 lg:min-w-[100px] lg:max-w-[400px] ">
@@ -122,6 +115,7 @@ const Header = async ({ type }: { type?: string }) => {
           </div>
         </div>
       </div>
+      <MobileFooter />
     </>
   );
 };

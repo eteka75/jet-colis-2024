@@ -238,7 +238,7 @@ const Login: React.FC = () => {
           </div>
 
           <div>
-            <div className="flex items-center justify-between">
+            {/* <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <Switch id="remember-me" name="remember-me" />
                 <Label htmlFor="remember-me" className="text-xs">
@@ -251,7 +251,7 @@ const Login: React.FC = () => {
               >
                 Mot de passe oublié ?
               </Link>
-            </div>
+            </div> */}
             <Button className="w-full mt-2" type="submit" disabled={isPending}>
               {step1 && !isPending && 'Suivant'}{' '}
               {step2 && !isPending && 'Se connecter'}{' '}
@@ -261,19 +261,7 @@ const Login: React.FC = () => {
           </div>
         </div>
       </form>
-      <div className="text-center mt-6 w-full text-sm">
-        Si vous êtes nouveau,{' '}
-        <Link href="/signup">
-          <Button
-            variant="ghost"
-            className="w-full mt-2 border"
-            type="button"
-            disabled={isPending}
-          >
-            Inscrivez-vous
-          </Button>
-        </Link>
-      </div>
+
       <div>
         <div className="pt-2">
           <LineSeparator>ou se connecter avec</LineSeparator>
