@@ -16,7 +16,9 @@ const MobileFooter = () => {
             <span className="block h-8 text-3xl leading-8">
               <Plane className="mx-auto" />
             </span>
-            <span className="block text-xs leading-none">Trajets</span>
+            <span className="block text-xs font-bold leading-none">
+              Trajets
+            </span>
           </div>
         </Link>
         <Link
@@ -24,7 +26,7 @@ const MobileFooter = () => {
           className="flex flex-grow items-center justify-center p-2 text-gray-500 hover:text-primary"
         >
           <div className="text-center">
-            <span className="block h-8 text-3xl leading-8">
+            <span className="block h-8 text-3xlleading-8">
               <Search className="mx-auto" />
             </span>
             <span className="block text-xs leading-none">Rechercher</span>

@@ -48,9 +48,12 @@ const MobileTopMenu = () => {
           </div>
         </SheetTrigger>
 
-        <SheetContent side={'left'} className="w-[400px] p-0 sm:w-[540px]">
+        <SheetContent
+          side={'left'}
+          className="w-[300px] max-w-full p-0 sm:w-[440px]"
+        >
           <SheetHeader>
-            <div className="pb-2 border-b p-4">
+            <div className=" border-b p-4">
               <Image
                 src={logoLight}
                 alt="Colistify"
