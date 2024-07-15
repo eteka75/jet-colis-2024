@@ -15,7 +15,7 @@ interface HeaderProps {
 
 const HeaderLight: React.FC<HeaderProps> = ({ left, center, right }) => {
   return (
-    <div className=" p-4  mb-8">
+    <div className=" p-4  mb-8 container">
       <div className="md:px-4  mx-auto">
         <div className="flex justify-between items-center">
           <div className="md:min-w-64">

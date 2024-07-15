@@ -54,7 +54,7 @@ const MobileTopMenu: React.FC = () => {
           className="w-[300px] h-full overflow-auto p-0 sm:w-[440px] max-w-full"
         >
           <SheetHeader>
-            <div className="pb-2 border-b p-4">
+            <div className=" border-b p-4">
               <Image
                 src={logoLight}
                 alt="Colistify"

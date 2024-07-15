@@ -29,15 +29,15 @@ const SignInPage = async () => {
       <HeaderLight />
       <main className="bg-accente py-4">
         <div className="container  pb-32">
-          <Card className="mx-auto max-w-sm">
+          <Card className="mx-auto max-w-sm shadow-none border-0 px-0 md:px-4 md:border  ">
             <div>
-              <CardHeader>
+              <CardHeader className="px-0 md:px-6 text-center md:text-start">
                 <CardTitle className="text-2xl">Connexion</CardTitle>
                 <CardDescription>
                   Renseignez vos identifiants pour vous connecter.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="px-0 md:px-6">
                 <Login />
               </CardContent>
             </div>

@@ -152,7 +152,7 @@ const Login: React.FC = () => {
   return (
     <div>
       <form id="loginForm" onSubmit={handleSubmit} method="POST">
-        <div className="grid gap-4 overflow-auto">
+        <div className="grid gap-4 overflow-auto ">
           {errorMessage && (
             <div className="flex break-words w-full overflow-auto text-xs items-center text-red-500 gap-2 text-balance bg-red-50 p-2 px-4 border border-red-200 rounded-md">
               <MdOutlineErrorOutline className="h-5 w-5" />
@@ -182,7 +182,7 @@ const Login: React.FC = () => {
                 <div className="pb-2">
                   <Label>Votre adresse email</Label>
                 </div>
-                <div className="mx-1 grid gap-2">
+                <div className="md:mx-1 grid gap-2">
                   <div className="relative">
                     <Input
                       ref={inputEmail}
@@ -209,7 +209,7 @@ const Login: React.FC = () => {
             )}
 
             {!step1 && step2 && (
-              <div className="mx-1 grid gap-2">
+              <div className="md:mx-1 grid gap-2">
                 <div>
                   <Label>Votre mot de passe</Label>
                 </div>
@@ -252,7 +252,11 @@ const Login: React.FC = () => {
                 Mot de passe oublié ?
               </Link>
             </div> */}
-            <Button className="w-full mt-2" type="submit" disabled={isPending}>
+            <Button
+              className="w-full lg:mt-2"
+              type="submit"
+              disabled={isPending}
+            >
               {step1 && !isPending && 'Suivant'}{' '}
               {step2 && !isPending && 'Se connecter'}{' '}
               {isPending && 'Connexion en cours...'}
