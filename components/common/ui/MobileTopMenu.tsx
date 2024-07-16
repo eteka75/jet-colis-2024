@@ -34,6 +34,7 @@ import SwithtTheme from '../Header/SwithtTheme';
 
 import logoLight from '@/public/assets/images/logo-v0.png';
 import logoDark from '@/public/assets/images/logo-v1.png';
+import { Label } from '@/components/ui/label';
 
 const MobileTopMenu: React.FC = () => {
   const linkStyles =
@@ -73,7 +74,9 @@ const MobileTopMenu: React.FC = () => {
               <ul className="text-sm border-b px-4 sm:hidden">
                 <li>
                   <div className="flex font-bold gap-4 text-foreground items-center justify-between">
-                    <div>Changer de thème</div>
+                    <Label id="theme" htmlFor="btntheme">
+                      Changer de thème
+                    </Label>
                     <div className="text-end">
                       <SwithtTheme />
                     </div>

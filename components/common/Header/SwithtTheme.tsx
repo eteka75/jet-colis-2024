@@ -33,6 +33,7 @@ const SwithtTheme: React.FC = () => {
   }
   return (
     <Button
+      id="btntheme"
       variant="ghost"
       size="icon"
       className="hover:bg-none active:bg-none w-9 h-9  rounded-full"
