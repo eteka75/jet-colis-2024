@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
+import path from 'path';
+import createNextIntlPlugin from 'next-intl/plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+const withNextIntl = createNextIntlPlugin();
 
 const nextConfig = {
   images: {
@@ -29,6 +32,10 @@ const nextConfig = {
       );
     }
 
+    // Ajouter la configuration d'alias de chemin
+    // config.resolve.alias['@'] = path.resolve(process.cwd(), 'local/src');
+    config.resolve.alias['@'] = path.resolve(process.cwd(), 'components');
+
     return config;
   },
   async headers() {
@@ -46,4 +53,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

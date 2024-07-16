@@ -1,4 +1,3 @@
-import PageLoading from '@/components/common/ui/PageLoading';
 import React from 'react';
 
 const loading = () => {

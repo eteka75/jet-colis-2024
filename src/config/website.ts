@@ -3,8 +3,10 @@ export type SiteConfig = typeof siteConfig;
 export const siteConfig = {
   name: "Colisfly | Envoyez et recevez vos colis de l'étranger",
   description: 'Envoie de colis entre particuliers au kilo et moins chère',
-  url: 'https://localhost:3000',
+  locales: ['fr', 'en'],
+  defaultLocale: 'fr',
   homeUserLogin: '/dashboard',
+  url: 'https://localhost:3000',
   miniFooterNavMenu: [],
   miniProfileImg: '/assets/images/user/default2.jpg',
   defaultProfileImg: '/assets/images/user/default2.jpg',

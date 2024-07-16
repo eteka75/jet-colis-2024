@@ -1,4 +1,3 @@
-// 'use client';
 import React from 'react';
 import Link from 'next/link';
 import { Button } from '../ui/button';
@@ -25,8 +24,6 @@ const Header = async ({ type }: { type?: string }) => {
       : type === 'moyen'
       ? 'container'
       : 'container-fluid';
-  const linkStyles =
-    'flex items-center gap-2 text-neutral-500 dark:text-white/80 px-4 py-2 rounded-md hover:bg-accent dark:hover:text-white hover:no-underline';
 
   return (
     <>

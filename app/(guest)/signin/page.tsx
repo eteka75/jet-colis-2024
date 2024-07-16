@@ -31,13 +31,13 @@ const SignInPage = async () => {
         <div className="container  pb-32">
           <Card className="mx-auto max-w-sm shadow-none border-0 px-0 md:px-4 md:border  ">
             <div>
-              <CardHeader className="px-0 md:px-6 text-center md:text-start">
+              <CardHeader className="px-0 md:px-4 text-start">
                 <CardTitle className="text-2xl">Connexion</CardTitle>
                 <CardDescription>
                   Renseignez vos identifiants pour vous connecter.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="px-0 md:px-6">
+              <CardContent className="px-0 md:px-4">
                 <Login />
               </CardContent>
             </div>
@@ -49,7 +49,7 @@ const SignInPage = async () => {
             <div className="text-center mt-6 w-full text-sm">
               <Link
                 href="/forgot-password"
-                className=" text-xs hover:underline"
+                className=" text-sm hover:underline"
               >
                 Mot de passe oublié ?
               </Link>

@@ -62,7 +62,7 @@ const CardRegister = () => {
   return (
     <div>
       {error && (
-        <div className="flex text-xs items-center text-red-500 gap-2 text-center md:text-start mb-4 bg-red-50 p-2 px-4 border border-red-200 rounded-md">
+        <div className="flex text-xs items-center text-red-500 gap-2 text-start mb-4 bg-red-50 p-2 px-4 border border-red-200 rounded-md">
           <MdOutlineErrorOutline className="h-5 w-5  " /> {error}
         </div>
       )}
@@ -118,7 +118,7 @@ const CardRegister = () => {
           <div className="grid gap-2">
             <Button
               type="submit"
-              className="w-full border"
+              className="w-full border mt-2 md:mt-0"
               disabled={isPending}
             >
               {isPending ? 'Inscriprion en cours...' : 'Créer mon compte'}
@@ -135,7 +135,7 @@ const CardRegister = () => {
       <div className="text-center w-full text-sm">
         Vous avez déjà un compte ?{' '}
         <Link href="/login" className=" hover:underline">
-          <Button variant={'ghost'} className="w-full border mt-2">
+          <Button variant={'ghost'} className="w-full border md:border-0 mt-2">
             Se connecter
           </Button>
         </Link>

@@ -5,11 +5,10 @@ import { IoIosNotificationsOutline } from 'react-icons/io';
 import { TbMessage } from 'react-icons/tb';
 import { useState } from 'react';
 import { Separator } from '@/components/ui/separator';
-// import { useTranslations } from 'next-intl';
 import { LuPackagePlus } from 'react-icons/lu';
+
 const UserNavLinks = () => {
   const [Authenticated] = useState(true);
-  //const t = useTranslations('Menu');
 
   return (
     <div className="flex gap-2">

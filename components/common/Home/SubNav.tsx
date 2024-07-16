@@ -52,7 +52,7 @@ const SubNav = () => {
   return (
     <div className="bg-white border-b shadow-sm border-accent shadow-sms text-light z-0 dark:border-b dark:bg-background/80 bg-opacity-90 backdrop-blur-3xl">
       <div className="container">
-        <nav className="mx-12 me-12">
+        <nav className="md:mx-12 md:me-12">
           <Carousel
             opts={{
               align: 'center',
@@ -62,13 +62,13 @@ const SubNav = () => {
             }}
             className="px-0"
           >
-            <CarouselContent className="font-medium ms-1 items-center">
+            <CarouselContent className="font-normal ms-1 items-center">
               {villes.map((ville, index) => (
                 <CarouselItem
                   className={clsx(
                     'basis-auto text-nowrap md:px-3 px-2 border-b-4 border-b-white/0   py-2 md:py-3 md:mx-1 _rounded-full transition-colors duration-300',
                     ville_active === ville
-                      ? 'border-b-4 font-bold border-b-primary'
+                      ? 'border-b-4 font-medium border-b-primary'
                       : 'hover:border-b-primary  hover:border-b-4'
                   )}
                   key={index}
@@ -81,8 +81,8 @@ const SubNav = () => {
             {currentIndex < villes.length - 1 && (
               <CarouselNext onClick={handleNext} />
             )} */}
-            <CarouselPrevious />
-            <CarouselNext />
+            <CarouselPrevious className="hidden md:flex" />
+            <CarouselNext className="hidden md:flex" />
           </Carousel>
         </nav>
       </div>

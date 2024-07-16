@@ -72,7 +72,7 @@ const MobileTopMenu: React.FC = () => {
             <aside>
               <ul className="text-sm border-b px-4 sm:hidden">
                 <li>
-                  <div className="flex gap-4 items-center justify-between">
+                  <div className="flex gap-4 text-muted items-center justify-between">
                     <div>Changer de thème</div>
                     <div className="text-end">
                       <SwithtTheme />

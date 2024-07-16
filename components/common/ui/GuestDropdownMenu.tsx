@@ -50,8 +50,8 @@ export const GuestDropdownMenu = () => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <div className="p-1 md:shadow-sm border-accent flex gap-.5  items-center rounded-full">
-            <CircleUser className="h-6 w-6 cursor-pointer" />
-            <IoMdArrowDropdown />{' '}
+            <CircleUser className="h-7 w-7 cursor-pointer" />
+            {/* <IoMdArrowDropdown />{' '} */}
           </div>
         </DropdownMenuTrigger>
 

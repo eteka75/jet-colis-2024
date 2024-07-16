@@ -152,7 +152,7 @@ const Login: React.FC = () => {
   return (
     <div>
       <form id="loginForm" onSubmit={handleSubmit} method="POST">
-        <div className="grid gap-4 overflow-auto ">
+        <div className="grid gap-4 overflow-auto">
           {errorMessage && (
             <div className="flex break-words w-full overflow-auto text-xs items-center text-red-500 gap-2 text-balance bg-red-50 p-2 px-4 border border-red-200 rounded-md">
               <MdOutlineErrorOutline className="h-5 w-5" />
@@ -182,7 +182,7 @@ const Login: React.FC = () => {
                 <div className="pb-2">
                   <Label>Votre adresse email</Label>
                 </div>
-                <div className="md:mx-1 grid gap-2">
+                <div className="mx-1 grid gap-2">
                   <div className="relative">
                     <Input
                       ref={inputEmail}
@@ -209,7 +209,7 @@ const Login: React.FC = () => {
             )}
 
             {!step1 && step2 && (
-              <div className="md:mx-1 grid gap-2">
+              <div className="mx-1 grid gap-2">
                 <div>
                   <Label>Votre mot de passe</Label>
                 </div>
@@ -237,7 +237,7 @@ const Login: React.FC = () => {
             )}
           </div>
 
-          <div>
+          <div className="md:mx-1.5 ">
             {/* <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <Switch id="remember-me" name="remember-me" />
@@ -266,12 +266,25 @@ const Login: React.FC = () => {
         </div>
       </form>
 
-      <div>
+      <div className="md:mx-1 ">
         <div className="pt-2">
           <LineSeparator>ou se connecter avec</LineSeparator>
         </div>
         <div className="py-4">
           <OAuthButtons />
+        </div>
+        <div className="mt-2">
+          <div className="text-center w-full text-sm">
+            Nouveau ?{' '}
+            <Link href="/signup" className=" hover:underline">
+              <Button
+                variant={'ghost'}
+                className="w-full border md:border-0 mt-2"
+              >
+                Créer un compte
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

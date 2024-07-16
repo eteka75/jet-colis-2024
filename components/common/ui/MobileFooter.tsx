@@ -1,7 +1,7 @@
 // 'use client';
 import React from 'react';
 import Link from 'next/link';
-import { Plane, Search, User2 } from 'lucide-react';
+import { Plane, PlusSquareIcon, Search, User2 } from 'lucide-react';
 import { CiHeart } from 'react-icons/ci';
 
 const MobileFooter = () => {
@@ -30,6 +30,17 @@ const MobileFooter = () => {
               <Search className="mx-auto" />
             </span>
             <span className="block text-xs leading-none">Rechercher</span>
+          </div>
+        </Link>
+        <Link
+          href="/search"
+          className="flex flex-grow items-center justify-center p-2 text-gray-500 hover:text-primary"
+        >
+          <div className="text-center">
+            <span className="block h-8 text-3xlleading-8">
+              <PlusSquareIcon className="mx-auto" />
+            </span>
+            <span className="block text-xs leading-none">Nouveau</span>
           </div>
         </Link>
         <Link
