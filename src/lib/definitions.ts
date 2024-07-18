@@ -5,6 +5,7 @@
 export type UserSession = {
   id: string;
   name: string;
+  profilId: string;
   email: string;
 };
 

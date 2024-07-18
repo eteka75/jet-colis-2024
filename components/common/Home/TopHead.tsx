@@ -27,13 +27,13 @@ import CountrySelector from '../ui/CountrySelector';
 
 const TopHead = () => {
   return (
-    <div className="py-20 bg-yellow-50">
+    <div className="py-20 bg-primary/5">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
             <h1 className="text-3xl text-center md:text-start md:text-5xl lg:text-5xl font-serif text-slate-700 font-medium py-8">
               Envoyez vos colis rapidement et en toute sécurité avec{' '}
-              <span className="font-bold text-emerald-600 font-sans">
+              <span className="font-bold text-primary font-sans">
                 Colistify
               </span>
             </h1>

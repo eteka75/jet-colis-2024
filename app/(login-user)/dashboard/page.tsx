@@ -34,13 +34,14 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { GetServerSideProps, Metadata } from 'next';
 import DefaultLayout from '@/components/layouts/DefaultLayout';
 import { getSession } from 'next-auth/react';
+import LightLayout from '@/components/layouts/LightLayout';
 export const metadata: Metadata = {
   title: 'Tableau de bord',
 };
 
 export default function Dashboard() {
   return (
-    <DefaultLayout>
+    <LightLayout>
       <div className="grid border-t  min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
         <div className="hidden border-r border-l bg-muted/40 md:block">
           <div className="flex h-full max-h-screen flex-col gap-2">
@@ -247,7 +248,7 @@ export default function Dashboard() {
           </main>
         </div>
       </div>
-    </DefaultLayout>
+    </LightLayout>
   );
 }
 

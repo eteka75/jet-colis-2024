@@ -30,7 +30,7 @@ const SlimHeader = async () => {
 
   return (
     <>
-      <div className=" bg-background/80 bg-opacity-90 backdrop-blur-3xl ">
+      <div className=" bg-background/80 bg-opacity-90 backdrop-blur-3xl border-b ">
         <div className="container items-center py-2 m-auto">
           <div className="flex w-full h-full md:gap-4 items-center">
             <div className="lg:w-1/4 lg:min-w-[100px] lg:max-w-[400px] ">
@@ -50,10 +50,10 @@ const SlimHeader = async () => {
                 <MobileTopMenu />
               </div>
             </div>
-            <div className="flex-grow flex justify-center"></div>
+            <div className="flex-grow  justify-center "></div>
 
-            <div className="lg:w-1/4 lg:min-w-[250px] items-center flex gap-1 lg:max-w-[400px] justify-end">
-              <div className="hidden md:flex">
+            <div className="lg:w-1/4 lg:min-w-[250px] min-w-2  items-center flex gap-1 lg:max-w-[400px] justify-end">
+              <div className=" md:flex">
                 <Link href={'/'}>
                   <Button
                     size={'sm'}
@@ -61,7 +61,7 @@ const SlimHeader = async () => {
                     className="rounded-full gap-1 border text-sm lg:text-md shadow__border dark:bg-primary dark:text-accent-foreground  hover:bg-accent"
                   >
                     <X />
-                    Quitter
+                    <span className="hidden md:flex"> Quitter</span>
                   </Button>
                 </Link>
               </div>

@@ -37,7 +37,7 @@ const LoginDropdownMenu = ({ user }: { user: UserSession | undefined }) => {
 
         <DropdownMenuContent
           align="end"
-          className="shadow-inset_ min-w-[220px] max-w-[270px]  mt-1 mr-[-5px]  border-slate-100 dark:border-accent _pointu"
+          className="shadow-inset_ min-w-[220px] max-w-[270px]  mt-1   border-slate-100 dark:border-accent _pointu"
         >
           <div className="absolute  z-0 top-[-4px] animate-accordion-up duration-1000 right-[5px] w-0 h-0 border-l-8 border-r-8 border-b-8 border-transparent border-b-slate-100 dark:border-b-slate-500"></div>
 
@@ -46,7 +46,13 @@ const LoginDropdownMenu = ({ user }: { user: UserSession | undefined }) => {
               title={user?.name || 'Utilisateur'}
               className="text-nowrap text-ellipsis overflow-hidden"
             >
-              <Link href="/account">{user?.name || 'Utilisateur'}</Link>
+              <Link href="/user">
+                {user?.name || 'Utilisateur'}
+                <br />
+                <div className="text-xs opacity-50">
+                  {user?.profilId ? '@' + user.profilId : 'Mon profil'}
+                </div>
+              </Link>
             </div>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />

@@ -1,10 +1,11 @@
 import { auth } from '@/auth';
 import { siteConfig } from '@/src/config/website';
+import { Toaster } from '@/components/ui/toaster';
 import ThemeProvider from '@/src/themes/ThemeProvider';
 import '@/src/styles/globals.css';
 import clsx from 'clsx';
 import type { Metadata } from 'next';
-import { SessionProvider } from 'next-auth/react';
+// import { SessionProvider } from 'next-auth/react';
 import { Figtree, Inter } from 'next/font/google';
 import React, { ReactNode } from 'react';
 
@@ -13,6 +14,8 @@ import { getLocale, getMessages } from 'next-intl/server';
 
 import PageLoading from '@/components/common/ui/PageLoading';
 import { notFound } from 'next/navigation';
+import { NotificationProvider } from '@/src/context/NotificationContext';
+import Notification from '@/components/common/clients/Notification';
 
 const figtree = Figtree({
   subsets: ['latin'],
@@ -33,7 +36,7 @@ type Props = {
   };
 };
 const RootLayout: React.FC<Props> = async ({ children, params }) => {
-  const session = await auth();
+  // const session = await auth();
   const locale = await getLocale();
   const messages = await getMessages();
 
@@ -57,13 +60,14 @@ const RootLayout: React.FC<Props> = async ({ children, params }) => {
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <SessionProvider session={session}>
-            <NextIntlClientProvider messages={messages}>
-              <React.Suspense fallback={<PageLoading />}>
-                <main>{children}</main>
-              </React.Suspense>
-            </NextIntlClientProvider>
-          </SessionProvider>
+          {/* <SessionProvider session={session}> */}
+          <NextIntlClientProvider messages={messages}>
+            <React.Suspense fallback={<PageLoading />}>
+              <main>{children}</main>
+              <Toaster />
+            </React.Suspense>
+          </NextIntlClientProvider>
+          {/* </SessionProvider> */}
         </ThemeProvider>
       </body>
     </html>
