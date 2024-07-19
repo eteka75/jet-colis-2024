@@ -24,7 +24,7 @@ interface NavBreadcrumbProps {
 const NavBreadcrumb: React.FC<NavBreadcrumbProps> = ({ items }) => {
   return (
     <div className="border-t_border-t-slate-100 mx-2">
-      <div className="container py-2 bg-background bg-opacity-80">
+      <div className="container py-2 ">
         <Breadcrumb>
           <BreadcrumbList>
             {items?.length > 0 &&

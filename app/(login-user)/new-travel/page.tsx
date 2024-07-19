@@ -58,92 +58,82 @@ const Page = async () => {
   ];
   return (
     <SlimLayout>
-      <NavBreadcrumb items={lists} />
-      <Notifier />
-
-      <div className="bg-accente h-min">
+      <div className="bg-accent md:h-min pb-8">
+        <NavBreadcrumb items={lists} />
         <div className="container">
-          <div className="py-4 ">
-            <div className="mx-auto overflow-auto grid  flex-1 auto-rows-max ">
-              <div className="flex_ items-center gap-4 hidden">
-                <LineCover>
-                  <LineHeader>Nouvelle offre</LineHeader>
-                  <LineDescription>
-                    Renseignez les informations sur votre prochain voyage
-                  </LineDescription>
-                </LineCover>
-              </div>
-              <div className="py-4 md:flex md:flex-auto gap-4">
-                <div className="md:w-8/12 max-w-lg">
-                  <Step1 />
-                </div>
-                <div className="md:w-4/12"></div>
-              </div>
+          <div className="md:w-9/12 max-w-screen-md">
+            <Card>
+              <CardContent className="p-4 md:p-6">
+                <Step1 />
+              </CardContent>
+            </Card>
+          </div>
+          <div className="md:w-3/12"></div>
 
-              <div className="grid gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8 hidden">
-                <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle className="text-lg">Voyage</CardTitle>
-                      <CardDescription>Détail sur le voyage</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="grid gap-4 ">
-                        <div className="grid gap-3">
-                          <Label htmlFor="name">Nom</Label>
-                          <Input
-                            id="name"
-                            type="text"
-                            className="w-full py-1"
-                            defaultValue="Gamer Gear Pro Controller"
-                          />
-                        </div>
-                        <div className="md:grid grid-cols-2 gap-4">
-                          <div className="grid gap-3">
-                            <Label htmlFor="name">Lieu de départ</Label>
-                            <Input
-                              id="name"
-                              type="text"
-                              className="w-full py-1"
-                              defaultValue="Gamer Gear Pro Controller"
-                            />
-                          </div>
-                          <div className="grid gap-3">
-                            <Label htmlFor="name">Destination</Label>
-                            <Input
-                              id="name"
-                              type="text"
-                              className="w-full py-1"
-                              defaultValue="Gamer Gear Pro Controller"
-                            />
-                          </div>
-                        </div>
-                        <div className="grid gap-3">
-                          <Label htmlFor="description">Description</Label>
-                          <Textarea
-                            id="description"
-                            defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl nec ultricies ultricies, nunc nisl ultricies nunc, nec ultricies nunc nisl nec nunc."
-                            className="min-h-24"
-                          />
-                        </div>
+          <div className="grid_gap-4 md:grid-cols-[1fr_250px] lg:grid-cols-3 lg:gap-8 hidden">
+            <div className="grid auto-rows-max items-start gap-4 lg:col-span-2 lg:gap-8">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg">Voyage</CardTitle>
+                  <CardDescription>Détail sur le voyage</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid gap-4 ">
+                    <div className="grid gap-3">
+                      <Label htmlFor="name">Nom</Label>
+                      <Input
+                        id="name"
+                        type="text"
+                        className="w-full py-1"
+                        defaultValue="Gamer Gear Pro Controller"
+                      />
+                    </div>
+                    <div className="md:grid grid-cols-2 gap-4">
+                      <div className="grid gap-3">
+                        <Label htmlFor="name">Lieu de départ</Label>
+                        <Input
+                          id="name"
+                          type="text"
+                          className="w-full py-1"
+                          defaultValue="Gamer Gear Pro Controller"
+                        />
                       </div>
-                    </CardContent>
-                  </Card>
-                  <div>
-                    <div className=" items-center gap-2 md:justify-end  md:flex">
-                      <Link href={'/'}>
-                        {' '}
-                        <Button variant="outline" size="sm">
-                          Annuler
-                        </Button>
-                      </Link>
-                      <Button type="submit" size="sm">
-                        Save Product
-                      </Button>
+                      <div className="grid gap-3">
+                        <Label htmlFor="name">Destination</Label>
+                        <Input
+                          id="name"
+                          type="text"
+                          className="w-full py-1"
+                          defaultValue="Gamer Gear Pro Controller"
+                        />
+                      </div>
+                    </div>
+                    <div className="grid gap-3">
+                      <Label htmlFor="description">Description</Label>
+                      <Textarea
+                        id="description"
+                        defaultValue="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl nec ultricies ultricies, nunc nisl ultricies nunc, nec ultricies nunc nisl nec nunc."
+                        className="h-44"
+                      />
                     </div>
                   </div>
+                </CardContent>
+              </Card>
+              <div>
+                <div className=" items-center gap-2 md:justify-end  md:flex">
+                  <Link href={'/'}>
+                    {' '}
+                    <Button variant="outline" size="sm">
+                      Annuler
+                    </Button>
+                  </Link>
+                  <Button type="submit" size="sm">
+                    Save Product
+                  </Button>
+                </div>
+              </div>
 
-                  {/* <Card x-chunk="dashboard-07-chunk-2">
+              {/* <Card x-chunk="dashboard-07-chunk-2">
                     <CardHeader>
                       <CardTitle>Product Category</CardTitle>
                     </CardHeader>
@@ -192,74 +182,62 @@ const Page = async () => {
                       </div>
                     </CardContent>
                   </Card> */}
-                </div>
-                <div className="grid auto-rows-max items-start gap-4 lg:gap-6">
-                  <Card x-chunk="dashboard-07-chunk-3">
-                    <CardHeader>
-                      {/* <CardTitle className="text-lg">Type de colis</CardTitle> */}
-                      <CardDescription>
-                        Type de colis acceptés pour ce trajet
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="grid gap-4">
-                        <div className="grid gap-3">
-                          <Label htmlFor="status">Type de colis</Label>
-                          <Select>
-                            <SelectTrigger
-                              id="status"
-                              aria-label="Select status"
-                            >
-                              <SelectValue placeholder="Select status" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="draft">Draft</SelectItem>
-                              <SelectItem value="published">Active</SelectItem>
-                              <SelectItem value="archived">Archived</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                        <div className="grid gap-3">
-                          <Label htmlFor="status">Type de colis</Label>
-                          <Select>
-                            <SelectTrigger
-                              id="status"
-                              aria-label="Select status"
-                            >
-                              <SelectValue placeholder="Select status" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="draft">Draft</SelectItem>
-                              <SelectItem value="published">Active</SelectItem>
-                              <SelectItem value="archived">Archived</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                  <Card
-                    className="overflow-hidden"
-                    x-chunk="dashboard-07-chunk-4"
-                  >
-                    <CardHeader>
-                      {/* <CardTitle className="text-md">
+            </div>
+            <div className="grid auto-rows-max items-start gap-4 lg:gap-6">
+              <Card x-chunk="dashboard-07-chunk-3">
+                <CardHeader>
+                  {/* <CardTitle className="text-lg">Type de colis</CardTitle> */}
+                  <CardDescription>
+                    Type de colis acceptés pour ce trajet
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid gap-4">
+                    <div className="grid gap-3">
+                      <Label htmlFor="status">Type de colis</Label>
+                      <Select>
+                        <SelectTrigger id="status" aria-label="Select status">
+                          <SelectValue placeholder="Select status" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="draft">Draft</SelectItem>
+                          <SelectItem value="published">Active</SelectItem>
+                          <SelectItem value="archived">Archived</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="grid gap-3">
+                      <Label htmlFor="status">Type de colis</Label>
+                      <Select>
+                        <SelectTrigger id="status" aria-label="Select status">
+                          <SelectValue placeholder="Select status" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="draft">Draft</SelectItem>
+                          <SelectItem value="published">Active</SelectItem>
+                          <SelectItem value="archived">Archived</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="overflow-hidden" x-chunk="dashboard-07-chunk-4">
+                <CardHeader>
+                  {/* <CardTitle className="text-md">
                           Product Images
                         </CardTitle> */}
-                      <CardDescription>Image du voyage</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="grid gap-2">
-                        <button className="flex aspect-square_w-full h-32 items-center justify-center rounded-md border border-dashed">
-                          <Upload className="h-4 w-4 text-muted-foreground" />
-                          <span className="sr-only">Upload</span>
-                        </button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-              <div className="flex items-center justify-center gap-2 "></div>
+                  <CardDescription>Image du voyage</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="grid gap-2">
+                    <button className="flex aspect-square_w-full h-32 items-center justify-center rounded-md border border-dashed">
+                      <Upload className="h-4 w-4 text-muted-foreground" />
+                      <span className="sr-only">Upload</span>
+                    </button>
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>

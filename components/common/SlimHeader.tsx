@@ -1,5 +1,5 @@
 // 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '../ui/button';
 import logoLight from '@/public/assets/images/logo-v0.png';
@@ -19,12 +19,18 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import MobileTopMenu from './ui/MobileTopMenu';
+import SwithtTheme from './Header/SwithtTheme';
 
 const SlimHeader = async () => {
   // const { data: session, status } = useSession();
   const session = await auth();
   const user: User | null = session?.user as User | null;
+  const locale = 'fr';
 
+  const handleChangeLanguage = () => {
+    const newLocale = locale === 'fr' ? 'en' : 'fr';
+    //locale = newLocale;
+  };
   const linkStyles =
     'flex items-center gap-2 text-neutral-500 dark:text-white/80 px-4 py-2 rounded-md hover:bg-accent dark:hover:text-white hover:no-underline';
 
@@ -53,12 +59,23 @@ const SlimHeader = async () => {
             <div className="flex-grow  justify-center "></div>
 
             <div className="lg:w-1/4 lg:min-w-[250px] min-w-2  items-center flex gap-1 lg:max-w-[400px] justify-end">
-              <div className=" md:flex">
+              <Button
+                // onClick={handleChangeLanguage}
+                className="text-xs hidden md:flex w-9 h-9 rounded-full"
+                variant={'ghost'}
+                size={'sm'}
+              >
+                {locale === 'fr' ? 'EN' : 'FR'}
+              </Button>
+              <span className="hidden sm:flex">
+                <SwithtTheme />
+              </span>
+              <div className=" flex">
                 <Link href={'/'}>
                   <Button
                     size={'sm'}
                     variant={'ghost'}
-                    className="rounded-full gap-1 border text-sm lg:text-md shadow__border dark:bg-primary dark:text-accent-foreground  hover:bg-accent"
+                    className="rounded-full gap-1 border text-sm lg:text-md shadow__border  dark:text-accent-foreground  hover:bg-accent"
                   >
                     <X />
                     <span className="hidden md:flex"> Quitter</span>

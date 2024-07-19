@@ -6,7 +6,7 @@ const SlimLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <SlimHeader />
-      <div className="md:min-h">{children}</div>
+      <div className="md:min-h bg-accent">{children}</div>
 
       <MiniFooter />
     </>
