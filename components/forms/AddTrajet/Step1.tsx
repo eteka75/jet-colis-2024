@@ -104,11 +104,11 @@ const StepOne: React.FC<StepProps> = ({ register, errors, methods }) => {
     <>
       <div className="py-4 space-y-2">
         <div>
-          <Label>Type de transport *</Label>
+          <Label>Moyen de transport *</Label>
           <select
             {...register('transportType')}
             className={cn(
-              'flex h-10 w-auto rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
+              'flex h-10 w-full md:w-auto rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
             )}
           >
             <option value={''}>Sélectionnez</option>
@@ -119,18 +119,18 @@ const StepOne: React.FC<StepProps> = ({ register, errors, methods }) => {
             ))}
           </select>
           {errors.transportType && (
-            <p className="text-red-500">
+            <p className="text-red-500 text-xs">
               {errors.transportType.message as string}
             </p>
           )}
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
           <div>
             <Label>Lieu de départ *</Label>
             <Input {...register('departurePlace')} />
             {errors.departurePlace && (
-              <p className="text-red-500">
+              <p className="text-red-500 text-xs">
                 {errors.departurePlace.message as string}
               </p>
             )}
@@ -149,18 +149,18 @@ const StepOne: React.FC<StepProps> = ({ register, errors, methods }) => {
               name="departureDate"
             />
             {errors.departureDate && (
-              <p className="text-red-500">
+              <p className="text-red-500 text-xs">
                 {errors.departureDate.message as string}
               </p>
             )}
           </div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
           <div>
             <Label>Lieu d'arrivée</Label>
             <Input {...register('arrivalPlace')} />
             {errors.arrivalPlace && (
-              <p className="text-red-500">
+              <p className="text-red-500 text-xs">
                 {errors.arrivalPlace.message as string}
               </p>
             )}
@@ -179,7 +179,7 @@ const StepOne: React.FC<StepProps> = ({ register, errors, methods }) => {
               name="arrivalDate"
             />
             {errors.arrivalDate && (
-              <p className="text-red-500">
+              <p className="text-red-500 text-xs">
                 {errors.arrivalDate.message as string}
               </p>
             )}
@@ -196,7 +196,9 @@ const StepTwo: React.FC<StepProps> = ({ register, errors }) => (
       <Label>Nom du trajet</Label>
       <Input {...register('tripName')} />
       {errors.tripName && (
-        <p className="text-red-500">{errors.tripName.message as string}</p>
+        <p className="text-red-500 text-xs">
+          {errors.tripName.message as string}
+        </p>
       )}
     </div>
 
@@ -204,7 +206,7 @@ const StepTwo: React.FC<StepProps> = ({ register, errors }) => (
       <Label>Colis autorisés</Label>
       <Input {...register('allowedPackages')} />
       {errors.allowedPackages && (
-        <p className="text-red-500">
+        <p className="text-red-500 text-xs">
           {errors.allowedPackages.message as string}
         </p>
       )}
@@ -213,7 +215,9 @@ const StepTwo: React.FC<StepProps> = ({ register, errors }) => (
       <Label>Description</Label>
       <Textarea {...register('description')} />
       {errors.description && (
-        <p className="text-red-500">{errors.description.message as string}</p>
+        <p className="text-red-500 text-xs">
+          {errors.description.message as string}
+        </p>
       )}
     </div>
   </div>
@@ -292,14 +296,14 @@ const MultiStepForm: React.FC = () => {
           <li
             className={`flex items-center ${
               stepIndex === 0
-                ? 'text-blue-600 dark:text-blue-500'
+                ? 'text-primary dark:text-primary'
                 : 'text-gray-500 dark:text-gray-400'
             } space-x-2.5 rtl:space-x-reverse`}
           >
             <span
               className={`flex items-center justify-center w-8 h-8 border ${
                 stepIndex === 0
-                  ? 'border-blue-600 dark:border-blue-500'
+                  ? 'border-primary dark:border-primary'
                   : 'border-gray-500 dark:border-gray-400'
               } rounded-full shrink-0`}
             >
@@ -313,14 +317,14 @@ const MultiStepForm: React.FC = () => {
           <li
             className={`flex items-center ${
               stepIndex === 1
-                ? 'text-blue-600 dark:text-blue-500'
+                ? 'text-primary dark:text-primary'
                 : 'text-gray-500 dark:text-gray-400'
             } space-x-2.5 rtl:space-x-reverse`}
           >
             <span
               className={`flex items-center justify-center w-8 h-8 border ${
                 stepIndex === 1
-                  ? 'border-blue-600 dark:border-blue-500'
+                  ? 'border-primary dark:border-primary'
                   : 'border-gray-500 dark:border-gray-400'
               } rounded-full shrink-0`}
             >
@@ -336,14 +340,14 @@ const MultiStepForm: React.FC = () => {
           <li
             className={`flex items-center ${
               stepIndex === 2
-                ? 'text-blue-600 dark:text-blue-500'
+                ? 'text-primary dark:text-primary'
                 : 'text-gray-500 dark:text-gray-400'
             } space-x-2.5 rtl:space-x-reverse`}
           >
             <span
               className={`flex items-center justify-center w-8 h-8 border ${
                 stepIndex === 2
-                  ? 'border-blue-600 dark:border-blue-500'
+                  ? 'border-primary dark:border-primary'
                   : 'border-gray-500 dark:border-gray-400'
               } rounded-full shrink-0`}
             >
@@ -358,7 +362,7 @@ const MultiStepForm: React.FC = () => {
         <div className="text-xs opacity-80">* Indique un champ obligatoire</div>
 
         {React.createElement(currentStep, { register, errors, methods })}
-        <div className="flex justify-end space-x-4">
+        <div className="flex justify-center md:justify-end space-x-4">
           {stepIndex > 0 && (
             <Button
               variant={'ghost'}
