@@ -1,10 +1,10 @@
 'use client'; // src/components/MultiStepForm.tsx
-
 import React, { useState, useEffect } from 'react';
 import {
   useForm,
   FormProvider,
   UseFormRegister,
+  FieldValues,
   FieldErrors,
   UseFormReturn,
 } from 'react-hook-form';
@@ -26,7 +26,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import TopSteps from './TopSteps';
 
 // Définir le type spécifique du formulaire
 interface FormData {
@@ -80,9 +79,21 @@ const stepSchemas = [
       message: 'Format de date invalide (dd/MM/yyyy)',
     }),
     arrivalPlace: z.string().min(1, "Lieu d'arrivée requis"),
-    arrivalDate: z.string().refine((value) => isValidDateFormat(value), {
-      message: 'Format de date invalide (dd/MM/yyyy)',
-    }),
+    arrivalDate: z
+      .string()
+      .refine((value) => isValidDateFormat(value), {
+        message: 'Format de date invalide (dd/MM/yyyy)',
+      })
+      .refine(
+        (value, ctx) => {
+          const departureDate = ctx?.parent?.departureDate;
+          if (!departureDate) return true;
+          return isAfterDepartureDate(value, departureDate);
+        },
+        {
+          message: "La date d'arrivée doit être après la date de départ",
+        }
+      ),
   }),
   z.object({
     tripName: z
@@ -94,12 +105,27 @@ const stepSchemas = [
       .min(1, 'Description requise')
       .max(500, 'Description doit avoir au maximum 500 caractères'),
     totalKilograms: z.number().min(1, 'Nombre total de kilogrammes requis'),
-    packages: z.array(
-      z.object({
-        type: z.string().min(1, 'Type de colis requis'),
-        kilograms: z.number().min(1, 'Nombre de kilogrammes requis'),
-      })
-    ),
+    packages: z
+      .array(
+        z.object({
+          type: z.string().min(1, 'Type de colis requis'),
+          kilograms: z.number().min(1, 'Nombre de kilogrammes requis'),
+        })
+      )
+      .refine(
+        (packages, ctx) => {
+          const totalKilograms = ctx?.parent?.totalKilograms ?? 0;
+          const sumOfPackages = packages.reduce(
+            (sum, pkg) => sum + pkg.kilograms,
+            0
+          );
+          return sumOfPackages <= totalKilograms;
+        },
+        {
+          message:
+            'Le total des kilogrammes des colis dépasse le nombre total de kilogrammes disponibles',
+        }
+      ),
   }),
   z.object({}),
 ];
@@ -220,10 +246,6 @@ const StepTwo: React.FC<StepProps> = ({ register, errors, methods }) => {
   >([{ type: '', kilograms: 0 }]);
   const { setValue, getValues, trigger, watch } = methods;
 
-  const totalKilograms = watch('totalKilograms', 0);
-  const sumOfPackages = packages.reduce((sum, pkg) => sum + pkg.kilograms, 0);
-  const remainingKilograms = totalKilograms - sumOfPackages;
-
   const addPackage = () => {
     if (
       packages.length < 5 &&
@@ -253,15 +275,11 @@ const StepTwo: React.FC<StepProps> = ({ register, errors, methods }) => {
     trigger('packages');
   };
 
-  // Validation pour le type de colis unique
-  const validateUniquePackageTypes = () => {
-    const types = packages.map((pkg) => pkg.type);
-    const uniqueTypes = new Set(types);
-    return types.length === uniqueTypes.size;
-  };
+  // Calculer le total des kilogrammes
+  const totalKilograms = watch('totalKilograms', 0);
 
-  // Déclencher la validation lorsque le totalKilograms change
   useEffect(() => {
+    // Déclencher la validation lorsque le totalKilograms change
     trigger('packages');
   }, [totalKilograms, trigger]);
 
@@ -299,14 +317,6 @@ const StepTwo: React.FC<StepProps> = ({ register, errors, methods }) => {
       </div>
       <div className="form-group">
         <Label>Colis</Label>
-        <Button
-          type="button"
-          onClick={addPackage}
-          className="mb-4"
-          disabled={packages.length >= 5 || !validateUniquePackageTypes()}
-        >
-          <Plus size={16} />
-        </Button>
         {packages.map((pkg, index) => (
           <div key={index} className="flex space-x-4 mb-2">
             <Select
@@ -314,9 +324,6 @@ const StepTwo: React.FC<StepProps> = ({ register, errors, methods }) => {
                 handlePackageChange(index, 'type', value)
               }
               value={pkg.type}
-              disabled={packages.some(
-                (p, i) => i !== index && p.type === pkg.type
-              )}
             >
               <SelectTrigger className="w-64">
                 <SelectValue placeholder="Type de colis" />
@@ -340,28 +347,21 @@ const StepTwo: React.FC<StepProps> = ({ register, errors, methods }) => {
                 handlePackageChange(index, 'kilograms', Number(e.target.value))
               }
             />
-            {index > 0 && (
-              <Button
-                type="button"
-                onClick={() => removePackage(index)}
-                className="ml-2"
-              >
-                <Minus size={16} />
+            <Button
+              type="button"
+              onClick={() => removePackage(index)}
+              className="ml-2"
+              disabled={packages.length === 1} // Désactive le bouton "Moins" pour la première ligne
+            >
+              <Minus size={16} />
+            </Button>
+            {index === packages.length - 1 && packages.length < 5 && (
+              <Button type="button" onClick={addPackage} className="ml-2">
+                <Plus size={16} />
               </Button>
             )}
           </div>
         ))}
-        {remainingKilograms <= 0 && (
-          <p className="text-red-500 text-xs">
-            Le total des kilogrammes des colis dépasse le nombre total de
-            kilogrammes disponibles
-          </p>
-        )}
-        <p className="text-gray-500 text-xs">
-          {remainingKilograms > 0
-            ? `${remainingKilograms} Kg restant à ajouter`
-            : 'Aucun colis restant à ajouter'}
-        </p>
         {errors.packages && (
           <p className="text-red-500 text-xs">
             {errors.packages.message as string}
@@ -374,32 +374,6 @@ const StepTwo: React.FC<StepProps> = ({ register, errors, methods }) => {
 
 // Étape 3 du formulaire
 const StepThree: React.FC<StepProps> = ({ register, errors, methods }) => {
-  const getStepOneData = () => {
-    const {
-      transportType,
-      departurePlace,
-      departureDate,
-      arrivalPlace,
-      arrivalDate,
-    } = methods.getValues();
-    return {
-      transportType,
-      departurePlace,
-      departureDate,
-      arrivalPlace,
-      arrivalDate,
-    };
-  };
-
-  const getStepTwoData = () => {
-    const { tripName, description, totalKilograms, packages } =
-      methods.getValues();
-    return { tripName, description, totalKilograms, packages };
-  };
-
-  const stepOneData = getStepOneData();
-  const stepTwoData = getStepTwoData();
-
   const onSubmit = async () => {
     const data = methods.getValues();
     console.log('Données du formulaire:', data);
@@ -420,46 +394,7 @@ const StepThree: React.FC<StepProps> = ({ register, errors, methods }) => {
   };
 
   return (
-    <div className="py-4 space-y-4">
-      <div>
-        <h3>Résumé de l'étape 1</h3>
-        <p>
-          <strong>Moyen de transport :</strong> {stepOneData.transportType}
-        </p>
-        <p>
-          <strong>Lieu de départ :</strong> {stepOneData.departurePlace}
-        </p>
-        <p>
-          <strong>Date de départ :</strong> {stepOneData.departureDate}
-        </p>
-        <p>
-          <strong>Lieu d'arrivée :</strong> {stepOneData.arrivalPlace}
-        </p>
-        <p>
-          <strong>Date d'arrivée :</strong> {stepOneData.arrivalDate}
-        </p>
-      </div>
-
-      <div>
-        <h3>Résumé de l'étape 2</h3>
-        <p>
-          <strong>Nom du trajet :</strong> {stepTwoData.tripName}
-        </p>
-        <p>
-          <strong>Description :</strong> {stepTwoData.description}
-        </p>
-        <p>
-          <strong>Total Kilogrammes :</strong> {stepTwoData.totalKilograms}
-        </p>
-        <h4>Colis :</h4>
-        {stepTwoData.packages.map((pkg, index) => (
-          <p key={index}>
-            <strong>Type :</strong> {pkg.type}, <strong>Poids :</strong>{' '}
-            {pkg.kilograms} Kg
-          </p>
-        ))}
-      </div>
-
+    <div className="py-4 space-y-2">
       <p>
         Vous êtes sur le point de soumettre vos données. Assurez-vous que tout
         est correct.
@@ -516,7 +451,6 @@ const MultiStepForm: React.FC = () => {
 
   return (
     <FormProvider {...methods}>
-      <TopSteps stepIndex={currentStep} />
       <form onSubmit={onSubmit}>
         {stepComponents[currentStep]}
         <div className="flex justify-between mt-4">

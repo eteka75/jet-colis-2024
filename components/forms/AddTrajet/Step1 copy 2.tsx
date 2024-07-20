@@ -19,6 +19,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import CalendarInput from '@/components/common/ui/CalendarInput';
 import CalendarInput2 from '@/components/common/ui/CalendarInput2';
 import { cn } from '@/src/lib/utils';
+import TopSteps from './TopSteps';
 
 const modesTrans = [
   { value: 'voiture', label: 'Voiture' },
@@ -313,76 +314,9 @@ const MultiStepForm: React.FC = () => {
 
   return (
     <FormProvider {...methods}>
-      <form className="border" onSubmit={methods.handleSubmit(onSubmit)}>
-        <ol className="items-center w-full space-y-4 sm:flex sm:space-x-8 sm:space-y-0 rtl:space-x-reverse">
-          <li
-            className={`flex items-center ${
-              step === 0
-                ? 'text-blue-600 dark:text-blue-500'
-                : 'text-gray-500 dark:text-gray-400'
-            } space-x-2.5 rtl:space-x-reverse`}
-          >
-            <span
-              className={`flex items-center justify-center w-8 h-8 border ${
-                step === 0
-                  ? 'border-blue-600 dark:border-blue-500'
-                  : 'border-gray-500 dark:border-gray-400'
-              } rounded-full shrink-0`}
-            >
-              1
-            </span>
-            <span>
-              <h3 className="font-medium leading-tight">Détails du trajet</h3>
-              <p className="text-sm">Informations sur votre trajet</p>
-            </span>
-          </li>
-          <li
-            className={`flex items-center ${
-              step === 1
-                ? 'text-blue-600 dark:text-blue-500'
-                : 'text-gray-500 dark:text-gray-400'
-            } space-x-2.5 rtl:space-x-reverse`}
-          >
-            <span
-              className={`flex items-center justify-center w-8 h-8 border ${
-                step === 1
-                  ? 'border-blue-600 dark:border-blue-500'
-                  : 'border-gray-500 dark:border-gray-400'
-              } rounded-full shrink-0`}
-            >
-              2
-            </span>
-            <span>
-              <h3 className="font-medium leading-tight">
-                Description de l'offre
-              </h3>
-              <p className="text-sm">Description et types de colis</p>
-            </span>
-          </li>
-          <li
-            className={`flex items-center ${
-              step === 2
-                ? 'text-blue-600 dark:text-blue-500'
-                : 'text-gray-500 dark:text-gray-400'
-            } space-x-2.5 rtl:space-x-reverse`}
-          >
-            <span
-              className={`flex items-center justify-center w-8 h-8 border ${
-                step === 2
-                  ? 'border-blue-600 dark:border-blue-500'
-                  : 'border-gray-500 dark:border-gray-400'
-              } rounded-full shrink-0`}
-            >
-              3
-            </span>
-            <span>
-              <h3 className="font-medium leading-tight">Récapitulatif</h3>
-              <p className="text-sm">Vérifiez et confirmez</p>
-            </span>
-          </li>
-        </ol>
-        <div className="mx-1 border">
-          kl,,kklkjlkj
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <TopSteps stepIndex={step} />
+        <div className="mx-1">
           <StepComponent
             register={methods.register}
             errors={errors}

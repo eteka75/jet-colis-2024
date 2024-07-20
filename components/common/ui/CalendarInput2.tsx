@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CalendarIcon } from '@radix-ui/react-icons';
-import { format, isValid, parse } from 'date-fns';
+import { format, isValid } from 'date-fns';
 import { cn } from '@/src/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
@@ -24,11 +24,11 @@ const CalendarInput2: React.FC<CalendarInput2Props> = ({
   name,
 }) => {
   const [inputValue, setInputValue] = React.useState(() =>
-    value && isValid(value) ? format(value, 'dd/MM/yyyy') : ''
+    value ? format(value, 'dd/MM/yyyy') : ''
   );
 
   React.useEffect(() => {
-    if (value && isValid(value)) {
+    if (value) {
       const formattedDate = format(value, 'dd/MM/yyyy');
       setInputValue(formattedDate);
     } else {
@@ -37,7 +37,7 @@ const CalendarInput2: React.FC<CalendarInput2Props> = ({
   }, [value]);
 
   const handleDateChange = (date: Date | null) => {
-    if (date && isValid(date)) {
+    if (date) {
       const formattedDate = format(date, 'dd/MM/yyyy');
       setInputValue(formattedDate);
       onChange(date);
@@ -53,7 +53,7 @@ const CalendarInput2: React.FC<CalendarInput2Props> = ({
         <Button
           variant={'outline'}
           className={cn(
-            'w-full justify-start text-left font-normal',
+            'w-full justify-start input text-left font-normal',
             !inputValue && 'text-muted-foreground'
           )}
         >
@@ -83,7 +83,7 @@ const CalendarInput2: React.FC<CalendarInput2Props> = ({
           const parsedDate = newValue
             ? parse(newValue, 'dd/MM/yyyy', new Date())
             : null;
-          if (parsedDate && isValid(parsedDate)) {
+          if (isValid(parsedDate)) {
             onChange(parsedDate);
           }
         }}
