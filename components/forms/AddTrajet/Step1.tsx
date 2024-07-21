@@ -109,6 +109,7 @@ interface StepProps {
   register: UseFormRegister<FormData>;
   errors: FieldErrors<FormData>;
   methods: UseFormReturn<FormData>;
+  validateStepTwo?: () => boolean;
 }
 
 // Étape 1 du formulaire
@@ -180,7 +181,7 @@ const StepOne: React.FC<StepProps> = ({ register, errors, methods }) => {
         </div>
         <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
           <div>
-            <Label>Lieu d'arrivée</Label>
+            <Label>Lieu d'arrivée*</Label>
             <Input {...register('arrivalPlace')} />
             {errors.arrivalPlace && (
               <p className="text-red-500 text-xs">
@@ -190,7 +191,7 @@ const StepOne: React.FC<StepProps> = ({ register, errors, methods }) => {
           </div>
 
           <div>
-            <Label>Date d'arrivée</Label>
+            <Label>Date d'arrivée*</Label>
             <CalendarInput2
               value={
                 getValues('arrivalDate')
@@ -214,7 +215,12 @@ const StepOne: React.FC<StepProps> = ({ register, errors, methods }) => {
 };
 
 // Étape 2 du formulaire
-const StepTwo: React.FC<StepProps> = ({ register, errors, methods }) => {
+const StepTwo: React.FC<StepProps> = ({
+  register,
+  errors,
+  methods,
+  validateStepTwo,
+}) => {
   const [packages, setPackages] = useState<
     { type: string; kilograms: number }[]
   >([{ type: '', kilograms: 0 }]);
@@ -224,23 +230,25 @@ const StepTwo: React.FC<StepProps> = ({ register, errors, methods }) => {
   const sumOfPackages = packages.reduce((sum, pkg) => sum + pkg.kilograms, 0);
   const remainingKilograms = totalKilograms - sumOfPackages;
 
+  // Fonction pour ajouter un colis
   const addPackage = () => {
-    if (
-      packages.length < 5 &&
-      packages[packages.length - 1].kilograms > 0 &&
-      packages[packages.length - 1].type
-    ) {
-      setPackages([...packages, { type: '', kilograms: 0 }]);
-      setValue('packages', [...packages, { type: '', kilograms: 0 }]);
+    if (packages.length > 0 && packages[packages.length - 1].kilograms > 0) {
+      if (packages.length < 5 && remainingKilograms > 0) {
+        const newPackages = [...packages, { type: '', kilograms: 0 }];
+        setPackages(newPackages);
+        setValue('packages', newPackages);
+      }
     }
   };
 
+  // Fonction pour retirer un colis
   const removePackage = (index: number) => {
     const updatedPackages = packages.filter((_, i) => i !== index);
     setPackages(updatedPackages);
     setValue('packages', updatedPackages);
   };
 
+  // Fonction pour gérer les changements dans un colis
   const handlePackageChange = (
     index: number,
     field: 'type' | 'kilograms',
@@ -260,6 +268,16 @@ const StepTwo: React.FC<StepProps> = ({ register, errors, methods }) => {
     return types.length === uniqueTypes.size;
   };
 
+  // Validation des données avant de passer à l'étape suivante
+  const validateStepTwoLocal = () => {
+    const validPackages = packages.every(
+      (pkg) => pkg.type && pkg.kilograms > 0
+    );
+    const validTotalKilograms = remainingKilograms >= 0;
+    const uniqueTypes = validateUniquePackageTypes();
+    return validPackages && validTotalKilograms && uniqueTypes;
+  };
+
   // Déclencher la validation lorsque le totalKilograms change
   useEffect(() => {
     trigger('packages');
@@ -267,8 +285,8 @@ const StepTwo: React.FC<StepProps> = ({ register, errors, methods }) => {
 
   return (
     <div className="py-4 space-y-4">
-      <div className="form-group">
-        <Label>Nom du trajet</Label>
+      <div>
+        <Label>Nom du trajet *</Label>
         <Input {...register('tripName')} />
         {errors.tripName && (
           <p className="text-red-500 text-xs">
@@ -276,8 +294,8 @@ const StepTwo: React.FC<StepProps> = ({ register, errors, methods }) => {
           </p>
         )}
       </div>
-      <div className="form-group">
-        <Label>Description</Label>
+      <div>
+        <Label>Description *</Label>
         <Textarea {...register('description')} />
         {errors.description && (
           <p className="text-red-500 text-xs">
@@ -285,8 +303,8 @@ const StepTwo: React.FC<StepProps> = ({ register, errors, methods }) => {
           </p>
         )}
       </div>
-      <div className="form-group">
-        <Label>Nombre total de kilogrammes</Label>
+      <div>
+        <Label>Poids total (kg) *</Label>
         <Input
           type="number"
           {...register('totalKilograms', { valueAsNumber: true })}
@@ -297,35 +315,23 @@ const StepTwo: React.FC<StepProps> = ({ register, errors, methods }) => {
           </p>
         )}
       </div>
-      <div className="form-group">
-        <Label>Colis</Label>
-        <Button
-          type="button"
-          onClick={addPackage}
-          className="mb-4"
-          disabled={packages.length >= 5 || !validateUniquePackageTypes()}
-        >
-          <Plus size={16} />
-        </Button>
+      <div className="space-y-2">
         {packages.map((pkg, index) => (
-          <div key={index} className="flex space-x-4 mb-2">
+          <div key={index} className="flex items-center space-x-4">
             <Select
+              value={pkg.type}
               onValueChange={(value) =>
                 handlePackageChange(index, 'type', value)
               }
-              value={pkg.type}
-              disabled={packages.some(
-                (p, i) => i !== index && p.type === pkg.type
-              )}
             >
-              <SelectTrigger className="w-64">
+              <SelectTrigger className="w-32">
                 <SelectValue placeholder="Type de colis" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  {packageTypes.map((pkgType) => (
-                    <SelectItem key={pkgType.value} value={pkgType.value}>
-                      {pkgType.label}
+                  {packageTypes.map((option) => (
+                    <SelectItem key={option.value} value={option.value}>
+                      {option.label}
                     </SelectItem>
                   ))}
                 </SelectGroup>
@@ -333,138 +339,124 @@ const StepTwo: React.FC<StepProps> = ({ register, errors, methods }) => {
             </Select>
             <Input
               type="number"
-              placeholder="Kg"
               value={pkg.kilograms}
-              min={1}
               onChange={(e) =>
-                handlePackageChange(index, 'kilograms', Number(e.target.value))
+                handlePackageChange(index, 'kilograms', +e.target.value)
               }
+              className="w-24"
             />
-            {index > 0 && (
-              <Button
-                type="button"
-                onClick={() => removePackage(index)}
-                className="ml-2"
-              >
+            {packages.length > 1 && (
+              <Button type="button" onClick={() => removePackage(index)}>
                 <Minus size={16} />
+              </Button>
+            )}
+            {index === packages.length - 1 && (
+              <Button type="button" onClick={addPackage}>
+                <Plus size={16} />
               </Button>
             )}
           </div>
         ))}
-        {remainingKilograms <= 0 && (
-          <p className="text-red-500 text-xs">
-            Le total des kilogrammes des colis dépasse le nombre total de
-            kilogrammes disponibles
-          </p>
-        )}
-        <p className="text-gray-500 text-xs">
-          {remainingKilograms > 0
-            ? `${remainingKilograms} Kg restant à ajouter`
-            : 'Aucun colis restant à ajouter'}
-        </p>
-        {errors.packages && (
-          <p className="text-red-500 text-xs">
-            {errors.packages.message as string}
-          </p>
-        )}
+        <p className="text-sm">Poids total des colis : {sumOfPackages} kg</p>
+        <p className="text-sm">Poids restant : {remainingKilograms} kg</p>
       </div>
     </div>
   );
 };
 
 // Étape 3 du formulaire
-const StepThree: React.FC<StepProps> = ({ register, errors, methods }) => {
-  const getStepOneData = () => {
-    const {
-      transportType,
-      departurePlace,
-      departureDate,
-      arrivalPlace,
-      arrivalDate,
-    } = methods.getValues();
-    return {
-      transportType,
-      departurePlace,
-      departureDate,
-      arrivalPlace,
-      arrivalDate,
-    };
-  };
+// Étape 3 du formulaire
+const StepThree: React.FC<StepProps> = ({ register, errors }) => {
+  const { getValues } = React.useContext(FormProvider);
 
-  const getStepTwoData = () => {
-    const { tripName, description, totalKilograms, packages } =
-      methods.getValues();
-    return { tripName, description, totalKilograms, packages };
-  };
-
-  const stepOneData = getStepOneData();
-  const stepTwoData = getStepTwoData();
-
-  const onSubmit = async () => {
-    const data = methods.getValues();
-    console.log('Données du formulaire:', data);
-
-    try {
-      const response = await fetch('/api/travel/create', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-      const result = await response.json();
-      console.log("Réponse de l'API:", result);
-    } catch (error) {
-      console.error("Erreur lors de l'envoi des données:", error);
-    }
-  };
+  // Récupérer les valeurs des étapes précédentes
+  const formData = getValues();
 
   return (
     <div className="py-4 space-y-4">
       <div>
-        <h3>Résumé de l'étape 1</h3>
-        <p>
-          <strong>Moyen de transport :</strong> {stepOneData.transportType}
-        </p>
-        <p>
-          <strong>Lieu de départ :</strong> {stepOneData.departurePlace}
-        </p>
-        <p>
-          <strong>Date de départ :</strong> {stepOneData.departureDate}
-        </p>
-        <p>
-          <strong>Lieu d'arrivée :</strong> {stepOneData.arrivalPlace}
-        </p>
-        <p>
-          <strong>Date d'arrivée :</strong> {stepOneData.arrivalDate}
-        </p>
-      </div>
-
-      <div>
-        <h3>Résumé de l'étape 2</h3>
-        <p>
-          <strong>Nom du trajet :</strong> {stepTwoData.tripName}
-        </p>
-        <p>
-          <strong>Description :</strong> {stepTwoData.description}
-        </p>
-        <p>
-          <strong>Total Kilogrammes :</strong> {stepTwoData.totalKilograms}
-        </p>
-        <h4>Colis :</h4>
-        {stepTwoData.packages.map((pkg, index) => (
-          <p key={index}>
-            <strong>Type :</strong> {pkg.type}, <strong>Poids :</strong>{' '}
-            {pkg.kilograms} Kg
+        <Label>Moyen de transport *</Label>
+        <Input disabled value={formData.transportType} />
+        {errors.transportType && (
+          <p className="text-red-500 text-xs">
+            {errors.transportType.message as string}
           </p>
-        ))}
+        )}
       </div>
-
-      <p>
-        Vous êtes sur le point de soumettre vos données. Assurez-vous que tout
-        est correct.
-      </p>
-      <Button onClick={onSubmit}>Soumettre</Button>
+      <div>
+        <Label>Lieu de départ *</Label>
+        <Input disabled value={formData.departurePlace} />
+        {errors.departurePlace && (
+          <p className="text-red-500 text-xs">
+            {errors.departurePlace.message as string}
+          </p>
+        )}
+      </div>
+      <div>
+        <Label>Date de départ *</Label>
+        <Input disabled value={formData.departureDate} />
+        {errors.departureDate && (
+          <p className="text-red-500 text-xs">
+            {errors.departureDate.message as string}
+          </p>
+        )}
+      </div>
+      <div>
+        <Label>Lieu d'arrivée</Label>
+        <Input disabled value={formData.arrivalPlace} />
+        {errors.arrivalPlace && (
+          <p className="text-red-500 text-xs">
+            {errors.arrivalPlace.message as string}
+          </p>
+        )}
+      </div>
+      <div>
+        <Label>Date d'arrivée</Label>
+        <Input disabled value={formData.arrivalDate} />
+        {errors.arrivalDate && (
+          <p className="text-red-500 text-xs">
+            {errors.arrivalDate.message as string}
+          </p>
+        )}
+      </div>
+      <div>
+        <Label>Nom du trajet *</Label>
+        <Input disabled value={formData.tripName} />
+        {errors.tripName && (
+          <p className="text-red-500 text-xs">
+            {errors.tripName.message as string}
+          </p>
+        )}
+      </div>
+      <div>
+        <Label>Description *</Label>
+        <Textarea disabled value={formData.description} />
+        {errors.description && (
+          <p className="text-red-500 text-xs">
+            {errors.description.message as string}
+          </p>
+        )}
+      </div>
+      <div>
+        <Label>Poids total (kg) *</Label>
+        <Input disabled value={formData.totalKilograms} type="number" />
+        {errors.totalKilograms && (
+          <p className="text-red-500 text-xs">
+            {errors.totalKilograms.message as string}
+          </p>
+        )}
+      </div>
+      <div>
+        <Label>Colis</Label>
+        {formData.packages.map(
+          (pkg: { type: string; kilograms: number }, index: number) => (
+            <div key={index} className="flex space-x-4">
+              <div>{pkg.type}</div>
+              <div>{pkg.kilograms} kg</div>
+            </div>
+          )
+        )}
+      </div>
     </div>
   );
 };
@@ -479,11 +471,42 @@ const MultiStepForm: React.FC = () => {
     },
   });
 
+  // Fonction pour valider les colis dans l'étape 2
+  const validateStepTwo = () => {
+    const values = methods.getValues();
+    const packages = values.packages || [];
+    const totalKilograms = values.totalKilograms || 0;
+
+    const sumOfPackages = packages.reduce((sum, pkg) => sum + pkg.kilograms, 0);
+    const remainingKilograms = totalKilograms - sumOfPackages;
+
+    const validPackages = packages.every(
+      (pkg) => pkg.type && pkg.kilograms > 0
+    );
+    const validTotalKilograms = remainingKilograms >= 0;
+    const uniqueTypes =
+      new Set(packages.map((pkg) => pkg.type)).size === packages.length;
+
+    return validPackages && validTotalKilograms && uniqueTypes;
+  };
+
   const onSubmit = methods.handleSubmit((data) => {
     if (currentStep === stepSchemas.length - 1) {
       console.log('Form submitted', data);
+      // Vous pouvez également soumettre les données ici
     } else {
-      setCurrentStep((prevStep) => prevStep + 1);
+      if (currentStep === 1) {
+        // Validation spécifique pour l'étape 2
+        const isValidStepTwo = validateStepTwo();
+        if (isValidStepTwo) {
+          setCurrentStep((prevStep) => prevStep + 1);
+        } else {
+          // Gestion des erreurs pour l'étape 2
+          console.log("Validation échouée à l'étape 2");
+        }
+      } else {
+        setCurrentStep((prevStep) => prevStep + 1);
+      }
     }
   });
 
@@ -504,6 +527,7 @@ const MultiStepForm: React.FC = () => {
       register={methods.register}
       errors={methods.formState.errors}
       methods={methods}
+      validateStepTwo={validateStepTwo} // Passer la fonction de validation
       key="stepTwo"
     />,
     <StepThree
