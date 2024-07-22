@@ -17,7 +17,7 @@ import { BiMessageSquare } from 'react-icons/bi';
 import { LuUser2 } from 'react-icons/lu';
 import { IoIosHelpCircleOutline, IoIosLogOut } from 'react-icons/io';
 import { GiReceiveMoney } from 'react-icons/gi';
-import { BadgeCheck } from 'lucide-react';
+import { BadgeCheck, CircleGauge, Gauge } from 'lucide-react';
 
 const LoginDropdownMenu = ({ user }: { user: UserSession | undefined }) => {
   const [loading, setLoading] = useState(false);
@@ -57,6 +57,11 @@ const LoginDropdownMenu = ({ user }: { user: UserSession | undefined }) => {
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
+            <DropdownMenuItem>
+              <Link href="/user/" className="flex items-center py-1">
+                <Gauge className="mr-2 h-4 w-4" /> Tableau de bord
+              </Link>
+            </DropdownMenuItem>
             <DropdownMenuItem>
               <Link href="/user/profil" className="flex items-center py-1">
                 <LuUser2 className="mr-2 h-4 w-4" /> Mon compte

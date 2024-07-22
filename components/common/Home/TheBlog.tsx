@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 const TheBlog = () => {
@@ -49,10 +50,10 @@ const TheBlog = () => {
                 </div>
               </div>
               <h3 className="mt-3 text-lg font-semibold leading-6 text-white">
-                <a href="/tech-blog/post1">
+                <Link href="/tech-blog/post1">
                   <span className="absolute inset-0"></span>The Future of
                   Artificial Intelligence: Trends and Challenges
-                </a>
+                </Link>
               </h3>
             </article>
             <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 dark:bg-gray-700 px-8 py-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
@@ -89,10 +90,10 @@ const TheBlog = () => {
                 </div>
               </div>
               <h3 className="mt-3 text-lg font-semibold leading-6 text-white">
-                <a href="/tech-blog/post2">
+                <Link href="/tech-blog/post2">
                   <span className="absolute inset-0"></span>The Rise of
                   Blockchain Technology: A Comprehensive Guide
-                </a>
+                </Link>
               </h3>
             </article>
             <article className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 dark:bg-gray-700 px-8 py-8 pb-8 pt-80 sm:pt-48 lg:pt-80">
@@ -129,10 +130,10 @@ const TheBlog = () => {
                 </div>
               </div>
               <h3 className="mt-3 text-lg font-semibold leading-6 text-white">
-                <a href="/tech-blog/post3">
+                <Link href="/tech-blog/post3">
                   <span className="absolute inset-0"></span>How Quantum
                   Computing Will Revolutionize Data Security
-                </a>
+                </Link>
               </h3>
             </article>
           </div>

@@ -45,9 +45,16 @@ export const metadata: Metadata = {
   title: 'Tableau de bord',
 };
 
-export default function Dashboard() {
+const DashboardLayout = ({
+  type,
+  children,
+}: {
+  type?: string;
+  children: ReactNode;
+}) => {
   return (
-    <LightLayout>
+    <>
+      <LightLayout>
       <div className="container_">
         <div className="grid border-t_  min-h-screen w-full md:grid-cols-[200px_1fr] lg:grid-cols-[260px_1fr]">
           <div className="hidden border-r border-accent shadow-lg border-l shadow-sm md:block">
@@ -222,51 +229,13 @@ export default function Dashboard() {
             </header>
 
             <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:px-6">
-              <div className="md:flex md:justify-between items-center md:pe-4">
-                <div className="flex items-center">
-                  <h1 className="text-lg font-semibold md:text-2xl">
-                    Inventory
-                  </h1>
-                </div>
-              </div>
-
-              <div
-                className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm"
-                x-chunk="dashboard-02-chunk-1"
-              >
-                <div className="flex flex-col items-center gap-1 text-center">
-                  <h3 className="text-2xl font-bold tracking-tight">
-                    You have no products
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    You can start selling as soon as you add a product.
-                  </p>
-                  <Button className="mt-4">Add Product</Button>
-                </div>
-              </div>
+            {children}              
             </main>
           </div>
         </div>
       </div>
     </LightLayout>
+    </>
   );
-}
-
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   const session = await getSession(context);
-
-//   if (!session) {
-//     return {
-//       redirect: {
-//         destination: '/login',
-//         permanent: false,
-//       },
-//     };
-//   }
-
-//   return {
-//     props: {
-//       session,
-//     },
-//   };
-// };
+};
+export default DashboardLayout;

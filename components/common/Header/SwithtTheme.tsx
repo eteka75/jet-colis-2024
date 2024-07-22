@@ -31,19 +31,20 @@ const SwithtTheme: React.FC = () => {
   if (!isClient) {
     return null;
   }
-  return (
-    <Button
-      id="btntheme"
-      variant="ghost"
-      size="icon"
-      className="hover:bg-none active:bg-none w-9 h-9  rounded-full"
-      onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-    >
-      <Sun className="h-[1.5rem] w-[1.3rem] dark:hidden" />
-      <Moon className="hidden h-5 w-5 dark:block" />
-      <span className="sr-only">Toggle theme</span>
-    </Button>
-  );
+  return '';
+  //  (
+  // <Button
+  //   id="btntheme"
+  //   variant="ghost"
+  //   size="icon"
+  //   className="hover:bg-none active:bg-none w-9 h-9  rounded-full"
+  //   onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+  // >
+  //   <Sun className="h-[1.5rem] w-[1.3rem] dark:hidden" />
+  //   <Moon className="hidden h-5 w-5 dark:block" />
+  //   <span className="sr-only">Toggle theme</span>
+  // </Button>
+  // );
 };
 
 export default SwithtTheme;
