@@ -88,7 +88,7 @@ const DashboardLayout = async ({
               />
             </div>
             <div className="flexflex-col border-r">
-              <header className="flex border-b h-14 items-center  border-accent px-4 lg:h-[61px] lg:px-6">
+              <header className="flex border-b h-14 items-center  border-accent__ px-4 lg:h-[61px] lg:px-6">
                 <div className="absolute z-50">
                   <Link href={'#'} onClick={handleToggle}>
                     <ChevronLeft
@@ -101,7 +101,7 @@ const DashboardLayout = async ({
                 </div>
                 <DahshHeader isMinimized={isMinimized} />
               </header>
-              <ScrollArea className="h-full border-l border-accent">
+              <ScrollArea className="h-full border-l border-accent__">
                 <main className="flex-1_space-y-4 p-4 md:p-6">{children}</main>
               </ScrollArea>
             </div>

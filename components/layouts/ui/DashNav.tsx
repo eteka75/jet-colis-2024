@@ -49,7 +49,7 @@ const DashNav = ({
   return (
     <>
       <div className="flex h-full max-h-screen _bg-[#f1f5f9] overflow-auto flex-col gap-2">
-        <div className="flex border-b h-14 items-center  border-accent px-4 lg:h-[61px] lg:px-6 ">
+        <div className="flex border-b h-14 items-center  border-accent__ px-4 lg:h-[61px] lg:px-6 ">
           <div>
             <Link
               href="/"
@@ -230,8 +230,8 @@ const DashNav = ({
                                 'cursor-not-allowed opacity-80'
                               }`}
                             >
-                              <subItem.icon className="ml-1 size-3" />
-                              <span className="mr-2 truncate">
+                              {/* <subItem.icon className="ml-1 size-3" /> */}
+                              <span className="mx-2 truncate">
                                 {subItem.label}
                               </span>
                             </Link>

@@ -15,7 +15,7 @@ const DahshHeader = ({ isMinimized }: { isMinimized: boolean }) => {
             <Input
               type="search"
               placeholder="Rechercher..."
-              className="w-full border-accent border appearance-none h-9 bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
+              className="w-full border-accent__ border appearance-none h-9 bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
             />
           </div>
         </form>

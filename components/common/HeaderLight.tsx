@@ -15,8 +15,8 @@ interface HeaderProps {
 
 const HeaderLight: React.FC<HeaderProps> = ({ left, center, right }) => {
   return (
-    <div className="shadow-sm border-b border-accent">
-      <div className=" p-4  mb-8 container">
+    <div className="shadow-sm border-b px-4 py-3 border-accent  mb-8">
+      <div className="   container">
         <div className="md:px-4  mx-auto">
           <div className="flex justify-between items-center">
             <div className="md:min-w-64">
