@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import image from '@/public/assets/images/sendcolis_v1.jpg';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const HomePage = () => {
   return (
@@ -12,18 +13,18 @@ const HomePage = () => {
       <header className="w-full flex justify-between items-center py-4 px-8 bg-white shadow">
         <h2 className="h5">KIRA</h2>
         <nav className="flex space-x-4">
-          <a href="#features" className="text-gray-700">
+          <Link href="#features" className="text-gray-700">
             Features
-          </a>
-          <a href="#pricing" className="text-gray-700">
+          </Link>
+          <Link href="#pricing" className="text-gray-700">
             Pricing
-          </a>
-          <a href="#release" className="text-gray-700">
+          </Link>
+          <Link href="#release" className="text-gray-700">
             Release
-          </a>
-          <a href="#about-us" className="text-gray-700">
+          </Link>
+          <Link href="#about-us" className="text-gray-700">
             About us
-          </a>
+          </Link>
           <Button onClick={() => '/try-now'} variant="outline">
             Try now
           </Button>

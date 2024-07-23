@@ -102,7 +102,7 @@ const Header = ({ type }: { type?: string }) => {
                 </Button>
               </Link>
             </div>
-            <UserDropdownMenu user={user} />
+            <UserDropdownMenu  />
           </div>
         </div>
       </div>

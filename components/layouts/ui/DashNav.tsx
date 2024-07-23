@@ -25,8 +25,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { Icons } from '@/components/layout/ui/icons';
-import { usePathname } from 'next/navigation';
 
 const DashNav = ({
   page = 'home',
@@ -39,7 +37,6 @@ const DashNav = ({
 }) => {
   const { isMinimized, toggle } = useSidebar();
   const [status, setStatus] = useState(false);
-  //   const path = usePathname();
 
   if (!adminMenu?.length) {
     return null;

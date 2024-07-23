@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CalendarIcon } from '@radix-ui/react-icons';
-import { format, isValid } from 'date-fns';
+import { format, isValid, parse } from 'date-fns';
 import { cn } from '@/src/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
@@ -11,34 +11,36 @@ import {
 } from '@/components/ui/popover';
 
 interface CalendarInput2Props {
-  value: Date | null;
-  onChange: (date: Date | null) => void;
-  onBlur: () => void;
-  name: string;
+  value?: Date | null;
+  onChange?: (date: Date | null) => void;
+  onBlur?: () => void;
+  name?: string;
+  dateFormat?: string; // Ajout du prop dateFormat
 }
 
 const CalendarInput2: React.FC<CalendarInput2Props> = ({
   value,
-  onChange,
-  onBlur,
+  onChange = () => {},
+  onBlur = () => {},
   name,
+  dateFormat = 'dd/MM/yyyy', // Ajout du prop dateFormat
 }) => {
   const [inputValue, setInputValue] = React.useState(() =>
-    value ? format(value, 'dd/MM/yyyy') : ''
+    value ? format(value, dateFormat) : ''
   );
 
   React.useEffect(() => {
     if (value) {
-      const formattedDate = format(value, 'dd/MM/yyyy');
+      const formattedDate = format(value, dateFormat);
       setInputValue(formattedDate);
     } else {
       setInputValue('');
     }
-  }, [value]);
+  }, [value, dateFormat]);
 
   const handleDateChange = (date: Date | null) => {
     if (date) {
-      const formattedDate = format(date, 'dd/MM/yyyy');
+      const formattedDate = format(date, dateFormat);
       setInputValue(formattedDate);
       onChange(date);
     } else {
@@ -65,7 +67,7 @@ const CalendarInput2: React.FC<CalendarInput2Props> = ({
         <Calendar
           mode="single"
           className="w-full"
-          selected={value}
+          selected={value ?? undefined}
           onSelect={(date) => {
             handleDateChange(date ?? null);
             onBlur(); // appeler onBlur après la sélection de la date
@@ -81,10 +83,12 @@ const CalendarInput2: React.FC<CalendarInput2Props> = ({
           const newValue = e.target.value;
           setInputValue(newValue);
           const parsedDate = newValue
-            ? parse(newValue, 'dd/MM/yyyy', new Date())
+            ? parse(newValue, dateFormat, new Date())
             : null;
-          if (isValid(parsedDate)) {
+          if (parsedDate && isValid(parsedDate)) {
             onChange(parsedDate);
+          } else {
+            onChange(null);
           }
         }}
         onBlur={onBlur}

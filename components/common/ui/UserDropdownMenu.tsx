@@ -35,7 +35,6 @@ const UserDropdownMenu = () => {
   };
   const [open, setOpen] = useState(false);
   const closeDialog = () => setOpen(false);
-  console.log('USEREEEEEEEE', session);
   return (
     <div className="flex">
       <Button

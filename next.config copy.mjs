@@ -2,7 +2,12 @@
 import path from 'path';
 import createNextIntlPlugin from 'next-intl/plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import bundleAnalyzer from '@next/bundle-analyzer';
+
 const withNextIntl = createNextIntlPlugin();
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
 
 const nextConfig = {
   images: {
@@ -33,11 +38,28 @@ const nextConfig = {
     }
 
     // Ajouter la configuration d'alias de chemin
-    // config.resolve.alias['@'] = path.resolve(process.cwd(), 'local/src');
     config.resolve.alias['@'] = path.resolve(process.cwd(), 'components');
+
+    // Ajouter la mise en cache de Webpack
+    config.cache = {
+      type: 'filesystem',
+    };
+
+    // Optimisation de splitChunks
+    if (!dev && !isServer) {
+      config.optimization.splitChunks.cacheGroups = {
+        framework: {
+          chunks: 'all',
+          name: 'framework',
+          test: /[\\/]node_modules[\\/](react|react-dom|next)[\\/]/,
+        },
+      };
+    }
 
     return config;
   },
+  swcMinify: true, // Activer la minification SWC
+
   async headers() {
     return [
       {
@@ -53,4 +75,4 @@ const nextConfig = {
   },
 };
 
-export default withNextIntl(nextConfig);
+export default withNextIntl(withBundleAnalyzer(nextConfig));

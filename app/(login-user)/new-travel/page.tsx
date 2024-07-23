@@ -1,12 +1,9 @@
-import { auth } from '@/auth';
 import SlimLayout from '@/components/layouts/SlimLayout';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
@@ -19,35 +16,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
 import { Textarea } from '@/components/ui/textarea';
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
-import { authMiddleware } from '@/src/lib/actions';
-import { ChevronLeft, PlusCircle, Upload } from 'lucide-react';
-import { redirect } from 'next/navigation';
+import { Upload } from 'lucide-react';
 import React from 'react';
 import NavBreadcrumb from './ui/NavBreadcrumb';
 import Link from 'next/link';
-import UpdateProfileForm from '@/components/forms/FormeEditProfile';
 import Step1 from '@/components/forms/AddTrajet/Step1';
-import {
-  PageHeader,
-  PageHeaderDescription,
-  PageHeaderHeading,
-} from '@/components/common/ui/top-page-header';
-import {
-  LineCover,
-  LineDescription,
-  LineHeader,
-} from '@/components/common/ui/pages-title';
-import Notifier from './ui/Notifier';
 
 const Page = async () => {
   // const user = authMiddleware();
