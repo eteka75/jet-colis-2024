@@ -191,7 +191,7 @@ const StepOne: React.FC<StepProps> = ({ register, errors, methods }) => {
         </div>
         <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
           <div>
-            <Label>Lieu d'arrivée*</Label>
+            <Label>Lieu d'arrivée *</Label>
             <Input {...register('arrivalPlace')} />
             {errors.arrivalPlace && (
               <p className="text-red-500 text-xs">

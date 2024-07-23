@@ -6,6 +6,7 @@ import {
   LineChart,
   MessageSquare,
   PackagePlus,
+  Plus,
   Route,
   Settings2,
   User2,
@@ -20,14 +21,17 @@ type LucideIcon = ComponentType<SVGProps<SVGSVGElement>>;
 type MenuIconType = LucideIcon | ReactIconsType;
 
 // Interface MenuItem
+// Interface MenuItem
 export interface MenuItem {
   label: string;
   icon: MenuIconType; // Utiliser le type personnalisé
-  href: string;
+  href?: string;
   name?: string;
   disabled?: boolean;
+  subMenu?: MenuItem[]; // Ajouter des sous-menus
 }
 
+// Liste des éléments de menu
 // Liste des éléments de menu
 export const adminMenu: MenuItem[] = [
   {
@@ -39,8 +43,21 @@ export const adminMenu: MenuItem[] = [
   {
     label: 'Trajets',
     icon: Route,
-    href: '/dashboard/trajets',
     name: 'trajets',
+    subMenu: [
+      {
+        label: 'Tous les trajets',
+        icon: Route,
+        href: '/dashboard/trajets',
+        name: 'all_trajets',
+      },
+      {
+        label: 'Ajouter un trajet',
+        icon: Plus,
+        href: '/dashboard/trajets/add',
+        name: 'add_trajet',
+      },
+    ],
   },
   {
     label: 'Commandes',

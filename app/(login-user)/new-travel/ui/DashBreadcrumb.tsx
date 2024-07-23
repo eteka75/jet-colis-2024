@@ -9,15 +9,22 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
+import { Gauge } from 'lucide-react';
 
 interface NavBreadcrumbProps {
   items: { text?: string; href?: string }[];
 }
 
-const NavBreadcrumb: React.FC<NavBreadcrumbProps> = ({ items }) => {
+const DashBreadcrumb: React.FC<NavBreadcrumbProps> = ({ items }) => {
   return (
-    <Breadcrumb className="my-2">
+    <Breadcrumb>
       <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/dashboard">
+            <Gauge size={16} />
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
         {items?.length > 0 &&
           items.map((item, index) => (
             <React.Fragment key={index}>
@@ -40,4 +47,4 @@ const NavBreadcrumb: React.FC<NavBreadcrumbProps> = ({ items }) => {
   );
 };
 
-export default NavBreadcrumb;
+export default DashBreadcrumb;

@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { adminMenu } from '@/src/lib/admin-user-menu';
-import { ChevronLeft, Plus } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Plus } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSidebar } from '@/hooks/useSidebar';
@@ -37,14 +37,18 @@ const DashNav = ({
 }) => {
   const { isMinimized, toggle } = useSidebar();
   const [status, setStatus] = useState(false);
+  const [openMenu, setOpenMenu] = useState<string | null>(null); // État pour suivre le menu ouvert
 
   if (!adminMenu?.length) {
     return null;
   }
 
+  const handleMenuClick = (menuName: string) => {
+    setOpenMenu(openMenu === menuName ? null : menuName);
+  };
   return (
     <>
-      <div className="flex    h-full max-h-screen _bg-[#f1f5f9] overflow-auto flex-col gap-2">
+      <div className="flex h-full max-h-screen _bg-[#f1f5f9] overflow-auto flex-col gap-2">
         <div className="flex border-b h-14 items-center  border-accent px-4 lg:h-[61px] lg:px-6 ">
           <div>
             <Link
@@ -82,7 +86,7 @@ const DashNav = ({
               className
             )}
           >
-            <Link
+            {/* <Link
               href={'/admin/add-new'}
               className="mt-4"
               // className="text-start mb-2 border font-medium p-2 px-4 flex gap-1 rounded-md items-center "
@@ -97,46 +101,147 @@ const DashNav = ({
                   <Plus className="w-4 h-4" />
                 </Button>
               )}
-            </Link>
+            </Link> */}
 
             <TooltipProvider>
-              {adminMenu.map((item, index) => {
-                // const Icon = Icons[item.icon || 'arrowRight'];
-                return (
-                  item.href && (
-                    <Tooltip key={index}>
-                      <TooltipTrigger asChild>
-                        <Link
-                          href={item.href}
-                          className={cn(
-                            'flex items-center gap-2 overflow-hidden rounded-md py-2 text-sm text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground',
+              {adminMenu.map((item, index) => (
+                <div key={index}>
+                  <Tooltip>
+                    <TooltipTrigger asChild className="justify-between">
+                      {item.subMenu ? (
+                        <div
+                          className={`flex h-8  mb-1 items-center  gap-2 overflow-hidden rounded-md py-2 text-sm text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground cursor-pointer ${
                             page === item.name
                               ? 'bg-primary/10 font-medium text-primary hover:text-primary hover:bg-primary/20'
-                              : 'transparent',
-                            item.disabled && 'cursor-not-allowed opacity-80'
-                          )}
+                              : 'transparent'
+                          } 
+                          ${isMinimized && 'w-14'}
+                          ${item.disabled && 'cursor-not-allowed opacity-80'}
+                          `}
+                          onClick={() =>
+                            item.subMenu ? handleMenuClick(item.name!) : null
+                          } // Gérer le clic pour ouvrir/fermer le sous-menu
                         >
-                          <item.icon className={`ml-3 size-5`} />
-
-                          {isMobileNav || (!isMinimized && !isMobileNav) ? (
-                            <span className="mr-2 truncate">{item.label}</span>
-                          ) : (
-                            ''
+                          <span className="flex gap-2  items-center font-medium">
+                            {' '}
+                            <item.icon className="ml-3 size-3.5" />
+                            {isMobileNav || (!isMinimized && !isMobileNav) ? (
+                              <span className="mr-2 truncate">
+                                {item.label}
+                              </span>
+                            ) : (
+                              ''
+                            )}
+                          </span>
+                          {item.subMenu && (
+                            <ChevronRight
+                              className={`transition-transform me-2 ${
+                                openMenu === item.name ? 'rotate-90' : ''
+                              }`}
+                            />
                           )}
+                        </div>
+                      ) : (
+                        <Link
+                          href={item.href ?? '#'}
+                          className={`flex items-center  gap-2 overflow-hidden rounded-md py-2 text-sm text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground cursor-pointer ${
+                            page === item.name
+                              ? 'bg-primary/10 font-medium text-primary hover:text-primary hover:bg-primary/20'
+                              : 'transparent'
+                          } ${
+                            item.disabled && 'cursor-not-allowed opacity-80'
+                          }`}
+                          // Gérer le clic pour ouvrir/fermer le sous-menu
+                        >
+                          <span className="flex gap-2 items-center font-medium">
+                            {' '}
+                            <item.icon className="ml-3 size-3.5" />
+                            {isMobileNav || (!isMinimized && !isMobileNav) ? (
+                              <span className="mr-2 truncate">
+                                {item.label}
+                              </span>
+                            ) : (
+                              ''
+                            )}
+                          </span>
                         </Link>
-                      </TooltipTrigger>
-                      <TooltipContent
-                        align="center"
-                        side="right"
-                        sideOffset={8}
-                        className={!isMinimized ? 'hidden' : 'inline-block'}
+                      )}
+                    </TooltipTrigger>
+                    <TooltipContent
+                      align="center"
+                      side="right"
+                      sideOffset={8}
+                      className={!isMinimized ? 'hidden' : 'inline-block'}
+                    >
+                      {item.label}
+                    </TooltipContent>
+                  </Tooltip>
+                  {item.subMenu && openMenu === item.name && (
+                    <div className={cn(isMinimized ? 'pl-2' : 'pl-4')}>
+                      <div
+                        className={cn(
+                          isMinimized
+                            ? 'pl-2  flex flex-col gap-1'
+                            : 'border-l  pl-2'
+                        )}
                       >
-                        {item.label}
-                      </TooltipContent>
-                    </Tooltip>
-                  )
-                );
-              })}
+                        {item.subMenu.map((subItem, subIndex) =>
+                          isMinimized ? (
+                            <Tooltip>
+                              <TooltipTrigger>
+                                <Link
+                                  key={subIndex}
+                                  href={subItem.href}
+                                  className={`flex bg-accent h-6 w-6 items-center gap-2 overflow-hidden rounded-md py-1 text-xs text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground ${
+                                    page === subItem.name
+                                      ? 'bg-primary/10 font-medium text-primary hover:text-primary hover:bg-primary/20'
+                                      : 'transparent'
+                                  }
+                           
+                            ${
+                              subItem.disabled &&
+                              'cursor-not-allowed opacity-80'
+                            }`}
+                                >
+                                  <subItem.icon className="mx-auto size-4" />
+                                </Link>
+                              </TooltipTrigger>
+                              <TooltipContent
+                                align="center"
+                                side="right"
+                                sideOffset={8}
+                                className={
+                                  !isMinimized ? 'hidden' : 'inline-block'
+                                }
+                              >
+                                {subItem.label}
+                              </TooltipContent>
+                            </Tooltip>
+                          ) : (
+                            <Link
+                              key={subIndex}
+                              href={subItem.href}
+                              className={`flex items-center gap-2 overflow-hidden rounded-md py-1 text-xs text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground ${
+                                page === subItem.name
+                                  ? 'bg-primary/10 font-medium text-primary hover:text-primary hover:bg-primary/20'
+                                  : 'transparent'
+                              } ${
+                                subItem.disabled &&
+                                'cursor-not-allowed opacity-80'
+                              }`}
+                            >
+                              <subItem.icon className="ml-1 size-3" />
+                              <span className="mr-2 truncate">
+                                {subItem.label}
+                              </span>
+                            </Link>
+                          )
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
             </TooltipProvider>
             {/* {adminMenu.map((item) => (
               <Link

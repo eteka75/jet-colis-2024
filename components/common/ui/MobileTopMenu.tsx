@@ -3,42 +3,22 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { CgMenuLeft } from 'react-icons/cg';
 import {
-  Bell,
-  ChevronRight,
-  Heart,
-  HelpCircle,
-  Info,
-  Lock,
-  LogOut,
-  MessageCircle,
-  Plus,
-  Search,
-  SearchIcon,
-  Settings,
-  Shield,
-  UserCheck,
-  UserIcon,
-  UserPlus,
-} from 'lucide-react';
-import {
   Sheet,
   SheetContent,
   SheetFooter,
   SheetHeader,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import { Separator } from '@/components/ui/separator';
-import { PiPackageDuotone } from 'react-icons/pi';
-import { CiHeart } from 'react-icons/ci';
-import SwithtTheme from '../Header/SwithtTheme';
+import { Label } from '@/components/ui/label';
 
 import logoLight from '@/public/assets/images/logo-v0.png';
 import logoDark from '@/public/assets/images/logo-v1.png';
-import { Label } from '@/components/ui/label';
+
+import menuItems from '@/src/lib/UserMeniItems';
 
 const MobileTopMenu: React.FC = () => {
   const linkStyles =
-    'flex items-center hover:text-primary gap-2 text-neutral-500 dark:text-white/80 py-2 rounded-md dark:hover:text-primary hover:no-underline';
+    'flex text-lg md:text-md items-center hover:text-primary gap-2 text-neutral-500 dark:text-white/80 py-2 rounded-md dark:hover:text-primary hover:no-underline';
 
   return (
     <div>
@@ -55,7 +35,7 @@ const MobileTopMenu: React.FC = () => {
           className="w-[300px] h-full overflow-auto p-0 sm:w-[440px] max-w-full"
         >
           <SheetHeader>
-            <div className=" border-b p-4">
+            <div className="border-b p-4">
               <Image
                 src={logoLight}
                 alt="Colistify"
@@ -75,107 +55,74 @@ const MobileTopMenu: React.FC = () => {
                 <li>
                   <div className="flex font-bold gap-4 text-foreground items-center justify-between">
                     <Label id="theme" htmlFor="btntheme">
-                      Changer de thème
+                      {menuItems.themeSwitcher.label}
                     </Label>
                     <div className="text-end">
-                      <SwithtTheme />
+                      {/* Assuming SwithtTheme is imported as a component */}
+                      <menuItems.themeSwitcher.component />
                     </div>
                   </div>
                 </li>
               </ul>
               <ul className="space-y-1 text-sm border-b px-4 py-2">
-                <li>
-                  <Link href="/new-travel" className={linkStyles}>
-                    <Plus className="w-5 h-5" /> Plublier une offre
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/search" className={linkStyles}>
-                    <Search className="w-5 h-5" /> Rechercher
-                  </Link>
-                </li>
+                {menuItems.mainLinks.map((item, index) => (
+                  <li key={index}>
+                    <Link href={item.href} className={linkStyles}>
+                      <item.icon className="w-5 h-5" /> {item.text}
+                    </Link>
+                  </li>
+                ))}
               </ul>
 
               <ul className="space-y-1 text-sm border-b px-4 py-2">
-                <li>
-                  <Link href="/user/messages" className={linkStyles}>
-                    <MessageCircle className="w-5 h-5" /> Messages
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/user/favoris" className={linkStyles}>
-                    <Heart className="w-5 h-5" /> Favoris
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/search/saved" className={linkStyles}>
-                    <SearchIcon className="w-5 h-5" /> Recherches sauvegardées
-                  </Link>
-                </li>
+                {menuItems.userLinks.map((item, index) => (
+                  <li key={index}>
+                    <Link href={item.href} className={linkStyles}>
+                      <item.icon className="w-5 h-5" /> {item.text}
+                    </Link>
+                  </li>
+                ))}
               </ul>
               <aside>
                 <ul className="space-y-1 text-sm border-b px-4 py-2">
-                  <li>
-                    <Link href="/help" className={linkStyles}>
-                      <HelpCircle className="w-5 h-5" /> Aide
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="/faq" className={linkStyles}>
-                      <Info className="w-5 h-5" /> FAQ
-                    </Link>
-                  </li>
+                  {menuItems.helpLinks.map((item, index) => (
+                    <li key={index}>
+                      <Link href={item.href} className={linkStyles}>
+                        <item.icon className="w-5 h-5" /> {item.text}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </aside>
               <ul className="space-y-1 text-sm border-b px-4 py-2">
-                <li>
-                  <Link href="/signin" className={linkStyles}>
-                    <UserCheck className="w-5 h-5" /> Se connecter
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/signup" className={linkStyles}>
-                    <UserPlus className="w-5 h-5" /> Créer un compte
-                  </Link>
-                </li>
+                {menuItems.authLinks.map((item, index) => (
+                  <li key={index}>
+                    <Link href={item.href} className={linkStyles}>
+                      <item.icon className="w-5 h-5" /> {item.text}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </aside>
           </div>
 
-          <SheetFooter className="absolute_bottom-0 bg-background  w-full">
+          <SheetFooter className="absolute_bottom-0 bg-background w-full">
             <div>
               <aside>
                 <ul className="space-y-1 text-sm border-b px-4">
-                  <li>
-                    <Link
-                      href="#"
-                      className={linkStyles + ' text-red-500 font-bold'}
-                    >
-                      <LogOut className="w-5 h-5" /> Déconnexion
-                    </Link>
-                  </li>
-                </ul>
-              </aside>
-              <aside>
-                <ul className="space-y-1 text-sm border-b px-4">
-                  <li>
-                    <Link
-                      href="/best-practices"
-                      className={linkStyles + ' flex gap-2 justify-between'}
-                    >
-                      <span>Bonnes pratiques</span>
-                      <ChevronRight className="w-5 h-5" />
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/best-practices"
-                      className={linkStyles + ' flex gap-2 justify-between'}
-                    >
-                      <span>Avantages</span>
-                      <ChevronRight className="w-5 h-5" />
-                    </Link>
-                  </li>
+                  {menuItems.footerLinks.map((item, index) => (
+                    <li key={index}>
+                      <Link
+                        href={item.href}
+                        className={
+                          linkStyles +
+                          (item.className ? ` ${item.className}` : '')
+                        }
+                      >
+                        <item.icon className="w-5 h-5" /> {item.text}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </aside>
             </div>

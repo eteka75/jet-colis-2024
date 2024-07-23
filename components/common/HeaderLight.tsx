@@ -15,43 +15,45 @@ interface HeaderProps {
 
 const HeaderLight: React.FC<HeaderProps> = ({ left, center, right }) => {
   return (
-    <div className=" p-4  mb-8 container">
-      <div className="md:px-4  mx-auto">
-        <div className="flex justify-between items-center">
-          <div className="md:min-w-64">
-            {left || (
-              <Link href={'/'}>
-                <FaArrowLeft className="h-4 w-4 hover:text-primary" />
-              </Link>
-            )}
-          </div>
-          <div className="flex-grow text-center">
-            {center || (
-              <Link href={'/'}>
-                <>
-                  <Image
-                    src={logoLight}
-                    alt="Colistify"
-                    className="h-6 xl:h-8 w-auto mx-auto dark:hidden"
-                  />
-                  <Image
-                    src={logoDark}
-                    alt="Colistify"
-                    className="h-6 lg:h-8 xl:h-9 w-auto mx-auto hidden dark:flex"
-                  />
-                </>
-              </Link>
-            )}
-          </div>
-          <div className="text-sm  md:min-w-64 flex justify-end text-end hover:text-primary">
-            {right || (
-              <Link href={'signup'}>
-                <span className="flex lg:hidden">
-                  <UserPlus className="h-6 w-6" />
-                </span>
-                <span className="hidden lg:flex">Inscription</span>
-              </Link>
-            )}
+    <div className="shadow-sm border-b border-accent">
+      <div className=" p-4  mb-8 container">
+        <div className="md:px-4  mx-auto">
+          <div className="flex justify-between items-center">
+            <div className="md:min-w-64">
+              {left || (
+                <Link href={'/'}>
+                  <FaArrowLeft className="h-4 w-4 hover:text-primary" />
+                </Link>
+              )}
+            </div>
+            <div className="flex-grow text-center">
+              {center || (
+                <Link href={'/'}>
+                  <>
+                    <Image
+                      src={logoLight}
+                      alt="Colistify"
+                      className="h-6 xl:h-8 w-auto mx-auto dark:hidden"
+                    />
+                    <Image
+                      src={logoDark}
+                      alt="Colistify"
+                      className="h-6 lg:h-8 xl:h-9 w-auto mx-auto hidden dark:flex"
+                    />
+                  </>
+                </Link>
+              )}
+            </div>
+            <div className="text-sm  md:min-w-64 flex justify-end text-end hover:text-primary">
+              {right || (
+                <Link href={'signup'}>
+                  <span className="flex lg:hidden">
+                    <UserPlus className="h-6 w-6" />
+                  </span>
+                  <span className="hidden lg:flex">Inscription</span>
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </div>

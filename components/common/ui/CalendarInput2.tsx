@@ -55,7 +55,7 @@ const CalendarInput2: React.FC<CalendarInput2Props> = ({
         <Button
           variant={'outline'}
           className={cn(
-            'w-full justify-start input text-left font-normal',
+            'w-full justify-start  text-left font-normal',
             !inputValue && 'text-muted-foreground'
           )}
         >

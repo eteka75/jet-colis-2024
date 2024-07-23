@@ -62,8 +62,12 @@ const RootLayout: React.FC<Props> = async ({ children, params }) => {
           interVar.className
         )}
       >
-        <NextTopLoader showSpinner={false} />
-
+        {/* <NextTopLoader showSpinner={false} /> */}
+        <NextTopLoader
+          color="#29D" // Changez cette couleur selon vos préférences
+          height={4} // Vous pouvez également ajuster la hauteur de la barre de chargement
+          showSpinner={false} // Pour masquer le spinner
+        />
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <SessionProvider>
             <NextIntlClientProvider messages={messages}>

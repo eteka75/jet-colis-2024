@@ -33,8 +33,8 @@ const Page = async () => {
   return (
     <SlimLayout>
       <div className=" lg:h-min pb-8">
-        <NavBreadcrumb items={lists} />
         <div className="container">
+          <NavBreadcrumb items={lists} />
           <div className="lg:w-9/12 max-w-screen-md">
             <Card>
               <CardContent className="p-4 lg:p-6">

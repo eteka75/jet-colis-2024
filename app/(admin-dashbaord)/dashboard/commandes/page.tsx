@@ -1,10 +1,17 @@
+import DashBreadcrumb from '@/app/(login-user)/new-travel/ui/DashBreadcrumb';
 import DashboardLayout from '@/components/layouts/DashboardLayout';
 import { Button } from '@/components/ui/button';
 import React from 'react';
-
+const lists = [
+  { text: 'Commandes', href: '/commandes' },
+  { text: 'Liste des trajets' },
+];
 const Page = () => {
   return (
     <DashboardLayout page="commandes">
+      <div className="pb-2">
+        <DashBreadcrumb items={lists} />
+      </div>
       <div>
         <div className="md:flex md:justify-between items-center md:pe-4">
           <div className="flex items-center">

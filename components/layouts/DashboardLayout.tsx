@@ -38,6 +38,7 @@ import AdminDashbordMobile from './ui/AdminDashbordMobile';
 import DashNav from './ui/DashNav';
 import DahshHeader from './ui/DahshHeader';
 import { ScrollArea } from '../ui/scroll-area';
+import NavBreadcrumb from '@/app/(login-user)/new-travel/ui/NavBreadcrumb';
 
 type SidebarProps = {
   className?: string;
@@ -85,27 +86,23 @@ const DashboardLayout = async ({
                 // isMinimized={isMinimized}
                 // isMobileNav={status}
               />
-
-              <Link href={'#'} onClick={handleToggle}>
-                <ChevronLeft
-                  className={cn(
-                    'absolute -right-3 h-5 duration-500 w-5 top-16 cursor-pointer rounded-md border bg-background text-3xl text-foreground',
-                    isMinimized && 'rotate-180'
-                  )}
-                />
-              </Link>
             </div>
-            <div className="flex flex-col border-r border-b">
-              <header
-                className="flex lg:h-[64px] lg:px-6  items-center gap-4 border-b border-accent px-4 
-                supports-backdrop-blur:bg-background/60  left-0 right-0 top-0 z-20  bg-background/95 backdrop-blur
-                "
-              >
+            <div className="flexflex-col border-r">
+              <header className="flex border-b h-14 items-center  border-accent px-4 lg:h-[61px] lg:px-6">
+                <div className="absolute z-50">
+                  <Link href={'#'} onClick={handleToggle}>
+                    <ChevronLeft
+                      className={cn(
+                        'absolute -left-14 h-5 duration-500 w-5 -top-3 cursor-pointer rounded-md border bg-background text-3xl text-foreground',
+                        isMinimized && 'rotate-180'
+                      )}
+                    />
+                  </Link>
+                </div>
                 <DahshHeader isMinimized={isMinimized} />
               </header>
-
               <ScrollArea className="h-full border-l border-accent">
-                <main className="flex-1 space-y-4 p-4 md:p-6">{children}</main>
+                <main className="flex-1_space-y-4 p-4 md:p-6">{children}</main>
               </ScrollArea>
             </div>
           </div>
