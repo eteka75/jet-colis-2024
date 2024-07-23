@@ -191,7 +191,7 @@ const DashNav = ({
                               <TooltipTrigger>
                                 <Link
                                   key={subIndex}
-                                  href={subItem.href}
+                                  href={subItem.href ?? '#'}
                                   className={`flex bg-accent h-6 w-6 items-center gap-2 overflow-hidden rounded-md py-1 text-xs text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground ${
                                     page === subItem.name
                                       ? 'bg-primary/10 font-medium text-primary hover:text-primary hover:bg-primary/20'
@@ -220,7 +220,7 @@ const DashNav = ({
                           ) : (
                             <Link
                               key={subIndex}
-                              href={subItem.href}
+                              href={subItem.href ?? '#'}
                               className={`flex items-center gap-2 overflow-hidden rounded-md py-1 text-xs text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground ${
                                 page === subItem.name
                                   ? 'bg-primary/10 font-medium text-primary hover:text-primary hover:bg-primary/20'
@@ -243,19 +243,6 @@ const DashNav = ({
                 </div>
               ))}
             </TooltipProvider>
-            {/* {adminMenu.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className={clsx(
-                  'flex items-center hover:bg-accent gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary',
-                  page === item.name ? 'font-medium text-primary bg-accent' : ''
-                )}
-              >
-                <item.icon className="h-4 w-4" />
-                <span>{item.label}</span>
-              </Link>
-            ))} */}
           </nav>
         </div>
         {isMobileNav || (!isMinimized && !isMobileNav) ? (
