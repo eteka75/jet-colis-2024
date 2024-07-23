@@ -3,19 +3,12 @@ import React from 'react';
 
 import {
   Breadcrumb,
-  BreadcrumbEllipsis,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 
 interface NavBreadcrumbProps {
   items: { text?: string; href?: string }[];
@@ -32,11 +25,11 @@ const NavBreadcrumb: React.FC<NavBreadcrumbProps> = ({ items }) => {
                 <React.Fragment key={index}>
                   <BreadcrumbItem>
                     {item.href ? (
-                      <BreadcrumbLink href={item.href}>
+                      <BreadcrumbLink className="text-xs" href={item.href}>
                         {item.text}
                       </BreadcrumbLink>
                     ) : (
-                      <BreadcrumbPage className="opacity-70">
+                      <BreadcrumbPage className="opacity-70 text-xs">
                         {item.text}
                       </BreadcrumbPage>
                     )}

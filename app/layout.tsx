@@ -16,6 +16,8 @@ import PageLoading from '@/components/common/ui/PageLoading';
 import { notFound } from 'next/navigation';
 import { NotificationProvider } from '@/src/context/NotificationContext';
 import Notification from '@/components/common/clients/Notification';
+import { SessionProvider } from 'next-auth/react';
+import NextTopLoader from 'nextjs-toploader';
 
 const figtree = Figtree({
   subsets: ['latin'],
@@ -38,6 +40,7 @@ type Props = {
 const RootLayout: React.FC<Props> = async ({ children, params }) => {
   // const session = await auth();
   const locale = await getLocale();
+
   const messages = await getMessages();
 
   if (params.locale != locale) {
@@ -59,15 +62,17 @@ const RootLayout: React.FC<Props> = async ({ children, params }) => {
           interVar.className
         )}
       >
+        <NextTopLoader showSpinner={false} />
+
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {/* <SessionProvider session={session}> */}
-          <NextIntlClientProvider messages={messages}>
-            <React.Suspense fallback={<PageLoading />}>
-              <main>{children}</main>
-              <Toaster />
-            </React.Suspense>
-          </NextIntlClientProvider>
-          {/* </SessionProvider> */}
+          <SessionProvider>
+            <NextIntlClientProvider messages={messages}>
+              <React.Suspense fallback={<PageLoading />}>
+                <main>{children}</main>
+                <Toaster />
+              </React.Suspense>
+            </NextIntlClientProvider>
+          </SessionProvider>
         </ThemeProvider>
       </body>
     </html>

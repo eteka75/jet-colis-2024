@@ -27,6 +27,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import TopSteps from './TopSteps';
+import clsx from 'clsx';
 
 // Définir le type spécifique du formulaire
 interface FormData {
@@ -305,10 +306,13 @@ const StepTwo: React.FC<StepProps> = ({
       </div>
       <div>
         <Label>Poids total (kg) *</Label>
-        <Input
-          type="number"
-          {...register('totalKilograms', { valueAsNumber: true })}
-        />
+        <div>
+          <Input
+            className="md:w-1/2"
+            type="number"
+            {...register('totalKilograms', { valueAsNumber: true })}
+          />
+        </div>
         {errors.totalKilograms && (
           <p className="text-red-500 text-xs">
             {errors.totalKilograms.message as string}
@@ -357,8 +361,20 @@ const StepTwo: React.FC<StepProps> = ({
             )}
           </div>
         ))}
-        <p className="text-sm">Poids total des colis : {sumOfPackages} kg</p>
-        <p className="text-sm">Poids restant : {remainingKilograms} kg</p>
+        <div className="flex  gap-4">
+          <p
+            className={clsx(
+              'text-sm',
+              remainingKilograms < 0 ? 'text-red-500' : ''
+            )}
+          >
+            Poids total des colis : {sumOfPackages}
+            <b>/{methods.getValues()?.totalKilograms || 0}Kg</b>
+          </p>
+          {remainingKilograms > 0 && (
+            <p className="text-sm">Poids restant : {remainingKilograms} kg</p>
+          )}
+        </div>
       </div>
     </div>
   );

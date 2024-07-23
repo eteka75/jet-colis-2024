@@ -58,7 +58,7 @@ const Page = async () => {
   ];
   return (
     <SlimLayout>
-      <div className="bg-accent md:h-min pb-8">
+      <div className=" md:h-min pb-8">
         <NavBreadcrumb items={lists} />
         <div className="container">
           <div className="md:w-9/12 max-w-screen-md">

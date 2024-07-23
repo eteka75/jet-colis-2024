@@ -12,12 +12,10 @@ const HomeLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 border-b_border-accent ">
-        {/* <Suspense fallback={<div className="text-lg">Loading...</div>}> */}
         <Header />
         <div className="md:-mt-1 -mt-0.5">
           <SubNav />
         </div>
-        {/* </Suspense> */}
       </header>
       <div className="md:min-h __mt-0 mt-[90px] md:mt-[100px] ">{children}</div>
       <MiniFooter />

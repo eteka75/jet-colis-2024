@@ -1,4 +1,4 @@
-'use client';
+// 'use client';
 
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
@@ -24,8 +24,8 @@ import { DefaultSession } from 'next-auth';
 import Login from '@/app/(guest)/signin/Form/Login';
 import { GuestDropdownMenu } from './GuestDropdownMenu';
 
-const UserDropdownMenu = ({ user }: { user: User | null }) => {
-  //const { data: session, status } = useSession();
+const UserDropdownMenu = () => {
+  const { data: session, status } = useSession();
   //const [user, setUser] = useState<User | null>(null);
   const [locale, setLocale] = useState('fr');
 
@@ -35,9 +35,9 @@ const UserDropdownMenu = ({ user }: { user: User | null }) => {
   };
   const [open, setOpen] = useState(false);
   const closeDialog = () => setOpen(false);
-
+  console.log('USEREEEEEEEE', session);
   return (
-    <>
+    <div className="flex">
       <Button
         onClick={handleChangeLanguage}
         className="text-xs hidden md:flex w-9 h-9 rounded-full"
@@ -46,20 +46,13 @@ const UserDropdownMenu = ({ user }: { user: User | null }) => {
       >
         {locale === 'fr' ? 'EN' : 'FR'}
       </Button>
-      <span className="hidden sm:flex">
-        <SwithtTheme />
-      </span>
+
+      <SwithtTheme />
       <div className="flex max-w-full items-center gap-2">
-        {/* <Separator orientation="vertical" className="h-5 hidden md:flex" /> */}
-        {user ? (
-          <LoginDropdownMenu user={user} />
-        ) : (
-          <>
-            <GuestDropdownMenu />
-          </>
-        )}
+        {/* <GuestDropdownMenu /> */}
+        <LoginDropdownMenu />
       </div>
-    </>
+    </div>
   );
 };
 

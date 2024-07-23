@@ -14,6 +14,7 @@ export type User = {
   name: string;
   email: string;
   password: string;
+  profilId: string;
 };
 export interface TrajetData {
   id: number;

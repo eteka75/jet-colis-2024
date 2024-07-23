@@ -1,8 +1,8 @@
-import React from 'react';
-import TrajetCard from '@/components/common/Home/TrajetCard';
+import React, { lazy } from 'react';
 import HomeLayout from '@/components/layouts/HomeLayout';
 import { useTranslations } from 'next-intl';
 import Page from './home/page';
+const TrajetCard = lazy(() => import('@/components/common/Home/TrajetCard'));
 
 const Home = () => {
   // const t = useTranslations('Index');

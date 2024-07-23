@@ -1,7 +1,7 @@
-/** @type {import('next').NextConfig} */
 import path from 'path';
 import createNextIntlPlugin from 'next-intl/plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+
 const withNextIntl = createNextIntlPlugin();
 
 const nextConfig = {
@@ -13,16 +13,14 @@ const nextConfig = {
     ],
   },
   webpack: (config, { dev, isServer }) => {
-    // Ajouter la règle existante pour ignorer les fichiers HTML
+    // Ignorer les fichiers HTML
     config.module.rules.push({
       test: /\.html$/,
       exclude: /node_modules/,
-      use: {
-        loader: 'ignore-loader',
-      },
+      use: 'ignore-loader',
     });
 
-    // Ajouter le plugin mini-css-extract-plugin seulement si nécessaire
+    // Ajouter le plugin mini-css-extract-plugin si nécessaire
     if (!isServer) {
       config.plugins.push(
         new MiniCssExtractPlugin({
@@ -33,7 +31,6 @@ const nextConfig = {
     }
 
     // Ajouter la configuration d'alias de chemin
-    // config.resolve.alias['@'] = path.resolve(process.cwd(), 'local/src');
     config.resolve.alias['@'] = path.resolve(process.cwd(), 'components');
 
     return config;
