@@ -1,6 +1,7 @@
 import path from 'path';
 import createNextIntlPlugin from 'next-intl/plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import withPWA from 'next-pwa';
 
 const withNextIntl = createNextIntlPlugin();
 
@@ -50,4 +51,10 @@ const nextConfig = {
   },
 };
 
-export default withNextIntl(nextConfig);
+export default withNextIntl(
+  withPWA({
+    dest: 'public',
+    disable: process.env.NODE_ENV === 'development', // Désactive PWA en développement
+    // Ajouter d'autres options de configuration PWA ici si nécessaire
+  })(nextConfig)
+);

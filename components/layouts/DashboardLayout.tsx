@@ -37,6 +37,7 @@ import LoginDropdownMenu from '../common/ui/LoginDropdownMenu';
 import AdminDashbordMobile from './ui/AdminDashbordMobile';
 import DashNav from './ui/DashNav';
 import DahshHeader from './ui/DahshHeader';
+import { ScrollArea } from '../ui/scroll-area';
 
 type SidebarProps = {
   className?: string;
@@ -96,16 +97,16 @@ const DashboardLayout = async ({
             </div>
             <div className="flex flex-col border-r border-b">
               <header
-                className="flex h-14  items-center gap-4 border-b border-accent px-4 lg:h-[60px] lg:px-6
+                className="flex lg:h-[64px] lg:px-6  items-center gap-4 border-b border-accent px-4 
                 supports-backdrop-blur:bg-background/60  left-0 right-0 top-0 z-20  bg-background/95 backdrop-blur
                 "
               >
                 <DahshHeader isMinimized={isMinimized} />
               </header>
 
-              <main className="flex flex-1 flex-col border-l gap-4 p-4 lg:gap-6 lg:px-6">
-                {children}
-              </main>
+              <ScrollArea className="h-full border-l border-accent">
+                <main className="flex-1 space-y-4 p-4 md:p-6">{children}</main>
+              </ScrollArea>
             </div>
           </div>
         </div>

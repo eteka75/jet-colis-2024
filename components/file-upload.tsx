@@ -1,36 +1,37 @@
 'use client';
-import { OurFileRouter } from '@/app/api/uploadthing/core';
-import { UploadDropzone } from '@uploadthing/react';
+// import { OurFileRouter } from '@/app/api/uploadthing/core';
+// import { UploadDropzone } from '@uploadthing/react';
 import { Trash } from 'lucide-react';
 import Image from 'next/image';
-import { UploadFileResponse } from 'uploadthing/client';
-import { IMG_MAX_LIMIT } from './forms/product-form';
-import { Button } from './ui/button';
-import { useToast } from './ui/use-toast';
+// import { UploadFileResponse } from 'uploadthing/client';
+// import { IMG_MAX_LIMIT } from './forms/product-form';
+// import { Button } from './ui/button';
+// import { useToast } from './ui/use-toast';
 
-interface ImageUploadProps {
-  onChange?: any;
-  onRemove: (value: UploadFileResponse[]) => void;
-  value: UploadFileResponse[];
-}
+// interface ImageUploadProps {
+//   onChange?: any;
+//   onRemove: (value: UploadFileResponse[]) => void;
+//   value: UploadFileResponse[];
+// }
 
-export default function FileUpload({
-  onChange,
-  onRemove,
-  value
-}: ImageUploadProps) {
-  const { toast } = useToast();
-  const onDeleteFile = (key: string) => {
-    const files = value;
-    let filteredFiles = files.filter((item) => item.key !== key);
-    onRemove(filteredFiles);
-  };
-  const onUpdateFile = (newFiles: UploadFileResponse[]) => {
-    onChange([...value, ...newFiles]);
-  };
+export default function FileUpload() {
+//   {
+//   onChange,
+//   onRemove,
+//   value
+// }
+  // const { toast } = useToast();
+  // const onDeleteFile = (key: string) => {
+  //   const files = value;
+  //   let filteredFiles = files.filter((item) => item.key !== key);
+  //   onRemove(filteredFiles);
+  // };
+  // const onUpdateFile = (newFiles: UploadFileResponse[]) => {
+  //   onChange([...value, ...newFiles]);
+  // };
   return (
     <div>
-      <div className="mb-4 flex items-center gap-4">
+      {/* <div className="mb-4 flex items-center gap-4">
         {!!value.length &&
           value?.map((item) => (
             <div
@@ -95,7 +96,7 @@ export default function FileUpload({
             }}
           />
         )}
-      </div>
+      </div> */}
     </div>
   );
 }

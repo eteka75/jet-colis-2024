@@ -44,8 +44,8 @@ const DashNav = ({
 
   return (
     <>
-      <div className="flex h-full max-h-screen _bg-[#f1f5f9] overflow-auto flex-col gap-2">
-        <div className="flex border-b h-14 items-center  border-accent px-4 lg:h-[60px] lg:px-6">
+      <div className="flex    h-full max-h-screen _bg-[#f1f5f9] overflow-auto flex-col gap-2">
+        <div className="flex border-b h-14 items-center  border-accent px-4 lg:h-[61px] lg:px-6 ">
           <div>
             <Link
               href="/"
@@ -57,7 +57,7 @@ const DashNav = ({
               <Image
                 src={logoLight}
                 alt="Colistify"
-                className="h-4 lg:h-6 xl:h-7 w-auto  dark:hidden"
+                className="h-5 w-auto  dark:hidden"
               />
               <Image
                 src={logoDark}
