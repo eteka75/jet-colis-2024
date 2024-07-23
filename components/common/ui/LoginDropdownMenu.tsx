@@ -117,10 +117,12 @@ import { Avatar } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { DropdownMenuShortcut } from '@/components/ui/dropdown-menu';
 import { signOut, useSession } from 'next-auth/react';
+import { GuestDropdownMenu } from './GuestDropdownMenu';
 
 const LoginDropdownMenu = () => {
   const { data: session } = useSession();
-  if (session) {
+  console.log(session?.user, '*********** ***** ***** ***');
+  if (session && session?.user) {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -200,6 +202,8 @@ const LoginDropdownMenu = () => {
         </DropdownMenuContent>
       </DropdownMenu>
     );
+  } else {
+    return <GuestDropdownMenu />;
   }
 };
 export default LoginDropdownMenu;

@@ -48,7 +48,6 @@ const UserDropdownMenu = () => {
 
       <SwithtTheme />
       <div className="flex max-w-full items-center gap-2">
-        {/* <GuestDropdownMenu /> */}
         <LoginDropdownMenu />
       </div>
     </div>
