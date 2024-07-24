@@ -36,7 +36,7 @@ const UserDropdownMenu = () => {
   const [open, setOpen] = useState(false);
   const closeDialog = () => setOpen(false);
   return (
-    <div className="flex">
+    <div className="flex gap-2">
       <Button
         onClick={handleChangeLanguage}
         className="text-xs hidden md:flex w-9 h-9 rounded-full"

@@ -7,10 +7,19 @@ const withNextIntl = createNextIntlPlugin();
 
 const nextConfig = {
   images: {
-    domains: [
-      'images.unsplash.com',
-      'api.unsplash.com',
-      'lh3.googleusercontent.com',
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+      },
     ],
   },
   webpack: (config, { dev, isServer }) => {
@@ -54,7 +63,64 @@ const nextConfig = {
 export default withNextIntl(
   withPWA({
     dest: 'public',
-    disable: process.env.NODE_ENV === 'development', // Désactive PWA en développement
-    // Ajouter d'autres options de configuration PWA ici si nécessaire
+    disable: process.env.NODE_ENV === 'development',
+    runtimeCaching: [
+      {
+        urlPattern: /^https:\/\/fonts\.(googleapis|gstatic)\.com\/.*/i,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'google-fonts',
+          expiration: {
+            maxEntries: 4,
+            maxAgeSeconds: 365 * 24 * 60 * 60, // 1 year
+          },
+        },
+      },
+      {
+        urlPattern: /^https:\/\/use\.fontawesome\.com\/releases\/.*/i,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'font-awesome',
+          expiration: {
+            maxEntries: 1,
+            maxAgeSeconds: 365 * 24 * 60 * 60, // 1 year
+          },
+        },
+      },
+      {
+        urlPattern: /^https:\/\/cdn\.jsdelivr\.net\/.*/i,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'jsdelivr-cdn',
+          expiration: {
+            maxEntries: 10,
+            maxAgeSeconds: 365 * 24 * 60 * 60, // 1 year
+          },
+        },
+      },
+      {
+        urlPattern: /\/_next\/image\?url=.+$/i,
+        handler: 'StaleWhileRevalidate',
+        options: {
+          cacheName: 'next-image',
+          expiration: {
+            maxEntries: 50,
+            maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+          },
+        },
+      },
+      {
+        urlPattern:
+          /\.(?:png|jpg|jpeg|svg|gif|webp|ico|bmp|tiff|mp3|wav|flac|ogg|mp4|webm|ogv|ogg|opus|avi|mkv|mov)$/i,
+        handler: 'CacheFirst',
+        options: {
+          cacheName: 'static-assets',
+          expiration: {
+            maxEntries: 100,
+            maxAgeSeconds: 60 * 24 * 60 * 60, // 60 days
+          },
+        },
+      },
+    ],
   })(nextConfig)
 );

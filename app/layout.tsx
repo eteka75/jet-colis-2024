@@ -18,6 +18,7 @@ import { NotificationProvider } from '@/src/context/NotificationContext';
 import Notification from '@/components/common/clients/Notification';
 import { SessionProvider } from 'next-auth/react';
 import NextTopLoader from 'nextjs-toploader';
+import ClientProvider from '@/components/providers/ClientProvider';
 
 const figtree = Figtree({
   subsets: ['latin'],
@@ -50,12 +51,12 @@ const RootLayout: React.FC<Props> = async ({ children, params }) => {
   return (
     <html lang={locale}>
       <meta name="robots" content="index, follow" />
-      <link rel="manifest" href="/site.webmanifest" />
+      <link rel="manifest" href="/webmanifest.json" />
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
       ></meta>
-      <meta name="theme-color" content="#000000" />
+      <meta name="theme-color" content="#007bff" />
       <body
         className={clsx(
           'min-h-screen bg-background font-sans antialiased',
@@ -68,16 +69,18 @@ const RootLayout: React.FC<Props> = async ({ children, params }) => {
           height={4} // Vous pouvez également ajuster la hauteur de la barre de chargement
           showSpinner={false} // Pour masquer le spinner
         />
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <SessionProvider>
-            <NextIntlClientProvider messages={messages}>
-              <React.Suspense fallback={<PageLoading />}>
-                <main>{children}</main>
-                <Toaster />
-              </React.Suspense>
-            </NextIntlClientProvider>
-          </SessionProvider>
-        </ThemeProvider>
+        <ClientProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <SessionProvider>
+              <NextIntlClientProvider messages={messages}>
+                <React.Suspense fallback={<PageLoading />}>
+                  <main>{children}</main>
+                  <Toaster />
+                </React.Suspense>
+              </NextIntlClientProvider>
+            </SessionProvider>
+          </ThemeProvider>
+        </ClientProvider>
       </body>
     </html>
   );

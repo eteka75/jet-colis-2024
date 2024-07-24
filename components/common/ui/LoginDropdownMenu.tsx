@@ -121,12 +121,15 @@ import { GuestDropdownMenu } from './GuestDropdownMenu';
 
 const LoginDropdownMenu = () => {
   const { data: session } = useSession();
-  console.log(session?.user, '*********** ***** ***** ***');
+
   if (session && session?.user) {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+          <Button
+            variant="ghost"
+            className="relative h-8 w-8 border dark:border-accent rounded-full"
+          >
             <Avatar className="h-8 w-8">
               <AvatarImage
                 src={session.user?.image ?? ''}

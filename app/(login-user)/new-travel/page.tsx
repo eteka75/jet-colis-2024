@@ -1,27 +1,8 @@
 import SlimLayout from '@/components/layouts/SlimLayout';
-import { Button } from '@/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { Textarea } from '@/components/ui/textarea';
-import { Upload } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
 import React from 'react';
 import NavBreadcrumb from './ui/NavBreadcrumb';
-import Link from 'next/link';
-import Step1 from '@/components/forms/AddTrajet/Step1';
+import MultiStepForm from '@/components/forms/AddTrajet/Steps';
 
 const Page = async () => {
   // const user = authMiddleware();
@@ -32,18 +13,20 @@ const Page = async () => {
   ];
   return (
     <SlimLayout>
-      <div className=" lg:h-min pb-8">
+      <div className="lg:h-min pb-8">
         <div className="container">
           <NavBreadcrumb items={lists} />
-          <div className="lg:w-9/12 max-w-screen-md">
-            <Card>
-              <CardContent className="p-4 lg:p-6">
-                <Step1 />
-              </CardContent>
-            </Card>
-          </div>
-          <div className="lg:w-3/12 py-4">
-            <h1>Prévisualisation</h1>
+          <div className="w-full md:flex md:gap-4">
+            <div className="lg:w-8/12 max-w-screen-md">
+              <Card>
+                <CardContent className="p-4 lg:p-6">
+                  <MultiStepForm />
+                </CardContent>
+              </Card>
+            </div>
+            <div className="lg:w-3/12 my-4 md:mt-0">
+              <h1>Prévisualisation</h1>
+            </div>
           </div>
         </div>
       </div>

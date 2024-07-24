@@ -15,7 +15,7 @@ interface CalendarInput2Props {
   onChange?: (date: Date | null) => void;
   onBlur?: () => void;
   name?: string;
-  dateFormat?: string;
+  dateFormat?: string; // Ajout du prop dateFormat
 }
 
 const CalendarInput2: React.FC<CalendarInput2Props> = ({
@@ -23,14 +23,14 @@ const CalendarInput2: React.FC<CalendarInput2Props> = ({
   onChange = () => {},
   onBlur = () => {},
   name,
-  dateFormat = 'dd/MM/yyyy',
+  dateFormat = 'dd/MM/yyyy', // Ajout du prop dateFormat
 }) => {
   const [inputValue, setInputValue] = React.useState(() =>
     value ? format(value, dateFormat) : ''
   );
 
   React.useEffect(() => {
-    if (value && isValid(value)) {
+    if (value) {
       const formattedDate = format(value, dateFormat);
       setInputValue(formattedDate);
     } else {
@@ -39,7 +39,7 @@ const CalendarInput2: React.FC<CalendarInput2Props> = ({
   }, [value, dateFormat]);
 
   const handleDateChange = (date: Date | null) => {
-    if (date && isValid(date)) {
+    if (date) {
       const formattedDate = format(date, dateFormat);
       setInputValue(formattedDate);
       onChange(date);
@@ -55,7 +55,7 @@ const CalendarInput2: React.FC<CalendarInput2Props> = ({
         <Button
           variant={'outline'}
           className={cn(
-            'w-full justify-start text-left font-normal',
+            'w-full justify-start  text-left font-normal',
             !inputValue && 'text-muted-foreground'
           )}
         >
@@ -70,7 +70,7 @@ const CalendarInput2: React.FC<CalendarInput2Props> = ({
           selected={value ?? undefined}
           onSelect={(date) => {
             handleDateChange(date ?? null);
-            onBlur();
+            onBlur(); // appeler onBlur après la sélection de la date
           }}
           initialFocus
         />
@@ -93,7 +93,7 @@ const CalendarInput2: React.FC<CalendarInput2Props> = ({
         }}
         onBlur={onBlur}
         className="w-full mt-2 p-2 border rounded"
-        onFocus={(e) => e.target.blur()}
+        onFocus={(e) => e.target.blur()} // Empêche l'utilisateur de modifier directement le champ
       />
     </Popover>
   );

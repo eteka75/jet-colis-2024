@@ -2,6 +2,42 @@
 // It describes the shape of the data, and what data type each property should accept.
 // For simplicity of teaching, we're manually defining these types.
 // However, these types are generated automatically if you're using an ORM such as Prisma.
+import {
+  useForm,
+  FormProvider,
+  UseFormRegister,
+  FieldErrors,
+  UseFormReturn,
+  useFormContext, // Importer useFormContext
+} from 'react-hook-form';
+/*
+ * FORMULAIRE D'AJOUT DE TRAJETS
+ */
+export interface StepsFormData {
+  transportType: string;
+  departurePlace: string;
+  departureDate: string;
+  arrivalPlace: string;
+  arrivalDate: string;
+  tripName: string;
+  description: string;
+  totalKilograms: number;
+  packages: {
+    type: string;
+    kilograms: number;
+  }[];
+}
+
+export interface StepProps {
+  register: UseFormRegister<StepsFormData>;
+  errors: FieldErrors<StepsFormData>;
+  methods: UseFormReturn<StepsFormData>;
+  validateStepTwo?: () => boolean;
+}
+/*
+ * FIN DU FORMULAIRE D'AJOUT DE TRAJETS
+ */
+
 export type UserSession = {
   id: string;
   name: string;

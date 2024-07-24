@@ -15,6 +15,7 @@ import logoLight from '@/public/assets/images/logo-v0.png';
 import logoDark from '@/public/assets/images/logo-v1.png';
 
 import menuItems from '@/src/lib/UserMeniItems';
+import SwithtTheme from '../Header/SwithtTheme';
 
 const MobileTopMenu: React.FC = () => {
   const linkStyles =
@@ -34,12 +35,12 @@ const MobileTopMenu: React.FC = () => {
           side={'left'}
           className="w-[300px] h-full overflow-auto p-0 sm:w-[440px] max-w-full"
         >
-          <SheetHeader>
+          <SheetHeader className="h-14 flex flex-col">
             <div className="border-b p-4">
               <Image
                 src={logoLight}
                 alt="Colistify"
-                className="h-7 lg:h-9 xl:h-9 w-auto dark:hidden"
+                className="h-6 lg:h-9 xl:h-9 w-auto dark:hidden"
               />
               <Image
                 src={logoDark}
@@ -54,12 +55,12 @@ const MobileTopMenu: React.FC = () => {
               <ul className="text-sm border-b px-4 sm:hidden">
                 <li>
                   <div className="flex font-bold gap-4 text-foreground items-center justify-between">
-                    <Label id="theme" htmlFor="btntheme">
+                    <Label id="theme" htmlFor="btntheme" className="py-2">
                       {menuItems.themeSwitcher.label}
                     </Label>
                     <div className="text-end">
                       {/* Assuming SwithtTheme is imported as a component */}
-                      <menuItems.themeSwitcher.component />
+                      <SwithtTheme />
                     </div>
                   </div>
                 </li>
@@ -119,7 +120,8 @@ const MobileTopMenu: React.FC = () => {
                           (item.className ? ` ${item.className}` : '')
                         }
                       >
-                        <item.icon className="w-5 h-5" /> {item.text}
+                        {item.text}
+                        <item.icon className="w-5 h-5" />
                       </Link>
                     </li>
                   ))}
