@@ -4,15 +4,21 @@ import { FaSignOutAlt } from 'react-icons/fa';
 import {
   Gauge,
   LineChart,
+  List,
   MessageSquare,
   PackagePlus,
+  PlaneLanding,
+  PlaneTakeoffIcon,
   Plus,
   Route,
   Settings2,
+  Ungroup,
   User2,
 } from 'lucide-react';
 
 import { IconType as ReactIconsType } from 'react-icons';
+import { TbMapPinCheck } from 'react-icons/tb';
+import { PiMapPinPlusBold } from 'react-icons/pi';
 
 // Définir un type pour les icônes de Lucide
 type LucideIcon = ComponentType<SVGProps<SVGSVGElement>>;
@@ -24,7 +30,7 @@ type MenuIconType = LucideIcon | ReactIconsType;
 // Interface MenuItem
 export interface MenuItem {
   label: string;
-  icon: MenuIconType; // Utiliser le type personnalisé
+  icon?: MenuIconType; // Utiliser le type personnalisé
   href?: string;
   name?: string;
   disabled?: boolean;
@@ -47,13 +53,11 @@ export const adminMenu: MenuItem[] = [
     subMenu: [
       {
         label: 'Tous les trajets',
-        icon: Route,
         href: '/dashboard/trajets',
         name: 'all_trajets',
       },
       {
         label: 'Ajouter un trajet',
-        icon: Plus,
         href: '/dashboard/trajets/add',
         name: 'add_trajet',
       },
@@ -88,6 +92,24 @@ export const adminMenu: MenuItem[] = [
     icon: Settings2,
     href: '/dashboard/settings',
     name: 'settings',
+  },
+  {
+    label: 'Moyens de transport',
+    icon: PlaneTakeoffIcon,
+    href: '/dashboard/moyen-transport',
+    name: 'moyen-transport',
+  },
+  {
+    label: 'Type de colis',
+    icon: Ungroup,
+    href: '/dashboard/type-colis',
+    name: 'type-colis',
+  },
+  {
+    label: 'Villes',
+    href: '/dashboard/villes',
+    icon: PiMapPinPlusBold,
+    name: 'villes',
   },
   {
     label: 'Logout',

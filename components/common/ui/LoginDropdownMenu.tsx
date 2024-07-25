@@ -130,7 +130,7 @@ const LoginDropdownMenu = () => {
             variant="ghost"
             className="relative h-8 w-8 border dark:border-accent rounded-full"
           >
-            <Avatar className="h-8 w-8">
+            <Avatar className="h-8 w-8 min-w-8 min-h-8">
               <AvatarImage
                 src={session.user?.image ?? ''}
                 alt={session.user?.name ?? ''}

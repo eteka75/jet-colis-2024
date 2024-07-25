@@ -199,7 +199,7 @@ const Login: React.FC = () => {
                       disabled={isPending}
                       placeholder="Email"
                     />
-                    <IoIosAt className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 opacity-70 peer-focus:text-gray-900" />
+                    <IoIosAt className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 dark:peer-focus:text-white dark:text-white/70 opacity-70 peer-focus:text-gray-900" />
                   </div>
                   {emailError && (
                     <p className="text-red-500 text-sm">{emailError}</p>

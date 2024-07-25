@@ -3,11 +3,18 @@ import AdminDashbordMobile from './AdminDashbordMobile';
 import { Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import LoginDropdownMenu from '@/components/common/ui/LoginDropdownMenu';
+import MenuActions from './MenuActions';
 
-const DahshHeader = ({ isMinimized }: { isMinimized: boolean }) => {
+const DahshHeader = ({
+  page = 'dashboard',
+  isMinimized,
+}: {
+  page?: string;
+  isMinimized: boolean;
+}) => {
   return (
     <>
-      <AdminDashbordMobile />
+      <AdminDashbordMobile page={page} />
       <div className="w-full flex-1">
         <form>
           <div className="relative">
@@ -20,7 +27,10 @@ const DahshHeader = ({ isMinimized }: { isMinimized: boolean }) => {
           </div>
         </form>
       </div>
-      <LoginDropdownMenu />
+      <div className="gap-2 flex ms-1">
+        <MenuActions />
+        <LoginDropdownMenu />
+      </div>
     </>
   );
 };

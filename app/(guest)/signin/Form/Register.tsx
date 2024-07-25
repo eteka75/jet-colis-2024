@@ -14,7 +14,7 @@ import Link from 'next/link';
 
 const Register = () => {
   return (
-    <div className=" py-4 bg-accente ">
+    <div className=" pb-4 bg-accente ">
       <div className="container">
         <Card className="mx-auto max-w-sm shadow-none border-0 px-0 md:px-4 md:border  ">
           <CardHeader className="px-0 md:px-4 text-center md:text-start">

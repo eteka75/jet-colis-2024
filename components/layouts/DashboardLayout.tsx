@@ -38,7 +38,6 @@ import AdminDashbordMobile from './ui/AdminDashbordMobile';
 import DashNav from './ui/DashNav';
 import DahshHeader from './ui/DahshHeader';
 import { ScrollArea } from '../ui/scroll-area';
-import NavBreadcrumb from '@/app/(login-user)/new-travel/ui/NavBreadcrumb';
 
 type SidebarProps = {
   className?: string;
@@ -69,15 +68,16 @@ const DashboardLayout = async ({
             className={cn(
               'grid  min-h-screen w-full border-l',
               !isMinimized
-                ? 'md:grid-cols-[285px_1fr] lg:grid-cols-[288px_1fr]'
-                : 'md:grid-cols-[78px_1fr] '
+                ? 'md:grid-cols-[235px_1fr] lg:grid-cols-[288px_1fr]'
+                : 'grid-cols-[70px_1fr] '
             )}
           >
             <div
               className={cn(
                 `relative hidden  flex-none z-10 md:block`,
                 status && 'duration-500',
-                !isMinimized ? 'w-72' : 'w-[78px]',
+                // !isMinimized ? 'w-72' : 'w-[78px]',
+
                 className
               )}
             >
@@ -87,8 +87,8 @@ const DashboardLayout = async ({
                 // isMobileNav={status}
               />
             </div>
-            <div className="flexflex-col border-r">
-              <header className="flex border-b h-14 items-center  border-accent__ px-4 lg:h-[61px] lg:px-6">
+            <div className="flexflex-col border-r border-l">
+              <header className="flex border-b_ h-14 items-center  border-accent__ px-4 lg:h-[61px] lg:px-6">
                 <div className="absolute z-50">
                   <Link href={'#'} onClick={handleToggle}>
                     <ChevronLeft
@@ -99,10 +99,12 @@ const DashboardLayout = async ({
                     />
                   </Link>
                 </div>
-                <DahshHeader isMinimized={isMinimized} />
+                <DahshHeader isMinimized={isMinimized} page={page} />
               </header>
-              <ScrollArea className="h-full border-l border-accent__">
-                <main className="flex-1_space-y-4 p-4 md:p-6">{children}</main>
+              <ScrollArea className="h-full  border-accent__">
+                <main className="flex-1_space-y-4 border-t mt-[1px] p-4 md:p-6">
+                  {children}
+                </main>
               </ScrollArea>
             </div>
           </div>

@@ -37,14 +37,14 @@ const UserDropdownMenu = () => {
   const closeDialog = () => setOpen(false);
   return (
     <div className="flex gap-2">
-      <Button
+      {/* <Button
         onClick={handleChangeLanguage}
         className="text-xs hidden md:flex w-9 h-9 rounded-full"
         variant={'ghost'}
         size={'sm'}
       >
         {locale === 'fr' ? 'EN' : 'FR'}
-      </Button>
+      </Button> */}
 
       <SwithtTheme />
       <div className="flex max-w-full items-center gap-2">

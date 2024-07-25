@@ -83,7 +83,7 @@ const Header = ({ type }: { type?: string }) => {
                   <Button
                     size={'sm'}
                     variant={'ghost'}
-                    className="border rounded-full text-foreground bg-background hover:bg-primary hover:text-background active:px-2.5 hover:border-background gap-1  text-sm lg:text-md shadow__border dark:bg-primary dark:text-accent-foreground"
+                    className="border rounded-full lg:me-2 text-foreground bg-background hover:bg-primary hover:text-background active:px-2.5 hover:border-background gap-1  text-sm lg:text-md shadow__border dark:bg-primary dark:text-accent-foreground"
                   >
                     <PiPackageDuotone />
                     Publier une offre

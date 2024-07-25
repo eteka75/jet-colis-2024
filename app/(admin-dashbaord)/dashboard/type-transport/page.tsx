@@ -1,22 +1,16 @@
-import DashBreadcrumb from '@/app/(login-user)/new-travel/ui/DashBreadcrumb';
-import NavBreadcrumb from '@/app/(login-user)/new-travel/ui/NavBreadcrumb';
 import DashboardLayout from '@/components/layouts/DashboardLayout';
-import { Button } from '@/components/ui/button';
 import React from 'react';
-const lists = [
-  { text: 'Utilisateurs', href: '/users' },
-  { text: 'Liste des utilisateurs' },
-];
-const Page = () => {
+import { Button } from 'react-day-picker';
+
+const gape = () => {
   return (
-    <DashboardLayout page="users">
+    <DashboardLayout page="messages">
       <div>
-        <div className="flex items-center justify-between space-y-2 ">
-          <h2 className="text-2xl lg:text-3xl font-bold tracking-tight">
-            Utilisateurs
-          </h2>
-          <div className="hidden items-center space-x-2 md:flex">
-            <Button>Ajouter</Button>
+        <div className="md:flex md:justify-between items-center md:pe-4">
+          <div className="flex items-center">
+            <h1 className="text-lg font-semibold md:text-2xl">
+              Type de trajet
+            </h1>
           </div>
         </div>
 
@@ -39,4 +33,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default gape;

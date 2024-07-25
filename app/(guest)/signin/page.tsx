@@ -27,7 +27,7 @@ const SignInPage = async () => {
   return (
     <LightLayout>
       <HeaderLight />
-      <main className="bg-accente py-4">
+      <main className="bg-accente pb-4">
         <div className="container  pb-32">
           <Card className="mx-auto max-w-sm shadow-none border-0 px-0 md:px-4 md:border  ">
             <div>

@@ -7,7 +7,6 @@ Disallow:
 # Bloquer l'accès aux répertoires administratifs ou privés
 Disallow: /admin/
 Disallow: /dashboard/
-Disallow: /login/
 Disallow: /private/
 
 # Spécifier le chemin du fichier sitemap

@@ -9,9 +9,6 @@ const lists = [
 const Page = () => {
   return (
     <DashboardLayout page="commandes">
-      <div className="pb-2">
-        <DashBreadcrumb items={lists} />
-      </div>
       <div>
         <div className="md:flex md:justify-between items-center md:pe-4">
           <div className="flex items-center">

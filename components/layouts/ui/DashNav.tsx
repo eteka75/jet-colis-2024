@@ -25,6 +25,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import AdminDashbordMobile from './AdminDashbordMobile';
 
 const DashNav = ({
   page = 'home',
@@ -48,8 +49,8 @@ const DashNav = ({
   };
   return (
     <>
-      <div className="flex h-full max-h-screen _bg-[#f1f5f9] overflow-auto flex-col gap-2">
-        <div className="flex border-b h-14 items-center  border-accent__ px-4 lg:h-[61px] lg:px-6 ">
+      <div className="flex h-full max-h-screen _bg-[#f1f5f9] overflow-auto flex-col gap-2 w-full">
+        <div className="flex border-b_  h-14 items-center  border-accent__ px-4 lg:h-[61px] lg:px-6 ">
           <div>
             <Link
               href="/"
@@ -81,15 +82,15 @@ const DashNav = ({
           <nav
             className={cn(
               `grid items-start px-2 text-sm  lg:px-4 gap-1`,
-              status && 'duration-500',
-              !isMinimized ? 'w-72' : 'w-[72px]',
-              className
+              status && 'duration-500'
+              // !isMinimized ? 'w-72' : 'w-[72px]',
+              // className
             )}
           >
             {/* <Link
               href={'/admin/add-new'}
               className="mt-4"
-              // className="text-start mb-2 border font-medium p-2 px-4 flex gap-1 rounded-md items-center "
+              // className="text-start mb-2 border  p-2 px-4 flex gap-1 rounded-md items-center "
             >
               {isMobileNav || (!isMinimized && !isMobileNav) ? (
                 <Button variant={'outline'} className="border w-full">
@@ -110,9 +111,9 @@ const DashNav = ({
                     <TooltipTrigger asChild className="justify-between">
                       {item.subMenu ? (
                         <div
-                          className={`flex h-8  mb-1 items-center  gap-2 overflow-hidden rounded-md py-2 text-sm text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground cursor-pointer ${
+                          className={`flex h-8  mb-1 items-center  gap-2 overflow-hidden rounded-md py-1.5 text-sm text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground cursor-pointer ${
                             page === item.name
-                              ? 'bg-primary/10 font-medium text-primary hover:text-primary hover:bg-primary/20'
+                              ? 'bg-primary/10 font-semibold text-primary hover:text-primary hover:bg-primary/20'
                               : 'transparent'
                           } 
                           ${isMinimized && 'w-14'}
@@ -122,7 +123,7 @@ const DashNav = ({
                             item.subMenu ? handleMenuClick(item.name!) : null
                           } // Gérer le clic pour ouvrir/fermer le sous-menu
                         >
-                          <span className="flex gap-2  items-center font-medium">
+                          <span className="flex gap-2  items-center ">
                             {' '}
                             <item.icon className="ml-3 size-3.5" />
                             {isMobileNav || (!isMinimized && !isMobileNav) ? (
@@ -144,16 +145,16 @@ const DashNav = ({
                       ) : (
                         <Link
                           href={item.href ?? '#'}
-                          className={`flex items-center  gap-2 overflow-hidden rounded-md py-2 text-sm text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground cursor-pointer ${
+                          className={`flex items-center  gap-2 overflow-hidden rounded-md py-1 text-sm text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground cursor-pointer ${
                             page === item.name
-                              ? 'bg-primary/10 font-medium text-primary hover:text-primary hover:bg-primary/20'
+                              ? 'bg-primary/10 font-semibold text-primary hover:text-primary hover:bg-primary/20'
                               : 'transparent'
                           } ${
                             item.disabled && 'cursor-not-allowed opacity-80'
                           }`}
                           // Gérer le clic pour ouvrir/fermer le sous-menu
                         >
-                          <span className="flex gap-2 items-center font-medium">
+                          <span className="flex gap-2 items-center ">
                             {' '}
                             <item.icon className="ml-3 size-3.5" />
                             {isMobileNav || (!isMinimized && !isMobileNav) ? (
@@ -194,7 +195,7 @@ const DashNav = ({
                                   href={subItem.href ?? '#'}
                                   className={`flex bg-accent h-6 w-6 items-center gap-2 overflow-hidden rounded-md py-1 text-xs text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground ${
                                     page === subItem.name
-                                      ? 'bg-primary/10 font-medium text-primary hover:text-primary hover:bg-primary/20'
+                                      ? 'bg-primary/10 font-semibold  text-primary hover:text-primary hover:bg-primary/20'
                                       : 'transparent'
                                   }
                            
@@ -223,7 +224,7 @@ const DashNav = ({
                               href={subItem.href ?? '#'}
                               className={`flex items-center gap-2 overflow-hidden rounded-md py-1 text-xs text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground ${
                                 page === subItem.name
-                                  ? 'bg-primary/10 font-medium text-primary hover:text-primary hover:bg-primary/20'
+                                  ? 'bg-primary/10 font-semibold text-primary hover:text-primary hover:bg-primary/20'
                                   : 'transparent'
                               } ${
                                 subItem.disabled &&
@@ -249,7 +250,7 @@ const DashNav = ({
           <div className="mt-auto p-4">
             <Card x-chunk="dashboard-02-chunk-0">
               <CardHeader className="p-2 pt-0 md:p-4">
-                <CardTitle>Passer à l'option Pro</CardTitle>
+                <CardTitle className="text-lg">Passer à l'option Pro</CardTitle>
                 <CardDescription>
                   Débloquez toutes les fonctionnalités et obtenez un accès
                   illimité à notre équipe d'assistance.

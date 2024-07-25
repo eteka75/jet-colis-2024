@@ -56,7 +56,7 @@ const RootLayout: React.FC<Props> = async ({ children, params }) => {
         name="viewport"
         content="width=device-width, initial-scale=1.0"
       ></meta>
-      <meta name="theme-color" content="#007bff" />
+      <meta name="theme-color" content="#333333" />
       <body
         className={clsx(
           'min-h-screen bg-background font-sans antialiased',

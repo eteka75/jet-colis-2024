@@ -36,7 +36,7 @@ const SlimHeader = async () => {
 
   return (
     <>
-      <div className=" bg-background/80 bg-opacity-90 backdrop-blur-3xl border-b shadow-sm border-accent ">
+      <div className=" bg-background/80 bg-opacity-90 backdrop-blur-3xl border-b shadow-sm _border-accent ">
         <div className="container items-center py-2 m-auto">
           <div className="flex w-full h-full md:gap-4 items-center">
             <div className="lg:w-1/4 lg:min-w-[100px] lg:max-w-[400px] ">
@@ -45,12 +45,12 @@ const SlimHeader = async () => {
                   <Image
                     src={logoLight}
                     alt="Colistify"
-                    className="h-4 lg:h-6 xl:h-8 w-auto  dark:hidden"
+                    className="h-4 lg:h-6 xl:h-6 w-auto  dark:hidden"
                   />
                   <Image
                     src={logoDark}
                     alt="Colistify"
-                    className="h-6 lg:h-8 xl:h-9 w-auto hidden dark:flex"
+                    className="h-6 lg:h-7 xl:h-7 w-auto hidden dark:flex"
                   />
                 </Link>
                 <MobileTopMenu />

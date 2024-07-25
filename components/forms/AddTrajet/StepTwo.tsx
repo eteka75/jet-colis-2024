@@ -78,11 +78,12 @@ const StepTwo: React.FC<StepTwoProps> = ({ onNext, onBack }) => {
     watch,
     trigger,
   } = useFormContext<StepTwoData>();
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'packages',
   });
-  const [usedTypes, setUsedTypes] = useState<string[]>([]);
+  // const [usedTypes, setUsedTypes] = useState<string[]>([]);
   const [isFormValid, setIsFormValid] = useState(true);
 
   const totalKilograms = watch('totalKilograms', 0);
@@ -90,37 +91,51 @@ const StepTwo: React.FC<StepTwoProps> = ({ onNext, onBack }) => {
   const sumOfPackages = packages.reduce((sum, pkg) => sum + pkg.kilograms, 0);
   const remainingKilograms = totalKilograms - sumOfPackages;
 
-  useEffect(() => {
-    const validateForm = async () => {
-      const valid = await trigger();
-      setIsFormValid(
-        valid &&
-          remainingKilograms >= 0 &&
-          packages.every((pkg) => pkg.kilograms > 0)
-      );
-    };
-    validateForm();
-  }, [trigger, remainingKilograms, packages, isValid]);
+  const ValidateForm = async () => {
+    const valid = await trigger();
+    const isRemainingKilogramsValid = remainingKilograms >= 0;
+    const areAllPackagesValid = packages.every((pkg) => pkg.kilograms > 0);
+
+    const allValide = valid && isRemainingKilogramsValid && areAllPackagesValid;
+    setIsFormValid(allValide);
+    console.log(
+      'ALL:',
+      allValide,
+      'valid:',
+      valid,
+      'remainingKilograms=',
+      remainingKilograms,
+      'packages.every((pkg) => pkg.kilograms > 0',
+      packages.every((pkg) => pkg.kilograms > 0)
+    );
+  };
+
+  // useEffect(() => {
+  //   // ValidateForm();
+  // }, [trigger, remainingKilograms, packages, isValid]);
 
   const handlePackageChange = (index: number, key: string, value: any) => {
     const newPackages = [...packages];
     newPackages[index] = { ...newPackages[index], [key]: value };
+
     setValue('packages', newPackages, { shouldValidate: true });
     trigger('packages');
+    ValidateForm();
   };
 
   const handleAddPackage = () => {
     if (remainingKilograms > 0 && packages.length < NB_MAX_PACKAGE) {
-      // Check if any package has invalid weight
       const hasInvalidWeight = packages.some((pkg) => pkg.kilograms <= 0);
       if (!hasInvalidWeight) {
         append({ type: '', kilograms: 0 });
       }
     }
+    ValidateForm();
   };
 
   const handleRemovePackage = (index: number) => {
     remove(index);
+    ValidateForm();
   };
 
   const handleNext = async () => {
@@ -136,7 +151,11 @@ const StepTwo: React.FC<StepTwoProps> = ({ onNext, onBack }) => {
     <div className="py-4 space-y-2">
       <div>
         <Label>Nom du trajet *</Label>
-        <Input {...register('tripName')} />
+        <Input
+          {...register('tripName')}
+          onChange={() => ValidateForm()}
+          placeholder="Transmission expresse de colis sur Paris en 2 jours ouvrables"
+        />
         {errors.tripName && (
           <p className="text-red-500 text-xs">{errors.tripName.message}</p>
         )}
@@ -146,7 +165,11 @@ const StepTwo: React.FC<StepTwoProps> = ({ onNext, onBack }) => {
         <Label>Total kilogrammes *</Label>
         <Input
           type="number"
+          placeholder="5"
+          min={0}
+          // className="md:w-52"
           {...register('totalKilograms', { valueAsNumber: true })}
+          onChange={() => ValidateForm()}
         />
         {errors.totalKilograms && (
           <p className="text-red-500 text-xs">
@@ -159,7 +182,7 @@ const StepTwo: React.FC<StepTwoProps> = ({ onNext, onBack }) => {
         {fields.map((field, index) => (
           <div
             key={field.id}
-            className="grid md:grid-cols-3 grid-cols-1 gap-4 items-center mb-4"
+            className="grid md:grid-cols-3 grid-cols-2 border-b md:border-b-0 pb-4 md:pb-0 gap-4 items-center mb-4"
           >
             <div>
               <Select
@@ -191,6 +214,7 @@ const StepTwo: React.FC<StepTwoProps> = ({ onNext, onBack }) => {
             <div>
               <Input
                 type="number"
+                min={0}
                 value={field.kilograms}
                 onChange={(e) =>
                   handlePackageChange(
@@ -201,22 +225,27 @@ const StepTwo: React.FC<StepTwoProps> = ({ onNext, onBack }) => {
                 }
               />
             </div>
-            {index > 0 && (
-              <Button
-                variant={'outline'}
-                onClick={() => handleRemovePackage(index)}
-                className="btn btn-danger w-auto gap-1"
-              >
-                <CgRemove /> <span className="hidden md:flex">Retirer</span>
-              </Button>
-            )}
+            <div className="col-span-2 md:col-span-1 ">
+              {index > 0 && (
+                <Button
+                  variant={'outline'}
+                  onClick={() => handleRemovePackage(index)}
+                  className="btn btn-danger w-fulls gap-1"
+                >
+                  <CgRemove /> <span className="hiddenmd:flex">Retirer</span>
+                </Button>
+              )}
+            </div>
           </div>
         ))}
 
         <div className="flex gap-4 justify-between">
           <div className="opacity-70 text-xs">
             {remainingKilograms >= 0 && (
-              <span>Nombre de kilo restant : {remainingKilograms}</span>
+              <span>
+                Nombre de kilogramme{remainingKilograms > 1 ? 's' : ''} restant
+                {remainingKilograms > 1 ? 's' : ''} : {remainingKilograms}
+              </span>
             )}
             {isAddButtonDisabled && (
               <p className="text-red-500 text-xs mb-2">
@@ -239,7 +268,10 @@ const StepTwo: React.FC<StepTwoProps> = ({ onNext, onBack }) => {
         </div>
         <div>
           <Label>Description *</Label>
-          <Textarea {...register('description')} />
+          <Textarea
+            {...register('description')}
+            onChange={() => ValidateForm()}
+          />
           {errors.description && (
             <p className="text-red-500 text-xs">{errors.description.message}</p>
           )}
@@ -261,6 +293,21 @@ const StepTwo: React.FC<StepTwoProps> = ({ onNext, onBack }) => {
         >
           Suivant <ChevronRight className="h-5 w-5" />
         </Button>
+      </div>
+      <div>
+        {Object.keys(errors).length > 0 && (
+          <div className="mt-4">
+            <h3 className="text-red-500 text-sm">Erreurs de validation :</h3>
+            <ul className="list-disc list-inside text-red-500 text-xs">
+              {Object.entries(errors).length <= 1 &&
+                Object.entries(errors).map(([key, value]) => (
+                  <li key={key}>
+                    {key} : {value.message}
+                  </li>
+                ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
