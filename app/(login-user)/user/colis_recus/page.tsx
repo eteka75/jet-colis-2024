@@ -2,15 +2,15 @@ import { Metadata } from 'next';
 import React from 'react';
 import DefaultLayout from '@/components/layouts/DefaultLayout';
 import { auth } from '@/auth';
-import { UseProfile } from './ui/UserProfile';
-import NavProfil from './ui/NavProfil';
+import { UseProfile } from '../profil/ui/UserProfile';
+import NavProfil from '../profil/ui/NavProfil';
 
-const Profil = async () => {
+const Page = async () => {
   const session = await auth();
   const user = session?.user || null;
   return (
-    <DefaultLayout type="mini_">
-      <NavProfil actif="profil" />
+    <DefaultLayout>
+      <NavProfil actif="colis_recus" />
       <div className="container">
         <UseProfile user={user} />
       </div>
@@ -18,8 +18,8 @@ const Profil = async () => {
   );
 };
 
-export default Profil;
+export default Page;
 
 export const metadata: Metadata = {
-  title: 'Profil',
+  title: 'Colis reçus',
 };

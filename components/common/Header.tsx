@@ -27,7 +27,7 @@ const Header = ({ type }: { type?: string }) => {
 
   return (
     <>
-      <div className="bg-background/80 bg-opacity-90 backdrop-blur-3xl shadow-sm__border-b  __ _bg-slate-950__text-white">
+      <div className="bg-background/80 bg-opacity-90 backdrop-blur-3xl shadow-sm__ border-b  __ _bg-slate-950__text-white">
         <div className={clsx('items-center py-2 m-auto', classContainer)}>
           <div className="flex w-full h-full md:gap-4 items-center">
             <div className="lg:w-1/4 lg:min-w-[100px] lg:max-w-[400px]">

@@ -1,16 +1,25 @@
 import { Metadata } from 'next';
 import React from 'react';
+import DefaultLayout from '@/components/layouts/DefaultLayout';
+import { auth } from '@/auth';
+import NavProfil from '../user/profil/ui/NavProfil';
+import { UseProfile } from '../user/profil/ui/UserProfile';
 
-const Settings = () => {
+const Page = async () => {
+  const session = await auth();
+  const user = session?.user || null;
   return (
-    <div className="container py-4">
-      <h1 className="text-2xl">Settings</h1>
-    </div>
+    <DefaultLayout>
+      <NavProfil actif="messages" />
+      <div className="container">
+        <UseProfile user={user} />
+      </div>
+    </DefaultLayout>
   );
 };
 
-export default Settings;
+export default Page;
 
 export const metadata: Metadata = {
-  title: 'Réglages',
+  title: 'Messages',
 };

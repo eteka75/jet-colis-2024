@@ -103,7 +103,9 @@ const DashboardLayout = async ({
               </header>
               <ScrollArea className="h-full  border-accent__">
                 <main className="flex-1_space-y-4 border-t mt-[1px] p-4 md:p-6">
-                  {children}
+                  <div className="md:flex md:justify-between items-center md:pe-4">
+                    {children}
+                  </div>
                 </main>
               </ScrollArea>
             </div>
