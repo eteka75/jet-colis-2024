@@ -1,8 +1,9 @@
 import DashboardLayout from '@/components/layouts/DashboardLayout';
+import { Button } from '@/components/ui/button';
 import React from 'react';
-import { Button } from 'react-day-picker';
+// Import correct de Button (si vous avez un composant Button personnalisé)
 
-const gape = () => {
+const Page = () => {
   return (
     <DashboardLayout page="messages">
       <div>
@@ -20,12 +21,12 @@ const gape = () => {
         >
           <div className="flex flex-col items-center gap-1 text-center">
             <h3 className="text-2xl font-bold tracking-tight">
-              You have no products
+              Vous n'avez aucun produit
             </h3>
             <p className="text-sm text-muted-foreground">
-              You can start selling as soon as you add a product.
+              Vous pouvez commencer à vendre dès que vous ajoutez un produit.
             </p>
-            <Button className="mt-4">Ajouter Product</Button>
+            <Button className="mt-4">Ajouter un Produit</Button>
           </div>
         </div>
       </div>
@@ -33,4 +34,4 @@ const gape = () => {
   );
 };
 
-export default gape;
+export default Page;

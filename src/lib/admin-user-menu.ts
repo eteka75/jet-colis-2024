@@ -16,7 +16,7 @@ import {
   User2,
 } from 'lucide-react';
 
-import { IconType as ReactIconsType } from 'react-icons';
+import { IconType, IconType as ReactIconsType } from 'react-icons';
 import { TbMapPinCheck } from 'react-icons/tb';
 import { PiMapPinPlusBold } from 'react-icons/pi';
 
@@ -24,7 +24,7 @@ import { PiMapPinPlusBold } from 'react-icons/pi';
 type LucideIcon = ComponentType<SVGProps<SVGSVGElement>>;
 
 // Définir un type qui englobe les deux types d'icônes
-type MenuIconType = LucideIcon | ReactIconsType;
+type MenuIconType = LucideIcon | ReactIconsType | IconType;
 
 // Interface MenuItem
 // Interface MenuItem

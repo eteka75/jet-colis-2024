@@ -125,7 +125,9 @@ const DashNav = ({
                         >
                           <span className="flex gap-2  items-center ">
                             {' '}
-                            <item.icon className="ml-3 size-3.5" />
+                            {item.icon && (
+                              <item.icon className="ml-3 size-3.5" />
+                            )}
                             {isMobileNav || (!isMinimized && !isMobileNav) ? (
                               <span className="mr-2 truncate">
                                 {item.label}
@@ -156,7 +158,9 @@ const DashNav = ({
                         >
                           <span className="flex gap-2 items-center ">
                             {' '}
-                            <item.icon className="ml-3 size-3.5" />
+                            {item.icon && (
+                              <item.icon className="ml-3 size-3.5" />
+                            )}
                             {isMobileNav || (!isMinimized && !isMobileNav) ? (
                               <span className="mr-2 truncate">
                                 {item.label}
@@ -204,7 +208,9 @@ const DashNav = ({
                               'cursor-not-allowed opacity-80'
                             }`}
                                 >
-                                  <subItem.icon className="mx-auto size-4" />
+                                  {subItem.icon && (
+                                    <subItem.icon className="mx-auto size-4" />
+                                  )}
                                 </Link>
                               </TooltipTrigger>
                               <TooltipContent

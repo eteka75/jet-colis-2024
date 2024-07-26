@@ -18,7 +18,6 @@ import logoDark from '@/public/assets/images/logo-v1.png';
 import { useSidebar } from '@/hooks/useSidebar';
 import { useState } from 'react';
 import { cn } from '@/src/lib/utils';
-import { Tooltip } from 'recharts';
 
 const AdminDashbordMobile = ({ page = 'dashboard' }: { page: string }) => {
   const { isMinimized, toggle } = useSidebar();
@@ -67,12 +66,10 @@ const AdminDashbordMobile = ({ page = 'dashboard' }: { page: string }) => {
             <Plus className="w-4 h-4" /> Ajouter
           </Button>
         </Link>
-        <nav className="grid gap-2  mx-2">
+        <nav className="grid gap-2 mx-2">
           {adminMenu.map((item) => (
-            <div>
-              {' '}
+            <div key={item.name}>
               <Link
-                key={item.label}
                 href={item.href ?? '#'}
                 className={cn(
                   'mx-[-0.65rem] flex text-sm items-center gap-4 rounded-sm px-3 py-1 text-muted-foreground hover:text-foreground',
@@ -81,31 +78,28 @@ const AdminDashbordMobile = ({ page = 'dashboard' }: { page: string }) => {
                     : 'transparent'
                 )}
               >
-                <item.icon className="h-5 w-5" />
+                {item.icon && <item.icon className="h-5 w-5" />}
                 <span>{item.label}</span>
               </Link>
               {item.subMenu && (
                 <div className={cn(isMinimized ? 'pl-2' : 'pl-4')}>
                   <div
                     className={cn(
-                      isMinimized
-                        ? 'pl-2  flex flex-col gap-1'
-                        : 'border-l  pl-2'
+                      isMinimized ? 'pl-2 flex flex-col gap-1' : 'border-l pl-2'
                     )}
                   >
                     {item.subMenu.map((subItem, subIndex) => (
                       <Link
                         key={subIndex}
                         href={subItem.href ?? '#'}
-                        className={`flex items-center gap-2 overflow-hidden rounded-md py-1 text-xs text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground ${
+                        className={cn(
+                          'flex items-center gap-2 overflow-hidden rounded-md py-1 text-xs text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground',
                           page === subItem.name
                             ? 'bg-primary/10 font-semibold text-primary hover:text-primary hover:bg-primary/20'
-                            : 'transparent'
-                        } ${
+                            : 'transparent',
                           subItem.disabled && 'cursor-not-allowed opacity-80'
-                        }`}
+                        )}
                       >
-                        {/* <subItem.icon className="ml-1 size-3" /> */}
                         <span className="mx-2 text-xs truncate">
                           {subItem.label}
                         </span>
