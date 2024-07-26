@@ -38,6 +38,7 @@ import AdminDashbordMobile from './ui/AdminDashbordMobile';
 import DashNav from './ui/DashNav';
 import DahshHeader from './ui/DahshHeader';
 import { ScrollArea } from '../ui/scroll-area';
+import MiniFooter from '../common/Home/MiniFooter';
 
 type SidebarProps = {
   className?: string;
@@ -63,7 +64,7 @@ const DashboardLayout = async ({
   return (
     <>
       <LightLayout>
-        <div className="container-fluid__">
+        <div className="container-fluid__ bg-accente">
           <div
             className={cn(
               'grid  min-h-screen w-full border-l',
@@ -87,31 +88,25 @@ const DashboardLayout = async ({
                 // isMobileNav={status}
               />
             </div>
-            <div className="flexflex-col border-r border-l">
-              <header className="flex border-b_ h-14 items-center  border-accent__ px-4 lg:h-[61px] lg:px-6">
-                <div className="absolute z-50">
-                  <Link href={'#'} onClick={handleToggle}>
-                    <ChevronLeft
-                      className={cn(
-                        'absolute -left-14 h-5 duration-500 w-5 -top-3 cursor-pointer rounded-md border bg-background text-3xl text-foreground',
-                        isMinimized && 'rotate-180'
-                      )}
-                    />
-                  </Link>
-                </div>
-                <DahshHeader isMinimized={isMinimized} page={page} />
-              </header>
-              <ScrollArea className="h-full  border-accent__">
-                <main className="flex-1_space-y-4 border-t mt-[1px] p-4 md:p-6">
-                  <div className="md:flex md:justify-between items-center md:pe-4">
-                    {children}
-                  </div>
+            <div className="flexflex-col border-r border-l ">
+              <DahshHeader
+                isMinimized={isMinimized}
+                handleToggle={handleToggle}
+                page={page}
+              />
+              <ScrollArea className="h-full ">
+                <main className=" border-t mt-[1px] p-4 md:p-6">
+                  <div className=" max-w-screen-xl mx-auto">{children} </div>
+                  {/* <div className="md:flex md:justify-between items-center md:pe-4">
+                   
+                  </div> */}
                 </main>
               </ScrollArea>
             </div>
           </div>
         </div>
       </LightLayout>
+      <MiniFooter />
     </>
   );
 };

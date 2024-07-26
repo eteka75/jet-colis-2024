@@ -33,7 +33,7 @@ export const UseProfile = ({ user }: { user?: User }) => {
     await handleSignOut();
   };
   return (
-    <div className=" md:py-4 pb-4 ">
+    <div className="pb-8">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className=" md:col-span-2  bg-background rounded-md shadow-sm p-4 md:p-6 border">
           <figure className="relative flex flex-col ">

@@ -20,6 +20,7 @@
   .bg-accente {
     /* @apply bg-gradient-to-t from-slate-100 via-slate-50 to-white bg-opacity-25 rounded bg-fixed; */
     /* @apply bg-accent; */
+    background-color: #f7f7f7;
   }
   .container-mini {
     @apply mx-auto  px-4 max-w-screen-lg;

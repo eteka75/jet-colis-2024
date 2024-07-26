@@ -6,13 +6,13 @@ import React from 'react';
 
 const NavProfil: React.FC<OnStringType> = ({ actif }) => {
   return (
-    <div className="container">
+    <div className="container mb-4">
       <nav className="flex gap-2 pt-4 text-md">
         {userProfileLinks.map((link) => (
           <Link
             key={link.href}
             className={cn(
-              'me-4 opacity-70 font-normal border-b-2 pb-1 border-b-background hover:text-primary',
+              'me-4 opacity-70 font-normal border-b-2 pb-1 border-b-transparent hover:text-primary',
               actif == link.name
                 ? 'font-medium border-b-primary hover:text-foreground'
                 : ''

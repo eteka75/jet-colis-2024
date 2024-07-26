@@ -49,7 +49,7 @@ const DashNav = ({
   };
   return (
     <>
-      <div className="flex h-full max-h-screen _bg-[#f1f5f9] overflow-auto flex-col gap-2 w-full">
+      <div className="flex bg-background h-full max-h-screen _bg-[#f1f5f9] overflow-auto flex-col gap-2 w-full">
         <div className="flex border-b_  h-14 items-center  border-accent__ px-4 lg:h-[61px] lg:px-6 ">
           <div>
             <Link
