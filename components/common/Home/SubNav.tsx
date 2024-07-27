@@ -68,7 +68,7 @@ const SubNav = ({ type }: { type: string }) => {
               {villes.map((ville, index) => (
                 <CarouselItem
                   className={clsx(
-                    'basis-auto text-nowrap rounded-full px-3 me-2 border-b-white/0  my-2.5 py-[4px]  _rounded-full transition-colors duration-300',
+                    'basis-auto text-nowrap rounded-full px-3 me-1 md:me-2 border-b-white/0  my-2.5 py-[4px]  _rounded-full transition-colors duration-300',
                     ville_active === ville
                       ? 'bg-accent font-medium'
                       : 'hover:bg-accent '

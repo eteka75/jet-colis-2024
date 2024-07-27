@@ -166,9 +166,9 @@ const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
                 </p>
               </div>
               <div className="flex justify-between">
-                <p className="text-sm md:text-xs flex items-center gap-2 font-bold opacity-70">
+                <p className="text-sm md:text-xs flex items-center gap-2 opacity-70">
                   <GiAirplaneDeparture className="w-4 h-4 hidden" />{' '}
-                  <div>Réservé avant, {`${formatDate(date_depart)}`}</div>
+                  <div> {`${formatDate(date_depart)}`}</div>
                 </p>
                 {/* <p className="text-sm opacity-80">
                   {`${tarif} ${devise}/${unite}`}
