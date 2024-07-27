@@ -138,7 +138,7 @@ const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
         </div>
         <Link href={`/journey/${id}`}>
           <div className="mt-2 flex justify-between">
-            <div className="w-full px-2">
+            <div className="w-full md:px-2">
               <div className=" flex flex-wrap justify-between items-center">
                 <Link href={`/journey/${id}`}>
                   <span aria-hidden="true" className="absolute_ inset-0"></span>

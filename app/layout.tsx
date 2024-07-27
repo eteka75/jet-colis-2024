@@ -64,8 +64,8 @@ const RootLayout: React.FC<Props> = async ({ children, params }) => {
       <meta name="theme-color" content="#333333" />
       <body
         className={clsx(
-          'min-h-screen bg-background font-sans antialiased',
-          MontFont.className
+          'min-h-screen bg-background  antialiased',
+          interVar.className
         )}
       >
         {/* <NextTopLoader showSpinner={false} /> */}
