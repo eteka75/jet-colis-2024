@@ -1,23 +1,13 @@
 // 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { Button } from '../ui/button';
 import logoLight from '@/public/assets/images/logo-v0.png';
 import logoDark from '@/public/assets/images/logo-v1.png';
 import Image from 'next/image';
-import { IoSearch } from 'react-icons/io5';
-import { CgMenuLeft } from 'react-icons/cg';
-import { PiPackageDuotone } from 'react-icons/pi';
-import { Bell, Lock, Settings, Shield, UserIcon, X } from 'lucide-react';
-import UserDropdownMenu from './ui/UserDropdownMenu';
+import { X } from 'lucide-react';
 import { auth } from '@/auth';
 import { User } from '@/src/lib/definitions';
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTrigger,
-} from '@/components/ui/sheet';
 import MobileTopMenu from './ui/MobileTopMenu';
 import SwithtTheme from './Header/SwithtTheme';
 import SwithLang from './Header/SwithLang';

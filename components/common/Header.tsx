@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import Link from 'next/link';
 import { Button } from '../ui/button';
@@ -7,24 +6,22 @@ import logoDark from '@/public/assets/images/logo-v1.png';
 import Image from 'next/image';
 import { IoSearch } from 'react-icons/io5';
 import { PiPackageDuotone } from 'react-icons/pi';
-import UserDropdownMenu from './ui/UserDropdownMenu';
 import MobileTopMenu from './ui/MobileTopMenu';
 import clsx from 'clsx';
 import MobileFooter from './ui/MobileFooter';
 import { useSession } from 'next-auth/react';
-import { Search } from 'lucide-react';
+import { Plus, Search } from 'lucide-react';
+import { getContainer } from '@/src/lib/fn';
+import { auth } from '@/auth';
+import LoginDropdownMenu from './ui/LoginDropdownMenu';
+import { GuestDropdownMenu } from './ui/GuestDropdownMenu';
+import SwithLang from './Header/SwithLang';
+import SwithtTheme from './Header/SwithtTheme';
 
-const Header = ({ type }: { type?: string }) => {
-  const { data: session } = useSession();
+const Header = async ({ type }: { type?: string }) => {
+  const session = await auth();
   const user = session?.user;
-
-  const classContainer =
-    type === 'mini'
-      ? 'container-mini'
-      : type === 'large'
-      ? 'container-fluid'
-      : 'container';
-
+  const classContainer = getContainer(type);
   return (
     <>
       <div className="bg-background/80 bg-opacity-90 backdrop-blur-3xl shadow-sm__ border-b  __ _bg-slate-950__text-white">
@@ -83,14 +80,22 @@ const Header = ({ type }: { type?: string }) => {
                   <Button
                     size={'sm'}
                     variant={'ghost'}
-                    className="hover:border rounded-full lg:me-2 text-foreground bg-background hover:bg-primary hover:text-background active:px-2.5 hover:border-background gap-1  text-sm lg:text-md shadow__border dark:bg-primary dark:text-accent-foreground"
+                    className="hover:border rounded-full lg:me-2 text-foreground  hover:bg-primary hover:text-background active:px-2.5 hover:border-background gap-1  text-sm lg:text-md shadow__border dark:bg-primary dark:text-accent-foreground"
                   >
-                    <PiPackageDuotone />
+                    <Plus className="h-5 w-5" />
                     Publier une offre
                   </Button>
                 </Link>
               </div>
-              <UserDropdownMenu />
+              <div className="flex gap-1">
+                <SwithLang />
+                <SwithtTheme className="hidden md:flex" />
+                {user ? (
+                  <LoginDropdownMenu user={user} />
+                ) : (
+                  <GuestDropdownMenu />
+                )}
+              </div>
             </div>
           </div>
         </div>

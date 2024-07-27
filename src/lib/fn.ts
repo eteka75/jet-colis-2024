@@ -51,3 +51,12 @@ export const isValidDateFormat = (value: string) => {
   const date = parse(value, 'dd/MM/yyyy', new Date());
   return isValid(date);
 };
+export const getContainer = (type?: string) => {
+  const classContainer =
+    type === 'mini'
+      ? 'container-mini'
+      : type === 'large'
+      ? 'container-fluid'
+      : 'container';
+  return classContainer;
+};

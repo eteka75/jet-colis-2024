@@ -9,6 +9,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import clsx from 'clsx';
+import { getContainer } from '@/src/lib/fn';
 
 const SubNav = ({ type }: { type: string }) => {
   const villesArray: string[] = [
@@ -40,12 +41,8 @@ const SubNav = ({ type }: { type: string }) => {
 
   const ville_active = 'A la une';
   const [currentIndex, setCurrentIndex] = useState(0);
-  const classContainer =
-    type === 'mini'
-      ? 'container-mini'
-      : type === 'large'
-      ? 'container-fluid'
-      : 'container';
+  const classContainer = getContainer(type);
+
   const handlePrevious = () => {
     setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
   };
@@ -71,7 +68,7 @@ const SubNav = ({ type }: { type: string }) => {
               {villes.map((ville, index) => (
                 <CarouselItem
                   className={clsx(
-                    'basis-auto text-nowrap rounded-full md:px-3 me-2 border-b-white/0  my-2 py-1  _rounded-full transition-colors duration-300',
+                    'basis-auto text-nowrap rounded-full px-3 me-2 border-b-white/0  my-2.5 py-[4px]  _rounded-full transition-colors duration-300',
                     ville_active === ville
                       ? 'bg-accent font-medium'
                       : 'hover:bg-accent '

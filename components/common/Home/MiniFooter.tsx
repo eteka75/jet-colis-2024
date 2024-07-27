@@ -31,7 +31,7 @@ const MiniFooter = () => {
     <div className={clsx(scrollDirection === 'up' ? 'md:mt-32' : '')}>
       <footer
         className={clsx(
-          'bottom-0 left-0 w-full  transition-transform duration-300 ease-in-out ',
+          'bottom-0 left-0 w-full pb-32 md:pb-4 transition-transform duration-300 ease-in-out ',
           scrollDirection === 'down'
             ? 'md:transform___md:translate-y-full'
             : 'md:mt-12 md:fixed md:transform md:translate-y-0',

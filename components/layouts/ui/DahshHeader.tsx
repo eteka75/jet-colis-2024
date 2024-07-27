@@ -6,6 +6,9 @@ import LoginDropdownMenu from '@/components/common/ui/LoginDropdownMenu';
 import MenuActions from './MenuActions';
 import { cn } from '@/src/lib/utils';
 import Link from 'next/link';
+import { auth } from '@/auth';
+import { GuestDropdownMenu } from '@/components/common/ui/GuestDropdownMenu';
+import { useSession } from 'next-auth/react';
 
 const DahshHeader = ({
   page = 'dashboard',
@@ -16,6 +19,8 @@ const DahshHeader = ({
   isMinimized: boolean;
   handleToggle: () => void;
 }) => {
+  const { data: session } = useSession();
+  const user = session?.user;
   return (
     <>
       <header className="flex border-b_ h-14 items-center bg-background border-accent__ px-4 lg:h-[61px] lg:px-6">
@@ -45,7 +50,7 @@ const DahshHeader = ({
             </div>
           </form>
           <MenuActions />
-          <LoginDropdownMenu />
+          {user ? <LoginDropdownMenu user={user} /> : <GuestDropdownMenu />}
         </div>
       </header>
     </>

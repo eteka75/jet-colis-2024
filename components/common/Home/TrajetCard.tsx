@@ -5,13 +5,15 @@ import { PhotosData, list_trajets } from '@/src/lib/definitions';
 import { fetchPhotosForLists } from '@/src/lib/actions';
 import PageLoading from '../ui/PageLoading';
 import TrajetItem from '../ui/TrajetItem';
+import { getContainer } from '@/src/lib/fn';
 
 const accessKey = process.env.NEXT_PUBLIC_UNSPLASH_ACCESS_KEY;
 
-const TrajetCard = () => {
+const TrajetCard = ({ type }: { type?: string }) => {
   const [photos, setPhotos] = useState<PhotosData>({});
   const [loading, setLoading] = useState(true);
   const [content, setContent] = useState(true);
+  const classContainer = getContainer(type);
 
   useEffect(() => {
     const handleFetchedPhotos = async () => {
@@ -36,10 +38,10 @@ const TrajetCard = () => {
 
   return (
     <div className="mb-16  bg-accent_ dark:bg-background pt-6 md:pb-32">
-      <div className="container-fluid ">
+      <div className={classContainer}>
         <div
           className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-3  lg:grid-cols-4 
-        xl:grid-cols-4 2xl:grid-cols-5 gap-4"
+        xl:grid-cols-5 2xl:grid-cols-6 gap-4"
         >
           {/* <div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 

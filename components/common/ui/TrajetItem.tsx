@@ -39,7 +39,7 @@ const DestinationImage: React.FC<DestinationImageType> = ({
   user,
 }) => {
   return (
-    <article className="relative bg-accent shadow-sm  isolate flex flex-col justify-end overflow-hidden rounded-2xl  mx-auto group aspect-w-1 aspect-h-1 h-[300px] md:h-[250px]">
+    <article className="relative bg-accent shadow-sm  isolate flex flex-col justify-end overflow-hidden rounded-xl  mx-auto group aspect-w-1 aspect-h-1 h-[300px] md:h-[250px]">
       <Image
         alt={title ?? 'image'} // Utilisez la prop title pour l'alt text
         className="absolute inset-0 w-full h-full object-cover "
@@ -125,7 +125,7 @@ const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
           )}
           <div className="flex_ hidden justify-between top-3 absolute right-4 ">
             <div className="text-sm text-gray-500 dark:text-gray-400">
-              <div className="text-xs flex gap-1 items-center bg-secondary shadow px-2 py-1 rounded-full">
+              <div className="text-xs flex gap-1 items-center bg-secondary shadow md:px-2 py-1 rounded-full">
                 <div className="relative inline-flex items-center justify-center w-5 h-5 overflow-hidden bg-gray-400 rounded-full dark:bg-gray-600">
                   <span className="font-medium text-xs text-gray-100 dark:text-gray-300">
                     JL

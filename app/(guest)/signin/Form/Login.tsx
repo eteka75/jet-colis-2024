@@ -31,12 +31,15 @@ const Login: React.FC = () => {
   const inputPwd = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [callbackUrl, setCallbackUrl] = useState<string>('/');
+  const [callbackUrl, setCallbackUrl] = useState<string>('');
 
   useEffect(() => {
     const url = searchParams.get('callbackUrl');
-    if (url) {
-      setCallbackUrl(url);
+    const httpUtl = process.env.NEXT_PUBLIC_BASE_URL;
+    const vurl = `${httpUtl}${url}`;
+    // alert(vurl.href);
+    if (url && url != '' && url != '/') {
+      setCallbackUrl(vurl);
     }
   }, [searchParams]);
 
@@ -129,8 +132,10 @@ const Login: React.FC = () => {
         if (response.message) {
           if (response.redirectUrl) {
             setEmailError('');
-            setIsPending(true);
-            router.push(response.redirectUrl); // Redirection vers l'URL après authentification réussie
+            // setIsPending(true);
+            const redirection = callbackUrl || response.redirectUrl || '/';
+            //router.push(redirection);
+            router.push(redirection); // Redirection vers l'URL après authentification réussie
           } else {
             setErrorMessage(response.message);
           }

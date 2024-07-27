@@ -8,8 +8,8 @@ const Home = () => {
   // const t = useTranslations('Index');
 
   return (
-    <HomeLayout>
-      <TrajetCard />
+    <HomeLayout type="large">
+      <TrajetCard type="large" />
     </HomeLayout>
   );
 };

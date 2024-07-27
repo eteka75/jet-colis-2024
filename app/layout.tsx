@@ -6,7 +6,7 @@ import '@/src/styles/globals.css';
 import clsx from 'clsx';
 import type { Metadata } from 'next';
 // import { SessionProvider } from 'next-auth/react';
-import { Figtree, Inter } from 'next/font/google';
+import { Figtree, Inter, Montserrat } from 'next/font/google';
 import React, { ReactNode } from 'react';
 
 import { NextIntlClientProvider } from 'next-intl';
@@ -21,6 +21,11 @@ import NextTopLoader from 'nextjs-toploader';
 import ClientProvider from '@/components/providers/ClientProvider';
 
 const figtree = Figtree({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  style: ['normal', 'italic'],
+});
+const MontFont = Montserrat({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700', '800', '900'],
   style: ['normal', 'italic'],
@@ -45,7 +50,7 @@ const RootLayout: React.FC<Props> = async ({ children, params }) => {
   const messages = await getMessages();
 
   if (params.locale != locale) {
-    console.log(locale, params.locale, '===========================');
+    // console.log(locale, params.locale, '===========================');
     // notFound();
   }
   return (
@@ -60,7 +65,7 @@ const RootLayout: React.FC<Props> = async ({ children, params }) => {
       <body
         className={clsx(
           'min-h-screen bg-background font-sans antialiased',
-          interVar.className
+          MontFont.className
         )}
       >
         {/* <NextTopLoader showSpinner={false} /> */}
