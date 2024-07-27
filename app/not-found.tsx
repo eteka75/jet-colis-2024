@@ -1,32 +1,35 @@
-import DefaultLayout from '@/components/layouts/DefaultLayout';
-import HomeLayout from '@/components/layouts/HomeLayout';
+'use client';
+
+import { useRouter } from 'next/navigation';
+
 import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import React from 'react';
-import { FaCarSide, FaEmber } from 'react-icons/fa6';
-import { IoIosArrowBack } from 'react-icons/io';
-import { MdErrorOutline } from 'react-icons/md';
+import { ArrowLeft, HomeIcon } from 'lucide-react';
 
-const GlobalNotFound = () => {
+export default function NotFound() {
+  const router = useRouter();
+
   return (
-    <DefaultLayout>
-      <div className="container min-h-screen-minus-menu py-40 justify-center items-center flex p-10 mx-auto">
-        <div className="text-center">
-          <MdErrorOutline className="text-5xl mx-auto text-slate-400" />
-          <h1 className="text-2xl font-bold">404, Page non trouvé !</h1>
-          <p className="text-md mb-6 px-4">
-            La page que vous recherchez n'existe pas ou a été déplcée
-          </p>
-          <Link href="/">
-            <Button>
-              <IoIosArrowBack />
-              Retour à l'accueil
-            </Button>
-          </Link>
-        </div>
+    <div className="absolute left-1/2 top-1/2 mb-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center text-center">
+      <span className="bg-gradient-to-b from-foreground to-slate-800 bg-clip-text text-[10rem] font-extrabold leading-none text-transparent">
+        404
+      </span>
+      <h2 className="font-heading my-2 text-2xl font-bold">
+        Quelque chose s'est mal passé
+      </h2>
+      <p>Désolé, la page que vous recherchez n'existe pas ou a été déplacée.</p>
+      <div className="mt-8 flex justify-center gap-2">
+        <Button onClick={() => router.back()} variant="default" size="lg">
+          <ArrowLeft className="h-4 w-4" /> Retour
+        </Button>
+        <Button
+          onClick={() => router.push('/')}
+          variant="ghost"
+          size="lg"
+          className="border gap-1 flex"
+        >
+          <HomeIcon className="h-4 w-4" /> Aller à l'accueil
+        </Button>
       </div>
-    </DefaultLayout>
+    </div>
   );
-};
-
-export default GlobalNotFound;
+}
