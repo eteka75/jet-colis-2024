@@ -11,7 +11,7 @@ interface NavbarProps {
   darkMode: boolean;
   toggleDarkMode: () => void;
 }
-const SwithtTheme: React.FC = () => {
+const SwithtTheme = ({ className }: { className?: string }) => {
   const { setTheme, theme } = useTheme();
   const [isClient, setIsClient] = useState(false);
 
@@ -36,7 +36,9 @@ const SwithtTheme: React.FC = () => {
       id="btntheme"
       variant="ghost"
       size="icon"
-      className="hidden md:flex hover:bg-none active:bg-none w-9 h-9  rounded-full"
+      className={
+        ' hover:bg-none active:bg-none w-9 h-9  rounded-full ' + className
+      }
       onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
     >
       <Sun className="h-[1.5rem] w-[1.3rem] dark:hidden" />

@@ -52,14 +52,13 @@ const MobileTopMenu: React.FC = () => {
 
           <div className="overflow-auto h-min">
             <aside>
-              <ul className="text-sm border-b px-4 sm:hidden">
+              <ul className="text-sm border-b px-4 sm:hidden bg-accente">
                 <li>
-                  <div className="flex font-bold gap-4 text-foreground items-center justify-between">
+                  <div className="flex font-bold py-1 gap-4 text-foreground items-center justify-between">
                     <Label id="theme" htmlFor="btntheme" className="py-2">
                       {menuItems.themeSwitcher.label}
                     </Label>
                     <div className="text-end">
-                      {/* Assuming SwithtTheme is imported as a component */}
                       <SwithtTheme />
                     </div>
                   </div>
