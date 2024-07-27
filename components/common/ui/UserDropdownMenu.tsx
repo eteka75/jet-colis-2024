@@ -46,7 +46,7 @@ const UserDropdownMenu = () => {
         {locale === 'fr' ? 'EN' : 'FR'}
       </Button> */}
 
-      <SwithtTheme className="hidden mf:flex" />
+      <SwithtTheme className="hidden md:flex" />
       <div className="flex max-w-full items-center gap-2">
         <LoginDropdownMenu />
       </div>

@@ -20,23 +20,19 @@ import {
 } from '@/components/ui/sheet';
 import MobileTopMenu from './ui/MobileTopMenu';
 import SwithtTheme from './Header/SwithtTheme';
+import SwithLang from './Header/SwithLang';
 
 const SlimHeader = async () => {
   // const { data: session, status } = useSession();
   const session = await auth();
   const user: User | null = session?.user as User | null;
-  const locale = 'fr';
 
-  const handleChangeLanguage = () => {
-    const newLocale = locale === 'fr' ? 'en' : 'fr';
-    //locale = newLocale;
-  };
   const linkStyles =
     'flex items-center gap-2 text-neutral-500 dark:text-white/80 px-4 py-2 rounded-md hover:bg-accent dark:hover:text-white hover:no-underline';
 
   return (
     <>
-      <div className=" bg-background/80 bg-opacity-90 backdrop-blur-3xl border-b shadow-sm _border-accent ">
+      <div className=" bg-background/80 bg-opacity-90 backdrop-blur-3xl border-b  _border-accent ">
         <div className="container items-center py-2 m-auto">
           <div className="flex w-full h-full md:gap-4 items-center">
             <div className="lg:w-1/4 lg:min-w-[100px] lg:max-w-[400px] ">
@@ -59,14 +55,7 @@ const SlimHeader = async () => {
             <div className="flex-grow  justify-center "></div>
 
             <div className="lg:w-1/4 lg:min-w-[250px] min-w-2  items-center flex gap-1 lg:max-w-[400px] justify-end">
-              <Button
-                // onClick={handleChangeLanguage}
-                className="text-xs hidden md:flex w-9 h-9 rounded-full"
-                variant={'ghost'}
-                size={'sm'}
-              >
-                {locale === 'fr' ? 'EN' : 'FR'}
-              </Button>
+              <SwithLang />
               <span className="hidden sm:flex">
                 <SwithtTheme />
               </span>

@@ -50,9 +50,9 @@ const SubNav = () => {
   };
 
   return (
-    <div className="bg-white border-b shadow-sm shadow-sms text-light z-0 dark:border-b dark:bg-background _bg-opacity-90_backdrop-blur-3xl">
-      <div className="container">
-        <nav className="md:mx-12 ">
+    <div className="bg-white  shadow-sm shadow-sms text-light z-0  dark:bg-background _bg-opacity-90_backdrop-blur-3xl">
+      <div className="container ">
+        <nav className="md:px-12 dark:border-b ">
           <Carousel
             opts={{
               align: 'center',
@@ -66,7 +66,7 @@ const SubNav = () => {
               {villes.map((ville, index) => (
                 <CarouselItem
                   className={clsx(
-                    'basis-auto text-nowrap md:px-3 px-2 border-b-4 border-b-white/0   py-2 md:py-3 md:mx-1 _rounded-full transition-colors duration-300',
+                    'basis-auto text-nowrap md:px-3 px-2 border-b-4 border-b-white/0   py-2 md:pt-3 md:pb-2 md:mx-1 _rounded-full transition-colors duration-300',
                     ville_active === ville
                       ? 'border-b-4 font-medium border-b-primary'
                       : 'hover:border-b-primary  hover:border-b-4'

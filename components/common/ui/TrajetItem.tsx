@@ -39,7 +39,7 @@ const DestinationImage: React.FC<DestinationImageType> = ({
   user,
 }) => {
   return (
-    <article className="relative bg-accent shadow-sm  isolate flex flex-col justify-end overflow-hidden rounded-2xl  mx-auto group aspect-w-1 aspect-h-1 h-[300px] md:min-h-[200px]">
+    <article className="relative bg-accent shadow-sm  isolate flex flex-col justify-end overflow-hidden rounded-2xl  mx-auto group aspect-w-1 aspect-h-1 h-[300px] md:h-[250px]">
       <Image
         alt={title ?? 'image'} // Utilisez la prop title pour l'alt text
         className="absolute inset-0 w-full h-full object-cover "
@@ -92,7 +92,7 @@ const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
         <div className="aspect-h-1_aspect-w-1 w-full overflow-hidden rounded-xl dark:bg-secondary/50 lg:aspect-none group-hover:opacity-75">
           {loading ? (
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-              <Skeleton className="h-[300px] md:h-[200px] bg-slate-300/50 items-center justify-center flex w-full shadow">
+              <Skeleton className="h-[300px] md:h-[250px] bg-slate-300/50 items-center justify-center flex w-full shadow">
                 <Link className="d-con" href={`/journey/${id}`}>
                   <RiImageLine className="w-10 h-10 opacity-40" />
                 </Link>
@@ -142,7 +142,7 @@ const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
               <div className=" flex flex-wrap justify-between items-center">
                 <Link href={`/journey/${id}`}>
                   <span aria-hidden="true" className="absolute_ inset-0"></span>
-                  <h2 className="flex gap-2 items-center   mb-0.5 font-bold">
+                  <h2 className="flex gap-2 items-center   font-bold">
                     {depart} -
                     <span className="text-primary_">{destination}</span>
                   </h2>
