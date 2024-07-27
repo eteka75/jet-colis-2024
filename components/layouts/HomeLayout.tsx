@@ -12,12 +12,12 @@ const HomeLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50 border-b_border-accent ">
-        <Header />
-        <div className="md:-mt-1 -mt-0.5">
-          <SubNav />
+        <Header type="large" />
+        <div className=" -mt-0.5">
+          <SubNav type="large" />
         </div>
       </header>
-      <div className="md:min-h __mt-0 mt-[90px] md:mt-[100px] ">{children}</div>
+      <div className="md:min-h __mt-0 mt-[90px] md:mt-[110px] ">{children}</div>
       <MiniFooter />
     </>
   );

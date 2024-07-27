@@ -89,7 +89,7 @@ const SignInPage = async () => {
                 </>
               </Link>
             </div>
-            <Card className="mx-auto max-w-sm shadow-none border-0 px-0 md:px-4 md:border  ">
+            <Card className="mx-auto max-w-md shadow-none border-0 px-0 md:px-4 md:border  ">
               <CardHeader className="px-0 md:px-4 text-center md:text-start">
                 <CardTitle className="text-2xl">Connexion</CardTitle>
                 <CardDescription>

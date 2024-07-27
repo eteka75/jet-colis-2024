@@ -50,7 +50,7 @@ const Header = ({ type }: { type?: string }) => {
               </div>
             </div>
             <div className="flex-grow flex justify-center">
-              <form className="w-full max-w-screen-sm px-2 md:px-4">
+              <form className="w-full max-w-screen-sm px-2 md:px-4 my-2">
                 <label
                   htmlFor="default-search"
                   className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -83,7 +83,7 @@ const Header = ({ type }: { type?: string }) => {
                   <Button
                     size={'sm'}
                     variant={'ghost'}
-                    className="border rounded-full lg:me-2 text-foreground bg-background hover:bg-primary hover:text-background active:px-2.5 hover:border-background gap-1  text-sm lg:text-md shadow__border dark:bg-primary dark:text-accent-foreground"
+                    className="hover:border rounded-full lg:me-2 text-foreground bg-background hover:bg-primary hover:text-background active:px-2.5 hover:border-background gap-1  text-sm lg:text-md shadow__border dark:bg-primary dark:text-accent-foreground"
                   >
                     <PiPackageDuotone />
                     Publier une offre
