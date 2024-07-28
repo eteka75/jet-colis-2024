@@ -78,7 +78,7 @@ const faqItems = [
 
 const FaqInfo = () => {
   return (
-    <div className=" md:py-20 bg-slate-50_ pb-8">
+    <div className=" md:py-20 bg-slate-50_ pb-8 bg-background">
       <div className="container-fluid">
         <div className="md:max-w-screen-lg mx-auto rounded-xl py-4 md:py-8">
           <div className="  md:px-8">

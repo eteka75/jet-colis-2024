@@ -14,7 +14,7 @@ import Link from 'next/link';
 
 const Register = () => {
   return (
-    <div className="py-8">
+    <div className="md:py-8">
       <div className="">
         <Card className="mx-auto max-w-md shadow-none border-0 px-0 md:px-4 md:border  ">
           <CardHeader className="px-0 md:px-4 text-center md:text-start">
@@ -23,7 +23,7 @@ const Register = () => {
               Remplissez vos informations pour vous inscrire.
             </CardDescription>
           </CardHeader>
-          <CardContent className="px-0 md:px-4">
+          <CardContent className="px-4">
             <CardRegister />
           </CardContent>
         </Card>

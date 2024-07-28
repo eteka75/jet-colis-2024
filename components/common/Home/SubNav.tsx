@@ -54,7 +54,7 @@ const SubNav = ({ type }: { type: string }) => {
   return (
     <div className="bg-accente_ bg-background shadow-sm shadow-sms text-light z-0  dark:bg-background _bg-opacity-90_backdrop-blur-3xl">
       <div className={classContainer}>
-        <nav className="md:px-12 dark:border-b ">
+        <nav className="md:px-12 dark:border-b">
           <Carousel
             opts={{
               align: 'center',
@@ -70,7 +70,7 @@ const SubNav = ({ type }: { type: string }) => {
                   className={clsx(
                     'basis-auto text-nowrap rounded-full px-3 me-1 md:me-2 border-b-white/0  my-2.5 py-[4px]  _rounded-full transition-colors duration-300',
                     ville_active === ville
-                      ? 'bg-accent font-medium'
+                      ? 'bg-accent font-semibold'
                       : 'hover:bg-accent '
                   )}
                   key={index}

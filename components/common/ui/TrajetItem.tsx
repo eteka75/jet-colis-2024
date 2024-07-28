@@ -9,7 +9,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { GoPackageDependents } from 'react-icons/go';
 import { User } from '@prisma/client';
 import { formatDate } from '@/src/lib/fn';
-import { UserCheck } from 'lucide-react';
+import { Calendar, UserCheck } from 'lucide-react';
 
 // Skeleton component
 const Skeletond = ({
@@ -168,7 +168,9 @@ const TrajetItem: React.FC<TrajetItemProps> = ({ data, photos }) => {
               <div className="flex justify-between">
                 <p className="text-sm md:text-xs flex items-center gap-2 opacity-70">
                   <GiAirplaneDeparture className="w-4 h-4 hidden" />{' '}
-                  <div> {`${formatDate(date_depart)}`}</div>
+                  <div className="flex gap-1 items-center">
+                    Départ, {`${formatDate(date_depart)}`}
+                  </div>
                 </p>
                 {/* <p className="text-sm opacity-80">
                   {`${tarif} ${devise}/${unite}`}

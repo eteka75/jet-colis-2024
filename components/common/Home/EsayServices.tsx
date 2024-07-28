@@ -4,7 +4,7 @@ import img from '@/public/assets/images/easy_app.png';
 
 const EsayServices = () => {
   return (
-    <div className="border-b shadow-inner border-t dark:bg-accent/50">
+    <div className="border-b shadow-inner border-t bg-background">
       <div className="container text-center pt-6 md:pt-12">
         <h1 className="scroll-m-20 pt-4 md:pt-8 max-w-3xl font-light mx-auto text-4xl lg:text-[4rem] mb-12 lg:mb-24  tracking-tight lg:text-5xl">
           Avec <span className="text-primary font-medium">Colisfly</span>,

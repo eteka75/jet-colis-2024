@@ -6,16 +6,23 @@ import { FaArrowLeft } from 'react-icons/fa6';
 import logoLight from '@/public/assets/images/logo-v0.png';
 import logoDark from '@/public/assets/images/logo-v1.png';
 import { User2, UserPlus } from 'lucide-react';
+import { cn } from '@/src/lib/utils';
 
 interface HeaderProps {
   left?: ReactNode;
   center?: ReactNode;
   right?: ReactNode;
+  className?: string;
 }
 
-const HeaderLight: React.FC<HeaderProps> = ({ left, center, right }) => {
+const HeaderLight: React.FC<HeaderProps> = ({
+  left,
+  center,
+  right,
+  className,
+}) => {
   return (
-    <div className="shadow-sm_ border-b px-4 py-3 border-accente  ">
+    <div className={cn('shadow-sm_  px-4 py-3 border-b ', className)}>
       <div className="   container">
         <div className="md:px-4  mx-auto">
           <div className="flex justify-between items-center">
