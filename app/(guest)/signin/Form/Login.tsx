@@ -17,7 +17,6 @@ import { FiEdit2 } from 'react-icons/fi';
 import { GrFormNext } from 'react-icons/gr';
 import { emailSchema, passwordSchema } from '@/src/lib/validations';
 import { redirect, useRouter, useSearchParams } from 'next/navigation';
-import { revalidatePath } from 'next/cache';
 
 const Login: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -136,10 +135,7 @@ const Login: React.FC = () => {
             // setIsPending(true);
             const redirection = callbackUrl || response.redirectUrl || '/';
             //router.push(redirection);
-            // revalidatePath(redirection);
-            // revalidatePath(document.location.href);
-            // router.push(redirection); // Redirection vers l'URL après authentification réussie
-            window.location.reload();
+            router.push(redirection); // Redirection vers l'URL après authentification réussie
           } else {
             setErrorMessage(response.message);
           }
@@ -154,7 +150,6 @@ const Login: React.FC = () => {
         );
       } finally {
         setIsPending(false);
-        // revalidatePath(document.location.href);
       }
     }
   };

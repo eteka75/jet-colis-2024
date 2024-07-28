@@ -3,7 +3,6 @@
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 import { siteConfig } from '../config/website';
-import { redirect } from 'next/navigation';
 
 // Fonction pour convertir FormData en objet JavaScript
 function formDataToObject(formData: FormData) {
@@ -13,7 +12,7 @@ function formDataToObject(formData: FormData) {
 export async function authenticate(
   prevState: string | undefined,
   formData: FormData
-): Promise<{ message?: string }> {
+): Promise<{ message: string; redirectUrl?: string }> {
   const credentials = formDataToObject(formData);
 
   try {
@@ -25,13 +24,15 @@ export async function authenticate(
         : siteConfig.homeUserLogin;
 
     const result = await signIn('credentials', {
-      redirect: true,
+      redirect: false,
       ...credentials,
       callbackUrl,
     });
 
-    // La redirection est gérée par signIn lorsque redirect: true
-    return { message: 'Authentification réussie' };
+    if (!result) {
+      return { message: 'La connexion a échoué, veuillez réessayer.' };
+    }
+    return { message: 'Authentification réussie', redirectUrl: callbackUrl };
   } catch (error) {
     let msg = 'Email ou mot de passe invalide';
     if (error instanceof AuthError) {
