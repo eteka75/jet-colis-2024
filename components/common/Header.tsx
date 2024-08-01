@@ -80,9 +80,9 @@ const Header = async ({ type }: { type?: string }) => {
                   <Button
                     size={'sm'}
                     variant={'ghost'}
-                    className="hover:border rounded-full lg:me-2 text-foreground  hover:bg-primary hover:text-background active:px-2.5 hover:border-background gap-1  text-sm lg:text-md shadow__border dark:bg-primary dark:text-accent-foreground"
+                    className=" rounded-full px-4 lg:me-1 text-pretty text-foreground  hover:bg-accent dark:hover:text-background _active:px-2.5 hover:border-background gap-1  text-sm lg:text-md shadow__border hover:dark:bg-primary dark:text-accent-foreground"
                   >
-                    <Plus className="h-5 w-5" />
+                    {/* <Plus className="h-5 w-5" /> */}
                     Publier une offre
                   </Button>
                 </Link>

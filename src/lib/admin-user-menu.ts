@@ -2,9 +2,12 @@ import { ComponentType, SVGProps } from 'react';
 import { FaSignOutAlt } from 'react-icons/fa';
 
 import {
+  FolderPlus,
+  GalleryVerticalEnd,
   Gauge,
   LineChart,
   List,
+  ListChecks,
   MessageSquare,
   PackagePlus,
   PlaneLanding,
@@ -55,11 +58,13 @@ export const adminMenu: MenuItem[] = [
         label: 'Tous les trajets',
         href: '/dashboard/trajets',
         name: 'all_trajets',
+        icon: GalleryVerticalEnd,
       },
       {
         label: 'Ajouter un trajet',
         href: '/dashboard/trajets/add',
         name: 'add_trajet',
+        icon: FolderPlus,
       },
     ],
   },

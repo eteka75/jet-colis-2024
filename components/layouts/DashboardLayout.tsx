@@ -60,14 +60,13 @@ const DashboardLayout = async ({
               />
               <ScrollArea className="h-full ">
                 <main className=" border-t mt-[1px] p-4 md:p-6">
-                  <div className=" max-w-screen-xl mx-auto">{children} </div>
+                  <div className=" max-w-screen-2xl mx-auto">{children} </div>
                 </main>
               </ScrollArea>
             </div>
           </div>
         </div>
       </LightLayout>
-      <MiniFooter />
     </>
   );
 };

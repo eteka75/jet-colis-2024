@@ -124,7 +124,6 @@ const DashNav = ({
                           } // Gérer le clic pour ouvrir/fermer le sous-menu
                         >
                           <span className="flex gap-2  items-center ">
-                            {' '}
                             {item.icon && (
                               <item.icon className="ml-3 size-3.5" />
                             )}
@@ -185,9 +184,7 @@ const DashNav = ({
                     <div className={cn(isMinimized ? 'pl-2' : 'pl-4')}>
                       <div
                         className={cn(
-                          isMinimized
-                            ? 'pl-2  flex flex-col gap-1'
-                            : 'border-l  pl-2'
+                          isMinimized ? 'flex flex-col gap-1' : 'border-l  pl-2'
                         )}
                       >
                         {item.subMenu.map((subItem, subIndex) =>
@@ -197,7 +194,7 @@ const DashNav = ({
                                 <Link
                                   key={subIndex}
                                   href={subItem.href ?? '#'}
-                                  className={`flex bg-accent h-6 w-6 items-center gap-2 overflow-hidden rounded-md py-1 text-xs text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground ${
+                                  className={`flex items-center gap-2 w-full overflow-hidden rounded-md py-1 text-xs text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground ${
                                     page === subItem.name
                                       ? 'bg-primary/10 font-semibold  text-primary hover:text-primary hover:bg-primary/20'
                                       : 'transparent'
@@ -228,7 +225,7 @@ const DashNav = ({
                             <Link
                               key={subIndex}
                               href={subItem.href ?? '#'}
-                              className={`flex items-center gap-2 overflow-hidden rounded-md py-1 text-xs text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground ${
+                              className={`flex items-center gap-2 w-full overflow-hidden rounded-md py-1 text-xs text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground ${
                                 page === subItem.name
                                   ? 'bg-primary/10 font-semibold text-primary hover:text-primary hover:bg-primary/20'
                                   : 'transparent'
@@ -237,7 +234,6 @@ const DashNav = ({
                                 'cursor-not-allowed opacity-80'
                               }`}
                             >
-                              {/* <subItem.icon className="ml-1 size-3" /> */}
                               <span className="mx-2 truncate">
                                 {subItem.label}
                               </span>

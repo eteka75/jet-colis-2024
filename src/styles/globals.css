@@ -4,6 +4,9 @@
 
 @import './theme-default.css';
 
+:root {
+  --color-steps: #4a90e2; /* Définissez la couleur que vous souhaitez utiliser */
+}
 @layer utilities {
   /* .container {
     @apply mx-auto  px-6; //max-w-screen-xl max-w-screen-xl
@@ -63,6 +66,12 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-size: 1rem !important;
+    line-height: 1.25rem !important;
+    --gp-section-compact-padding: 32px !important;
+    --gp-section-compact-padding-condensed: 16px !important;
+    --gp-section-standard-padding: 48px !important;
+    --gp-section-standard-padding-condensed: 24px !important;
     /* font-family: Montserrat, Inter var, Inter, ui-sans-serif, system-ui,
       sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', Segoe UI Symbol,
       'Noto Color Emoji'; */
