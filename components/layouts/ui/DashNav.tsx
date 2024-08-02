@@ -191,6 +191,8 @@ const DashNav = ({
                           isMinimized ? (
                             <Tooltip>
                               <TooltipTrigger>
+
+                                
                                 <Link
                                   key={subIndex}
                                   href={subItem.href ?? '#'}
